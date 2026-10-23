@@ -529,36 +529,95 @@ h1, h2, h3, h4, h5, h6 {
 /* Mobile Drawer */
 .mobile-nav-drawer {
   position: fixed;
-  top: 80px;
-  left: 16px;
-  right: 16px;
-  background: var(--bg-glass);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border-glass);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  padding: 24px;
+  top: 76px;
+  left: 14px;
+  right: 14px;
+  background: var(--bg-card);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  z-index: 99;
-  transform: translateY(-20px);
+  gap: 8px;
+  z-index: 999;
+  transform: translateY(-12px) scale(0.98);
   opacity: 0;
   pointer-events: none;
-  transition: var(--transition);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
+}
+
+[data-theme="dark"] .mobile-nav-drawer {
+  background: rgba(15, 30, 15, 0.94);
+  border: 1px solid rgba(144, 169, 85, 0.25);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(79, 119, 45, 0.15);
 }
 
 .mobile-nav-drawer.open {
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
   opacity: 1;
   pointer-events: auto;
 }
 
 .mobile-nav-drawer .nav-link {
   font-size: 1.05rem;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border-subtle);
+  font-weight: 600;
+  color: var(--text-primary) !important;
+  padding: 13px 18px !important;
+  border-radius: 12px !important;
+  border: 1px solid transparent !important;
+  border-bottom: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.mobile-nav-drawer .nav-link::after {
+  display: none !important;
+}
+
+.mobile-nav-drawer .nav-link:hover {
+  background: var(--bg-tertiary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-subtle) !important;
+  transform: translateX(3px);
+}
+
+.mobile-nav-drawer .nav-link.active {
+  background: var(--brand-soft) !important;
+  color: var(--c-forest-green) !important;
+  font-weight: 700 !important;
+  border-color: rgba(79, 119, 45, 0.35) !important;
+  box-shadow: none !important;
+}
+
+[data-theme="dark"] .mobile-nav-drawer .nav-link.active {
+  background: rgba(144, 169, 85, 0.18) !important;
+  color: var(--c-lemon-cream) !important;
+  font-weight: 700 !important;
+  border-color: rgba(236, 243, 158, 0.35) !important;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.3) !important;
+}
+
+.mobile-nav-drawer .btn-cta {
+  margin-top: 8px;
+  padding: 14px 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 9999px;
+  display: block;
+  width: 100%;
+  box-shadow: var(--shadow-brand);
 }
 
 /* ==========================================================================
@@ -2983,34 +3042,150 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 32px;
   }
 
-  /* Platforms */
+  /* ==========================================================================
+     Mobile Side-Swipe Horizontal Carousels for Large Data Cards
+     ========================================================================== */
+  .services-pillars-grid,
+  .services-process-grid,
+  .platforms-ecosystem-grid,
+  .team-grid,
+  .about-mission-grid,
+  .about-values-grid,
+  .careers-culture-grid,
+  .stats-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    gap: 16px !important;
+    padding: 12px 16px 24px !important;
+    margin-left: -16px !important;
+    margin-right: -16px !important;
+    width: calc(100% + 32px) !important;
+    scroll-padding-left: 16px !important;
+    scroll-behavior: smooth !important;
+  }
+
+  .services-pillars-grid::-webkit-scrollbar,
+  .services-process-grid::-webkit-scrollbar,
+  .platforms-ecosystem-grid::-webkit-scrollbar,
+  .team-grid::-webkit-scrollbar,
+  .about-mission-grid::-webkit-scrollbar,
+  .about-values-grid::-webkit-scrollbar,
+  .careers-culture-grid::-webkit-scrollbar,
+  .stats-grid::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  /* Specific Card Sizes & Touch Alignment */
+  .services-pillars-grid > * {
+    flex: 0 0 min(315px, 84vw) !important;
+    max-width: min(315px, 84vw) !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: normal !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    padding: 28px 20px !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  .services-process-grid > * {
+    flex: 0 0 min(260px, 76vw) !important;
+    max-width: min(260px, 76vw) !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: normal !important;
+    padding: 22px 18px !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  .platforms-ecosystem-grid .platform-eco-card {
+    flex: 0 0 min(280px, 80vw) !important;
+    max-width: min(280px, 80vw) !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: normal !important;
+    min-height: 200px !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 20px !important;
+  }
+
+  .team-grid .team-member-card {
+    flex: 0 0 min(270px, 76vw) !important;
+    max-width: min(270px, 76vw) !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: normal !important;
+    padding: 26px 20px !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  .about-mission-grid > * {
+    flex: 0 0 min(315px, 84vw) !important;
+    max-width: min(315px, 84vw) !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: normal !important;
+    padding: 28px 20px !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  .about-values-grid > *,
+  .careers-culture-grid > * {
+    flex: 0 0 min(275px, 78vw) !important;
+    max-width: min(275px, 78vw) !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: normal !important;
+    padding: 26px 20px !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  .stats-grid .stat-box {
+    flex: 0 0 min(220px, 66vw) !important;
+    max-width: min(220px, 66vw) !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: normal !important;
+    padding: 22px 18px !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  .process-flow-container {
+    padding: 20px 14px !important;
+    border-radius: var(--radius-lg) !important;
+  }
+
   .platform-filter-tabs {
     gap: 8px;
-    margin: 24px auto 32px;
+    margin: 20px auto 26px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .platform-filter-tabs::-webkit-scrollbar {
+    display: none;
   }
 
   .platform-tab-btn {
     font-size: 0.82rem;
     padding: 8px 14px;
-  }
-
-  .platforms-ecosystem-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .platform-eco-card {
-    padding: 20px;
-  }
-
-  /* Team */
-  .team-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .team-member-card {
-    padding: 24px 18px;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   /* CTA Banner */
@@ -3100,34 +3275,20 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Mobile Portrait Phones (<= 480px) */
 @media (max-width: 480px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .stat-box {
-    padding: 24px 16px;
-  }
-
-  .stat-number {
-    font-size: 2.6rem;
-  }
-
-  .services-process-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .spotlight-card.tilt-card {
-    padding: 24px 16px !important;
-  }
-
   .hero-title {
     font-size: 1.95rem;
   }
 
   .section-title {
     font-size: 1.85rem;
+  }
+
+  .stat-number {
+    font-size: 2.3rem;
+  }
+
+  .spotlight-card.tilt-card {
+    padding: 22px 16px !important;
   }
 }
 

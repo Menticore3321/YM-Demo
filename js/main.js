@@ -54,7 +54,8 @@ function initNavigation() {
   const mobileDrawer = document.querySelector('.mobile-nav-drawer');
 
   if (mobileBtn && mobileDrawer) {
-    mobileBtn.addEventListener('click', () => {
+    mobileBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       const isOpen = mobileDrawer.classList.toggle('open');
       mobileBtn.setAttribute('aria-expanded', isOpen);
     });
@@ -63,7 +64,24 @@ function initNavigation() {
     mobileDrawer.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileDrawer.classList.remove('open');
+        mobileBtn.setAttribute('aria-expanded', 'false');
       });
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (mobileDrawer.classList.contains('open') && !mobileDrawer.contains(e.target) && !mobileBtn.contains(e.target)) {
+        mobileDrawer.classList.remove('open');
+        mobileBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileDrawer.classList.contains('open')) {
+        mobileDrawer.classList.remove('open');
+        mobileBtn.setAttribute('aria-expanded', 'false');
+      }
     });
   }
 
@@ -746,6 +764,10 @@ function initPlatformFilter() {
       btn.classList.add('active');
 
       const filter = btn.getAttribute('data-platform-filter');
+      const grid = document.querySelector('.platforms-ecosystem-grid');
+      if (grid) {
+        grid.scrollTo({ left: 0, behavior: 'smooth' });
+      }
 
       cards.forEach(card => {
         const categories = (card.getAttribute('data-category') || '').split(' ');
