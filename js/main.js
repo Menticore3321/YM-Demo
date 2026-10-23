@@ -133,7 +133,7 @@ function initHowWeHelp() {
 }
 
 /* ==========================================================================
-   4. Services Carousel
+   4. Services Carousel (Smooth Fluid Edge-Fade, Drag Physics & Discrete Step)
    ========================================================================== */
 function initServicesCarousel() {
   const track = document.querySelector('.services-carousel-track');
@@ -142,21 +142,124 @@ function initServicesCarousel() {
 
   if (!track || !prevBtn || !nextBtn) return;
 
-  const cardWidth = 364; // 340 + 24 gap
+  function getStepWidth() {
+    const firstCard = track.querySelector('.service-card');
+    if (!firstCard) return 364;
+    const style = window.getComputedStyle(track);
+    const gap = parseFloat(style.gap) || 24;
+    return firstCard.offsetWidth + gap;
+  }
 
-  prevBtn.addEventListener('click', () => {
-    track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+  function updateCarouselState() {
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    if (maxScroll <= 8) {
+      track.classList.add('mask-none');
+      track.classList.remove('mask-both', 'mask-end');
+      prevBtn.disabled = true;
+      nextBtn.disabled = true;
+      return;
+    }
+    track.classList.remove('mask-none');
+
+    const atStart = track.scrollLeft <= 16;
+    const atEnd = track.scrollLeft >= maxScroll - 16;
+
+    prevBtn.disabled = atStart;
+    nextBtn.disabled = atEnd;
+
+    if (atStart) {
+      track.classList.remove('mask-both', 'mask-end');
+    } else if (atEnd) {
+      track.classList.remove('mask-both');
+      track.classList.add('mask-end');
+    } else {
+      track.classList.remove('mask-end');
+      track.classList.add('mask-both');
+    }
+  }
+
+  function scrollToStep(direction) {
+    const step = getStepWidth();
+    const currentScroll = track.scrollLeft;
+    let targetIndex;
+
+    if (direction === 'next') {
+      targetIndex = Math.floor((currentScroll + 15) / step) + 1;
+    } else {
+      targetIndex = Math.ceil((currentScroll - 15) / step) - 1;
+    }
+
+    const targetScroll = Math.max(0, Math.min(targetIndex * step, track.scrollWidth - track.clientWidth));
+    track.scrollTo({ left: targetScroll, behavior: 'smooth' });
+  }
+
+  prevBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    scrollToStep('prev');
   });
 
-  nextBtn.addEventListener('click', () => {
-    track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+  nextBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    scrollToStep('next');
   });
 
-  // Track scroll position to update buttons
+  // Passive scroll listener for edge fade mask and button sync
+  let scrollTimeout;
   track.addEventListener('scroll', () => {
-    prevBtn.disabled = track.scrollLeft <= 10;
-    nextBtn.disabled = track.scrollLeft >= (track.scrollWidth - track.clientWidth - 10);
+    updateCarouselState();
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(updateCarouselState, 60);
+  }, { passive: true });
+
+  window.addEventListener('resize', updateCarouselState, { passive: true });
+
+  // Tactile Mouse Drag-to-Scroll for Desktop
+  let isDown = false;
+  let startX = 0;
+  let scrollStart = 0;
+  let hasDragged = false;
+
+  track.addEventListener('mousedown', (e) => {
+    if (e.button !== 0) return; // Only primary mouse button
+    isDown = true;
+    hasDragged = false;
+    track.classList.add('is-dragging');
+    startX = e.pageX - track.offsetLeft;
+    scrollStart = track.scrollLeft;
   });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    const x = e.pageX - track.offsetLeft;
+    const walk = (x - startX) * 1.25;
+    if (Math.abs(x - startX) > 6) {
+      hasDragged = true;
+    }
+    track.scrollLeft = scrollStart - walk;
+    updateCarouselState();
+  });
+
+  const stopDrag = () => {
+    if (!isDown) return;
+    isDown = false;
+    track.classList.remove('is-dragging');
+    updateCarouselState();
+  };
+
+  window.addEventListener('mouseup', stopDrag);
+  track.addEventListener('mouseleave', stopDrag);
+
+  // Suppress accidental modal popups if user was dragging
+  track.addEventListener('click', (e) => {
+    if (hasDragged) {
+      e.preventDefault();
+      e.stopPropagation();
+      hasDragged = false;
+    }
+  }, true);
+
+  // Initial state check after layout settle
+  setTimeout(updateCarouselState, 150);
 }
 
 /* ==========================================================================
