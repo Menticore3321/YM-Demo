@@ -1,0 +1,769 @@
+/**
+ * YoungMark Global Advisory - Main Interactive Script
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  initNavigation();
+  initScrollProgress();
+  initCursorGlow();
+  initCardSpotlight();
+  initTiltCards();
+  initScrollReveal();
+  initHeroParallax();
+  initHowWeHelp();
+  initServicesCarousel();
+  initExpertiseCounter();
+  initIndustries();
+  initPlatformFilter();
+  initFaqAccordion();
+  initModals();
+  initContactForms();
+});
+
+/* ==========================================================================
+   1. Theme Management (Light / Dark Mode)
+   ========================================================================== */
+function initTheme() {
+  const toggleBtns = document.querySelectorAll('.theme-toggle-btn');
+  const storedTheme = localStorage.getItem('ym-theme');
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  if (storedTheme) {
+    document.documentElement.setAttribute('data-theme', storedTheme);
+  } else if (systemPrefersDark) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+
+  toggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('ym-theme', newTheme);
+      showToast(`Switched to ${newTheme === 'dark' ? 'Dark' : 'Light'} Mode`);
+    });
+  });
+}
+
+/* ==========================================================================
+   2. Navigation & Mobile Drawer
+   ========================================================================== */
+function initNavigation() {
+  const mobileBtn = document.querySelector('.mobile-menu-btn');
+  const mobileDrawer = document.querySelector('.mobile-nav-drawer');
+
+  if (mobileBtn && mobileDrawer) {
+    mobileBtn.addEventListener('click', () => {
+      const isOpen = mobileDrawer.classList.toggle('open');
+      mobileBtn.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close on link click
+    mobileDrawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileDrawer.classList.remove('open');
+      });
+    });
+  }
+
+  // Highlight active page
+  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-link').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+      link.classList.add('active');
+    }
+  });
+
+  // Dynamic header scrolled shadow
+  const header = document.querySelector('.site-header');
+  if (header) {
+    const handleScroll = () => {
+      if (window.scrollY > 15) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+  }
+}
+
+/* ==========================================================================
+   3. "How We Help" Interactive Tabs
+   ========================================================================== */
+function initHowWeHelp() {
+  const tabBtns = document.querySelectorAll('.help-tab-btn');
+  const cards = document.querySelectorAll('.help-card');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+
+      tabBtns.forEach(b => b.classList.remove('active'));
+      cards.forEach(c => c.classList.remove('active'));
+
+      btn.classList.add('active');
+      const targetCard = document.getElementById(targetId);
+      if (targetCard) {
+        targetCard.classList.add('active');
+      }
+    });
+  });
+}
+
+/* ==========================================================================
+   4. Services Carousel
+   ========================================================================== */
+function initServicesCarousel() {
+  const track = document.querySelector('.services-carousel-track');
+  const prevBtn = document.getElementById('carousel-prev');
+  const nextBtn = document.getElementById('carousel-next');
+
+  if (!track || !prevBtn || !nextBtn) return;
+
+  const cardWidth = 364; // 340 + 24 gap
+
+  prevBtn.addEventListener('click', () => {
+    track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+  });
+
+  nextBtn.addEventListener('click', () => {
+    track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+  });
+
+  // Track scroll position to update buttons
+  track.addEventListener('scroll', () => {
+    prevBtn.disabled = track.scrollLeft <= 10;
+    nextBtn.disabled = track.scrollLeft >= (track.scrollWidth - track.clientWidth - 10);
+  });
+}
+
+/* ==========================================================================
+   5. "Our Expertise" Animated Counters
+   ========================================================================== */
+function initExpertiseCounter() {
+  const counters = document.querySelectorAll('.stat-number');
+  if (!counters.length) return;
+
+  let triggered = false;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !triggered) {
+        triggered = true;
+        counters.forEach(counter => {
+          const target = parseInt(counter.getAttribute('data-target'), 10);
+          const suffix = counter.getAttribute('data-suffix') || '';
+          animateCounter(counter, target, suffix);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const section = document.querySelector('.expertise-section');
+  if (section) observer.observe(section);
+}
+
+function animateCounter(el, target, suffix) {
+  let start = 0;
+  const duration = 1800;
+  const startTime = performance.now();
+
+  function updateCount(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    // Ease out quad
+    const easeProgress = 1 - (1 - progress) * (1 - progress);
+    const current = Math.floor(easeProgress * target);
+
+    el.textContent = current.toLocaleString() + suffix;
+
+    if (progress < 1) {
+      requestAnimationFrame(updateCount);
+    } else {
+      el.textContent = target.toLocaleString() + suffix;
+    }
+  }
+
+  requestAnimationFrame(updateCount);
+}
+
+/* ==========================================================================
+   6. "Whom We Serve" Industry Tab Switcher
+   ========================================================================== */
+const industryData = {
+  realestate: {
+    title: 'Real Estate & Property Developers',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/></svg>`,
+    desc: 'End-to-end financial operations and portfolio accounting for asset managers, REITs, general partners, and property operators. We architect automated property accounting, rent roll reconciliations, and custom Yardi ledger management.',
+    tags: [
+      'Full-Cycle Property Accounting',
+      'Yardi Voyager & Breeze Setup',
+      'CAM & Lease Reconciliations',
+      'Portfolio Level KPI Dashboards',
+      'Lease & Escrow Accounting',
+      'Investor Distribution Modeling'
+    ]
+  },
+  tech: {
+    title: 'Technology & SaaS Enterprises',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
+    desc: 'Strategic financial infrastructure and automated billing for fast-scaling technology startups and subscription businesses. We implement ASC 606 revenue recognition, stripe reconciliations, and unit economics metrics.',
+    tags: [
+      'ASC 606 Revenue Recognition',
+      'SaaS Metrics (CAC, LTV, NDR)',
+      'Automated Billing & Stripe Sync',
+      'Runway & Burn Modeling',
+      'Burn Rate & Capital Strategy',
+      'Fundraising Due Diligence'
+    ]
+  },
+  healthcare: {
+    title: 'Healthcare & Clinical Groups',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`,
+    desc: 'HIPAA-compliant financial operations, physician practice analytics, and insurance receivables management designed to maintain tight internal controls and predictable cash flow for medical organizations.',
+    tags: [
+      'HIPAA-Compliant Reporting',
+      'Insurance & Patient AR Cycle',
+      'Provider Compensation Models',
+      'Multi-Clinic Consolidation',
+      'Medical Supplies AP Audit',
+      'Capital Equipment Planning'
+    ]
+  },
+  ecommerce: {
+    title: 'E-Commerce & Omnichannel Retail',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>`,
+    desc: 'High-volume multichannel reconciliations (Shopify, Amazon, Walmart) paired with real-time inventory costing (COGS), payout reconciliations, and sales tax compliance across multiple jurisdictions.',
+    tags: [
+      'Multichannel Payout Clearing',
+      'Real-Time COGS & Inventory Valuation',
+      'Multi-State Sales Tax Filing',
+      'Payment Gateway Reconciliations',
+      'Ad Spend ROI & Unit Margin Analysis',
+      'Omnichannel COGS Reconciliation'
+    ]
+  },
+  professional: {
+    title: 'Professional Services & Consultancies',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>`,
+    desc: 'Project-based financial intelligence, billable utilization tracking, and streamlined quote-to-cash workflows for law firms, creative agencies, engineering practices, and advisory firms.',
+    tags: [
+      'Project Profitability Audits',
+      'Utilization & Realization Rates',
+      'Automated Retainer Invoicing',
+      'Time-Tracking Tool Integrations',
+      'Partner Profit-Sharing Models',
+      'Strategic Cash Reserves Planning'
+    ]
+  },
+  hospitality: {
+    title: 'Hospitality & Franchise Chains',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`,
+    desc: 'Daily flash reporting, POS revenue clearing, vendor payment scheduling, and labor cost optimization for boutique hotels, restaurant groups, and franchisee networks.',
+    tags: [
+      'POS Integration & Daily Audit',
+      'Prime Cost & Food Waste Analytics',
+      'Franchise Royalty Accounting',
+      'Multi-Unit Ledger Consolidation',
+      'Tip Allocation & Payroll Processing',
+      'Working Capital Management'
+    ]
+  }
+};
+
+function initIndustries() {
+  const buttons = document.querySelectorAll('.industry-tab-btn');
+  const card = document.getElementById('industry-active-card');
+  if (!card || !buttons.length) return;
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.getAttribute('data-industry');
+      const data = industryData[key];
+      if (!data) return;
+
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      card.innerHTML = `
+        <div class="industry-card-header">
+          <div class="industry-icon-pill">${data.icon}</div>
+          <h3 class="industry-card-title">${data.title}</h3>
+        </div>
+        <p class="industry-card-desc">${data.desc}</p>
+        <div class="industry-tags-grid">
+          ${data.tags.map(tag => `
+            <div class="industry-feature-tag">
+              <span class="tag-pulsing-dot"></span>
+              <span>${tag}</span>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    });
+  });
+}
+
+/* ==========================================================================
+   7. FAQ Accordion
+   ========================================================================== */
+function initFaqAccordion() {
+  const items = document.querySelectorAll('.faq-item');
+
+  items.forEach(item => {
+    const btn = item.querySelector('.faq-question-btn');
+    if (!btn) return;
+
+    btn.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+
+      // Close other items
+      items.forEach(other => {
+        if (other !== item) {
+          other.classList.remove('active');
+          const otherBtn = other.querySelector('.faq-question-btn');
+          if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Toggle current
+      item.classList.toggle('active', !isActive);
+      btn.setAttribute('aria-expanded', !isActive);
+    });
+  });
+}
+
+/* ==========================================================================
+   8. Modal Dialog Management
+   ========================================================================== */
+function initModals() {
+  const backdrop = document.getElementById('modal-backdrop');
+  const closeBtns = document.querySelectorAll('.modal-close-btn');
+
+  if (!backdrop) return;
+
+  closeBtns.forEach(btn => {
+    btn.addEventListener('click', closeModal);
+  });
+
+  backdrop.addEventListener('click', (e) => {
+    if (e.target === backdrop) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && backdrop.classList.contains('open')) {
+      closeModal();
+    }
+  });
+}
+
+function openModal(contentHtml) {
+  const backdrop = document.getElementById('modal-backdrop');
+  const body = document.getElementById('modal-body-content');
+  if (!backdrop || !body) return;
+
+  body.innerHTML = contentHtml;
+  backdrop.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  const backdrop = document.getElementById('modal-backdrop');
+  if (!backdrop) return;
+
+  backdrop.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* Service Detail Modal */
+window.showServiceModal = function(title, category, fullDesc, features) {
+  const html = `
+    <div style="margin-bottom: 20px;">
+      <span class="service-category">${category}</span>
+      <h2 style="font-size: 2rem; margin: 8px 0 16px;">${title}</h2>
+      <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px;">${fullDesc}</p>
+      <h4 style="font-size: 1.15rem; margin-bottom: 12px;">Core Capabilities & Deliverables:</h4>
+      <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px;">
+        ${features.map(f => `
+          <li style="display: flex; align-items: center; gap: 10px; font-weight: 500;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--c-leaf-green); flex-shrink: 0;"><path d="M20 6L9 17l-5-5"/></svg>
+            <span>${f}</span>
+          </li>
+        `).join('')}
+      </ul>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <a href="contact.html?service=${encodeURIComponent(title)}" class="btn-cta" style="padding: 12px 28px; width: 100%; text-align: center;">Request Consultation for ${title}</a>
+      </div>
+    </div>
+  `;
+  openModal(html);
+};
+
+/* Team Member Bio Modal */
+window.showTeamModal = function(name, role, credentials, bio, specialties) {
+  const html = `
+    <div style="text-align: center; margin-bottom: 24px;">
+      <div class="member-avatar-wrap" style="margin: 0 auto 16px; width: 110px; height: 110px;">
+        <div style="width: 100%; height: 100%; border-radius: 9999px; background: linear-gradient(135deg, var(--c-forest-green), var(--c-leaf-green)); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: 800;">
+          ${name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+        </div>
+      </div>
+      <h2 style="font-size: 1.8rem; margin-bottom: 4px;">${name}</h2>
+      <p style="font-size: 0.95rem; font-weight: 700; color: var(--c-forest-green); margin-bottom: 4px;">${role}</p>
+      ${credentials ? `<p style="font-size: 0.82rem; color: var(--text-muted);">${credentials}</p>` : ''}
+    </div>
+    <div style="margin-bottom: 24px;">
+      <h4 style="font-size: 1.1rem; margin-bottom: 8px;">Executive Profile</h4>
+      <p style="font-size: 1rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px;">${bio}</p>
+      ${specialties && specialties.length ? `
+        <h4 style="font-size: 1.1rem; margin-bottom: 8px;">Areas of Specialization</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          ${specialties.map(s => `
+            <span style="font-size: 0.82rem; font-weight: 600; padding: 6px 14px; border-radius: 9999px; background: var(--bg-tertiary); border: 1px solid var(--border-subtle); color: var(--text-primary);">${s}</span>
+          `).join('')}
+        </div>
+      ` : ''}
+    </div>
+  `;
+  openModal(html);
+};
+
+/* Job Application Modal */
+window.openJobModal = function(jobTitle, department) {
+  const html = `
+    <h2 style="font-size: 1.8rem; margin-bottom: 8px;">Apply for Role</h2>
+    <p style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 24px;">Position: <strong>${jobTitle}</strong> (${department})</p>
+    <form id="job-apply-form" onsubmit="handleJobSubmit(event)">
+      <div class="form-group">
+        <label class="form-label">Full Name *</label>
+        <input type="text" class="form-input" required placeholder="John Doe">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address *</label>
+        <input type="email" class="form-input" required placeholder="john@example.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Phone Number *</label>
+        <input type="tel" class="form-input" required placeholder="+1 (555) 000-0000">
+      </div>
+      <div class="form-group">
+        <label class="form-label">LinkedIn or Portfolio URL</label>
+        <input type="url" class="form-input" placeholder="https://linkedin.com/in/username">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Brief Introduction & Why YoungMark</label>
+        <textarea class="form-textarea" rows="3" placeholder="Tell us what excites you about this opportunity..."></textarea>
+      </div>
+      <button type="submit" class="btn-cta" style="width: 100%; padding: 14px;">Submit Application</button>
+    </form>
+  `;
+  openModal(html);
+};
+
+window.handleJobSubmit = function(e) {
+  e.preventDefault();
+  closeModal();
+  showToast('Application submitted successfully! Our recruiting team will review your profile.');
+};
+
+/* ==========================================================================
+   9. Forms & Toasts
+   ========================================================================== */
+function initContactForms() {
+  const forms = document.querySelectorAll('form[data-ajax-form]');
+  forms.forEach(form => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      const originalText = btn ? btn.textContent : '';
+
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Submitting...';
+      }
+
+      setTimeout(() => {
+        form.reset();
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = originalText;
+        }
+        showToast('Thank you! Your inquiry has been dispatched to our advisory partners.');
+      }, 700);
+    });
+  });
+}
+
+function showToast(message) {
+  let toast = document.querySelector('.toast-notice');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.className = 'toast-notice';
+    document.body.appendChild(toast);
+  }
+
+  toast.innerHTML = `
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+    <span>${message}</span>
+  `;
+
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 3800);
+}
+
+/* ==========================================================================
+   10. Reading Scroll Progress Bar
+   ========================================================================== */
+function initScrollProgress() {
+  let progressBar = document.querySelector('.scroll-progress-bar');
+  if (!progressBar) {
+    progressBar = document.createElement('div');
+    progressBar.className = 'scroll-progress-bar';
+    document.body.prepend(progressBar);
+  }
+
+  window.addEventListener('scroll', () => {
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (totalHeight > 0) {
+      const progress = (window.scrollY / totalHeight) * 100;
+      progressBar.style.width = `${progress}%`;
+    }
+  }, { passive: true });
+}
+
+/* ==========================================================================
+   11. Ambient Mouse Cursor Glow & Matrix Grid Spotlight
+   ========================================================================== */
+function initCursorGlow() {
+  // Inject Full-Page Matrix Grid Background
+  let gridBg = document.querySelector('.matrix-grid-bg');
+  if (!gridBg) {
+    gridBg = document.createElement('div');
+    gridBg.className = 'matrix-grid-bg';
+    gridBg.setAttribute('aria-hidden', 'true');
+    document.body.prepend(gridBg);
+  }
+
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+
+  const glow = document.createElement('div');
+  glow.className = 'cursor-glow';
+  document.body.appendChild(glow);
+
+  let currentX = window.innerWidth / 2;
+  let currentY = window.innerHeight / 2;
+  let targetX = currentX;
+  let targetY = currentY;
+
+  window.addEventListener('mousemove', (e) => {
+    targetX = e.clientX;
+    targetY = e.clientY;
+  }, { passive: true });
+
+  window.addEventListener('mouseleave', () => {
+    document.documentElement.style.setProperty('--mouse-screen-x', '-500px');
+    document.documentElement.style.setProperty('--mouse-screen-y', '-500px');
+  });
+
+  function renderGlow() {
+    currentX += (targetX - currentX) * 0.12;
+    currentY += (targetY - currentY) * 0.12;
+    glow.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
+
+    // Smooth spotlight coordinates for geometric dot-matrix glow
+    document.documentElement.style.setProperty('--mouse-screen-x', `${currentX.toFixed(1)}px`);
+    document.documentElement.style.setProperty('--mouse-screen-y', `${currentY.toFixed(1)}px`);
+
+    requestAnimationFrame(renderGlow);
+  }
+  requestAnimationFrame(renderGlow);
+}
+
+/* ==========================================================================
+   12. Card Spotlight on Mouse Move (Aceternity style)
+   ========================================================================== */
+function initCardSpotlight() {
+  const cards = document.querySelectorAll('.spotlight-card, .service-card, .team-member-card, .help-card, .info-item-card, .contact-card-box');
+  cards.forEach(card => {
+    card.classList.add('spotlight-card');
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
+}
+
+/* ==========================================================================
+   13. 3D Card Tilt Physics
+   ========================================================================== */
+function initTiltCards() {
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+
+  const tiltCards = document.querySelectorAll('.tilt-card, .team-member-card, .service-card');
+  tiltCards.forEach(card => {
+    card.classList.add('tilt-card');
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const width = rect.width;
+      const height = rect.height;
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+
+      const rotateY = ((mouseX / width) - 0.5) * 12; // -6 to 6 deg
+      const rotateX = (((mouseY / height) - 0.5) * -12); // -6 to 6 deg
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    });
+  });
+}
+
+/* ==========================================================================
+   14. Scroll-Driven Reveal System
+   ========================================================================== */
+function initScrollReveal() {
+  // Automatically tag key sections and cards for smooth reveal if not tagged
+  const autoRevealSelectors = [
+    '.section-header',
+    '.stat-card',
+    '.help-card-stage',
+    '.service-card',
+    '.industry-layout-grid',
+    '.faq-item',
+    '.team-member-card',
+    '.contact-layout-grid',
+    '.cta-banner-box'
+  ];
+
+  autoRevealSelectors.forEach(selector => {
+    document.querySelectorAll(selector).forEach((el, idx) => {
+      if (!el.classList.contains('reveal-on-scroll')) {
+        el.classList.add('reveal-on-scroll');
+        const staggerClass = `stagger-${(idx % 4) + 1}`;
+        el.classList.add(staggerClass);
+      }
+    });
+  });
+
+  const reveals = document.querySelectorAll('.reveal-on-scroll, .reveal-scale');
+  if (!reveals.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-revealed');
+      }
+    });
+  }, {
+    threshold: 0.08,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  reveals.forEach(el => observer.observe(el));
+}
+
+/* ==========================================================================
+   15. Hero Parallax Mouse Motion
+   ========================================================================== */
+function initHeroParallax() {
+  const hero = document.querySelector('.hero-section');
+  if (!hero || !window.matchMedia('(pointer: fine)').matches) return;
+
+  const spotlight = hero.querySelector('.spotlight-radial');
+  const orbs = hero.querySelectorAll('.ambient-orb');
+  const ultravibeWrapper = hero.querySelector('.ultravibe-bg-wrapper');
+  const auroraBeam = hero.querySelector('.ultravibe-aurora-beam');
+
+  hero.addEventListener('mousemove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const x = mouseX / rect.width - 0.5;
+    const y = mouseY / rect.height - 0.5;
+
+    // Set cursor coordinates for dynamic arc shine flare
+    hero.style.setProperty('--cursor-x', `${mouseX}px`);
+    hero.style.setProperty('--cursor-y', `${mouseY}px`);
+
+    if (spotlight) {
+      spotlight.style.transform = `translateX(calc(-50% + ${x * 40}px)) translateY(${y * 30}px)`;
+    }
+
+    if (ultravibeWrapper) {
+      ultravibeWrapper.style.transform = `translate3d(${-x * 22}px, ${-y * 14}px, 0)`;
+    }
+
+    if (auroraBeam) {
+      auroraBeam.style.transform = `translate3d(${x * 35}px, ${y * 18}px, 0)`;
+    }
+
+    orbs.forEach((orb, i) => {
+      const factor = (i + 1) * 20;
+      orb.style.transform = `translate3d(${-x * factor}px, ${-y * factor}px, 0)`;
+    });
+  });
+
+  hero.addEventListener('mouseleave', () => {
+    if (spotlight) {
+      spotlight.style.transform = 'translateX(-50%) translateY(0)';
+    }
+    if (ultravibeWrapper) {
+      ultravibeWrapper.style.transform = '';
+    }
+    if (auroraBeam) {
+      auroraBeam.style.transform = '';
+    }
+    orbs.forEach(orb => {
+      orb.style.transform = '';
+    });
+  });
+}
+
+/* ==========================================================================
+   16. Financial Platforms Interactive Category Filter
+   ========================================================================== */
+function initPlatformFilter() {
+  const tabBtns = document.querySelectorAll('.platform-tab-btn');
+  const cards = document.querySelectorAll('.platform-eco-card');
+  if (!tabBtns.length || !cards.length) return;
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.getAttribute('data-platform-filter');
+
+      cards.forEach(card => {
+        const categories = (card.getAttribute('data-category') || '').split(' ');
+        if (filter === 'all' || categories.includes(filter)) {
+          card.style.display = 'flex';
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(16px) scale(0.96)';
+          requestAnimationFrame(() => {
+            card.style.transition = 'opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0) scale(1)';
+          });
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+}
+
+
