@@ -2503,13 +2503,32 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0.35;
 }
 
-/* 3. Aceternity-Style Spotlight Cards */
-.spotlight-card {
+/* ==========================================================================
+   3. Apple / Linear Multi-Layered Glass & Tactile Depth System
+   ========================================================================== */
+.spotlight-card,
+.service-card,
+.platform-eco-card,
+.team-member-card,
+.stat-box,
+.help-card,
+.help-card-visual > div,
+.industry-card-active,
+.custom-industry-box,
+.info-item-card,
+.contact-card-box,
+.contact-confidentiality-card,
+.process-flow-container {
   position: relative;
   overflow: hidden;
   --mouse-x: -200px;
   --mouse-y: -200px;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.3s ease;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.3s ease, 
+              background 0.3s ease;
 }
 
 .spotlight-card::before {
@@ -2535,7 +2554,42 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 1;
 }
 
-/* Light Theme Card Spotlight (clearly visible & rich) */
+/* Light Theme Multi-Layered Glass with Precision Bevel */
+:root .spotlight-card,
+:root .service-card,
+:root .platform-eco-card,
+:root .team-member-card,
+:root .stat-box,
+:root .help-card,
+:root .help-card-visual > div,
+:root .industry-card-active,
+:root .custom-industry-box,
+:root .info-item-card,
+:root .contact-card-box,
+:root .contact-confidentiality-card,
+:root .process-flow-container,
+[data-theme="light"] .spotlight-card,
+[data-theme="light"] .service-card,
+[data-theme="light"] .platform-eco-card,
+[data-theme="light"] .team-member-card,
+[data-theme="light"] .stat-box,
+[data-theme="light"] .help-card,
+[data-theme="light"] .help-card-visual > div,
+[data-theme="light"] .industry-card-active,
+[data-theme="light"] .custom-industry-box,
+[data-theme="light"] .info-item-card,
+[data-theme="light"] .contact-card-box,
+[data-theme="light"] .contact-confidentiality-card,
+[data-theme="light"] .process-flow-container {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(246, 250, 244, 0.85) 100%) !important;
+  border: 1px solid rgba(49, 87, 44, 0.14) !important;
+  box-shadow: 
+    0 12px 32px -8px rgba(19, 42, 19, 0.08),
+    0 2px 6px rgba(19, 42, 19, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.4) !important;
+}
+
 :root .spotlight-card::before,
 [data-theme="light"] .spotlight-card::before {
   background: radial-gradient(
@@ -2547,12 +2601,50 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 :root .spotlight-card:hover,
-[data-theme="light"] .spotlight-card:hover {
+:root .service-card:hover,
+:root .platform-eco-card:hover,
+:root .team-member-card:hover,
+:root .stat-box:hover,
+:root .info-item-card:hover,
+[data-theme="light"] .spotlight-card:hover,
+[data-theme="light"] .service-card:hover,
+[data-theme="light"] .platform-eco-card:hover,
+[data-theme="light"] .team-member-card:hover,
+[data-theme="light"] .stat-box:hover,
+[data-theme="light"] .info-item-card:hover {
+  transform: translateY(-6px) !important;
   border-color: var(--c-leaf-green) !important;
-  box-shadow: 0 16px 38px -8px rgba(19, 42, 19, 0.15), 0 0 22px rgba(79, 119, 45, 0.18) !important;
+  box-shadow: 
+    0 22px 46px -12px rgba(19, 42, 19, 0.16),
+    0 4px 12px rgba(19, 42, 19, 0.06),
+    0 0 24px rgba(79, 119, 45, 0.16),
+    inset 0 1px 0 #FFFFFF,
+    inset 0 0 0 1px rgba(255, 255, 255, 0.7) !important;
 }
 
-/* Dark Theme Card Spotlight */
+/* Dark Theme Multi-Layered Glass (Deep Frosted Obsidian & Sage Bevel) */
+[data-theme="dark"] .spotlight-card,
+[data-theme="dark"] .service-card,
+[data-theme="dark"] .platform-eco-card,
+[data-theme="dark"] .team-member-card,
+[data-theme="dark"] .stat-box,
+[data-theme="dark"] .help-card,
+[data-theme="dark"] .help-card-visual > div,
+[data-theme="dark"] .industry-card-active,
+[data-theme="dark"] .custom-industry-box,
+[data-theme="dark"] .info-item-card,
+[data-theme="dark"] .contact-card-box,
+[data-theme="dark"] .contact-confidentiality-card,
+[data-theme="dark"] .process-flow-container {
+  background: linear-gradient(145deg, rgba(18, 34, 18, 0.88) 0%, rgba(9, 18, 9, 0.94) 100%) !important;
+  border: 1px solid rgba(144, 169, 85, 0.22) !important;
+  box-shadow: 
+    0 16px 36px -12px rgba(0, 0, 0, 0.65),
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 0 0 1px rgba(144, 169, 85, 0.10) !important;
+}
+
 [data-theme="dark"] .spotlight-card::before {
   background: radial-gradient(
     600px circle at var(--mouse-x) var(--mouse-y),
@@ -2562,9 +2654,19 @@ h1, h2, h3, h4, h5, h6 {
   );
 }
 
-[data-theme="dark"] .spotlight-card:hover {
-  border-color: var(--c-leaf-green) !important;
-  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.6), 0 0 30px rgba(144, 169, 85, 0.22) !important;
+[data-theme="dark"] .spotlight-card:hover,
+[data-theme="dark"] .service-card:hover,
+[data-theme="dark"] .platform-eco-card:hover,
+[data-theme="dark"] .team-member-card:hover,
+[data-theme="dark"] .stat-box:hover,
+[data-theme="dark"] .info-item-card:hover {
+  transform: translateY(-6px) !important;
+  border-color: rgba(144, 169, 85, 0.48) !important;
+  box-shadow: 
+    0 24px 50px -14px rgba(0, 0, 0, 0.82),
+    0 0 32px rgba(144, 169, 85, 0.25),
+    inset 0 1px 0 rgba(236, 243, 158, 0.35),
+    inset 0 0 0 1px rgba(236, 243, 158, 0.15) !important;
 }
 
 /* 4. 3D Perspective Tilt Physics */
