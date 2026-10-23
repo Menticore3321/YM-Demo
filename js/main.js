@@ -650,28 +650,57 @@ function initTiltCards() {
 }
 
 /* ==========================================================================
-   14. Scroll-Driven Reveal System
+   14. Scroll-Driven Reveal System (Apple / Linear Cascade Effect)
    ========================================================================== */
 function initScrollReveal() {
-  // Automatically tag key sections and cards for smooth reveal if not tagged
-  const autoRevealSelectors = [
-    '.section-header',
-    '.stat-card',
-    '.help-card-stage',
-    '.service-card',
-    '.industry-layout-grid',
-    '.faq-item',
-    '.team-member-card',
-    '.contact-layout-grid',
-    '.cta-banner-box'
+  // 1. Group-based cascading stagger for all card and grid children
+  const cardContainers = [
+    '.stats-grid',
+    '.services-carousel-track',
+    '.platforms-ecosystem-grid',
+    '.team-grid',
+    '.faq-accordion',
+    '.services-pillars-grid',
+    '.services-process-grid',
+    '.about-mission-grid',
+    '.about-values-grid',
+    '.careers-culture-grid',
+    '.contact-channels-grid',
+    '.careers-hero-split-grid',
+    '.industry-tags-grid'
   ];
 
-  autoRevealSelectors.forEach(selector => {
-    document.querySelectorAll(selector).forEach((el, idx) => {
+  cardContainers.forEach(containerSelector => {
+    document.querySelectorAll(containerSelector).forEach(container => {
+      const children = Array.from(container.children);
+      children.forEach((child, idx) => {
+        if (!child.classList.contains('reveal-on-scroll')) {
+          child.classList.add('reveal-on-scroll');
+          child.classList.add(`stagger-${(idx % 6) + 1}`);
+        }
+      });
+    });
+  });
+
+  // 2. Standalone headers, showcase boxes and banners
+  const standaloneSelectors = [
+    '.section-header',
+    '.help-showcase-container',
+    '.industry-card-active',
+    '.custom-industry-box',
+    '.process-flow-container',
+    '.cta-banner-box',
+    '.contact-card-box',
+    '.contact-confidentiality-card',
+    '.info-item-card',
+    '.faq-item'
+  ];
+
+  standaloneSelectors.forEach(selector => {
+    document.querySelectorAll(selector).forEach(el => {
       if (!el.classList.contains('reveal-on-scroll')) {
         el.classList.add('reveal-on-scroll');
-        const staggerClass = `stagger-${(idx % 4) + 1}`;
-        el.classList.add(staggerClass);
+        el.classList.add('stagger-1');
       }
     });
   });
@@ -679,18 +708,29 @@ function initScrollReveal() {
   const reveals = document.querySelectorAll('.reveal-on-scroll, .reveal-scale');
   if (!reveals.length) return;
 
-  const observer = new IntersectionObserver((entries) => {
+  const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-revealed');
+        obs.unobserve(entry.target);
       }
     });
   }, {
-    threshold: 0.08,
-    rootMargin: '0px 0px -40px 0px'
+    threshold: 0.06,
+    rootMargin: '0px 0px -30px 0px'
   });
 
   reveals.forEach(el => observer.observe(el));
+
+  // If user swipes horizontally on mobile, ensure off-screen cards are immediately visible
+  const horizontalSliders = document.querySelectorAll(
+    '.services-pillars-grid, .services-process-grid, .platforms-ecosystem-grid, .team-grid, .about-mission-grid, .about-values-grid, .careers-culture-grid, .stats-grid, .services-carousel-track'
+  );
+  horizontalSliders.forEach(slider => {
+    slider.addEventListener('scroll', () => {
+      Array.from(slider.children).forEach(c => c.classList.add('is-revealed'));
+    }, { passive: true, once: true });
+  });
 }
 
 /* ==========================================================================
