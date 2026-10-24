@@ -20,30 +20,24 @@ document.addEventListener('DOMContentLoaded', () => {
   initModals();
   initContactForms();
   initScrollChromaticCascade();
-  initWaterCanvas();
 });
 
 /* ==========================================================================
-/* ==========================================================================
-   1. Theme Management (Unified Balanced / Dark / Light Mode)
+   1. Theme Management (Light / Dark Mode)
    ========================================================================== */
 function updateThemeButtonState(theme) {
   const toggleBtns = document.querySelectorAll('.theme-toggle-btn');
   let iconSvg = '';
   let tooltip = '';
 
-  if (theme === 'unified') {
-    // Sparkle / Balance Diamond icon
-    iconSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>';
-    tooltip = 'Unified Theme (Balanced) - Click for Dark Mode';
-  } else if (theme === 'dark') {
-    // Crescent Moon icon
-    iconSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
-    tooltip = 'Dark Mode - Click for Light Mode';
-  } else {
-    // Sun icon
+  if (theme === 'dark') {
+    // Sun icon - click to switch to Light Mode
     iconSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
-    tooltip = 'Light Mode - Click for Unified Theme';
+    tooltip = 'Switch to Light Mode';
+  } else {
+    // Crescent Moon icon - click to switch to Dark Mode
+    iconSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+    tooltip = 'Switch to Dark Mode';
   }
 
   toggleBtns.forEach(btn => {
@@ -56,30 +50,22 @@ function updateThemeButtonState(theme) {
 function initTheme() {
   const toggleBtns = document.querySelectorAll('.theme-toggle-btn');
   const storedTheme = localStorage.getItem('ym-theme');
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-  // Default to unified (the balanced flagship theme) unless user previously chose a mode
-  const activeTheme = storedTheme || 'unified';
+  const activeTheme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
   document.documentElement.setAttribute('data-theme', activeTheme);
   updateThemeButtonState(activeTheme);
 
-  const themeCycle = ['unified', 'dark', 'light'];
-
   toggleBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme') || 'unified';
-      const currentIndex = themeCycle.indexOf(currentTheme);
-      const newTheme = themeCycle[(currentIndex + 1) % themeCycle.length];
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
       document.documentElement.setAttribute('data-theme', newTheme);
       localStorage.setItem('ym-theme', newTheme);
       updateThemeButtonState(newTheme);
 
-      if (newTheme === 'unified') {
-        document.body.removeAttribute('data-cascade');
-      }
-
       const themeNames = {
-        'unified': 'Unified Water Theme (Emerald Lagoon Caustics)',
         'dark': 'Dark Mode (Deep Forest)',
         'light': 'Light Mode (Organic Linen)'
       };
@@ -978,11 +964,6 @@ function initPlatformFilter() {
    Dynamically morphs background atmosphere across sections as the user scrolls
    ========================================================================== */
 function initScrollChromaticCascade() {
-  if (document.documentElement.getAttribute('data-theme') === 'unified') {
-    document.body.removeAttribute('data-cascade');
-    return;
-  }
-
   const sections = [
     { selector: '.hero-section, .subpage-hero', cascade: 'hero' },
     { selector: '.how-we-help-section, .services-section, .content-section', cascade: 'sand' },
@@ -1021,219 +1002,6 @@ function initScrollChromaticCascade() {
   targets.forEach(t => observer.observe(t.el));
 }
 
-/* ==========================================================================
-   18. Flowing Water Canvas with Interactive Ripple Physics
-   Strictly Pure 5-Color PDF Palette:
-     #132A13 (Deep Abyss Dark - 25%)
-     #31572C (Kombu Emerald Water - 25%)
-     #4F772D (Mid-Depth Refraction - 15%)
-     #90A955 (Shallow Sunlit Water - 15%)
-     #ECF39E (Surface Sunlight Caustic Glints - 20%)
-   ========================================================================== */
-function initWaterCanvas() {
-  let canvas = document.getElementById('water-canvas');
-  if (!canvas) {
-    canvas = document.createElement('canvas');
-    canvas.id = 'water-canvas';
-    canvas.setAttribute('aria-hidden', 'true');
-    document.body.prepend(canvas);
-  }
-
-  const ctx = canvas.getContext('2d');
-  if (!ctx) return;
-
-  let width = 0;
-  let height = 0;
-  let dpr = 1;
-
-  function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-    width = window.innerWidth;
-    height = window.innerHeight;
-    canvas.width = Math.floor(width * dpr);
-    canvas.height = Math.floor(height * dpr);
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.scale(dpr, dpr);
-  }
-
-  window.addEventListener('resize', resize, { passive: true });
-  resize();
-
-  // Water Ripple Physics Engine
-  const ripples = [];
-  let lastMoveTime = 0;
-
-  window.addEventListener('mousemove', (e) => {
-    if (document.documentElement.getAttribute('data-theme') !== 'unified') return;
-
-    const now = performance.now();
-    if (now - lastMoveTime > 35) { // Responsive fluid ripple generation
-      lastMoveTime = now;
-      if (ripples.length < 18) {
-        ripples.push({
-          x: e.clientX,
-          y: e.clientY,
-          radius: 4,
-          maxRadius: Math.random() * 50 + 140,
-          opacity: 0.90,
-          speed: 2.2 + Math.random() * 0.8
-        });
-      }
-    }
-  }, { passive: true });
-
-  // Floating Water Caustic Light Cells
-  const caustics = Array.from({ length: 10 }, (_, i) => ({
-    x: (i / 10) * width + Math.random() * 60,
-    y: Math.random() * height,
-    radius: Math.random() * 110 + 80,
-    speedX: (Math.random() - 0.5) * 0.35,
-    speedY: (Math.random() * 0.25) + 0.15,
-    phase: Math.random() * Math.PI * 2
-  }));
-
-  let time = 0;
-
-  function renderWater() {
-    const isUnified = document.documentElement.getAttribute('data-theme') === 'unified';
-
-    if (isUnified && document.visibilityState === 'visible') {
-      time += 0.016;
-
-      // 1. Base Lagoon Abyss Water Gradient (#132A13 to #31572C)
-      const baseGrad = ctx.createLinearGradient(0, 0, width * 0.45, height);
-      baseGrad.addColorStop(0, '#132A13');
-      baseGrad.addColorStop(0.55, '#1B381C');
-      baseGrad.addColorStop(1, '#31572C');
-      ctx.fillStyle = baseGrad;
-      ctx.fillRect(0, 0, width, height);
-
-      // 2. Flowing Water Harmonic Waves (#31572C, #4F772D, #90A955, #ECF39E)
-      const waveLayers = [
-        {
-          color: 'rgba(49, 87, 44, 0.48)', // #31572C
-          yOffset: height * 0.26,
-          amp1: 34,
-          freq1: 0.0032,
-          speed1: 1.1,
-          amp2: 20,
-          freq2: 0.0065,
-          speed2: 0.7
-        },
-        {
-          color: 'rgba(79, 119, 45, 0.35)', // #4F772D
-          yOffset: height * 0.50,
-          amp1: 42,
-          freq1: 0.0038,
-          speed1: 1.5,
-          amp2: 26,
-          freq2: 0.0055,
-          speed2: -1.0
-        },
-        {
-          color: 'rgba(144, 169, 85, 0.24)', // #90A955
-          yOffset: height * 0.70,
-          amp1: 36,
-          freq1: 0.0048,
-          speed1: 2.0,
-          amp2: 18,
-          freq2: 0.0085,
-          speed2: 1.3
-        },
-        {
-          color: 'rgba(236, 243, 158, 0.18)', // #ECF39E (Surface Sunlight Crests)
-          yOffset: height * 0.86,
-          amp1: 28,
-          freq1: 0.0042,
-          speed1: 1.7,
-          amp2: 14,
-          freq2: 0.0075,
-          speed2: -1.5
-        }
-      ];
-
-      waveLayers.forEach(wave => {
-        ctx.beginPath();
-        ctx.moveTo(0, height);
-
-        for (let x = 0; x <= width; x += 16) {
-          const y = wave.yOffset +
-            Math.sin(x * wave.freq1 + time * wave.speed1) * wave.amp1 +
-            Math.cos(x * wave.freq2 + time * wave.speed2) * wave.amp2;
-          ctx.lineTo(x, y);
-        }
-
-        ctx.lineTo(width, height);
-        ctx.closePath();
-        ctx.fillStyle = wave.color;
-        ctx.fill();
-      });
-
-      // 3. Sunlit Aquatic Caustics Refractions
-      caustics.forEach(c => {
-        c.x += c.speedX;
-        c.y += c.speedY;
-        if (c.y > height + c.radius) c.y = -c.radius;
-        if (c.x > width + c.radius) c.x = -c.radius;
-        if (c.x < -c.radius) c.x = width + c.radius;
-
-        const pulse = Math.sin(time * 2 + c.phase) * 0.25 + 0.75;
-        const radGrad = ctx.createRadialGradient(c.x, c.y, 0, c.x, c.y, c.radius * pulse);
-        radGrad.addColorStop(0, 'rgba(236, 243, 158, 0.18)');
-        radGrad.addColorStop(0.45, 'rgba(144, 169, 85, 0.09)');
-        radGrad.addColorStop(1, 'transparent');
-
-        ctx.fillStyle = radGrad;
-        ctx.beginPath();
-        ctx.arc(c.x, c.y, c.radius * pulse, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      // 4. Interactive Water Surface Droplet Ripples
-      for (let i = ripples.length - 1; i >= 0; i--) {
-        const r = ripples[i];
-        r.radius += r.speed;
-        r.opacity = Math.max(0, 1 - (r.radius / r.maxRadius));
-
-        if (r.opacity <= 0.01 || r.radius >= r.maxRadius) {
-          ripples.splice(i, 1);
-          continue;
-        }
-
-        // Primary outer crest
-        ctx.beginPath();
-        ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(236, 243, 158, ${(r.opacity * 0.85).toFixed(3)})`;
-        ctx.lineWidth = 2.4;
-        ctx.stroke();
-
-        // Secondary concentric ring
-        if (r.radius > 16) {
-          ctx.beginPath();
-          ctx.arc(r.x, r.y, r.radius * 0.68, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(144, 169, 85, ${(r.opacity * 0.50).toFixed(3)})`;
-          ctx.lineWidth = 1.5;
-          ctx.stroke();
-        }
-
-        // Inner refraction pulse
-        const rippleGrad = ctx.createRadialGradient(r.x, r.y, 0, r.x, r.y, r.radius);
-        rippleGrad.addColorStop(0, `rgba(236, 243, 158, ${(r.opacity * 0.25).toFixed(3)})`);
-        rippleGrad.addColorStop(0.6, `rgba(144, 169, 85, ${(r.opacity * 0.12).toFixed(3)})`);
-        rippleGrad.addColorStop(1, 'transparent');
-
-        ctx.fillStyle = rippleGrad;
-        ctx.beginPath();
-        ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    requestAnimationFrame(renderWater);
-  }
-
-  requestAnimationFrame(renderWater);
-}
 
 
 
