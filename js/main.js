@@ -691,6 +691,15 @@ function initScrollProgress() {
    11. Ambient Mouse Cursor Glow & Matrix Grid Spotlight
    ========================================================================== */
 function initCursorGlow() {
+  // Inject Full-Page Matrix Grid Background with interactive hover spotlight
+  let gridBg = document.querySelector('.matrix-grid-bg');
+  if (!gridBg) {
+    gridBg = document.createElement('div');
+    gridBg.className = 'matrix-grid-bg';
+    gridBg.setAttribute('aria-hidden', 'true');
+    document.body.prepend(gridBg);
+  }
+
   // Inject Cinematic Vignette
   let vignette = document.querySelector('.site-vignette');
   if (!vignette) {

@@ -166,7 +166,7 @@ body::before {
 }
 
 /* ==========================================================================
-   Section Stacking Architecture & Background Dot-Grid
+   Section Stacking Architecture & Background Dot-Grid with Hover Spotlight
    ========================================================================== */
 header,
 main,
@@ -176,22 +176,20 @@ section,
   position: relative;
 }
 
-/* Base Dot-Matrix & Geometric Grid strictly in the background behind cards */
-.hero-section::before,
-.how-we-help-section::before,
-.services-section::before,
-.expertise-section::before,
-.industries-section::before,
-.tech-solar-section::before,
-.team-section::before,
-.faq-section::before,
-.cta-banner-section::before,
-.site-footer::before,
-.content-section::before,
-.about-mission-section::before,
-.pricing-section::before,
-.contact-section::before,
-.careers-section::before {
+/* ==========================================================================
+   Modern Dot-Matrix & Geometric Grid with Interactive Cursor Spotlight Glow
+   ========================================================================== */
+.matrix-grid-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+  display: block !important;
+}
+
+/* Base Micro Dot-Matrix & Geometric Grid: Soft, Refined Atmospheric Presence */
+.matrix-grid-bg::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -202,11 +200,60 @@ section,
   background-size: 36px 36px, 36px 36px, 36px 36px;
   background-position: 0 0, 0 0, 0 0;
   opacity: 0.60;
-  pointer-events: none;
-  z-index: 0;
+  mask-image: radial-gradient(ellipse 98% 98% at 50% 50%, black 65%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 98% 98% at 50% 50%, black 65%, transparent 100%);
+  animation: matrixBreath 12s ease-in-out infinite alternate;
 }
 
-/* Ensure all interactive content, containers, and cards layer strictly ABOVE the background grid */
+[data-theme="dark"] .matrix-grid-bg::before {
+  background-image:
+    radial-gradient(circle, rgba(144, 169, 85, 0.32) 1.2px, transparent 1.2px),
+    linear-gradient(to right, rgba(144, 169, 85, 0.10) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(144, 169, 85, 0.10) 1px, transparent 1px);
+  opacity: 0.65;
+}
+
+/* Interactive Cursor Spotlight Illuminating the Dot Matrix on Hover */
+.matrix-grid-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(236, 243, 158, 0.95) 1.8px, transparent 1.8px),
+    linear-gradient(to right, rgba(144, 169, 85, 0.40) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(144, 169, 85, 0.40) 1px, transparent 1px);
+  background-size: 36px 36px, 36px 36px, 36px 36px;
+  mask-image: radial-gradient(circle 360px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 25%, rgba(0, 0, 0, 0.5) 55%, transparent 85%);
+  -webkit-mask-image: radial-gradient(circle 360px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 25%, rgba(0, 0, 0, 0.5) 55%, transparent 85%);
+  pointer-events: none;
+  will-change: mask-image, -webkit-mask-image;
+}
+
+[data-theme="dark"] .matrix-grid-bg::after {
+  background-image:
+    radial-gradient(circle, rgba(236, 243, 158, 0.98) 1.8px, transparent 1.8px),
+    linear-gradient(to right, rgba(144, 169, 85, 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(144, 169, 85, 0.45) 1px, transparent 1px);
+  background-size: 36px 36px, 36px 36px, 36px 36px;
+  mask-image: radial-gradient(circle 360px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 25%, rgba(0, 0, 0, 0.5) 55%, transparent 85%);
+  -webkit-mask-image: radial-gradient(circle 360px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 25%, rgba(0, 0, 0, 0.5) 55%, transparent 85%);
+}
+
+/* ==========================================================================
+   Global Cinematic Atmospheric Vignette
+   ========================================================================== */
+.site-vignette {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 3;
+  pointer-events: none;
+  background: radial-gradient(ellipse 82% 82% at 50% 50%, transparent 48%, rgba(0, 0, 0, 0.16) 72%, rgba(0, 0, 0, 0.44) 100%);
+  mix-blend-mode: multiply;
+}
+
+/* Ensure all interactive content, containers, and cards layer strictly ABOVE the grid & vignette */
 .container,
 .hero-wrapper,
 .hero-content,
@@ -229,26 +276,7 @@ section,
 .info-item-card,
 .contact-card-box {
   position: relative;
-  z-index: 5 !important;
-}
-
-/* Disable old fixed overlay so grid lines never paint over cards */
-.matrix-grid-bg {
-  display: none !important;
-}
-
-/* ==========================================================================
-   Global Cinematic Atmospheric Vignette
-   ========================================================================== */
-.site-vignette {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 40;
-  pointer-events: none;
-  background: radial-gradient(ellipse 82% 82% at 50% 50%, transparent 48%, rgba(0, 0, 0, 0.16) 72%, rgba(0, 0, 0, 0.44) 100%);
-  mix-blend-mode: multiply;
+  z-index: 10 !important;
 }
 
 @keyframes matrixBreath {
