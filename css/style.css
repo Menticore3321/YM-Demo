@@ -182,7 +182,7 @@ section,
 .matrix-grid-bg {
   position: fixed;
   inset: 0;
-  z-index: 2;
+  z-index: 1 !important;
   pointer-events: none;
   overflow: hidden;
   display: block !important;
@@ -194,12 +194,12 @@ section,
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle, rgba(144, 169, 85, 0.28) 1.2px, transparent 1.2px),
-    linear-gradient(to right, rgba(110, 145, 75, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(110, 145, 75, 0.08) 1px, transparent 1px);
+    radial-gradient(circle, rgba(144, 169, 85, 0.22) 1.2px, transparent 1.2px),
+    linear-gradient(to right, rgba(110, 145, 75, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(110, 145, 75, 0.06) 1px, transparent 1px);
   background-size: 36px 36px, 36px 36px, 36px 36px;
   background-position: 0 0, 0 0, 0 0;
-  opacity: 0.60;
+  opacity: 0.50;
   mask-image: radial-gradient(ellipse 98% 98% at 50% 50%, black 65%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 98% 98% at 50% 50%, black 65%, transparent 100%);
   animation: matrixBreath 12s ease-in-out infinite alternate;
@@ -207,36 +207,27 @@ section,
 
 [data-theme="dark"] .matrix-grid-bg::before {
   background-image:
-    radial-gradient(circle, rgba(144, 169, 85, 0.32) 1.2px, transparent 1.2px),
-    linear-gradient(to right, rgba(144, 169, 85, 0.10) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(144, 169, 85, 0.10) 1px, transparent 1px);
-  opacity: 0.65;
+    radial-gradient(circle, rgba(144, 169, 85, 0.25) 1.2px, transparent 1.2px),
+    linear-gradient(to right, rgba(144, 169, 85, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(144, 169, 85, 0.07) 1px, transparent 1px);
+  opacity: 0.55;
 }
 
-/* Interactive Cursor Spotlight Illuminating the Dot Matrix on Hover */
-.matrix-grid-bg::after {
+/* Interactive Cursor Spotlight Illuminating the Dot Matrix on Hover - Softened and Subdued */
+.matrix-grid-bg::after,
+[data-theme="dark"] .matrix-grid-bg::after {
   content: '';
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle, rgba(236, 243, 158, 0.95) 1.8px, transparent 1.8px),
-    linear-gradient(to right, rgba(144, 169, 85, 0.40) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(144, 169, 85, 0.40) 1px, transparent 1px);
+    radial-gradient(circle, rgba(236, 243, 158, 0.45) 1.2px, transparent 1.2px),
+    linear-gradient(to right, rgba(144, 169, 85, 0.14) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(144, 169, 85, 0.14) 1px, transparent 1px);
   background-size: 36px 36px, 36px 36px, 36px 36px;
-  mask-image: radial-gradient(circle 360px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 25%, rgba(0, 0, 0, 0.5) 55%, transparent 85%);
-  -webkit-mask-image: radial-gradient(circle 360px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 25%, rgba(0, 0, 0, 0.5) 55%, transparent 85%);
+  mask-image: radial-gradient(circle 260px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 20%, rgba(0, 0, 0, 0.45) 50%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle 260px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 20%, rgba(0, 0, 0, 0.45) 50%, transparent 80%);
   pointer-events: none;
   will-change: mask-image, -webkit-mask-image;
-}
-
-[data-theme="dark"] .matrix-grid-bg::after {
-  background-image:
-    radial-gradient(circle, rgba(236, 243, 158, 0.98) 1.8px, transparent 1.8px),
-    linear-gradient(to right, rgba(144, 169, 85, 0.45) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(144, 169, 85, 0.45) 1px, transparent 1px);
-  background-size: 36px 36px, 36px 36px, 36px 36px;
-  mask-image: radial-gradient(circle 360px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 25%, rgba(0, 0, 0, 0.5) 55%, transparent 85%);
-  -webkit-mask-image: radial-gradient(circle 360px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 25%, rgba(0, 0, 0, 0.5) 55%, transparent 85%);
 }
 
 /* ==========================================================================
@@ -775,16 +766,16 @@ h6 {
   background-size: cover;
   background-repeat: no-repeat;
   transform-origin: center bottom;
-  opacity: 0.40;
+  opacity: 0;
   pointer-events: none;
   animation: ultravibe-breathe-light 16s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
   will-change: transform, opacity;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 [data-theme="dark"] .ultravibe-gradient-art {
   background-image: url('../assets/ultravibe-20-dark.webp');
-  opacity: 0.40;
+  opacity: 0;
 }
 
 /* Localized Torch Spotlight Layer - ONLY shines directly where cursor is hovering */
@@ -1176,6 +1167,8 @@ h6 {
   text-align: center;
   max-width: 780px;
   margin: 0 auto 56px;
+  position: relative !important;
+  z-index: 10 !important;
 }
 
 .section-tag {
@@ -1192,6 +1185,8 @@ h6 {
   border-radius: var(--radius-full);
   box-shadow: 0 2px 8px rgba(19, 42, 19, 0.06);
   margin-bottom: 16px;
+  position: relative !important;
+  z-index: 10 !important;
 }
 
 .section-title {
@@ -1199,12 +1194,16 @@ h6 {
   font-weight: 800;
   letter-spacing: -0.02em;
   margin-bottom: 16px;
+  position: relative !important;
+  z-index: 10 !important;
 }
 
 .section-subtitle {
   font-size: 1.1rem;
   color: var(--text-secondary);
   line-height: 1.6;
+  position: relative !important;
+  z-index: 10 !important;
 }
 
 /* ==========================================================================
@@ -4088,32 +4087,66 @@ h6 {
    Gradually deepens back to Dark Green -> Ends in Pitch Black (Bottom)
    ========================================================================== */
 
-/* 1. Top Hero Section: Deep Pitch Black Luxury Atmosphere */
+/* 1. Top Hero Section: Deep Pitch Black Luxury Atmosphere (Arc ONLY on hover) */
 .hero-section,
 .subpage-hero {
   background-color: #000000 !important;
   color: #FFFFFF !important;
   position: relative;
-  z-index: 2 !important;
+  z-index: 5 !important;
 }
 
 .hero-section .hero-title,
 .subpage-hero h1 {
   color: #FFFFFF !important;
+  position: relative !important;
+  z-index: 10 !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
 }
 
 .hero-section .hero-subtitle,
 .subpage-hero p {
   color: #CAD5C5 !important;
+  position: relative !important;
+  z-index: 10 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
 }
 
+.hero-section .hero-actions,
+.hero-section .badge-pill,
+.subpage-hero .badge-pill {
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* Celestial Arc Horizon: Pitch Black (opacity 0) at rest, blossoms with glow on hover */
 .hero-section .ultravibe-gradient-art {
   background-image: url('../assets/ultravibe-20-dark.webp') !important;
-  opacity: 0.40 !important;
+  opacity: 0 !important;
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.hero-section:hover .ultravibe-gradient-art {
+  opacity: 0.65 !important;
 }
 
 .hero-section .ultravibe-torch-shine {
   background-image: url('../assets/ultravibe-20-dark.webp') !important;
+  opacity: 0 !important;
+  transition: opacity 0.4s ease !important;
+}
+
+.hero-section:hover .ultravibe-torch-shine {
+  opacity: 1 !important;
+}
+
+.hero-section .ultravibe-cursor-shine {
+  opacity: 0 !important;
+  transition: opacity 0.4s ease !important;
+}
+
+.hero-section:hover .ultravibe-cursor-shine {
+  opacity: 0.8 !important;
 }
 
 /* 2. Transition 1: How We Help Section (Pitch Black gradually tones down to #FAF9F3) */
@@ -4121,14 +4154,32 @@ h6 {
   padding: 96px 0;
   background: linear-gradient(180deg, #000000 0%, #09130A 16%, #173118 36%, #365A29 58%, #8E9F76 80%, #FAF9F3 100%) !important;
   position: relative;
+  z-index: 5 !important;
+}
+
+.how-we-help-section .container,
+.how-we-help-section .section-header {
+  position: relative !important;
+  z-index: 10 !important;
 }
 
 .how-we-help-section .section-title {
   color: #FFFFFF !important;
+  position: relative !important;
+  z-index: 10 !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
+}
+
+.how-we-help-section .section-title .text-brand {
+  color: #ECF39E !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
 }
 
 .how-we-help-section .section-subtitle {
-  color: #D6E4D3 !important;
+  color: #E2ECE0 !important;
+  position: relative !important;
+  z-index: 10 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
 }
 
 .how-we-help-section .help-tab-btn {
@@ -4136,6 +4187,8 @@ h6 {
   color: #FFFFFF !important;
   border: 1px solid rgba(236, 243, 158, 0.3) !important;
   backdrop-filter: blur(10px);
+  position: relative !important;
+  z-index: 10 !important;
 }
 
 .how-we-help-section .help-tab-btn.active {
@@ -4308,16 +4361,20 @@ h6 {
   display: inline-flex !important;
   align-items: center !important;
   font-size: 0.84rem !important;
-  font-weight: 700 !important;
+  font-weight: 800 !important;
   letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
   color: #ECF39E !important;
-  background: rgba(236, 243, 158, 0.14) !important;
-  border: 1px solid rgba(236, 243, 158, 0.35) !important;
+  background: rgba(10, 20, 11, 0.90) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1.5px solid rgba(236, 243, 158, 0.45) !important;
   padding: 6px 18px !important;
   border-radius: var(--radius-full) !important;
-  box-shadow: 0 0 16px rgba(236, 243, 158, 0.16) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.65), 0 0 12px rgba(236, 243, 158, 0.18) !important;
   margin-bottom: 16px !important;
+  position: relative !important;
+  z-index: 10 !important;
 }
 
 .hero-section .badge-dot,
@@ -4411,20 +4468,41 @@ h6 {
   padding: 100px 0 90px;
   background: #132A13 !important;
   color: #FFFFFF !important;
+  position: relative;
+  z-index: 5 !important;
+}
+
+.tech-solar-section .container,
+.tech-solar-section .section-header {
+  position: relative !important;
+  z-index: 10 !important;
 }
 
 .tech-solar-section .section-title {
   color: #FFFFFF !important;
+  position: relative !important;
+  z-index: 10 !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
+}
+
+.tech-solar-section .section-title .text-brand {
+  color: #ECF39E !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
 }
 
 .tech-solar-section .section-subtitle {
-  color: #CAD5C5 !important;
+  color: #E2ECE0 !important;
+  position: relative !important;
+  z-index: 10 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
 }
 
 .tech-solar-section .platform-tab-btn {
   background: rgba(255, 255, 255, 0.10) !important;
   color: #FFFFFF !important;
   border: 1px solid rgba(144, 169, 85, 0.30) !important;
+  position: relative !important;
+  z-index: 10 !important;
 }
 
 .tech-solar-section .platform-tab-btn.active {
@@ -4437,36 +4515,75 @@ h6 {
   background: rgba(24, 34, 24, 0.88) !important;
   border: 1px solid rgba(144, 169, 85, 0.25) !important;
   color: #FFFFFF !important;
+  position: relative !important;
+  z-index: 10 !important;
 }
 
 .team-section {
   padding: 96px 0;
   background: linear-gradient(180deg, #132A13 0%, #102411 100%) !important;
   color: #FFFFFF !important;
+  position: relative;
+  z-index: 5 !important;
+}
+
+.team-section .container,
+.team-section .section-header {
+  position: relative !important;
+  z-index: 10 !important;
 }
 
 .team-section .section-title {
   color: #FFFFFF !important;
+  position: relative !important;
+  z-index: 10 !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
+}
+
+.team-section .section-title .text-brand {
+  color: #ECF39E !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
 }
 
 .team-section .team-member-card {
   background: rgba(22, 34, 22, 0.85) !important;
   border: 1px solid rgba(144, 169, 85, 0.25) !important;
   color: #FFFFFF !important;
+  position: relative !important;
+  z-index: 10 !important;
 }
 
 .faq-section {
   padding: 96px 0;
   background: linear-gradient(180deg, #102411 0%, #0D1C0E 50%, #071107 100%) !important;
   color: #FFFFFF !important;
+  position: relative;
+  z-index: 5 !important;
+}
+
+.faq-section .container,
+.faq-section .section-header {
+  position: relative !important;
+  z-index: 10 !important;
 }
 
 .faq-section .section-title {
   color: #FFFFFF !important;
+  position: relative !important;
+  z-index: 10 !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
+}
+
+.faq-section .section-title .text-brand {
+  color: #ECF39E !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
 }
 
 .faq-section .section-subtitle {
   color: #CAD5C5 !important;
+  position: relative !important;
+  z-index: 10 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
 }
 
 .faq-question-btn {
