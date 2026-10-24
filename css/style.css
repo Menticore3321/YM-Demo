@@ -253,19 +253,41 @@ section,
   mix-blend-mode: multiply;
 }
 
-/* Ensure all interactive content, containers, and cards layer strictly ABOVE the grid & vignette */
+/* Floating Glassmorphic Header & System Overlays (Strictly on TOP of scrolling content) */
+.site-header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 1000 !important;
+}
+
+.scroll-progress-bar {
+  position: fixed !important;
+  z-index: 1001 !important;
+}
+
+.mobile-nav-drawer {
+  position: fixed !important;
+  z-index: 1100 !important;
+}
+
+.modal-backdrop,
+.modal-box {
+  z-index: 2000 !important;
+}
+
+.floating-quick-actions {
+  position: fixed !important;
+  z-index: 900 !important;
+}
+
+/* Ensure all interactive content, containers, and cards layer above grid (z-index 2) but UNDER navbar (z-index 1000) */
 .container,
 .hero-wrapper,
 .hero-content,
 .services-carousel-track,
-.site-header,
-.site-nav,
-.mobile-nav-drawer,
 .site-footer-inner,
-.modal-backdrop,
-.modal-box,
-.floating-quick-actions,
-.scroll-progress-bar,
 .service-card,
 .help-card,
 .stat-box,
@@ -276,7 +298,7 @@ section,
 .info-item-card,
 .contact-card-box {
   position: relative;
-  z-index: 10 !important;
+  z-index: 5 !important;
 }
 
 @keyframes matrixBreath {
@@ -389,69 +411,10 @@ h6 {
 }
 
 /* ==========================================================================
-   Section Divider - Ambient Glow Flare & Mesh Blend
+   Section Divider (Disabled - Natural seamless gradient transitions)
    ========================================================================== */
 .divider {
-  position: relative;
-  height: 1px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  background: linear-gradient(90deg,
-      transparent 0%,
-      rgba(79, 119, 45, 0.25) 20%,
-      rgba(144, 169, 85, 0.75) 50%,
-      rgba(79, 119, 45, 0.25) 80%,
-      transparent 100%);
-  overflow: visible;
-}
-
-[data-theme="dark"] .divider {
-  background: linear-gradient(90deg,
-      transparent 0%,
-      rgba(79, 119, 45, 0.35) 20%,
-      rgba(236, 243, 158, 0.7) 50%,
-      rgba(79, 119, 45, 0.35) 80%,
-      transparent 100%);
-}
-
-/* Ambient Center Aura Glow */
-.divider::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 280px;
-  height: 24px;
-  background: radial-gradient(ellipse at center, rgba(197, 160, 89, 0.45) 0%, rgba(144, 169, 85, 0.15) 50%, transparent 70%);
-  filter: blur(10px);
-  pointer-events: none;
-}
-
-[data-theme="dark"] .divider::before {
-  background: radial-gradient(ellipse at center, rgba(243, 202, 109, 0.40) 0%, rgba(79, 119, 45, 0.15) 50%, transparent 70%);
-  filter: blur(14px);
-}
-
-/* Precision Center Specular Flare Dot */
-.divider::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 52px;
-  height: 2px;
-  border-radius: 9999px;
-  background: linear-gradient(90deg, transparent, var(--c-gold-primary), transparent);
-  box-shadow: 0 0 10px var(--c-gold-glow);
-  pointer-events: none;
-}
-
-[data-theme="light"] .divider::after {
-  background: linear-gradient(90deg, transparent, var(--c-gold-primary), transparent);
-  box-shadow: 0 0 10px var(--c-gold-glow);
+  display: none !important;
 }
 
 /* ==========================================================================
