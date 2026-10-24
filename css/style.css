@@ -165,7 +165,7 @@ body::before {
   }
 }
 
-/* Ensure all page sections and content layer above the background canvas */
+/* Ensure all page sections stay at z-index 1 for their background gradients */
 header,
 main,
 footer,
@@ -175,41 +175,63 @@ section,
   z-index: 1;
 }
 
+/* Ensure all interactive content, containers, and cards layer above the fixed grid */
+.container,
+.hero-wrapper,
+.hero-content,
+.site-header,
+.site-nav,
+.mobile-nav-drawer,
+.site-footer,
+.modal-backdrop,
+.modal-box,
+.floating-quick-actions,
+.scroll-progress-bar,
+.service-card,
+.help-card,
+.industry-card-active,
+.platform-eco-card,
+.team-member-card,
+.spotlight-card {
+  position: relative;
+  z-index: 3 !important;
+}
+
 /* ==========================================================================
    Modern Dot-Matrix & Geometric Grid with Interactive Cursor Glow
    ========================================================================== */
 .matrix-grid-bg {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 2;
   pointer-events: none;
   overflow: hidden;
 }
 
-/* Base Micro Dot-Matrix & Geometric Grid */
+/* Base Micro Dot-Matrix & Geometric Grid: Highly visible across black, green, and linen cream */
 .matrix-grid-bg::before {
   content: '';
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle, rgba(144, 169, 85, 0.22) 1.2px, transparent 1.2px),
-    linear-gradient(to right, rgba(144, 169, 85, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(144, 169, 85, 0.06) 1px, transparent 1px);
-  background-size: 32px 32px, 32px 32px, 32px 32px;
+    radial-gradient(circle, rgba(144, 169, 85, 0.50) 1.5px, transparent 1.5px),
+    linear-gradient(to right, rgba(110, 145, 75, 0.22) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(110, 145, 75, 0.22) 1px, transparent 1px);
+  background-size: 36px 36px, 36px 36px, 36px 36px;
   background-position: 0 0, 0 0, 0 0;
-  opacity: 0.85;
-  mask-image: radial-gradient(ellipse 95% 95% at 50% 50%, black 50%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 95% 95% at 50% 50%, black 50%, transparent 100%);
+  opacity: 0.95;
+  mask-image: radial-gradient(ellipse 98% 98% at 50% 50%, black 65%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 98% 98% at 50% 50%, black 65%, transparent 100%);
   animation: matrixBreath 12s ease-in-out infinite alternate;
 }
 
 [data-theme="dark"] .matrix-grid-bg::before {
   background-image:
-    radial-gradient(circle, rgba(144, 169, 85, 0.38) 1.2px, transparent 1.2px),
-    linear-gradient(to right, rgba(144, 169, 85, 0.11) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(144, 169, 85, 0.11) 1px, transparent 1px);
+    radial-gradient(circle, rgba(144, 169, 85, 0.58) 1.5px, transparent 1.5px),
+    linear-gradient(to right, rgba(144, 169, 85, 0.24) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(144, 169, 85, 0.24) 1px, transparent 1px);
   background-size: 36px 36px, 36px 36px, 36px 36px;
-  opacity: 0.90;
+  opacity: 0.95;
 }
 
 /* Interactive Cursor Spotlight Illuminating the Dot Matrix */
@@ -218,24 +240,24 @@ section,
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle, rgba(79, 119, 45, 0.28) 1.5px, transparent 1.5px),
-    linear-gradient(to right, rgba(79, 119, 45, 0.12) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(79, 119, 45, 0.12) 1px, transparent 1px);
-  background-size: 32px 32px, 32px 32px, 32px 32px;
-  mask-image: radial-gradient(circle 260px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 10%, rgba(0, 0, 0, 0.4) 45%, transparent 75%);
-  -webkit-mask-image: radial-gradient(circle 260px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 10%, rgba(0, 0, 0, 0.4) 45%, transparent 75%);
+    radial-gradient(circle, rgba(236, 243, 158, 0.92) 1.8px, transparent 1.8px),
+    linear-gradient(to right, rgba(144, 169, 85, 0.38) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(144, 169, 85, 0.38) 1px, transparent 1px);
+  background-size: 36px 36px, 36px 36px, 36px 36px;
+  mask-image: radial-gradient(circle 360px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 25%, rgba(0, 0, 0, 0.5) 55%, transparent 85%);
+  -webkit-mask-image: radial-gradient(circle 360px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 25%, rgba(0, 0, 0, 0.5) 55%, transparent 85%);
   pointer-events: none;
   will-change: mask-image, -webkit-mask-image;
 }
 
 [data-theme="dark"] .matrix-grid-bg::after {
   background-image:
-    radial-gradient(circle, rgba(236, 243, 158, 0.65) 1.5px, transparent 1.5px),
-    linear-gradient(to right, rgba(144, 169, 85, 0.20) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(144, 169, 85, 0.20) 1px, transparent 1px);
+    radial-gradient(circle, rgba(236, 243, 158, 0.95) 1.8px, transparent 1.8px),
+    linear-gradient(to right, rgba(144, 169, 85, 0.40) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(144, 169, 85, 0.40) 1px, transparent 1px);
   background-size: 36px 36px, 36px 36px, 36px 36px;
-  mask-image: radial-gradient(circle 320px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 15%, rgba(0, 0, 0, 0.5) 50%, transparent 80%);
-  -webkit-mask-image: radial-gradient(circle 320px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 15%, rgba(0, 0, 0, 0.5) 50%, transparent 80%);
+  mask-image: radial-gradient(circle 360px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 25%, rgba(0, 0, 0, 0.5) 55%, transparent 85%);
+  -webkit-mask-image: radial-gradient(circle 360px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 25%, rgba(0, 0, 0, 0.5) 55%, transparent 85%);
 }
 
 @keyframes matrixBreath {
@@ -2975,83 +2997,115 @@ h6 {
   opacity: 1;
 }
 
-/* Light Theme Multi-Layered Glass with Precision Bevel */
-:root .spotlight-card,
-:root .service-card,
-:root .platform-eco-card,
-:root .team-member-card,
-:root .stat-box,
-:root .help-card,
-:root .help-card-visual>div,
-:root .industry-card-active,
-:root .custom-industry-box,
-:root .info-item-card,
-:root .contact-card-box,
-:root .contact-confidentiality-card,
-:root .process-flow-container,
-[data-theme="light"] .spotlight-card,
-[data-theme="light"] .service-card,
-[data-theme="light"] .platform-eco-card,
-[data-theme="light"] .team-member-card,
-[data-theme="light"] .help-card,
-[data-theme="light"] .help-card-visual>div,
-[data-theme="light"] .industry-card-active,
-[data-theme="light"] .custom-industry-box,
-[data-theme="light"] .info-item-card,
-[data-theme="light"] .contact-card-box,
-[data-theme="light"] .contact-confidentiality-card,
-[data-theme="light"] .process-flow-container {
-  background: #FFFFFF !important;
-  border: 1px solid rgba(49, 87, 44, 0.12) !important;
+/* Signature Multi-Layered Glass Cards (with Top Ambient Glow & Green/Lemon Bevel) */
+.spotlight-card,
+.service-card,
+.platform-eco-card,
+.team-member-card,
+.help-card,
+.help-card-visual>div,
+.industry-card-active,
+.custom-industry-box,
+.info-item-card,
+.contact-card-box,
+.contact-confidentiality-card,
+.process-flow-container {
+  background:
+    radial-gradient(circle at 50% 12%, rgba(79, 119, 45, 0.35) 0%, transparent 65%),
+    linear-gradient(165deg, rgba(17, 27, 18, 0.94) 0%, rgba(10, 17, 11, 0.98) 100%) !important;
+  border: 1px solid rgba(144, 169, 85, 0.28) !important;
   box-shadow:
-    0 8px 24px -4px rgba(19, 42, 19, 0.05),
-    0 2px 6px rgba(19, 42, 19, 0.02) !important;
+    0 18px 42px -10px rgba(0, 0, 0, 0.55),
+    0 2px 8px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(236, 243, 158, 0.25),
+    inset 0 0 0 1px rgba(144, 169, 85, 0.12) !important;
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  position: relative;
+  z-index: 2 !important;
 }
 
-:root .spotlight-card::before,
-[data-theme="light"] .spotlight-card::before {
-  background: radial-gradient(550px circle at var(--mouse-x) var(--mouse-y),
-      rgba(236, 243, 158, 0.35) 0%,
-      rgba(144, 169, 85, 0.12) 35%,
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background: radial-gradient(550px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+      rgba(236, 243, 158, 0.25) 0%,
+      rgba(144, 169, 85, 0.15) 35%,
       transparent 65%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+  border-radius: inherit;
 }
 
-:root .spotlight-card:hover,
-:root .platform-eco-card:hover,
-:root .team-member-card:hover,
-:root .info-item-card:hover,
-[data-theme="light"] .spotlight-card:hover,
-[data-theme="light"] .platform-eco-card:hover,
-[data-theme="light"] .team-member-card:hover,
-[data-theme="light"] .info-item-card:hover {
-  transform: translateY(-6px) !important;
-  border-color: var(--c-forest-green) !important;
-  box-shadow:
-    0 20px 42px -10px rgba(19, 42, 19, 0.12),
-    0 4px 12px rgba(19, 42, 19, 0.04),
-    0 0 20px rgba(236, 243, 158, 0.35),
-    inset 0 1px 0 var(--c-lemon-cream) !important;
+.spotlight-card:hover::before {
+  opacity: 1;
 }
 
-/* Dark Theme Multi-Layered Glass (Clean Obsidian & Subtle Sage Bevel) */
-[data-theme="dark"] .spotlight-card,
-[data-theme="dark"] .service-card,
-[data-theme="dark"] .platform-eco-card,
-[data-theme="dark"] .team-member-card,
-[data-theme="dark"] .help-card,
-[data-theme="dark"] .help-card-visual>div,
-[data-theme="dark"] .industry-card-active,
-[data-theme="dark"] .custom-industry-box,
-[data-theme="dark"] .info-item-card,
-[data-theme="dark"] .contact-card-box,
-[data-theme="dark"] .contact-confidentiality-card,
-[data-theme="dark"] .process-flow-container {
-  background: linear-gradient(165deg, rgba(22, 28, 23, 0.88) 0%, rgba(15, 20, 16, 0.94) 100%) !important;
-  border: 1px solid rgba(144, 169, 85, 0.20) !important;
+.spotlight-card:hover,
+.service-card:hover,
+.platform-eco-card:hover,
+.team-member-card:hover,
+.info-item-card:hover {
+  transform: translateY(-8px) scale(1.015) !important;
+  border-color: rgba(236, 243, 158, 0.50) !important;
   box-shadow:
-    0 14px 34px -8px rgba(0, 0, 0, 0.65),
-    0 2px 6px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    0 28px 60px -12px rgba(0, 0, 0, 0.75),
+    0 0 32px rgba(144, 169, 85, 0.30),
+    inset 0 1px 0 rgba(236, 243, 158, 0.55),
+    inset 0 0 0 1px rgba(236, 243, 158, 0.22) !important;
+}
+
+/* 100% Crystal-Clear Readability Across All Cards */
+.service-title,
+.spotlight-card h3,
+.spotlight-card h4,
+.platform-eco-card h3,
+.team-member-card h3,
+.help-card-title,
+.info-item-card h3,
+.industry-card-title {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+
+.service-brief,
+.spotlight-card p,
+.platform-eco-card p,
+.team-member-card p,
+.help-card-text,
+.info-item-card p,
+.industry-card-desc,
+.help-checklist li {
+  color: #CAD5C5 !important;
+}
+
+.service-category {
+  color: #A3BD68 !important;
+}
+
+.service-card:hover .service-category {
+  color: #ECF39E !important;
+}
+
+.service-learn-more {
+  color: #ECF39E !important;
+}
+
+.service-card:hover .service-learn-more {
+  color: #FFFFFF !important;
+}
+
+.service-icon-bubble {
+  background: rgba(49, 87, 44, 0.40) !important;
+  border: 1px solid rgba(144, 169, 85, 0.30) !important;
+  color: #ECF39E !important;
 }
 
 /* High Contrast Card Typography in Dark Mode (Matches Reference Screenshot) */
@@ -4119,23 +4173,122 @@ h6 {
   box-shadow: 0 4px 16px rgba(236, 243, 158, 0.35) !important;
 }
 
-.how-we-help-section .help-card {
-  background: #FFFFFF !important;
-  color: #132A13 !important;
-  border: 1px solid rgba(79, 119, 45, 0.16) !important;
-  box-shadow: 0 16px 42px rgba(19, 42, 19, 0.10) !important;
+/* Multi-layer Dark Obsidian Glass Card Architecture with Ambient Glow & Spotlight */
+.service-card,
+.how-we-help-section .help-card,
+.industries-section .industry-card-active,
+.platform-eco-card,
+.team-member-card {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(79, 119, 45, 0.35) 0%, transparent 65%),
+    linear-gradient(165deg, rgba(18, 28, 19, 0.96) 0%, rgba(10, 17, 11, 0.98) 100%) !important;
+  border: 1px solid rgba(144, 169, 85, 0.32) !important;
+  box-shadow:
+    0 20px 50px -10px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(236, 243, 158, 0.08),
+    inset 0 1px 0 rgba(236, 243, 158, 0.28) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  position: relative !important;
+  z-index: 3 !important;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease !important;
 }
 
-.how-we-help-section .help-card-title {
-  color: #132A13 !important;
+.service-card:hover,
+.how-we-help-section .help-card:hover,
+.industries-section .industry-card-active:hover,
+.platform-eco-card:hover,
+.team-member-card:hover {
+  transform: translateY(-10px) scale(1.012) !important;
+  border-color: rgba(236, 243, 158, 0.65) !important;
+  box-shadow:
+    0 28px 60px -10px rgba(0, 0, 0, 0.80),
+    0 0 35px rgba(144, 169, 85, 0.40),
+    inset 0 1px 0 rgba(236, 243, 158, 0.50) !important;
 }
 
-.how-we-help-section .help-card-text {
-  color: #384C35 !important;
+/* Card Titles & Text Contrast: 100% Crisp & Crystal Clear Readability */
+.service-card .service-title,
+.how-we-help-section .help-card-title,
+.industries-section .industry-card-title,
+.platform-eco-card h3,
+.team-member-card .member-name {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.service-card .service-brief,
+.how-we-help-section .help-card-text,
+.industries-section .industry-card-desc,
+.platform-eco-card p,
+.team-member-card .member-bio {
+  color: #CAD5C5 !important;
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+.service-card .service-category {
+  color: #ECF39E !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.service-card .service-learn-more {
+  color: #ECF39E !important;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.service-card:hover .service-learn-more {
+  color: #FFFFFF !important;
+  transform: translateX(6px);
+}
+
+.service-card .service-icon-bubble,
+.info-icon-bubble {
+  background: rgba(236, 243, 158, 0.15) !important;
+  border: 1px solid rgba(236, 243, 158, 0.35) !important;
+  color: #ECF39E !important;
+}
+
+.service-card:hover .service-icon-bubble {
+  background: #ECF39E !important;
+  color: #132A13 !important;
+  box-shadow: 0 0 20px rgba(236, 243, 158, 0.5);
 }
 
 .how-we-help-section .help-checklist li {
-  color: #263824 !important;
+  color: #E2ECE0 !important;
+}
+
+.how-we-help-section .help-checklist li svg {
+  color: #ECF39E !important;
+  filter: drop-shadow(0 0 6px rgba(236, 243, 158, 0.45));
+}
+
+/* Ambient Radial Top Glow Bloom on Service Cards */
+.service-card-bg-glow {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(236, 243, 158, 0.25) 0%, rgba(144, 169, 85, 0.15) 45%, transparent 70%) !important;
+  pointer-events: none;
+  border-radius: 50%;
+  opacity: 0.7;
+  transition: opacity 0.5s ease, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-card:hover .service-card-bg-glow {
+  opacity: 1;
+  transform: scale(1.35) translate(-10px, 10px);
 }
 
 /* 3. Middle Zone: #FAF9F3 (Services Carousel & Proven Metrics) */
@@ -4158,50 +4311,16 @@ h6 {
 }
 
 .services-section .carousel-btn {
-  background: #FFFFFF !important;
-  border: 1px solid rgba(79, 119, 45, 0.20) !important;
-  color: #132A13 !important;
-  box-shadow: 0 4px 12px rgba(19, 42, 19, 0.06) !important;
+  background: #132A13 !important;
+  border: 1px solid rgba(144, 169, 85, 0.35) !important;
+  color: #ECF39E !important;
+  box-shadow: 0 4px 16px rgba(19, 42, 19, 0.18) !important;
 }
 
 .services-section .carousel-btn:hover:not(:disabled) {
-  background: #132A13 !important;
-  color: #ECF39E !important;
-  border-color: #132A13 !important;
-}
-
-.services-section .service-card {
-  background: #FFFFFF !important;
-  border: 1px solid rgba(79, 119, 45, 0.14) !important;
-  box-shadow: 0 10px 30px rgba(19, 42, 19, 0.06) !important;
-}
-
-.services-section .service-title {
-  color: #132A13 !important;
-}
-
-.services-section .service-brief {
-  color: #40523D !important;
-}
-
-.services-section .service-category {
-  color: #4F772D !important;
-}
-
-.services-section .service-learn-more {
-  color: #31572C !important;
-}
-
-.services-section .service-icon-bubble {
-  background: rgba(236, 243, 158, 0.40) !important;
-  border: 1px solid rgba(79, 119, 45, 0.22) !important;
-  color: #132A13 !important;
-}
-
-.services-section .service-card:hover {
-  transform: translateY(-8px) !important;
-  border-color: var(--c-forest-green) !important;
-  box-shadow: 0 22px 50px rgba(19, 42, 19, 0.14), 0 0 25px rgba(236, 243, 158, 0.40) !important;
+  background: #31572C !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 6px 22px rgba(19, 42, 19, 0.28) !important;
 }
 
 .expertise-section {
@@ -4241,37 +4360,22 @@ h6 {
 }
 
 .industries-section .industry-tab-btn {
-  background: #FFFFFF !important;
-  color: #132A13 !important;
-  border: 1px solid rgba(79, 119, 45, 0.20) !important;
-  box-shadow: 0 2px 8px rgba(19, 42, 19, 0.05) !important;
+  background: rgba(19, 42, 19, 0.85) !important;
+  color: #CAD5C5 !important;
+  border: 1px solid rgba(144, 169, 85, 0.30) !important;
 }
 
 .industries-section .industry-tab-btn.active {
-  background: #132A13 !important;
-  color: #ECF39E !important;
-  border-color: #132A13 !important;
+  background: #ECF39E !important;
+  color: #132A13 !important;
+  border-color: #ECF39E !important;
   box-shadow: 0 4px 14px rgba(19, 42, 19, 0.25) !important;
 }
 
-.industries-section .industry-card-active {
-  background: rgba(255, 255, 255, 0.96) !important;
-  border: 1px solid rgba(79, 119, 45, 0.20) !important;
-  box-shadow: 0 20px 48px rgba(19, 42, 19, 0.16) !important;
-}
-
-.industries-section .industry-card-title {
-  color: #132A13 !important;
-}
-
-.industries-section .industry-card-desc {
-  color: #384C35 !important;
-}
-
 .industries-section .industry-feature-tag {
-  background: rgba(236, 243, 158, 0.40) !important;
-  color: #132A13 !important;
-  border: 1px solid rgba(79, 119, 45, 0.18) !important;
+  background: rgba(236, 243, 158, 0.15) !important;
+  color: #ECF39E !important;
+  border: 1px solid rgba(236, 243, 158, 0.30) !important;
 }
 
 /* 5. Lower Zone: Deep Dark Green (Tech Platforms, Team, & FAQ) */
