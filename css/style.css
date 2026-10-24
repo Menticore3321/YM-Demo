@@ -190,7 +190,7 @@ body::before {
   inset: -20%;
   width: 140vw;
   height: 140vh;
-  z-index: 0;
+  z-index: -2;
   pointer-events: none;
   background:
     radial-gradient(ellipse 65% 55% at 20% 30%, rgba(236, 243, 158, 0.48) 0%, transparent 65%),
@@ -220,110 +220,34 @@ body::before {
 
 [data-theme="unified"] body::before {
   background:
-    radial-gradient(ellipse 65% 55% at 20% 25%, rgba(236, 243, 158, 0.42) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 60% at 85% 20%, rgba(144, 169, 85, 0.28) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 55% at 75% 75%, rgba(236, 243, 158, 0.32) 0%, transparent 65%),
-    radial-gradient(ellipse 55% 50% at 20% 80%, rgba(79, 119, 45, 0.22) 0%, transparent 65%),
-    radial-gradient(ellipse 45% 45% at 50% 50%, rgba(144, 169, 85, 0.18) 0%, transparent 60%),
-    linear-gradient(135deg, #F4F8EE 0%, #EDF4E5 35%, #F7FAF2 70%, #E7EFE0 100%);
-  background-size: 150% 150%;
-  filter: blur(45px);
+    radial-gradient(ellipse 70% 55% at 20% 20%, rgba(236, 243, 158, 0.50) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 85% 25%, rgba(144, 169, 85, 0.38) 0%, transparent 60%),
+    radial-gradient(ellipse 65% 55% at 50% 60%, rgba(79, 119, 45, 0.30) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 15% 80%, rgba(49, 87, 44, 0.40) 0%, transparent 65%),
+    radial-gradient(ellipse 75% 65% at 80% 85%, rgba(19, 42, 19, 0.45) 0%, transparent 65%),
+    linear-gradient(145deg, #132A13 0%, #31572C 28%, #4F772D 52%, #90A955 76%, #ECF39E 100%);
+  background-size: 200% 200%;
+  filter: blur(42px);
+  animation: unifiedLivingMesh 22s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
+  opacity: 0.88;
+  will-change: transform, background-position;
 }
 
-/* ==========================================================================
-   Scroll-Driven Chromatic Cascade Mood States (Pure 5-Color PDF Palette)
-   ========================================================================== */
-
-/* 1. Hero Arc: 50% Deep Pine Forest (#132A13) with #ECF39E Horizon Reveal */
-[data-theme="unified"] body[data-cascade="hero"]::before {
-  background:
-    radial-gradient(ellipse 65% 55% at 50% 40%, rgba(236, 243, 158, 0.16) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 50% at 20% 80%, rgba(49, 87, 44, 0.25) 0%, transparent 65%),
-    linear-gradient(135deg, #050A05 0%, #132A13 50%, #081108 100%);
-  filter: blur(48px);
+@keyframes unifiedLivingMesh {
+  0% {
+    background-position: 0% 0%;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    background-position: 100% 100%;
+    transform: scale(1.03) rotate(0.8deg);
+  }
+  100% {
+    background-position: 0% 0%;
+    transform: scale(1) rotate(0deg);
+  }
 }
 
-/* 2. Solutions Carousel & How We Help: Luminous Pale Lemon (#ECF39E) & Sage (#90A955) */
-[data-theme="unified"] body[data-cascade="sand"]::before {
-  background:
-    radial-gradient(ellipse 65% 55% at 20% 25%, rgba(236, 243, 158, 0.45) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 60% at 85% 20%, rgba(144, 169, 85, 0.30) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 55% at 75% 75%, rgba(236, 243, 158, 0.35) 0%, transparent 65%),
-    radial-gradient(ellipse 55% 50% at 20% 80%, rgba(79, 119, 45, 0.22) 0%, transparent 65%),
-    linear-gradient(135deg, #F4F8EE 0%, #EDF4E5 35%, #F7FAF2 70%, #E7EFE0 100%);
-  filter: blur(45px);
-}
-
-/* 3. Institutional Metrics & Industries: Deep Kombu Forest (#31572C) & #ECF39E Glow */
-[data-theme="unified"] body[data-cascade="emerald"]::before {
-  background:
-    radial-gradient(ellipse 65% 55% at 20% 30%, rgba(236, 243, 158, 0.28) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 60% at 80% 25%, rgba(144, 169, 85, 0.25) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 55% at 50% 80%, rgba(49, 87, 44, 0.45) 0%, transparent 65%),
-    radial-gradient(ellipse 55% 50% at 15% 85%, rgba(79, 119, 45, 0.25) 0%, transparent 65%),
-    linear-gradient(135deg, #0E1F0F 0%, #172D19 40%, #112312 70%, #0B160C 100%);
-  filter: blur(48px);
-}
-
-[data-theme="unified"] body[data-cascade="emerald"] .expertise-section .section-title,
-[data-theme="unified"] body[data-cascade="emerald"] .industries-section .section-title {
-  color: #FFFFFF !important;
-}
-
-[data-theme="unified"] body[data-cascade="emerald"] .expertise-section .section-subtitle,
-[data-theme="unified"] body[data-cascade="emerald"] .industries-section .section-subtitle {
-  color: #D2E2D0 !important;
-}
-
-[data-theme="unified"] body[data-cascade="emerald"] .stat-box {
-  background: linear-gradient(145deg, rgba(23, 45, 25, 0.82) 0%, rgba(14, 28, 15, 0.94) 100%) !important;
-  border: 1px solid rgba(236, 243, 158, 0.35) !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.50), inset 0 1px 0 rgba(236, 243, 158, 0.45) !important;
-}
-
-[data-theme="unified"] body[data-cascade="emerald"] .stat-label {
-  color: #E7F3E5 !important;
-}
-
-[data-theme="unified"] body[data-cascade="emerald"] .industry-tab-btn {
-  background: rgba(23, 45, 25, 0.65) !important;
-  border-color: rgba(79, 119, 45, 0.35) !important;
-  color: #D2E2D0 !important;
-}
-
-[data-theme="unified"] body[data-cascade="emerald"] .industry-tab-btn.active {
-  background: linear-gradient(135deg, #31572C, #4F772D) !important;
-  color: #ECF39E !important;
-  border-color: #ECF39E !important;
-}
-
-/* 4. Ecosystem & Practice Leadership: Luminous Sage (#90A955) & Pale Lemon Linen */
-[data-theme="unified"] body[data-cascade="sage"]::before {
-  background:
-    radial-gradient(ellipse 65% 55% at 25% 30%, rgba(236, 243, 158, 0.38) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 60% at 80% 25%, rgba(144, 169, 85, 0.30) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 55% at 75% 75%, rgba(236, 243, 158, 0.25) 0%, transparent 65%),
-    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(79, 119, 45, 0.20) 0%, transparent 65%),
-    linear-gradient(135deg, #F0F6EA 0%, #E6EFE0 45%, #EDF5E7 100%);
-  filter: blur(45px);
-}
-
-/* 5. Executive CTA Banner & Deep Footer: Deep Forest Dark (#132A13) & #ECF39E Glow */
-[data-theme="unified"] body[data-cascade="obsidian"]::before {
-  background:
-    radial-gradient(ellipse 65% 55% at 50% 20%, rgba(236, 243, 158, 0.25) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 50% at 80% 70%, rgba(49, 87, 44, 0.30) 0%, transparent 65%),
-    linear-gradient(135deg, #091309 0%, #132A13 50%, #070D07 100%);
-  filter: blur(48px);
-}
-
-[data-theme="unified"] body[data-cascade="obsidian"] .cta-banner-title {
-  color: #FFFFFF !important;
-}
-
-[data-theme="unified"] body[data-cascade="obsidian"] .cta-banner-desc {
-  color: #D2E2D0 !important;
-}
 
 @keyframes livelyGradientMesh {
   0% {
@@ -359,7 +283,7 @@ section,
 .matrix-grid-bg {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
   overflow: hidden;
 }
@@ -407,7 +331,7 @@ section,
   height: 380px;
   border-radius: 50%;
   pointer-events: none;
-  z-index: 1;
+  z-index: -1;
   opacity: 0;
   transition: opacity 0.4s ease;
   will-change: transform;
@@ -435,7 +359,7 @@ section,
 .liquid-ripple {
   position: fixed;
   pointer-events: none;
-  z-index: 1;
+  z-index: -1;
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(0.2);
   border: 1.5px solid rgba(236, 243, 158, 0.65);
@@ -4259,29 +4183,25 @@ h6 {
   filter: blur(48px);
 }
 
-/* Interactive Liquid Light-Ripple Trail (Bioluminescent Wake) */
-.liquid-ripple {
-  position: fixed;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-  transform: translate(-50%, -50%) scale(1);
-  background: radial-gradient(circle, rgba(236, 243, 158, 0.50) 0%, rgba(144, 169, 85, 0.28) 45%, transparent 70%);
-  filter: blur(12px);
-  animation: liquidRippleSpread 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* Seamless Continuous Section Backgrounds in Unified Theme */
+[data-theme="unified"] .hero-section,
+[data-theme="unified"] .how-we-help-section,
+[data-theme="unified"] .services-section,
+[data-theme="unified"] .expertise-section,
+[data-theme="unified"] .industries-section,
+[data-theme="unified"] .tech-solar-section,
+[data-theme="unified"] .team-section,
+[data-theme="unified"] .faq-section,
+[data-theme="unified"] .cta-banner-section,
+[data-theme="unified"] .subpage-hero,
+[data-theme="unified"] .content-section {
+  background: transparent !important;
+  background-color: transparent !important;
 }
 
-@keyframes liquidRippleSpread {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0.85;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(18);
-    opacity: 0;
-  }
+[data-theme="unified"] .ultravibe-bg-wrapper,
+[data-theme="unified"] .ultravibe-torch-shine {
+  display: none !important;
 }
 
 /* Typography & Gradient Accents */

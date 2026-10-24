@@ -73,6 +73,10 @@ function initTheme() {
       localStorage.setItem('ym-theme', newTheme);
       updateThemeButtonState(newTheme);
 
+      if (newTheme === 'unified') {
+        document.body.removeAttribute('data-cascade');
+      }
+
       const themeNames = {
         'unified': 'Unified 50-50 Botanical Theme (Pure PDF Palette)',
         'dark': 'Dark Mode (Deep Forest)',
@@ -726,19 +730,22 @@ function initCursorGlow() {
     targetY = e.clientY;
 
     const now = performance.now();
-    if (now - lastRippleTime > 70) {
+    if (now - lastRippleTime > 80) {
       lastRippleTime = now;
       if (document.documentElement.getAttribute('data-theme') === 'unified') {
-        const ripple = document.createElement('div');
-        ripple.className = 'liquid-ripple';
-        ripple.style.left = `${e.clientX}px`;
-        ripple.style.top = `${e.clientY}px`;
-        document.body.appendChild(ripple);
-        setTimeout(() => {
-          if (ripple.parentNode) {
-            ripple.parentNode.removeChild(ripple);
-          }
-        }, 1000);
+        const existingRipples = document.querySelectorAll('.liquid-ripple');
+        if (existingRipples.length < 5) {
+          const ripple = document.createElement('div');
+          ripple.className = 'liquid-ripple';
+          ripple.style.left = `${e.clientX}px`;
+          ripple.style.top = `${e.clientY}px`;
+          document.body.appendChild(ripple);
+          setTimeout(() => {
+            if (ripple.parentNode) {
+              ripple.parentNode.removeChild(ripple);
+            }
+          }, 950);
+        }
       }
     }
   }, { passive: true });
@@ -992,6 +999,11 @@ function initPlatformFilter() {
    Dynamically morphs background atmosphere across sections as the user scrolls
    ========================================================================== */
 function initScrollChromaticCascade() {
+  if (document.documentElement.getAttribute('data-theme') === 'unified') {
+    document.body.removeAttribute('data-cascade');
+    return;
+  }
+
   const sections = [
     { selector: '.hero-section, .subpage-hero', cascade: 'hero' },
     { selector: '.how-we-help-section, .services-section, .content-section', cascade: 'sand' },
