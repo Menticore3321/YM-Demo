@@ -1120,10 +1120,11 @@ h6 {
    ========================================================================== */
 .subpage-hero {
   position: relative;
-  padding: 150px 24px 70px;
+  width: 100%;
+  background-color: #000000 !important;
+  overflow: hidden;
+  padding: 160px 24px 80px;
   text-align: center;
-  max-width: 900px;
-  margin: 0 auto;
 }
 
 .subpage-hero::before {
@@ -1137,7 +1138,7 @@ h6 {
   background: radial-gradient(ellipse at center, rgba(144, 169, 85, 0.22) 0%, rgba(236, 243, 158, 0.1) 40%, transparent 75%);
   filter: blur(55px);
   pointer-events: none;
-  z-index: -1;
+  z-index: 3;
 }
 
 [data-theme="dark"] .subpage-hero::before {
@@ -1150,14 +1151,43 @@ h6 {
   letter-spacing: -0.025em;
   line-height: 1.2;
   margin-bottom: 20px;
+  color: #FFFFFF !important;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative !important;
+  z-index: 10 !important;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.95);
+}
+
+.subpage-hero h1 .text-gradient {
+  color: #90A955 !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: #90A955 !important;
+  text-shadow: none !important;
+  filter: none !important;
 }
 
 .subpage-hero p {
   font-size: clamp(1rem, 1.6vw, 1.15rem);
-  color: var(--text-secondary);
-  max-width: 720px;
+  color: #CAD5C5 !important;
+  max-width: 740px;
   margin: 0 auto;
   line-height: 1.7;
+  position: relative !important;
+  z-index: 10 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95);
+}
+
+.subpage-hero .badge-pill {
+  color: #ECF39E !important;
+  background: rgba(10, 20, 11, 0.90) !important;
+  border: 1.5px solid rgba(236, 243, 158, 0.45) !important;
+  position: relative !important;
+  z-index: 10 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.65) !important;
+  margin-bottom: 24px !important;
 }
 
 /* ==========================================================================
@@ -2496,67 +2526,7 @@ h6 {
 /* ==========================================================================
    Page-Specific Layouts (Services, About, Careers, Pricing, Contact)
    ========================================================================== */
-.subpage-hero {
-  position: relative;
-  padding: 150px 24px 64px;
-  text-align: center;
-  background: transparent;
-}
-
-.subpage-hero::before {
-  content: '';
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: min(850px, 92vw);
-  height: 320px;
-  background: radial-gradient(ellipse 65% 50% at center, rgba(144, 169, 85, 0.22) 0%, rgba(79, 119, 45, 0.1) 45%, rgba(49, 87, 44, 0.02) 70%, transparent 80%);
-  filter: blur(55px);
-  pointer-events: none;
-  z-index: 0;
-  animation: ambient-subpage-pulse 8s ease-in-out infinite alternate;
-  will-change: transform, opacity;
-}
-
-[data-theme="dark"] .subpage-hero::before {
-  background: radial-gradient(ellipse 65% 50% at center, rgba(236, 243, 158, 0.24) 0%, rgba(144, 169, 85, 0.22) 40%, transparent 75%);
-}
-
-.subpage-hero>* {
-  position: relative;
-  z-index: 1;
-}
-
-@keyframes ambient-subpage-pulse {
-  0% {
-    transform: translate(-50%, -50%) scale(0.95);
-    opacity: 0.7;
-  }
-
-  50% {
-    transform: translate(-50%, -52%) scale(1.06);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translate(-50%, -48%) scale(0.98);
-    opacity: 0.75;
-  }
-}
-
-.subpage-hero h1 {
-  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-  font-weight: 800;
-  margin-bottom: 20px;
-}
-
-.subpage-hero p {
-  font-size: 1.15rem;
-  color: var(--text-secondary);
-  max-width: 720px;
-  margin: 0 auto;
-}
+/* Subpage hero architecture is fully defined in Section 1 and Section 7 */
 
 /* Pricing Grids */
 .pricing-grid {
@@ -4405,6 +4375,7 @@ h6 {
 /* Section Tags & Badges on Dark Background Sections */
 .hero-section .badge-pill,
 .subpage-hero .badge-pill,
+.subpage-transition-section .section-tag,
 .how-we-help-section .section-tag,
 .tech-solar-section .section-tag,
 .team-section .section-tag,
@@ -4752,52 +4723,70 @@ h6 {
 }
 
 /* 7. Subpage Atmospheric Architecture & Complete Readability across Services, About, Careers, Contact */
+
+/* Subpage Transition Section: Smooth Flow from Pitch Black into Linen */
 .subpage-transition-section {
   background: linear-gradient(180deg, #000000 0%, #09130A 16%, #173118 36%, #365A29 58%, #8E9F76 80%, #FAF9F3 100%) !important;
   position: relative;
   z-index: auto !important;
+  width: 100%;
 }
 
-.subpage-light-section,
-.content-section,
-.about-mission-section,
-.pricing-section,
-.contact-section,
-.careers-section {
-  background-color: #FAF9F3 !important;
-  position: relative;
-  z-index: auto !important;
+.subpage-transition-section .container {
+  position: relative !important;
+  z-index: 10 !important;
 }
 
-.subpage-light-section .section-title,
-.content-section .section-title,
-.about-mission-section .section-title,
-.pricing-section .section-title,
-.contact-section .section-title,
-.careers-section .section-title {
-  color: #132A13 !important;
+.subpage-transition-section .section-header {
+  position: relative !important;
+  z-index: 10 !important;
 }
 
-.subpage-light-section .section-title .text-brand {
-  color: #31572C !important;
+.subpage-transition-section .section-tag {
+  display: inline-flex !important;
+  align-items: center !important;
+  font-size: 0.84rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: #ECF39E !important;
+  background: rgba(10, 20, 11, 0.90) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1.5px solid rgba(236, 243, 158, 0.45) !important;
+  padding: 6px 18px !important;
+  border-radius: var(--radius-full) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.65) !important;
+  margin-bottom: 16px !important;
+  position: relative !important;
+  z-index: 10 !important;
 }
 
-.subpage-light-section .section-subtitle,
-.subpage-light-section p,
-.content-section p,
-.about-mission-section p,
-.pricing-section p,
-.contact-section p,
-.careers-section p {
-  color: #40523D !important;
+.subpage-transition-section .section-title,
+.subpage-transition-section h2 {
+  color: #FFFFFF !important;
+  position: relative !important;
+  z-index: 10 !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
 }
 
-/* Subpage Dark Obsidian Glass Card Styling (High Contrast & Audit-Grade Elegance) */
+.subpage-transition-section .section-title .text-brand,
+.subpage-transition-section h2 .text-brand {
+  color: #ECF39E !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
+}
+
+.subpage-transition-section .section-subtitle,
+.subpage-transition-section .careers-hero-split-grid>div>p {
+  color: #D6E4D3 !important;
+  position: relative !important;
+  z-index: 10 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+}
+
+/* Subpage Transition Dark Obsidian Cards */
 .services-pillars-grid .spotlight-card,
 .about-mission-grid .spotlight-card,
-.about-values-grid>div,
 .careers-hero-split-grid .spotlight-card,
-.careers-culture-grid .spotlight-card,
 .contact-channels-grid .info-item-card,
 .contact-confidentiality-card {
   background-color: #0b140d !important;
@@ -4813,9 +4802,7 @@ h6 {
 
 .services-pillars-grid .spotlight-card h3,
 .about-mission-grid .spotlight-card h3,
-.about-values-grid h3,
-.careers-hero-split-grid h3,
-.careers-culture-grid h3,
+.careers-hero-split-grid .spotlight-card h3,
 .contact-channels-grid .info-item-card h3,
 .contact-confidentiality-card h4 {
   color: #FFFFFF !important;
@@ -4823,17 +4810,17 @@ h6 {
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
 }
 
-.about-mission-grid h4,
-.careers-hero-split-grid h4 {
+.about-mission-grid .spotlight-card h4,
+.careers-hero-split-grid .spotlight-card h4,
+.contact-channels-grid .info-item-card h4 {
   color: #ECF39E !important;
   font-weight: 700 !important;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.8) !important;
 }
 
 .services-pillars-grid .spotlight-card p,
 .about-mission-grid .spotlight-card p,
-.about-values-grid p,
-.careers-hero-split-grid p,
-.careers-culture-grid p,
+.careers-hero-split-grid .spotlight-card p,
 .contact-channels-grid .info-item-card p,
 .contact-confidentiality-card p {
   color: #CAD5C5 !important;
@@ -4841,13 +4828,23 @@ h6 {
 }
 
 .services-pillars-grid .spotlight-card ul li,
-.help-checklist li {
+.careers-hero-split-grid .spotlight-card ul li {
   color: #E2ECE0 !important;
 }
 
-.services-pillars-grid .spotlight-card ul li svg {
+.services-pillars-grid .spotlight-card ul li svg,
+.careers-hero-split-grid .spotlight-card ul li svg {
   color: #90A955 !important;
-  filter: drop-shadow(0 0 6px rgba(144, 169, 85, 0.4));
+  filter: drop-shadow(0 0 6px rgba(144, 169, 85, 0.4)) !important;
+}
+
+.contact-channels-grid .info-item-card a {
+  color: #ECF39E !important;
+  text-decoration: underline !important;
+}
+
+.contact-channels-grid .info-item-card a:hover {
+  color: #FFFFFF !important;
 }
 
 .services-pillars-grid .btn-cta,
@@ -4866,4 +4863,115 @@ h6 {
   background: #FFFFFF !important;
   color: #132A13 !important;
   transform: translateY(-2px);
+}
+
+/* Subpage Light Sections (Linen Architecture matching Landing Page) */
+.subpage-light-section,
+.content-section,
+.about-mission-section,
+.pricing-section,
+.contact-section,
+.careers-section {
+  background-color: #FAF9F3 !important;
+  position: relative;
+  z-index: auto !important;
+  width: 100%;
+}
+
+.subpage-light-section .container {
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.subpage-light-section .section-header {
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.subpage-light-section .section-tag {
+  color: #132A13 !important;
+  background: rgba(19, 42, 19, 0.08) !important;
+  border: 1.5px solid rgba(19, 42, 19, 0.28) !important;
+  box-shadow: 0 2px 8px rgba(19, 42, 19, 0.06) !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.subpage-light-section .section-title,
+.content-section .section-title,
+.pricing-section .section-title {
+  color: #132A13 !important;
+  position: relative !important;
+  z-index: 10 !important;
+  text-shadow: none !important;
+}
+
+.subpage-light-section .section-title .text-brand {
+  color: #31572C !important;
+  text-shadow: none !important;
+}
+
+.subpage-light-section .section-subtitle,
+.subpage-light-section p,
+.content-section p,
+.pricing-section p {
+  color: #40523D !important;
+  position: relative !important;
+  z-index: 10 !important;
+  text-shadow: none !important;
+}
+
+/* Light Section Cards (Crisp High-End Corporate Cards) */
+.about-values-grid>div,
+.careers-culture-grid .spotlight-card,
+.process-flow-container {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(19, 42, 19, 0.12) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: 0 4px 18px rgba(19, 42, 19, 0.06) !important;
+  transition: var(--transition) !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.about-values-grid>div:hover,
+.careers-culture-grid .spotlight-card:hover {
+  border-color: #31572C !important;
+  box-shadow: 0 8px 24px rgba(19, 42, 19, 0.12) !important;
+  transform: translateY(-4px) !important;
+}
+
+.about-values-grid h3,
+.careers-culture-grid h3,
+.process-flow-container h4 {
+  color: #132A13 !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+}
+
+.about-values-grid p,
+.careers-culture-grid p,
+.process-flow-container p {
+  color: #40523D !important;
+  line-height: 1.65 !important;
+  text-shadow: none !important;
+}
+
+.careers-culture-grid .service-icon-bubble {
+  background: rgba(49, 87, 44, 0.08) !important;
+  border: 1px solid rgba(49, 87, 44, 0.20) !important;
+  color: #31572C !important;
+}
+
+.process-flow-container .services-process-grid>div {
+  background: #FAF9F3 !important;
+  border: 1px solid rgba(19, 42, 19, 0.10) !important;
+}
+
+.process-flow-container .services-process-grid h4 {
+  color: #132A13 !important;
+}
+
+.process-flow-container .services-process-grid p {
+  color: #40523D !important;
 }
