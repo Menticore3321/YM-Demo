@@ -4104,15 +4104,16 @@ h6 {
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
 }
 
-/* Rich, Luminous Luxury Green for "... in Corporate Finance & Advisory" */
+/* Pure Palette Light Sage Green (#90A955) for "... in Corporate Finance & Advisory" (Solid Text Color, No Shade) */
 .hero-section .hero-title .text-gradient,
 .hero-title .text-gradient,
 .hero-section .text-gradient {
-  background: linear-gradient(135deg, #A7E9AF 0%, #68D391 35%, #48BB78 70%, #38A169 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  color: #48BB78 !important;
-  filter: drop-shadow(0 2px 16px rgba(72, 187, 120, 0.45)) !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: #90A955 !important;
+  color: #90A955 !important;
+  filter: none !important;
+  text-shadow: none !important;
   display: inline-block !important;
 }
 
