@@ -4104,15 +4104,15 @@ h6 {
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
 }
 
-/* Bright, pristine luminous gradient for "... in Corporate Finance & Advisory" */
+/* Rich, Luminous Luxury Green for "... in Corporate Finance & Advisory" */
 .hero-section .hero-title .text-gradient,
 .hero-title .text-gradient,
 .hero-section .text-gradient {
-  background: linear-gradient(135deg, #FFFFFF 0%, #E6F4B8 45%, #ECF39E 100%) !important;
+  background: linear-gradient(135deg, #A7E9AF 0%, #68D391 35%, #48BB78 70%, #38A169 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  color: #ECF39E !important;
-  filter: drop-shadow(0 2px 14px rgba(236, 243, 158, 0.35)) !important;
+  color: #48BB78 !important;
+  filter: drop-shadow(0 2px 16px rgba(72, 187, 120, 0.45)) !important;
   display: inline-block !important;
 }
 
