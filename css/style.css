@@ -76,18 +76,18 @@
   --c-gold-border: rgba(243, 202, 109, 0.32);
   --c-gold-glow: rgba(243, 202, 109, 0.38);
 
-  /* Balanced Deep Forest & Emerald Canvas (Matches reference - Not Pitch Black, Not Muddy Green) */
-  --bg-primary: #0B140C;
-  --bg-secondary: rgba(16, 28, 17, 0.70);
-  --bg-section-glass: rgba(14, 24, 15, 0.65);
-  --bg-tertiary: #101C11;
-  --bg-card: rgba(16, 28, 17, 0.88);
-  --bg-glass: rgba(11, 20, 12, 0.90);
-  --border-glass: rgba(144, 169, 85, 0.28);
+  /* Clean Slate-Obsidian Canvas (Eliminates Muddy Green Swamp) */
+  --bg-primary: #0E120F;
+  --bg-secondary: rgba(22, 28, 23, 0.65);
+  --bg-section-glass: rgba(18, 24, 19, 0.60);
+  --bg-tertiary: #131814;
+  --bg-card: rgba(24, 31, 25, 0.85);
+  --bg-glass: rgba(16, 21, 17, 0.90);
+  --border-glass: rgba(144, 169, 85, 0.22);
 
-  --text-primary: #F8FAF7;
+  --text-primary: #FFFFFF;
   --text-secondary: #CAD5C5;
-  --text-muted: #8F9E8D;
+  --text-muted: #8E9C8D;
   --text-inverse: #132A13;
 
   --brand-primary: #A3BD68;
@@ -97,13 +97,13 @@
   --brand-highlight: #ECF39E;
   --brand-highlight-text: #132A13;
 
-  --border-subtle: rgba(144, 169, 85, 0.22);
-  --border-divide: rgba(144, 169, 85, 0.16);
+  --border-subtle: rgba(144, 169, 85, 0.18);
+  --border-divide: rgba(144, 169, 85, 0.14);
 
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.55);
-  --shadow-lg: 0 16px 42px rgba(0, 0, 0, 0.75);
-  --shadow-glow: 0 0 35px rgba(236, 243, 158, 0.20), 0 0 70px rgba(144, 169, 85, 0.16);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.50);
+  --shadow-lg: 0 16px 42px rgba(0, 0, 0, 0.70);
+  --shadow-glow: 0 0 35px rgba(236, 243, 158, 0.20), 0 0 70px rgba(144, 169, 85, 0.14);
 }
 
 /* Base Resets */
@@ -159,14 +159,14 @@ body::before {
 
 [data-theme="dark"] body::before {
   background:
-    radial-gradient(ellipse 65% 55% at 20% 25%, rgba(79, 119, 45, 0.24) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 60% at 85% 20%, rgba(144, 169, 85, 0.18) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 55% at 75% 75%, rgba(49, 87, 44, 0.22) 0%, transparent 65%),
-    radial-gradient(ellipse 55% 50% at 20% 80%, rgba(144, 169, 85, 0.16) 0%, transparent 65%),
-    radial-gradient(ellipse 45% 45% at 50% 50%, rgba(236, 243, 158, 0.08) 0%, transparent 60%),
-    linear-gradient(135deg, #09120A 0%, #0E1B10 35%, #0B160D 70%, #081009 100%);
+    radial-gradient(ellipse 65% 55% at 20% 25%, rgba(79, 119, 45, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 60% at 85% 20%, rgba(144, 169, 85, 0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 55% at 75% 75%, rgba(49, 87, 44, 0.10) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 50% at 20% 80%, rgba(144, 169, 85, 0.08) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 45% at 50% 50%, rgba(236, 243, 158, 0.04) 0%, transparent 60%),
+    linear-gradient(135deg, #0A0D0B 0%, #121613 35%, #0F1310 70%, #080A09 100%);
   background-size: 150% 150%;
-  filter: blur(42px);
+  filter: blur(45px);
 }
 
 @keyframes livelyGradientMesh {
@@ -1710,46 +1710,29 @@ h6 {
   border-radius: var(--radius-lg);
   padding: 36px 24px;
   text-align: center;
-  transition: var(--transition);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
   box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
 }
 
 .stat-box:hover {
-  transform: translateY(-4px);
-  border-color: var(--c-sage-green);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-6px);
 }
 
 .stat-number {
   font-family: var(--font-heading);
   font-size: 3.2rem;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--c-dark-green) 0%, var(--c-forest-green) 60%, var(--c-gold-primary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   line-height: 1;
   margin-bottom: 12px;
-}
-
-[data-theme="dark"] .stat-number {
-  background: linear-gradient(135deg, #FFFFFF 0%, var(--c-gold-primary) 50%, var(--c-lemon-cream) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 16px rgba(243, 202, 109, 0.28));
 }
 
 .stat-bar {
   width: 44px;
   height: 3px;
-  background: linear-gradient(90deg, var(--c-forest-green), var(--c-gold-primary));
   border-radius: var(--radius-full);
   margin: 12px auto;
-  box-shadow: 0 0 10px var(--c-gold-glow);
-}
-
-[data-theme="dark"] .stat-bar {
-  background: linear-gradient(90deg, var(--c-gold-primary), var(--c-lemon-cream));
-  box-shadow: 0 0 14px var(--c-gold-glow);
 }
 
 .stat-label {
@@ -1757,7 +1740,76 @@ h6 {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--text-secondary);
+}
+
+/* NexaVerse Reference Dashboard Quad-Palette Stat Cards */
+.stats-grid .stat-box:nth-child(1) {
+  background: #132A13 !important;
+  border: 1px solid rgba(79, 119, 45, 0.45) !important;
+  box-shadow: 0 10px 28px rgba(19, 42, 19, 0.25) !important;
+}
+.stats-grid .stat-box:nth-child(1) .stat-number {
+  background: none !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  color: #FFFFFF !important;
+}
+.stats-grid .stat-box:nth-child(1) .stat-label {
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+.stats-grid .stat-box:nth-child(1) .stat-bar {
+  background: var(--c-lemon-cream) !important;
+  box-shadow: 0 0 10px rgba(236, 243, 158, 0.5) !important;
+}
+
+.stats-grid .stat-box:nth-child(2) {
+  background: #4F772D !important;
+  border: 1px solid rgba(144, 169, 85, 0.50) !important;
+  box-shadow: 0 10px 28px rgba(79, 119, 45, 0.28) !important;
+}
+.stats-grid .stat-box:nth-child(2) .stat-number {
+  background: none !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  color: #FFFFFF !important;
+}
+.stats-grid .stat-box:nth-child(2) .stat-label {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+.stats-grid .stat-box:nth-child(2) .stat-bar {
+  background: #FFFFFF !important;
+}
+
+.stats-grid .stat-box:nth-child(3) {
+  background: #ECF39E !important;
+  border: 1px solid rgba(236, 243, 158, 0.90) !important;
+  box-shadow: 0 14px 34px rgba(236, 243, 158, 0.38) !important;
+}
+.stats-grid .stat-box:nth-child(3) .stat-number {
+  background: none !important;
+  -webkit-text-fill-color: #132A13 !important;
+  color: #132A13 !important;
+}
+.stats-grid .stat-box:nth-child(3) .stat-label {
+  color: #1E3F20 !important;
+}
+.stats-grid .stat-box:nth-child(3) .stat-bar {
+  background: #132A13 !important;
+}
+
+.stats-grid .stat-box:nth-child(4) {
+  background: #90A955 !important;
+  border: 1px solid rgba(144, 169, 85, 0.50) !important;
+  box-shadow: 0 10px 28px rgba(144, 169, 85, 0.28) !important;
+}
+.stats-grid .stat-box:nth-child(4) .stat-number {
+  background: none !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  color: #FFFFFF !important;
+}
+.stats-grid .stat-box:nth-child(4) .stat-label {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+.stats-grid .stat-box:nth-child(4) .stat-bar {
+  background: var(--c-lemon-cream) !important;
 }
 
 /* ==========================================================================
@@ -2960,7 +3012,6 @@ h6 {
 [data-theme="light"] .service-card,
 [data-theme="light"] .platform-eco-card,
 [data-theme="light"] .team-member-card,
-[data-theme="light"] .stat-box,
 [data-theme="light"] .help-card,
 [data-theme="light"] .help-card-visual>div,
 [data-theme="light"] .industry-card-active,
@@ -2969,13 +3020,11 @@ h6 {
 [data-theme="light"] .contact-card-box,
 [data-theme="light"] .contact-confidentiality-card,
 [data-theme="light"] .process-flow-container {
-  background: linear-gradient(135deg, rgba(250, 253, 246, 0.92) 0%, rgba(240, 248, 235, 0.85) 100%) !important;
-  border: 1px solid rgba(49, 87, 44, 0.16) !important;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(49, 87, 44, 0.12) !important;
   box-shadow:
-    0 14px 34px -8px rgba(19, 42, 19, 0.08),
-    0 2px 6px rgba(19, 42, 19, 0.03),
-    inset 0 1px 0 rgba(236, 243, 158, 0.75),
-    inset 0 0 0 1px rgba(247, 251, 243, 0.6) !important;
+    0 8px 24px -4px rgba(19, 42, 19, 0.05),
+    0 2px 6px rgba(19, 42, 19, 0.02) !important;
 }
 
 :root .spotlight-card::before,
@@ -2989,29 +3038,25 @@ h6 {
 :root .spotlight-card:hover,
 :root .platform-eco-card:hover,
 :root .team-member-card:hover,
-:root .stat-box:hover,
 :root .info-item-card:hover,
 [data-theme="light"] .spotlight-card:hover,
 [data-theme="light"] .platform-eco-card:hover,
 [data-theme="light"] .team-member-card:hover,
-[data-theme="light"] .stat-box:hover,
 [data-theme="light"] .info-item-card:hover {
   transform: translateY(-6px) !important;
   border-color: var(--c-forest-green) !important;
   box-shadow:
-    0 22px 46px -12px rgba(19, 42, 19, 0.16),
-    0 4px 12px rgba(19, 42, 19, 0.06),
-    0 0 24px rgba(236, 243, 158, 0.45),
-    inset 0 1px 0 var(--c-lemon-cream),
-    inset 0 0 0 1px rgba(236, 243, 158, 0.5) !important;
+    0 20px 42px -10px rgba(19, 42, 19, 0.12),
+    0 4px 12px rgba(19, 42, 19, 0.04),
+    0 0 20px rgba(236, 243, 158, 0.35),
+    inset 0 1px 0 var(--c-lemon-cream) !important;
 }
 
-/* Dark Theme Multi-Layered Glass (Deep Forest Obsidian & Top Ambient Glow) */
+/* Dark Theme Multi-Layered Glass (Clean Obsidian & Subtle Sage Bevel) */
 [data-theme="dark"] .spotlight-card,
 [data-theme="dark"] .service-card,
 [data-theme="dark"] .platform-eco-card,
 [data-theme="dark"] .team-member-card,
-[data-theme="dark"] .stat-box,
 [data-theme="dark"] .help-card,
 [data-theme="dark"] .help-card-visual>div,
 [data-theme="dark"] .industry-card-active,
@@ -3020,15 +3065,12 @@ h6 {
 [data-theme="dark"] .contact-card-box,
 [data-theme="dark"] .contact-confidentiality-card,
 [data-theme="dark"] .process-flow-container {
-  background:
-    radial-gradient(circle at 50% 14%, rgba(79, 119, 45, 0.28) 0%, transparent 65%),
-    linear-gradient(165deg, rgba(17, 30, 18, 0.88) 0%, rgba(10, 18, 11, 0.94) 100%) !important;
-  border: 1px solid rgba(144, 169, 85, 0.24) !important;
+  background: linear-gradient(165deg, rgba(22, 28, 23, 0.88) 0%, rgba(15, 20, 16, 0.94) 100%) !important;
+  border: 1px solid rgba(144, 169, 85, 0.20) !important;
   box-shadow:
-    0 16px 36px -10px rgba(0, 0, 0, 0.65),
-    0 2px 8px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(236, 243, 158, 0.22),
-    inset 0 0 0 1px rgba(144, 169, 85, 0.12) !important;
+    0 14px 34px -8px rgba(0, 0, 0, 0.65),
+    0 2px 6px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
 /* High Contrast Card Typography in Dark Mode (Matches Reference Screenshot) */
