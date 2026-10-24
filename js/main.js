@@ -74,7 +74,7 @@ function initTheme() {
       updateThemeButtonState(newTheme);
 
       const themeNames = {
-        'unified': 'Unified Balanced Theme (Cashmere & Bronze)',
+        'unified': 'Unified 50-50 Botanical Theme (Pure PDF Palette)',
         'dark': 'Dark Mode (Deep Forest)',
         'light': 'Light Mode (Organic Linen)'
       };
@@ -719,10 +719,28 @@ function initCursorGlow() {
   let currentY = window.innerHeight / 2;
   let targetX = currentX;
   let targetY = currentY;
+  let lastRippleTime = 0;
 
   window.addEventListener('mousemove', (e) => {
     targetX = e.clientX;
     targetY = e.clientY;
+
+    const now = performance.now();
+    if (now - lastRippleTime > 70) {
+      lastRippleTime = now;
+      if (document.documentElement.getAttribute('data-theme') === 'unified') {
+        const ripple = document.createElement('div');
+        ripple.className = 'liquid-ripple';
+        ripple.style.left = `${e.clientX}px`;
+        ripple.style.top = `${e.clientY}px`;
+        document.body.appendChild(ripple);
+        setTimeout(() => {
+          if (ripple.parentNode) {
+            ripple.parentNode.removeChild(ripple);
+          }
+        }, 1000);
+      }
+    }
   }, { passive: true });
 
   window.addEventListener('mouseleave', () => {

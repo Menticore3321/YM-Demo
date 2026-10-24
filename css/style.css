@@ -106,54 +106,53 @@
 }
 
 /* ==========================================================================
-   3rd Mode: Unified Editorial Theme (Harmonious Balance of Light & Dark)
-   Aesthetic: Cashmere Sand Canvas, Alabaster Linen Glass, Cognac Bronze & Champagne Gold
+   3rd Mode: Unified 50-50 Botanical Editorial Theme
+   Pure Leafy Green Garden Palette (Strictly 5 Colors from PDF):
+     #132A13 (Deep Forest Dark - 25%)
+     #31572C (Kombu Forest Green - 25%)
+     #4F772D (Leaf Moss Green - 15%)
+     #90A955 (Sage Olive Green - 15%)
+     #ECF39E (Pale Lemon Cream - 20%)
    ========================================================================== */
 [data-theme="unified"] {
-  /* Warm Cognac Leather & Amber Bronze Luxury Accents */
-  --c-bronze-primary: #9C5824;
-  --c-bronze-hover: #7D4318;
-  --c-bronze-accent: #C47335;
-  --c-bronze-soft: rgba(156, 88, 36, 0.12);
-  --c-bronze-border: rgba(156, 88, 36, 0.28);
-  --c-bronze-glow: rgba(196, 115, 53, 0.28);
+  /* 50% Dark Structural Anchors */
+  --c-dark-forest: #132A13;
+  --c-kombu-forest: #31572C;
 
-  /* Liquid Champagne Gold Luxury Accents */
-  --c-gold-primary: #C5A059;
-  --c-gold-hover: #AF8840;
-  --c-gold-soft: rgba(197, 160, 89, 0.15);
-  --c-gold-border: rgba(197, 160, 89, 0.32);
-  --c-gold-glow: rgba(197, 160, 89, 0.36);
+  /* 50% Light Luminous Accents */
+  --c-leaf-moss: #4F772D;
+  --c-sage-olive: #90A955;
+  --c-lemon-cream: #ECF39E;
 
-  /* Warm Cashmere Sand Canvas (Luminous, Organic, Zero Glare, Zero Gloom) */
-  --bg-primary: #EAEFE6;
-  --bg-secondary: rgba(226, 234, 220, 0.75);
-  --bg-section-glass: rgba(234, 240, 229, 0.85);
-  --bg-tertiary: #DFE7D8;
-  --bg-card: rgba(255, 255, 255, 0.90);
-  --bg-glass: rgba(246, 250, 243, 0.92);
-  --border-glass: rgba(156, 88, 36, 0.18);
+  /* Canvas (Balanced 50-50: Crisp Alabaster Linen Infused with 18% Pale Lemon & Sage) */
+  --bg-primary: #F4F8EE;
+  --bg-secondary: rgba(236, 243, 158, 0.22);
+  --bg-section-glass: rgba(240, 246, 234, 0.82);
+  --bg-tertiary: #E8F0DE;
+  --bg-card: rgba(255, 255, 255, 0.92);
+  --bg-glass: rgba(246, 250, 242, 0.94);
+  --border-glass: rgba(79, 119, 45, 0.22);
 
-  /* Crisp High-Contrast Editorial Typography */
+  /* High-Contrast Editorial Typography (50% Deep Dark Forest on 50% Luminous Canvas) */
   --text-primary: #132A13;
-  --text-secondary: #2C3E2A;
-  --text-muted: #556852;
-  --text-inverse: #EAEFE6;
+  --text-secondary: #31572C;
+  --text-muted: #4F772D;
+  --text-inverse: #ECF39E;
 
   --brand-primary: #31572C;
   --brand-hover: #132A13;
-  --brand-accent: #9C5824;
-  --brand-soft: rgba(156, 88, 36, 0.12);
-  --brand-highlight: #9C5824;
-  --brand-highlight-text: #FFFFFF;
+  --brand-accent: #4F772D;
+  --brand-soft: rgba(236, 243, 158, 0.35);
+  --brand-highlight: #ECF39E;
+  --brand-highlight-text: #132A13;
 
-  --border-subtle: rgba(156, 88, 36, 0.18);
-  --border-divide: rgba(19, 42, 19, 0.10);
+  --border-subtle: rgba(79, 119, 45, 0.18);
+  --border-divide: rgba(49, 87, 44, 0.12);
 
-  --shadow-sm: 0 2px 8px rgba(19, 42, 19, 0.05);
-  --shadow-md: 0 8px 24px rgba(19, 42, 19, 0.08);
+  --shadow-sm: 0 2px 8px rgba(19, 42, 19, 0.06);
+  --shadow-md: 0 8px 24px rgba(19, 42, 19, 0.09);
   --shadow-lg: 0 20px 48px rgba(19, 42, 19, 0.12);
-  --shadow-glow: 0 0 35px rgba(197, 160, 89, 0.25), 0 0 70px rgba(156, 88, 36, 0.16);
+  --shadow-glow: 0 0 35px rgba(236, 243, 158, 0.35), 0 0 70px rgba(144, 169, 85, 0.22);
 }
 
 /* Base Resets */
@@ -221,49 +220,48 @@ body::before {
 
 [data-theme="unified"] body::before {
   background:
-    radial-gradient(ellipse 65% 55% at 20% 25%, rgba(197, 160, 89, 0.22) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 60% at 85% 20%, rgba(236, 243, 158, 0.32) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 55% at 75% 75%, rgba(184, 115, 51, 0.16) 0%, transparent 65%),
-    radial-gradient(ellipse 55% 50% at 20% 80%, rgba(144, 169, 85, 0.20) 0%, transparent 65%),
-    radial-gradient(ellipse 45% 45% at 50% 50%, rgba(197, 160, 89, 0.14) 0%, transparent 60%),
-    linear-gradient(135deg, #EAEFE6 0%, #E3EADF 35%, #EDE6DC 70%, #E5ECE0 100%);
+    radial-gradient(ellipse 65% 55% at 20% 25%, rgba(236, 243, 158, 0.42) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 60% at 85% 20%, rgba(144, 169, 85, 0.28) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 55% at 75% 75%, rgba(236, 243, 158, 0.32) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 50% at 20% 80%, rgba(79, 119, 45, 0.22) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 45% at 50% 50%, rgba(144, 169, 85, 0.18) 0%, transparent 60%),
+    linear-gradient(135deg, #F4F8EE 0%, #EDF4E5 35%, #F7FAF2 70%, #E7EFE0 100%);
   background-size: 150% 150%;
   filter: blur(45px);
 }
 
 /* ==========================================================================
-   Scroll-Driven Chromatic Cascade Mood States
-   Fluidly morphs the canvas atmosphere section-by-section as the user navigates
+   Scroll-Driven Chromatic Cascade Mood States (Pure 5-Color PDF Palette)
    ========================================================================== */
 
-/* 1. Hero Arc: Deep Obsidian Drama */
+/* 1. Hero Arc: 50% Deep Pine Forest (#132A13) with #ECF39E Horizon Reveal */
 [data-theme="unified"] body[data-cascade="hero"]::before {
   background:
-    radial-gradient(ellipse 65% 55% at 50% 40%, rgba(197, 160, 89, 0.14) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 50% at 20% 80%, rgba(49, 87, 44, 0.16) 0%, transparent 65%),
-    linear-gradient(135deg, #000000 0%, #080C08 50%, #000000 100%);
+    radial-gradient(ellipse 65% 55% at 50% 40%, rgba(236, 243, 158, 0.16) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 50% at 20% 80%, rgba(49, 87, 44, 0.25) 0%, transparent 65%),
+    linear-gradient(135deg, #050A05 0%, #132A13 50%, #081108 100%);
   filter: blur(48px);
 }
 
-/* 2. Solutions Carousel & How We Help: Luminous Warm Sand & Lemon Cream */
+/* 2. Solutions Carousel & How We Help: Luminous Pale Lemon (#ECF39E) & Sage (#90A955) */
 [data-theme="unified"] body[data-cascade="sand"]::before {
   background:
-    radial-gradient(ellipse 65% 55% at 20% 25%, rgba(197, 160, 89, 0.24) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 60% at 85% 20%, rgba(236, 243, 158, 0.35) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 55% at 75% 75%, rgba(184, 115, 51, 0.18) 0%, transparent 65%),
-    radial-gradient(ellipse 55% 50% at 20% 80%, rgba(144, 169, 85, 0.22) 0%, transparent 65%),
-    linear-gradient(135deg, #EAEFE6 0%, #E3EADF 35%, #EDE6DC 70%, #E5ECE0 100%);
+    radial-gradient(ellipse 65% 55% at 20% 25%, rgba(236, 243, 158, 0.45) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 60% at 85% 20%, rgba(144, 169, 85, 0.30) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 55% at 75% 75%, rgba(236, 243, 158, 0.35) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 50% at 20% 80%, rgba(79, 119, 45, 0.22) 0%, transparent 65%),
+    linear-gradient(135deg, #F4F8EE 0%, #EDF4E5 35%, #F7FAF2 70%, #E7EFE0 100%);
   filter: blur(45px);
 }
 
-/* 3. Institutional Metrics & Industries: Deep Emerald Forest & Liquid Gold */
+/* 3. Institutional Metrics & Industries: Deep Kombu Forest (#31572C) & #ECF39E Glow */
 [data-theme="unified"] body[data-cascade="emerald"]::before {
   background:
-    radial-gradient(ellipse 65% 55% at 20% 30%, rgba(197, 160, 89, 0.28) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 60% at 80% 25%, rgba(236, 243, 158, 0.22) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 55% at 50% 80%, rgba(49, 87, 44, 0.40) 0%, transparent 65%),
-    radial-gradient(ellipse 55% 50% at 15% 85%, rgba(184, 115, 51, 0.22) 0%, transparent 65%),
-    linear-gradient(135deg, #0E1C10 0%, #162817 40%, #101F12 70%, #09130A 100%);
+    radial-gradient(ellipse 65% 55% at 20% 30%, rgba(236, 243, 158, 0.28) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 60% at 80% 25%, rgba(144, 169, 85, 0.25) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 55% at 50% 80%, rgba(49, 87, 44, 0.45) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 50% at 15% 85%, rgba(79, 119, 45, 0.25) 0%, transparent 65%),
+    linear-gradient(135deg, #0E1F0F 0%, #172D19 40%, #112312 70%, #0B160C 100%);
   filter: blur(48px);
 }
 
@@ -274,48 +272,48 @@ body::before {
 
 [data-theme="unified"] body[data-cascade="emerald"] .expertise-section .section-subtitle,
 [data-theme="unified"] body[data-cascade="emerald"] .industries-section .section-subtitle {
-  color: #CBD7CA !important;
+  color: #D2E2D0 !important;
 }
 
 [data-theme="unified"] body[data-cascade="emerald"] .stat-box {
-  background: linear-gradient(145deg, rgba(22, 38, 24, 0.82) 0%, rgba(12, 22, 13, 0.94) 100%) !important;
-  border: 1px solid rgba(197, 160, 89, 0.32) !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.50), inset 0 1px 0 rgba(236, 243, 158, 0.35) !important;
+  background: linear-gradient(145deg, rgba(23, 45, 25, 0.82) 0%, rgba(14, 28, 15, 0.94) 100%) !important;
+  border: 1px solid rgba(236, 243, 158, 0.35) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.50), inset 0 1px 0 rgba(236, 243, 158, 0.45) !important;
 }
 
 [data-theme="unified"] body[data-cascade="emerald"] .stat-label {
-  color: #E2ECE1 !important;
+  color: #E7F3E5 !important;
 }
 
 [data-theme="unified"] body[data-cascade="emerald"] .industry-tab-btn {
-  background: rgba(22, 38, 24, 0.65) !important;
-  border-color: rgba(197, 160, 89, 0.25) !important;
-  color: #CBD7CA !important;
+  background: rgba(23, 45, 25, 0.65) !important;
+  border-color: rgba(79, 119, 45, 0.35) !important;
+  color: #D2E2D0 !important;
 }
 
 [data-theme="unified"] body[data-cascade="emerald"] .industry-tab-btn.active {
-  background: linear-gradient(135deg, #31572C, #9C5824) !important;
-  color: #FFFFFF !important;
-  border-color: #C5A059 !important;
+  background: linear-gradient(135deg, #31572C, #4F772D) !important;
+  color: #ECF39E !important;
+  border-color: #ECF39E !important;
 }
 
-/* 4. Ecosystem & Practice Leadership: Luminous Sage Linen */
+/* 4. Ecosystem & Practice Leadership: Luminous Sage (#90A955) & Pale Lemon Linen */
 [data-theme="unified"] body[data-cascade="sage"]::before {
   background:
-    radial-gradient(ellipse 65% 55% at 25% 30%, rgba(236, 243, 158, 0.32) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 60% at 80% 25%, rgba(144, 169, 85, 0.26) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 55% at 75% 75%, rgba(197, 160, 89, 0.20) 0%, transparent 65%),
-    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(156, 88, 36, 0.14) 0%, transparent 65%),
-    linear-gradient(135deg, #E2EAE0 0%, #D8E3D5 45%, #E5ECE2 100%);
+    radial-gradient(ellipse 65% 55% at 25% 30%, rgba(236, 243, 158, 0.38) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 60% at 80% 25%, rgba(144, 169, 85, 0.30) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 55% at 75% 75%, rgba(236, 243, 158, 0.25) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(79, 119, 45, 0.20) 0%, transparent 65%),
+    linear-gradient(135deg, #F0F6EA 0%, #E6EFE0 45%, #EDF5E7 100%);
   filter: blur(45px);
 }
 
-/* 5. Executive CTA Banner & Deep Footer: Obsidian Black & Liquid Brass */
+/* 5. Executive CTA Banner & Deep Footer: Deep Forest Dark (#132A13) & #ECF39E Glow */
 [data-theme="unified"] body[data-cascade="obsidian"]::before {
   background:
-    radial-gradient(ellipse 65% 55% at 50% 20%, rgba(197, 160, 89, 0.22) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 50% at 80% 70%, rgba(49, 87, 44, 0.25) 0%, transparent 65%),
-    linear-gradient(135deg, #070A08 0%, #0E140F 50%, #050705 100%);
+    radial-gradient(ellipse 65% 55% at 50% 20%, rgba(236, 243, 158, 0.25) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 50% at 80% 70%, rgba(49, 87, 44, 0.30) 0%, transparent 65%),
+    linear-gradient(135deg, #091309 0%, #132A13 50%, #070D07 100%);
   filter: blur(48px);
 }
 
@@ -324,7 +322,7 @@ body::before {
 }
 
 [data-theme="unified"] body[data-cascade="obsidian"] .cta-banner-desc {
-  color: #CBD7CA !important;
+  color: #D2E2D0 !important;
 }
 
 @keyframes livelyGradientMesh {
@@ -382,6 +380,89 @@ section,
   -webkit-mask-image: radial-gradient(ellipse 95% 95% at 50% 50%, black 50%, transparent 100%);
   animation: matrixBreath 12s ease-in-out infinite alternate;
 }
+
+[data-theme="unified"] .matrix-grid-bg::before {
+  background-image:
+    radial-gradient(circle, rgba(79, 119, 45, 0.25) 1.2px, transparent 1.2px),
+    linear-gradient(to right, rgba(49, 87, 44, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(49, 87, 44, 0.08) 1px, transparent 1px);
+  opacity: 0.80;
+}
+
+[data-theme="unified"] .matrix-grid-bg::after {
+  background-image:
+    radial-gradient(circle, rgba(236, 243, 158, 0.55) 1.6px, transparent 1.6px),
+    linear-gradient(to right, rgba(144, 169, 85, 0.16) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(144, 169, 85, 0.16) 1px, transparent 1px);
+  mask-image: radial-gradient(circle 280px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 15%, rgba(0, 0, 0, 0.5) 45%, transparent 75%);
+  -webkit-mask-image: radial-gradient(circle 280px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 15%, rgba(0, 0, 0, 0.5) 45%, transparent 75%);
+}
+
+/* Ambient Cursor Glow & Liquid Light Wake */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  will-change: transform;
+}
+
+[data-theme="dark"] .cursor-glow {
+  opacity: 0.65;
+  background: radial-gradient(circle, rgba(236, 243, 158, 0.14) 0%, rgba(144, 169, 85, 0.08) 45%, transparent 70%);
+  filter: blur(20px);
+}
+
+[data-theme="light"] .cursor-glow {
+  opacity: 0.45;
+  background: radial-gradient(circle, rgba(79, 119, 45, 0.12) 0%, rgba(144, 169, 85, 0.06) 50%, transparent 70%);
+  filter: blur(24px);
+}
+
+[data-theme="unified"] .cursor-glow {
+  opacity: 0.85;
+  background: radial-gradient(circle, rgba(236, 243, 158, 0.28) 0%, rgba(144, 169, 85, 0.18) 35%, rgba(79, 119, 45, 0.08) 60%, transparent 75%);
+  filter: blur(18px);
+}
+
+/* Interactive Liquid Light-Ripple Animation (Strictly PDF Palette: #ECF39E, #90A955, #4F772D) */
+.liquid-ripple {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0.2);
+  border: 1.5px solid rgba(236, 243, 158, 0.65);
+  background: radial-gradient(circle, rgba(236, 243, 158, 0.22) 0%, rgba(144, 169, 85, 0.12) 50%, transparent 80%);
+  box-shadow: 0 0 20px rgba(236, 243, 158, 0.35), inset 0 0 15px rgba(144, 169, 85, 0.25);
+  animation: liquidRippleSpread 1s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes liquidRippleSpread {
+  0% {
+    width: 20px;
+    height: 20px;
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  60% {
+    opacity: 0.55;
+  }
+  100% {
+    width: 240px;
+    height: 240px;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.4);
+    border-color: rgba(79, 119, 45, 0);
+  }
+}
+
 
 [data-theme="dark"] .matrix-grid-bg::before {
   background-image:
@@ -4141,68 +4222,106 @@ h6 {
 }
 
 /* ==========================================================================
-   3rd Mode: Unified Editorial Theme (Harmonious Balance of Light & Dark)
-   Aesthetic: Cashmere Sand Canvas, Alabaster Linen Glass, Cognac Bronze & Champagne Gold
+   3rd Mode: Unified 50-50 Botanical Editorial Theme
+   Pure Leafy Green Garden Palette (Strictly 5 Colors from PDF):
+     #132A13 (Deep Forest Dark - 25%)
+     #31572C (Kombu Forest Green - 25%)
+     #4F772D (Leaf Moss Green - 15%)
+     #90A955 (Sage Olive Green - 15%)
+     #ECF39E (Pale Lemon Cream - 20%)
    ========================================================================== */
 
 /* Grid and Starlight Accents */
 [data-theme="unified"] .matrix-grid-bg::before {
   background-image:
-    radial-gradient(circle, rgba(156, 88, 36, 0.16) 1.2px, transparent 1.2px),
-    linear-gradient(to right, rgba(156, 88, 36, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(156, 88, 36, 0.05) 1px, transparent 1px);
+    radial-gradient(circle, rgba(144, 169, 85, 0.22) 1.2px, transparent 1.2px),
+    linear-gradient(to right, rgba(79, 119, 45, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(79, 119, 45, 0.08) 1px, transparent 1px);
   opacity: 0.85;
 }
 
 [data-theme="unified"] .matrix-grid-bg::after {
   background-image:
-    linear-gradient(to right, rgba(197, 160, 89, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(197, 160, 89, 0.08) 1px, transparent 1px);
+    linear-gradient(to right, rgba(236, 243, 158, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(236, 243, 158, 0.12) 1px, transparent 1px);
 }
 
+/* Bioluminescent Cursor Glow & Interactive Wake */
 [data-theme="unified"] .cursor-glow {
-  background: radial-gradient(circle, rgba(156, 88, 36, 0.12) 0%, rgba(197, 160, 89, 0.08) 40%, transparent 70%);
-  filter: blur(42px);
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle,
+    rgba(236, 243, 158, 0.32) 0%,
+    rgba(144, 169, 85, 0.20) 35%,
+    rgba(79, 119, 45, 0.08) 60%,
+    transparent 75%
+  );
+  filter: blur(48px);
+}
+
+/* Interactive Liquid Light-Ripple Trail (Bioluminescent Wake) */
+.liquid-ripple {
+  position: fixed;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(-50%, -50%) scale(1);
+  background: radial-gradient(circle, rgba(236, 243, 158, 0.50) 0%, rgba(144, 169, 85, 0.28) 45%, transparent 70%);
+  filter: blur(12px);
+  animation: liquidRippleSpread 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes liquidRippleSpread {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(18);
+    opacity: 0;
+  }
 }
 
 /* Typography & Gradient Accents */
 [data-theme="unified"] .text-brand {
-  color: var(--c-bronze-primary);
+  color: #31572C;
 }
 
 [data-theme="unified"] .text-gradient {
-  background: linear-gradient(135deg, #132A13 0%, #31572C 45%, #9C5824 100%);
+  background: linear-gradient(135deg, #132A13 0%, #31572C 50%, #4F772D 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Ambient Dividers with Cognac Bronze & Gold Flares */
+/* Ambient Dividers with Pale Lemon & Sage Flares */
 [data-theme="unified"] .divider {
-  background: linear-gradient(90deg, transparent, rgba(156, 88, 36, 0.18), transparent);
+  background: linear-gradient(90deg, transparent, rgba(79, 119, 45, 0.22), transparent);
 }
 
 [data-theme="unified"] .divider::before {
-  background: radial-gradient(circle, rgba(197, 160, 89, 0.35) 0%, rgba(156, 88, 36, 0.20) 45%, transparent 70%);
+  background: radial-gradient(circle, rgba(236, 243, 158, 0.45) 0%, rgba(144, 169, 85, 0.25) 45%, transparent 70%);
 }
 
 [data-theme="unified"] .divider::after {
-  background: linear-gradient(90deg, transparent, #C5A059, transparent);
-  box-shadow: 0 0 12px rgba(197, 160, 89, 0.35);
+  background: linear-gradient(90deg, transparent, #ECF39E, transparent);
+  box-shadow: 0 0 12px rgba(236, 243, 158, 0.45);
 }
 
 /* Header & Navigation Bar */
 [data-theme="unified"] .site-header.scrolled {
-  background: rgba(234, 239, 230, 0.88);
-  border-bottom: 1px solid rgba(156, 88, 36, 0.16);
+  background: rgba(244, 248, 238, 0.90);
+  border-bottom: 1px solid rgba(79, 119, 45, 0.20);
   box-shadow: 0 10px 28px rgba(19, 42, 19, 0.08);
 }
 
 [data-theme="unified"] .brand-subtitle {
-  color: var(--c-bronze-primary);
+  color: #4F772D;
 }
 
 [data-theme="unified"] .nav-link {
-  color: #2C3E2A;
+  color: #31572C;
 }
 
 [data-theme="unified"] .nav-link:hover {
@@ -4211,31 +4330,31 @@ h6 {
 
 [data-theme="unified"] .nav-link.active {
   color: #132A13 !important;
-  background: rgba(156, 88, 36, 0.12) !important;
-  border-color: rgba(156, 88, 36, 0.32) !important;
+  background: rgba(236, 243, 158, 0.35) !important;
+  border-color: rgba(79, 119, 45, 0.35) !important;
 }
 
 [data-theme="unified"] .theme-toggle-btn {
-  color: var(--c-bronze-primary);
-  border-color: rgba(156, 88, 36, 0.25);
-  background: rgba(255, 255, 255, 0.85);
+  color: #31572C;
+  border-color: rgba(79, 119, 45, 0.30);
+  background: rgba(255, 255, 255, 0.90);
 }
 
 [data-theme="unified"] .theme-toggle-btn:hover {
-  background: rgba(156, 88, 36, 0.12);
+  background: rgba(236, 243, 158, 0.40);
   color: #132A13;
-  border-color: var(--c-bronze-primary);
-  box-shadow: 0 0 14px rgba(156, 88, 36, 0.25);
+  border-color: #4F772D;
+  box-shadow: 0 0 14px rgba(236, 243, 158, 0.60);
 }
 
 /* Mobile Drawer */
 [data-theme="unified"] .mobile-nav-drawer {
-  background: rgba(234, 239, 230, 0.96);
-  border: 1px solid rgba(156, 88, 36, 0.20);
+  background: rgba(244, 248, 238, 0.96);
+  border: 1px solid rgba(79, 119, 45, 0.25);
 }
 
 [data-theme="unified"] .mobile-nav-drawer .nav-link.active {
-  background: rgba(156, 88, 36, 0.14) !important;
+  background: rgba(236, 243, 158, 0.35) !important;
   color: #132A13 !important;
 }
 
@@ -4251,7 +4370,7 @@ h6 {
 
 [data-theme="unified"] .ultravibe-torch-shine {
   background-image: url('../assets/ultravibe-20-dark.webp');
-  filter: brightness(1.15) saturate(1.15) drop-shadow(0 0 25px rgba(197, 160, 89, 0.35));
+  filter: brightness(1.15) saturate(1.15) drop-shadow(0 0 25px rgba(236, 243, 158, 0.35));
 }
 
 [data-theme="unified"] .hero-section .ambient-orb {
@@ -4273,10 +4392,10 @@ h6 {
 }
 
 [data-theme="unified"] .subpage-hero::before {
-  background: radial-gradient(ellipse 65% 50% at center, rgba(197, 160, 89, 0.20) 0%, rgba(156, 88, 36, 0.14) 40%, transparent 75%);
+  background: radial-gradient(ellipse 65% 50% at center, rgba(236, 243, 158, 0.25) 0%, rgba(144, 169, 85, 0.20) 40%, transparent 75%);
 }
 
-/* Luminous Warm Alabaster Linen Cards */
+/* Luminous Warm Alabaster Linen Cards with Pale Lemon Specular Edge */
 [data-theme="unified"] .spotlight-card,
 [data-theme="unified"] .service-card,
 [data-theme="unified"] .platform-eco-card,
@@ -4290,19 +4409,19 @@ h6 {
 [data-theme="unified"] .contact-card-box,
 [data-theme="unified"] .contact-confidentiality-card,
 [data-theme="unified"] .process-flow-container {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.90) 0%, rgba(240, 246, 238, 0.82) 100%) !important;
-  border: 1px solid rgba(156, 88, 36, 0.18) !important;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.94) 0%, rgba(240, 248, 234, 0.85) 100%) !important;
+  border: 1px solid rgba(79, 119, 45, 0.22) !important;
   box-shadow:
     0 14px 34px -8px rgba(19, 42, 19, 0.08),
-    0 2px 6px rgba(156, 88, 36, 0.04),
-    inset 0 1px 0 #FFFFFF,
-    inset 0 0 0 1px rgba(255, 255, 255, 0.6) !important;
+    0 2px 6px rgba(49, 87, 44, 0.04),
+    inset 0 1px 0 rgba(236, 243, 158, 0.90),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.60) !important;
 }
 
 [data-theme="unified"] .spotlight-card::before {
   background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),
-      rgba(197, 160, 89, 0.20) 0%,
-      rgba(156, 88, 36, 0.10) 35%,
+      rgba(236, 243, 158, 0.26) 0%,
+      rgba(144, 169, 85, 0.15) 35%,
       transparent 65%);
 }
 
@@ -4313,35 +4432,35 @@ h6 {
 [data-theme="unified"] .stat-box:hover,
 [data-theme="unified"] .info-item-card:hover {
   transform: translateY(-6px) !important;
-  border-color: rgba(156, 88, 36, 0.42) !important;
+  border-color: rgba(79, 119, 45, 0.50) !important;
   box-shadow:
-    0 22px 46px -10px rgba(156, 88, 36, 0.18),
-    0 0 24px rgba(197, 160, 89, 0.22),
+    0 22px 46px -10px rgba(19, 42, 19, 0.16),
+    0 0 26px rgba(236, 243, 158, 0.45),
     inset 0 1px 0 #FFFFFF !important;
 }
 
 /* Carousel Buttons */
 [data-theme="unified"] .carousel-btn {
-  border-color: rgba(156, 88, 36, 0.25);
+  border-color: rgba(79, 119, 45, 0.30);
   background: rgba(255, 255, 255, 0.90);
-  color: var(--c-bronze-primary);
+  color: #31572C;
 }
 
 [data-theme="unified"] .carousel-btn:hover:not(:disabled) {
-  background: var(--c-bronze-primary);
-  border-color: var(--c-bronze-primary);
-  color: #FFFFFF;
-  box-shadow: 0 0 16px rgba(156, 88, 36, 0.35);
+  background: #31572C;
+  border-color: #31572C;
+  color: #ECF39E;
+  box-shadow: 0 0 16px rgba(49, 87, 44, 0.35);
 }
 
 /* Service Cards Typography & Micro-animations */
 [data-theme="unified"] .service-category {
-  color: var(--c-bronze-primary);
+  color: #4F772D;
   font-weight: 700;
 }
 
 [data-theme="unified"] .service-card:hover .service-category {
-  color: var(--c-bronze-accent);
+  color: #31572C;
 }
 
 [data-theme="unified"] .service-card:hover .service-title {
@@ -4349,15 +4468,15 @@ h6 {
 }
 
 [data-theme="unified"] .service-card:hover .service-brief {
-  color: #2C3E2A;
+  color: #31572C;
 }
 
 [data-theme="unified"] .service-card-footer {
-  border-top-color: rgba(156, 88, 36, 0.14);
+  border-top-color: rgba(79, 119, 45, 0.18);
 }
 
 [data-theme="unified"] .service-learn-more {
-  color: var(--c-bronze-primary);
+  color: #31572C;
   font-weight: 700;
 }
 
@@ -4366,143 +4485,143 @@ h6 {
 }
 
 [data-theme="unified"] .service-icon-bubble {
-  color: var(--c-bronze-primary);
-  background: rgba(156, 88, 36, 0.10);
-  border-color: rgba(156, 88, 36, 0.25);
+  color: #31572C;
+  background: rgba(236, 243, 158, 0.35);
+  border: 1px solid rgba(79, 119, 45, 0.30);
 }
 
 [data-theme="unified"] .service-card:hover .service-icon-bubble {
-  color: #FFFFFF;
-  background: var(--c-bronze-primary);
-  border-color: var(--c-bronze-primary);
-  box-shadow: 0 10px 22px rgba(156, 88, 36, 0.35);
+  color: #ECF39E;
+  background: #31572C;
+  border-color: #31572C;
+  box-shadow: 0 10px 22px rgba(49, 87, 44, 0.35);
 }
 
 /* Financial Stats Numbers & Bars */
 [data-theme="unified"] .stat-number {
-  background: linear-gradient(135deg, #132A13 0%, #9C5824 50%, #C5A059 100%);
+  background: linear-gradient(135deg, #132A13 0%, #31572C 50%, #4F772D 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 14px rgba(156, 88, 36, 0.20));
+  filter: drop-shadow(0 2px 14px rgba(49, 87, 44, 0.20));
 }
 
 [data-theme="unified"] .stat-bar {
-  background: linear-gradient(90deg, #9C5824, #C5A059);
-  box-shadow: 0 0 12px rgba(156, 88, 36, 0.25);
+  background: linear-gradient(90deg, #31572C, #90A955, #ECF39E);
+  box-shadow: 0 0 12px rgba(144, 169, 85, 0.35);
 }
 
 /* Badges & Section Tags */
 [data-theme="unified"] .badge-pill {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 245, 238, 0.90)) !important;
-  border: 1px solid rgba(156, 88, 36, 0.28) !important;
-  color: var(--c-bronze-primary) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(236, 243, 158, 0.30)) !important;
+  border: 1px solid rgba(79, 119, 45, 0.30) !important;
+  color: #132A13 !important;
 }
 
 [data-theme="unified"] .badge-dot {
-  background-color: #C47335 !important;
-  box-shadow: 0 0 10px #C47335, 0 0 20px rgba(196, 115, 53, 0.40) !important;
+  background-color: #4F772D !important;
+  box-shadow: 0 0 10px #4F772D, 0 0 18px rgba(236, 243, 158, 0.60) !important;
 }
 
 [data-theme="unified"] .section-tag {
-  color: var(--c-bronze-primary);
-  background: rgba(156, 88, 36, 0.10);
-  border: 1px solid rgba(156, 88, 36, 0.24);
+  color: #31572C;
+  background: rgba(236, 243, 158, 0.30);
+  border: 1px solid rgba(79, 119, 45, 0.28);
 }
 
 /* Primary CTA Buttons */
 [data-theme="unified"] .btn-cta,
 [data-theme="unified"] .btn-hero-primary,
 [data-theme="unified"] .btn-banner {
-  background: linear-gradient(135deg, #243E23 0%, #1A3219 50%, #132A13 100%) !important;
-  border: 1px solid rgba(197, 160, 89, 0.50) !important;
+  background: linear-gradient(135deg, #132A13 0%, #31572C 60%, #4F772D 100%) !important;
+  border: 1px solid rgba(236, 243, 158, 0.45) !important;
   color: var(--c-lemon-cream) !important;
   box-shadow:
-    0 6px 20px rgba(19, 42, 19, 0.22),
-    0 0 18px rgba(197, 160, 89, 0.20),
-    inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+    0 6px 20px rgba(19, 42, 19, 0.25),
+    0 0 18px rgba(236, 243, 158, 0.30),
+    inset 0 1px 0 rgba(236, 243, 158, 0.35) !important;
 }
 
 [data-theme="unified"] .btn-cta:hover,
 [data-theme="unified"] .btn-hero-primary:hover,
 [data-theme="unified"] .btn-banner:hover {
-  background: linear-gradient(135deg, #9C5824 0%, #7D4318 100%) !important;
-  border-color: #C5A059 !important;
+  background: linear-gradient(135deg, #31572C 0%, #4F772D 100%) !important;
+  border-color: #ECF39E !important;
   color: #FFFFFF !important;
   box-shadow:
-    0 10px 28px rgba(156, 88, 36, 0.35),
-    0 0 26px rgba(197, 160, 89, 0.40),
+    0 10px 28px rgba(49, 87, 44, 0.38),
+    0 0 24px rgba(236, 243, 158, 0.45),
     inset 0 1px 0 #FFFFFF !important;
 }
 
 /* Secondary CTA Buttons */
 [data-theme="unified"] .btn-hero-secondary,
 [data-theme="unified"] .btn-cta-secondary {
-  background: rgba(255, 255, 255, 0.85) !important;
-  border: 1px solid rgba(156, 88, 36, 0.25) !important;
+  background: rgba(255, 255, 255, 0.90) !important;
+  border: 1px solid rgba(79, 119, 45, 0.30) !important;
   color: #132A13 !important;
 }
 
 [data-theme="unified"] .btn-hero-secondary:hover,
 [data-theme="unified"] .btn-cta-secondary:hover {
-  border-color: var(--c-bronze-primary) !important;
-  color: var(--c-bronze-primary) !important;
-  background: rgba(156, 88, 36, 0.08) !important;
+  border-color: #31572C !important;
+  color: #31572C !important;
+  background: rgba(236, 243, 158, 0.25) !important;
 }
 
 /* Interactive Accordions, Tabs & Forms */
 [data-theme="unified"] .faq-question-btn:hover {
-  color: var(--c-bronze-primary);
+  color: #31572C;
 }
 
 [data-theme="unified"] .platform-tab-btn.active {
-  background: linear-gradient(135deg, rgba(156, 88, 36, 0.16), rgba(49, 87, 44, 0.22));
+  background: linear-gradient(135deg, rgba(49, 87, 44, 0.20), rgba(144, 169, 85, 0.25));
   color: #132A13;
-  border-color: var(--c-bronze-primary);
+  border-color: #31572C;
 }
 
 [data-theme="unified"] .platform-icon-box {
-  color: var(--c-bronze-primary);
-  background: linear-gradient(135deg, rgba(156, 88, 36, 0.14), rgba(197, 160, 89, 0.20));
+  color: #31572C;
+  background: linear-gradient(135deg, rgba(236, 243, 158, 0.40), rgba(144, 169, 85, 0.25));
 }
 
 [data-theme="unified"] .platform-badge-tag {
-  background: rgba(156, 88, 36, 0.14);
-  color: var(--c-bronze-primary);
+  background: rgba(236, 243, 158, 0.35);
+  color: #31572C;
 }
 
 [data-theme="unified"] .member-role {
-  color: var(--c-bronze-primary);
+  color: #4F772D;
 }
 
 [data-theme="unified"] .info-icon-bubble {
-  color: var(--c-bronze-primary);
+  color: #31572C;
 }
 
 /* Modals & Inputs */
 [data-theme="unified"] .modal-box {
-  background: rgba(248, 251, 246, 0.98);
-  border: 1px solid rgba(156, 88, 36, 0.25);
+  background: rgba(246, 250, 242, 0.98);
+  border: 1px solid rgba(79, 119, 45, 0.30);
   box-shadow: 0 25px 60px rgba(19, 42, 19, 0.18);
 }
 
 [data-theme="unified"] input,
 [data-theme="unified"] select,
 [data-theme="unified"] textarea {
-  background: rgba(255, 255, 255, 0.92) !important;
-  border: 1px solid rgba(156, 88, 36, 0.22) !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid rgba(79, 119, 45, 0.25) !important;
   color: #132A13 !important;
 }
 
 [data-theme="unified"] input:focus,
 [data-theme="unified"] select:focus,
 [data-theme="unified"] textarea:focus {
-  border-color: var(--c-bronze-primary) !important;
-  box-shadow: 0 0 12px rgba(156, 88, 36, 0.25) !important;
+  border-color: #31572C !important;
+  box-shadow: 0 0 12px rgba(236, 243, 158, 0.50) !important;
 }
 
 /* Footer & Watermark */
 [data-theme="unified"] .footer-links-list a:hover {
-  color: var(--c-bronze-primary);
+  color: #ECF39E;
 }
 
 [data-theme="unified"] .footer-watermark {
