@@ -1216,29 +1216,19 @@ h6 {
 }
 
 .section-tag {
-  display: inline-block;
-  font-size: 0.82rem;
-  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.84rem;
+  font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--c-forest-green);
-  background: rgba(236, 243, 158, 0.45);
-  border: 1px solid rgba(79, 119, 45, 0.22);
-  padding: 4px 14px;
+  color: #132A13;
+  background: rgba(19, 42, 19, 0.08);
+  border: 1.5px solid rgba(19, 42, 19, 0.28);
+  padding: 6px 18px;
   border-radius: var(--radius-full);
-  box-shadow: 0 2px 8px rgba(19, 42, 19, 0.04);
-  margin-bottom: 12px;
-}
-
-[data-theme="dark"] .section-tag {
-  color: var(--c-lemon-cream);
-  background: rgba(236, 243, 158, 0.08);
-  border: 1px solid rgba(236, 243, 158, 0.28);
-  padding: 4px 14px;
-  border-radius: var(--radius-full);
-  letter-spacing: 0.14em;
-  box-shadow: 0 0 16px rgba(236, 243, 158, 0.10);
-  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(19, 42, 19, 0.06);
+  margin-bottom: 16px;
 }
 
 .section-title {
@@ -4317,6 +4307,60 @@ h6 {
   padding: 96px 0;
   background-color: #FAF9F3 !important;
   position: relative;
+}
+
+/* Section Tags & Subtitles on #FAF9F3 Canvas */
+.services-section .section-tag,
+.expertise-section .section-tag,
+.industries-section .section-tag,
+.content-section .section-tag,
+.about-mission-section .section-tag,
+.pricing-section .section-tag,
+.contact-section .section-tag,
+.careers-section .section-tag {
+  display: inline-flex !important;
+  align-items: center !important;
+  font-size: 0.84rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: #132A13 !important;
+  background: rgba(19, 42, 19, 0.08) !important;
+  border: 1.5px solid rgba(19, 42, 19, 0.30) !important;
+  padding: 6px 18px !important;
+  border-radius: var(--radius-full) !important;
+  box-shadow: 0 2px 10px rgba(19, 42, 19, 0.08) !important;
+  margin-bottom: 16px !important;
+}
+
+/* Section Tags & Badges on Dark Background Sections */
+.hero-section .badge-pill,
+.subpage-hero .badge-pill,
+.how-we-help-section .section-tag,
+.tech-solar-section .section-tag,
+.team-section .section-tag,
+.faq-section .section-tag,
+.cta-banner-section .section-tag,
+.subpage-hero .section-tag {
+  display: inline-flex !important;
+  align-items: center !important;
+  font-size: 0.84rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: #ECF39E !important;
+  background: rgba(236, 243, 158, 0.14) !important;
+  border: 1px solid rgba(236, 243, 158, 0.35) !important;
+  padding: 6px 18px !important;
+  border-radius: var(--radius-full) !important;
+  box-shadow: 0 0 16px rgba(236, 243, 158, 0.16) !important;
+  margin-bottom: 16px !important;
+}
+
+.hero-section .badge-dot,
+.subpage-hero .badge-dot {
+  background-color: #ECF39E !important;
+  box-shadow: 0 0 10px #ECF39E !important;
 }
 
 .services-section .section-title {
