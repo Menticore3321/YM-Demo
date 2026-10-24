@@ -22,26 +22,63 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   1. Theme Management (Light / Dark Mode)
+/* ==========================================================================
+   1. Theme Management (Unified Balanced / Dark / Light Mode)
    ========================================================================== */
-function initTheme() {
+function updateThemeButtonState(theme) {
   const toggleBtns = document.querySelectorAll('.theme-toggle-btn');
-  const storedTheme = localStorage.getItem('ym-theme');
-  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  let iconSvg = '';
+  let tooltip = '';
 
-  if (storedTheme) {
-    document.documentElement.setAttribute('data-theme', storedTheme);
-  } else if (systemPrefersDark) {
-    document.documentElement.setAttribute('data-theme', 'dark');
+  if (theme === 'unified') {
+    // Sparkle / Balance Diamond icon
+    iconSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>';
+    tooltip = 'Unified Theme (Balanced) - Click for Dark Mode';
+  } else if (theme === 'dark') {
+    // Crescent Moon icon
+    iconSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+    tooltip = 'Dark Mode - Click for Light Mode';
+  } else {
+    // Sun icon
+    iconSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+    tooltip = 'Light Mode - Click for Unified Theme';
   }
 
   toggleBtns.forEach(btn => {
+    btn.innerHTML = iconSvg;
+    btn.setAttribute('title', tooltip);
+    btn.setAttribute('aria-label', tooltip);
+  });
+}
+
+function initTheme() {
+  const toggleBtns = document.querySelectorAll('.theme-toggle-btn');
+  const storedTheme = localStorage.getItem('ym-theme');
+
+  // Default to unified (the balanced flagship theme) unless user previously chose a mode
+  const activeTheme = storedTheme || 'unified';
+  document.documentElement.setAttribute('data-theme', activeTheme);
+  updateThemeButtonState(activeTheme);
+
+  const themeCycle = ['unified', 'dark', 'light'];
+
+  toggleBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'unified';
+      const currentIndex = themeCycle.indexOf(currentTheme);
+      const newTheme = themeCycle[(currentIndex + 1) % themeCycle.length];
+
       document.documentElement.setAttribute('data-theme', newTheme);
       localStorage.setItem('ym-theme', newTheme);
-      showToast(`Switched to ${newTheme === 'dark' ? 'Dark' : 'Light'} Mode`);
+      updateThemeButtonState(newTheme);
+
+      const themeNames = {
+        'unified': 'Unified Editorial Theme (Balanced)',
+        'dark': 'Dark Mode (Deep Forest)',
+        'light': 'Light Mode (Organic Linen)'
+      };
+
+      showToast(`Switched to ${themeNames[newTheme] || newTheme}`);
     });
   });
 }
