@@ -4135,58 +4135,70 @@ h6 {
 }
 
 /* Celestial Arc Wrapper: Completely hidden (opacity 0) at rest, smoothly comes out on hover */
-.hero-section .ultravibe-bg-wrapper {
+.hero-section .ultravibe-bg-wrapper,
+.subpage-hero .ultravibe-bg-wrapper {
   opacity: 0 !important;
   transform: translateY(40px) scale(0.96) !important;
   transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) !important;
   pointer-events: none !important;
 }
 
-.hero-section:hover .ultravibe-bg-wrapper {
+.hero-section:hover .ultravibe-bg-wrapper,
+.subpage-hero:hover .ultravibe-bg-wrapper {
   opacity: 1 !important;
   transform: translateY(0) scale(1) !important;
 }
 
-.hero-section .ultravibe-gradient-art {
+.hero-section .ultravibe-gradient-art,
+.subpage-hero .ultravibe-gradient-art {
   background-image: url('../assets/ultravibe-20-dark.webp') !important;
   opacity: 0 !important;
   transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.hero-section:hover .ultravibe-gradient-art {
+.hero-section:hover .ultravibe-gradient-art,
+.subpage-hero:hover .ultravibe-gradient-art {
   opacity: 0.75 !important;
 }
 
-.hero-section .ultravibe-torch-shine {
+.hero-section .ultravibe-torch-shine,
+.subpage-hero .ultravibe-torch-shine {
   background-image: url('../assets/ultravibe-20-dark.webp') !important;
   opacity: 0 !important;
   transition: opacity 0.4s ease !important;
 }
 
-.hero-section:hover .ultravibe-torch-shine {
+.hero-section:hover .ultravibe-torch-shine,
+.subpage-hero:hover .ultravibe-torch-shine {
   opacity: 1 !important;
 }
 
-.hero-section .ultravibe-cursor-shine {
+.hero-section .ultravibe-cursor-shine,
+.subpage-hero .ultravibe-cursor-shine {
   opacity: 0 !important;
   transition: opacity 0.4s ease !important;
 }
 
-.hero-section:hover .ultravibe-cursor-shine {
+.hero-section:hover .ultravibe-cursor-shine,
+.subpage-hero:hover .ultravibe-cursor-shine {
   opacity: 0.8 !important;
 }
 
 .hero-section .spotlight-radial,
-.hero-section .ambient-orb {
+.hero-section .ambient-orb,
+.subpage-hero .ambient-orb,
+.subpage-hero::before {
   opacity: 0 !important;
   transition: opacity 0.65s ease !important;
 }
 
-.hero-section:hover .spotlight-radial {
+.hero-section:hover .spotlight-radial,
+.subpage-hero:hover .spotlight-radial {
   opacity: 0.35 !important;
 }
 
-.hero-section:hover .ambient-orb {
+.hero-section:hover .ambient-orb,
+.subpage-hero:hover .ambient-orb {
   opacity: 0.25 !important;
 }
 
@@ -4739,15 +4751,25 @@ h6 {
   color: #7E947C !important;
 }
 
-/* 7. Subpages Content Styling in #FAF9F3 */
+/* 7. Subpage Atmospheric Architecture & Complete Readability across Services, About, Careers, Contact */
+.subpage-transition-section {
+  background: linear-gradient(180deg, #000000 0%, #09130A 16%, #173118 36%, #365A29 58%, #8E9F76 80%, #FAF9F3 100%) !important;
+  position: relative;
+  z-index: auto !important;
+}
+
+.subpage-light-section,
 .content-section,
 .about-mission-section,
 .pricing-section,
 .contact-section,
 .careers-section {
   background-color: #FAF9F3 !important;
+  position: relative;
+  z-index: auto !important;
 }
 
+.subpage-light-section .section-title,
 .content-section .section-title,
 .about-mission-section .section-title,
 .pricing-section .section-title,
@@ -4756,10 +4778,92 @@ h6 {
   color: #132A13 !important;
 }
 
+.subpage-light-section .section-title .text-brand {
+  color: #31572C !important;
+}
+
+.subpage-light-section .section-subtitle,
+.subpage-light-section p,
 .content-section p,
 .about-mission-section p,
 .pricing-section p,
 .contact-section p,
 .careers-section p {
   color: #40523D !important;
+}
+
+/* Subpage Dark Obsidian Glass Card Styling (High Contrast & Audit-Grade Elegance) */
+.services-pillars-grid .spotlight-card,
+.about-mission-grid .spotlight-card,
+.about-values-grid>div,
+.careers-hero-split-grid .spotlight-card,
+.careers-culture-grid .spotlight-card,
+.contact-channels-grid .info-item-card,
+.contact-confidentiality-card {
+  background-color: #0b140d !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(79, 119, 45, 0.35) 0%, transparent 65%),
+    linear-gradient(165deg, rgba(18, 28, 19, 0.98) 0%, rgba(10, 17, 11, 1) 100%) !important;
+  border: 1px solid rgba(144, 169, 85, 0.32) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7), 0 0 25px rgba(144, 169, 85, 0.15) !important;
+  color: #FFFFFF !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.services-pillars-grid .spotlight-card h3,
+.about-mission-grid .spotlight-card h3,
+.about-values-grid h3,
+.careers-hero-split-grid h3,
+.careers-culture-grid h3,
+.contact-channels-grid .info-item-card h3,
+.contact-confidentiality-card h4 {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+}
+
+.about-mission-grid h4,
+.careers-hero-split-grid h4 {
+  color: #ECF39E !important;
+  font-weight: 700 !important;
+}
+
+.services-pillars-grid .spotlight-card p,
+.about-mission-grid .spotlight-card p,
+.about-values-grid p,
+.careers-hero-split-grid p,
+.careers-culture-grid p,
+.contact-channels-grid .info-item-card p,
+.contact-confidentiality-card p {
+  color: #CAD5C5 !important;
+  line-height: 1.65 !important;
+}
+
+.services-pillars-grid .spotlight-card ul li,
+.help-checklist li {
+  color: #E2ECE0 !important;
+}
+
+.services-pillars-grid .spotlight-card ul li svg {
+  color: #90A955 !important;
+  filter: drop-shadow(0 0 6px rgba(144, 169, 85, 0.4));
+}
+
+.services-pillars-grid .btn-cta,
+.careers-hero-split-grid .btn-cta,
+.contact-channels-grid .btn-cta {
+  background: #ECF39E !important;
+  color: #132A13 !important;
+  font-weight: 800 !important;
+  border: 1px solid #ECF39E !important;
+  box-shadow: 0 4px 18px rgba(236, 243, 158, 0.35) !important;
+}
+
+.services-pillars-grid .btn-cta:hover,
+.careers-hero-split-grid .btn-cta:hover,
+.contact-channels-grid .btn-cta:hover {
+  background: #FFFFFF !important;
+  color: #132A13 !important;
+  transform: translateY(-2px);
 }

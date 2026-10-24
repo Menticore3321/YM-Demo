@@ -874,58 +874,60 @@ function initScrollReveal() {
 }
 
 /* ==========================================================================
-   15. Hero Parallax Mouse Motion
+   15. Hero Parallax Mouse Motion (Supports both landing hero & subpage heroes)
    ========================================================================== */
 function initHeroParallax() {
-  const hero = document.querySelector('.hero-section');
-  if (!hero || !window.matchMedia('(pointer: fine)').matches) return;
+  const heroes = document.querySelectorAll('.hero-section, .subpage-hero');
+  if (!heroes.length || !window.matchMedia('(pointer: fine)').matches) return;
 
-  const spotlight = hero.querySelector('.spotlight-radial');
-  const orbs = hero.querySelectorAll('.ambient-orb');
-  const ultravibeWrapper = hero.querySelector('.ultravibe-bg-wrapper');
-  const auroraBeam = hero.querySelector('.ultravibe-aurora-beam');
+  heroes.forEach(hero => {
+    const spotlight = hero.querySelector('.spotlight-radial');
+    const orbs = hero.querySelectorAll('.ambient-orb');
+    const ultravibeWrapper = hero.querySelector('.ultravibe-bg-wrapper');
+    const auroraBeam = hero.querySelector('.ultravibe-aurora-beam');
 
-  hero.addEventListener('mousemove', (e) => {
-    const rect = hero.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    const x = mouseX / rect.width - 0.5;
-    const y = mouseY / rect.height - 0.5;
+    hero.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+      const x = mouseX / rect.width - 0.5;
+      const y = mouseY / rect.height - 0.5;
 
-    // Set cursor coordinates for dynamic arc shine flare
-    hero.style.setProperty('--cursor-x', `${mouseX}px`);
-    hero.style.setProperty('--cursor-y', `${mouseY}px`);
+      // Set cursor coordinates for dynamic arc shine flare
+      hero.style.setProperty('--cursor-x', `${mouseX}px`);
+      hero.style.setProperty('--cursor-y', `${mouseY}px`);
 
-    if (spotlight) {
-      spotlight.style.transform = `translateX(calc(-50% + ${x * 40}px)) translateY(${y * 30}px)`;
-    }
+      if (spotlight) {
+        spotlight.style.transform = `translateX(calc(-50% + ${x * 40}px)) translateY(${y * 30}px)`;
+      }
 
-    if (ultravibeWrapper) {
-      ultravibeWrapper.style.transform = `translate3d(${-x * 22}px, ${-y * 14}px, 0)`;
-    }
+      if (ultravibeWrapper) {
+        ultravibeWrapper.style.transform = `translate3d(${-x * 22}px, ${-y * 14}px, 0)`;
+      }
 
-    if (auroraBeam) {
-      auroraBeam.style.transform = `translate3d(${x * 35}px, ${y * 18}px, 0)`;
-    }
+      if (auroraBeam) {
+        auroraBeam.style.transform = `translate3d(${x * 35}px, ${y * 18}px, 0)`;
+      }
 
-    orbs.forEach((orb, i) => {
-      const factor = (i + 1) * 20;
-      orb.style.transform = `translate3d(${-x * factor}px, ${-y * factor}px, 0)`;
+      orbs.forEach((orb, i) => {
+        const factor = (i + 1) * 20;
+        orb.style.transform = `translate3d(${-x * factor}px, ${-y * factor}px, 0)`;
+      });
     });
-  });
 
-  hero.addEventListener('mouseleave', () => {
-    if (spotlight) {
-      spotlight.style.transform = 'translateX(-50%) translateY(0)';
-    }
-    if (ultravibeWrapper) {
-      ultravibeWrapper.style.transform = '';
-    }
-    if (auroraBeam) {
-      auroraBeam.style.transform = '';
-    }
-    orbs.forEach(orb => {
-      orb.style.transform = '';
+    hero.addEventListener('mouseleave', () => {
+      if (spotlight) {
+        spotlight.style.transform = 'translateX(-50%) translateY(0)';
+      }
+      if (ultravibeWrapper) {
+        ultravibeWrapper.style.transform = '';
+      }
+      if (auroraBeam) {
+        auroraBeam.style.transform = '';
+      }
+      orbs.forEach(orb => {
+        orb.style.transform = '';
+      });
     });
   });
 }
