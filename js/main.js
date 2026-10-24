@@ -78,7 +78,7 @@ function initTheme() {
       }
 
       const themeNames = {
-        'unified': 'Unified 50-50 Botanical Theme (Pure PDF Palette)',
+        'unified': 'Unified Water Theme (Emerald Lagoon Caustics)',
         'dark': 'Dark Mode (Deep Forest)',
         'light': 'Light Mode (Organic Linen)'
       };

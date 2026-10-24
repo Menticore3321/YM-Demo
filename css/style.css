@@ -220,31 +220,36 @@ body::before {
 
 [data-theme="unified"] body::before {
   background:
-    radial-gradient(ellipse 70% 55% at 20% 20%, rgba(236, 243, 158, 0.50) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 60% at 85% 25%, rgba(144, 169, 85, 0.38) 0%, transparent 60%),
-    radial-gradient(ellipse 65% 55% at 50% 60%, rgba(79, 119, 45, 0.30) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 50% at 15% 80%, rgba(49, 87, 44, 0.40) 0%, transparent 65%),
-    radial-gradient(ellipse 75% 65% at 80% 85%, rgba(19, 42, 19, 0.45) 0%, transparent 65%),
-    linear-gradient(145deg, #132A13 0%, #31572C 28%, #4F772D 52%, #90A955 76%, #ECF39E 100%);
-  background-size: 200% 200%;
-  filter: blur(42px);
-  animation: unifiedLivingMesh 22s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
-  opacity: 0.88;
+    radial-gradient(ellipse 80% 60% at 20% 15%, rgba(236, 243, 158, 0.52) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 65% at 85% 20%, rgba(144, 169, 85, 0.42) 0%, transparent 60%),
+    radial-gradient(ellipse 75% 55% at 50% 55%, rgba(79, 119, 45, 0.35) 0%, transparent 65%),
+    radial-gradient(ellipse 65% 50% at 15% 85%, rgba(49, 87, 44, 0.45) 0%, transparent 65%),
+    radial-gradient(ellipse 85% 70% at 80% 90%, rgba(19, 42, 19, 0.55) 0%, transparent 65%),
+    linear-gradient(135deg, #132A13 0%, #31572C 26%, #4F772D 50%, #90A955 74%, #ECF39E 100%);
+  background-size: 220% 220%;
+  filter: blur(40px);
+  animation: flowingWaterCurrents 20s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
+  opacity: 0.90;
   will-change: transform, background-position;
 }
 
-@keyframes unifiedLivingMesh {
+/* Fluid S-Curve Flowing Water Current Drift */
+@keyframes flowingWaterCurrents {
   0% {
-    background-position: 0% 0%;
-    transform: scale(1) rotate(0deg);
+    background-position: 0% 15%;
+    transform: scale(1) skewX(0deg);
   }
-  50% {
-    background-position: 100% 100%;
-    transform: scale(1.03) rotate(0.8deg);
+  35% {
+    background-position: 60% 80%;
+    transform: scale(1.03) skewX(1deg) translateY(-8px);
+  }
+  70% {
+    background-position: 100% 40%;
+    transform: scale(1.02) skewX(-1deg) translateY(6px);
   }
   100% {
-    background-position: 0% 0%;
-    transform: scale(1) rotate(0deg);
+    background-position: 25% 95%;
+    transform: scale(1.04) skewX(0.5deg);
   }
 }
 
@@ -307,19 +312,37 @@ section,
 
 [data-theme="unified"] .matrix-grid-bg::before {
   background-image:
-    radial-gradient(circle, rgba(79, 119, 45, 0.25) 1.2px, transparent 1.2px),
-    linear-gradient(to right, rgba(49, 87, 44, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(49, 87, 44, 0.08) 1px, transparent 1px);
-  opacity: 0.80;
+    radial-gradient(ellipse 90% 70% at 50% 50%, rgba(236, 243, 158, 0.22) 0%, transparent 65%),
+    radial-gradient(circle, rgba(144, 169, 85, 0.24) 1.5px, transparent 1.5px),
+    repeating-linear-gradient(55deg, transparent, transparent 42px, rgba(236, 243, 158, 0.04) 42px, rgba(236, 243, 158, 0.04) 84px),
+    repeating-linear-gradient(-55deg, transparent, transparent 42px, rgba(79, 119, 45, 0.04) 42px, rgba(79, 119, 45, 0.04) 84px);
+  background-size: 100% 100%, 36px 36px, 120px 120px, 120px 120px;
+  animation: aquaticCausticsDrift 16s ease-in-out infinite alternate;
+  opacity: 0.85;
+}
+
+@keyframes aquaticCausticsDrift {
+  0% {
+    background-position: 0% 0%, 0 0, 0 0, 0 0;
+    opacity: 0.75;
+  }
+  50% {
+    background-position: 50% 50%, 6px 8px, 20px -15px, -15px 20px;
+    opacity: 0.95;
+  }
+  100% {
+    background-position: 100% 100%, -4px 12px, -30px 25px, 25px -30px;
+    opacity: 0.75;
+  }
 }
 
 [data-theme="unified"] .matrix-grid-bg::after {
   background-image:
-    radial-gradient(circle, rgba(236, 243, 158, 0.55) 1.6px, transparent 1.6px),
-    linear-gradient(to right, rgba(144, 169, 85, 0.16) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(144, 169, 85, 0.16) 1px, transparent 1px);
-  mask-image: radial-gradient(circle 280px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 15%, rgba(0, 0, 0, 0.5) 45%, transparent 75%);
-  -webkit-mask-image: radial-gradient(circle 280px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 15%, rgba(0, 0, 0, 0.5) 45%, transparent 75%);
+    radial-gradient(circle, rgba(236, 243, 158, 0.60) 1.8px, transparent 1.8px),
+    linear-gradient(to right, rgba(144, 169, 85, 0.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(144, 169, 85, 0.18) 1px, transparent 1px);
+  mask-image: radial-gradient(circle 300px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 18%, rgba(0, 0, 0, 0.5) 50%, transparent 75%);
+  -webkit-mask-image: radial-gradient(circle 300px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 18%, rgba(0, 0, 0, 0.5) 50%, transparent 75%);
 }
 
 /* Ambient Cursor Glow & Liquid Light Wake */
@@ -351,38 +374,50 @@ section,
 
 [data-theme="unified"] .cursor-glow {
   opacity: 0.85;
-  background: radial-gradient(circle, rgba(236, 243, 158, 0.28) 0%, rgba(144, 169, 85, 0.18) 35%, rgba(79, 119, 45, 0.08) 60%, transparent 75%);
+  background: radial-gradient(circle, rgba(236, 243, 158, 0.32) 0%, rgba(144, 169, 85, 0.20) 35%, rgba(79, 119, 45, 0.08) 60%, transparent 75%);
   filter: blur(18px);
 }
 
-/* Interactive Liquid Light-Ripple Animation (Strictly PDF Palette: #ECF39E, #90A955, #4F772D) */
+/* Aquatic Concentric Water Ripples (Natural Lagoon Displacement) */
 .liquid-ripple {
   position: fixed;
   pointer-events: none;
   z-index: -1;
   border-radius: 50%;
-  transform: translate(-50%, -50%) scale(0.2);
-  border: 1.5px solid rgba(236, 243, 158, 0.65);
-  background: radial-gradient(circle, rgba(236, 243, 158, 0.22) 0%, rgba(144, 169, 85, 0.12) 50%, transparent 80%);
-  box-shadow: 0 0 20px rgba(236, 243, 158, 0.35), inset 0 0 15px rgba(144, 169, 85, 0.25);
-  animation: liquidRippleSpread 1s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+  transform: translate(-50%, -50%) scale(0.15);
+  border: 1.5px solid rgba(236, 243, 158, 0.80);
+  background: radial-gradient(circle,
+    rgba(236, 243, 158, 0.28) 0%,
+    rgba(144, 169, 85, 0.16) 40%,
+    rgba(79, 119, 45, 0.08) 65%,
+    transparent 80%
+  );
+  box-shadow:
+    0 0 0 2px rgba(144, 169, 85, 0.35),
+    0 0 16px rgba(236, 243, 158, 0.45),
+    inset 0 0 12px rgba(236, 243, 158, 0.30);
+  animation: aquaticRippleExpand 1.15s cubic-bezier(0.12, 0.75, 0.28, 1) forwards;
 }
 
-@keyframes liquidRippleSpread {
+@keyframes aquaticRippleExpand {
   0% {
-    width: 20px;
-    height: 20px;
-    opacity: 0.9;
-    transform: translate(-50%, -50%) scale(0.3);
+    width: 14px;
+    height: 14px;
+    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(0.2);
   }
-  60% {
-    opacity: 0.55;
+  40% {
+    opacity: 0.75;
+    box-shadow:
+      0 0 0 5px rgba(144, 169, 85, 0.22),
+      0 0 26px rgba(236, 243, 158, 0.45),
+      inset 0 0 16px rgba(144, 169, 85, 0.25);
   }
   100% {
-    width: 240px;
-    height: 240px;
+    width: 280px;
+    height: 280px;
     opacity: 0;
-    transform: translate(-50%, -50%) scale(1.4);
+    transform: translate(-50%, -50%) scale(1.6);
     border-color: rgba(79, 119, 45, 0);
   }
 }
