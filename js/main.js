@@ -73,7 +73,7 @@ function initTheme() {
       updateThemeButtonState(newTheme);
 
       const themeNames = {
-        'unified': 'Unified Editorial Theme (Balanced)',
+        'unified': 'Unified Balanced Theme (Cashmere & Bronze)',
         'dark': 'Dark Mode (Deep Forest)',
         'light': 'Light Mode (Organic Linen)'
       };

@@ -107,45 +107,53 @@
 
 /* ==========================================================================
    3rd Mode: Unified Editorial Theme (Harmonious Balance of Light & Dark)
-   Aesthetic: Smoked Titanium Slate, Frosted Smoked Crystal, Champagne Gold & Pale Lemon
+   Aesthetic: Cashmere Sand Canvas, Alabaster Linen Glass, Cognac Bronze & Champagne Gold
    ========================================================================== */
 [data-theme="unified"] {
+  /* Warm Cognac Leather & Amber Bronze Luxury Accents */
+  --c-bronze-primary: #9C5824;
+  --c-bronze-hover: #7D4318;
+  --c-bronze-accent: #C47335;
+  --c-bronze-soft: rgba(156, 88, 36, 0.12);
+  --c-bronze-border: rgba(156, 88, 36, 0.28);
+  --c-bronze-glow: rgba(196, 115, 53, 0.28);
+
   /* Liquid Champagne Gold Luxury Accents */
-  --c-gold-primary: #E5B869;
-  --c-gold-hover: #F8D188;
-  --c-gold-soft: rgba(229, 184, 105, 0.15);
-  --c-gold-border: rgba(229, 184, 105, 0.32);
-  --c-gold-glow: rgba(229, 184, 105, 0.36);
+  --c-gold-primary: #C5A059;
+  --c-gold-hover: #AF8840;
+  --c-gold-soft: rgba(197, 160, 89, 0.15);
+  --c-gold-border: rgba(197, 160, 89, 0.32);
+  --c-gold-glow: rgba(197, 160, 89, 0.36);
 
-  /* Smoked Titanium Canvas (Calm, Glare-Free, Neutral Slate, Zero Swamp Green Wash) */
-  --bg-primary: #0C0F0D;
-  --bg-secondary: rgba(22, 28, 24, 0.65);
-  --bg-section-glass: rgba(16, 22, 18, 0.60);
-  --bg-tertiary: #141A16;
-  --bg-card: rgba(24, 30, 26, 0.80);
-  --bg-glass: rgba(13, 17, 14, 0.90);
-  --border-glass: rgba(229, 184, 105, 0.22);
+  /* Warm Cashmere Sand Canvas (Luminous, Organic, Zero Glare, Zero Gloom) */
+  --bg-primary: #EAEFE6;
+  --bg-secondary: rgba(226, 234, 220, 0.75);
+  --bg-section-glass: rgba(234, 240, 229, 0.85);
+  --bg-tertiary: #DFE7D8;
+  --bg-card: rgba(255, 255, 255, 0.90);
+  --bg-glass: rgba(246, 250, 243, 0.92);
+  --border-glass: rgba(156, 88, 36, 0.18);
 
-  /* High-Contrast Crisp Editorial Typography */
-  --text-primary: #FFFFFF;
-  --text-secondary: #CBD5CA;
-  --text-muted: #8E9F8E;
-  --text-inverse: #0C0F0D;
+  /* Crisp High-Contrast Editorial Typography */
+  --text-primary: #132A13;
+  --text-secondary: #2C3E2A;
+  --text-muted: #556852;
+  --text-inverse: #EAEFE6;
 
-  --brand-primary: #90A955;
-  --brand-hover: #ECF39E;
-  --brand-accent: #ECF39E;
-  --brand-soft: rgba(236, 243, 158, 0.12);
-  --brand-highlight: #ECF39E;
-  --brand-highlight-text: #0C0F0D;
+  --brand-primary: #31572C;
+  --brand-hover: #132A13;
+  --brand-accent: #9C5824;
+  --brand-soft: rgba(156, 88, 36, 0.12);
+  --brand-highlight: #9C5824;
+  --brand-highlight-text: #FFFFFF;
 
-  --border-subtle: rgba(255, 255, 255, 0.10);
-  --border-divide: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(156, 88, 36, 0.18);
+  --border-divide: rgba(19, 42, 19, 0.10);
 
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.50);
-  --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.65);
-  --shadow-glow: 0 0 35px rgba(229, 184, 105, 0.22), 0 0 70px rgba(236, 243, 158, 0.14);
+  --shadow-sm: 0 2px 8px rgba(19, 42, 19, 0.05);
+  --shadow-md: 0 8px 24px rgba(19, 42, 19, 0.08);
+  --shadow-lg: 0 20px 48px rgba(19, 42, 19, 0.12);
+  --shadow-glow: 0 0 35px rgba(197, 160, 89, 0.25), 0 0 70px rgba(156, 88, 36, 0.16);
 }
 
 /* Base Resets */
@@ -212,14 +220,14 @@ body::before {
 
 [data-theme="unified"] body::before {
   background:
-    radial-gradient(ellipse 65% 55% at 20% 25%, rgba(229, 184, 105, 0.13) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 60% at 85% 20%, rgba(236, 243, 158, 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 55% at 75% 75%, rgba(229, 184, 105, 0.10) 0%, transparent 65%),
-    radial-gradient(ellipse 55% 50% at 20% 80%, rgba(144, 169, 85, 0.12) 0%, transparent 65%),
-    radial-gradient(ellipse 45% 45% at 50% 50%, rgba(229, 184, 105, 0.08) 0%, transparent 60%),
-    linear-gradient(135deg, #090C0A 0%, #101512 35%, #0D120F 70%, #070908 100%);
+    radial-gradient(ellipse 65% 55% at 20% 25%, rgba(197, 160, 89, 0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 60% at 85% 20%, rgba(236, 243, 158, 0.32) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 55% at 75% 75%, rgba(184, 115, 51, 0.16) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 50% at 20% 80%, rgba(144, 169, 85, 0.20) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 45% at 50% 50%, rgba(197, 160, 89, 0.14) 0%, transparent 60%),
+    linear-gradient(135deg, #EAEFE6 0%, #E3EADF 35%, #EDE6DC 70%, #E5ECE0 100%);
   background-size: 150% 150%;
-  filter: blur(48px);
+  filter: blur(45px);
 }
 
 @keyframes livelyGradientMesh {
@@ -4037,104 +4045,104 @@ h6 {
 
 /* ==========================================================================
    3rd Mode: Unified Editorial Theme (Harmonious Balance of Light & Dark)
-   Aesthetic: Smoked Titanium Slate, Frosted Smoked Crystal, Champagne Gold & Pale Lemon
+   Aesthetic: Cashmere Sand Canvas, Alabaster Linen Glass, Cognac Bronze & Champagne Gold
    ========================================================================== */
 
 /* Grid and Starlight Accents */
 [data-theme="unified"] .matrix-grid-bg::before {
   background-image:
-    radial-gradient(circle, rgba(229, 184, 105, 0.20) 1.2px, transparent 1.2px),
-    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    radial-gradient(circle, rgba(156, 88, 36, 0.16) 1.2px, transparent 1.2px),
+    linear-gradient(to right, rgba(156, 88, 36, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(156, 88, 36, 0.05) 1px, transparent 1px);
   opacity: 0.85;
 }
 
 [data-theme="unified"] .matrix-grid-bg::after {
   background-image:
-    linear-gradient(to right, rgba(229, 184, 105, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(229, 184, 105, 0.08) 1px, transparent 1px);
+    linear-gradient(to right, rgba(197, 160, 89, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(197, 160, 89, 0.08) 1px, transparent 1px);
 }
 
 [data-theme="unified"] .cursor-glow {
-  background: radial-gradient(circle, rgba(229, 184, 105, 0.16) 0%, rgba(236, 243, 158, 0.10) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(156, 88, 36, 0.12) 0%, rgba(197, 160, 89, 0.08) 40%, transparent 70%);
   filter: blur(42px);
 }
 
 /* Typography & Gradient Accents */
 [data-theme="unified"] .text-brand {
-  color: var(--c-gold-primary);
+  color: var(--c-bronze-primary);
 }
 
 [data-theme="unified"] .text-gradient {
-  background: linear-gradient(135deg, #FFFFFF 0%, var(--c-gold-primary) 50%, var(--c-lemon-cream) 100%);
+  background: linear-gradient(135deg, #132A13 0%, #31572C 45%, #9C5824 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Ambient Dividers with Liquid Gold Flares */
+/* Ambient Dividers with Cognac Bronze & Gold Flares */
 [data-theme="unified"] .divider {
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+  background: linear-gradient(90deg, transparent, rgba(156, 88, 36, 0.18), transparent);
 }
 
 [data-theme="unified"] .divider::before {
-  background: radial-gradient(circle, rgba(229, 184, 105, 0.35) 0%, rgba(236, 243, 158, 0.15) 45%, transparent 70%);
+  background: radial-gradient(circle, rgba(197, 160, 89, 0.35) 0%, rgba(156, 88, 36, 0.20) 45%, transparent 70%);
 }
 
 [data-theme="unified"] .divider::after {
-  background: linear-gradient(90deg, transparent, var(--c-gold-primary), transparent);
-  box-shadow: 0 0 12px var(--c-gold-glow);
+  background: linear-gradient(90deg, transparent, #C5A059, transparent);
+  box-shadow: 0 0 12px rgba(197, 160, 89, 0.35);
 }
 
 /* Header & Navigation Bar */
 [data-theme="unified"] .site-header.scrolled {
-  background: rgba(12, 16, 13, 0.88);
-  border-bottom: 1px solid rgba(229, 184, 105, 0.18);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  background: rgba(234, 239, 230, 0.88);
+  border-bottom: 1px solid rgba(156, 88, 36, 0.16);
+  box-shadow: 0 10px 28px rgba(19, 42, 19, 0.08);
 }
 
 [data-theme="unified"] .brand-subtitle {
-  color: var(--c-gold-primary);
+  color: var(--c-bronze-primary);
 }
 
 [data-theme="unified"] .nav-link {
-  color: var(--text-secondary);
+  color: #2C3E2A;
 }
 
 [data-theme="unified"] .nav-link:hover {
-  color: #FFFFFF;
+  color: #132A13;
 }
 
 [data-theme="unified"] .nav-link.active {
-  color: #FFFFFF !important;
-  background: rgba(229, 184, 105, 0.16) !important;
-  border-color: rgba(229, 184, 105, 0.35) !important;
+  color: #132A13 !important;
+  background: rgba(156, 88, 36, 0.12) !important;
+  border-color: rgba(156, 88, 36, 0.32) !important;
 }
 
 [data-theme="unified"] .theme-toggle-btn {
-  color: var(--c-gold-primary);
-  border-color: rgba(229, 184, 105, 0.25);
-  background: rgba(20, 26, 22, 0.65);
+  color: var(--c-bronze-primary);
+  border-color: rgba(156, 88, 36, 0.25);
+  background: rgba(255, 255, 255, 0.85);
 }
 
 [data-theme="unified"] .theme-toggle-btn:hover {
-  background: var(--c-gold-soft);
-  color: #FFFFFF;
-  border-color: var(--c-gold-primary);
-  box-shadow: 0 0 14px var(--c-gold-glow);
+  background: rgba(156, 88, 36, 0.12);
+  color: #132A13;
+  border-color: var(--c-bronze-primary);
+  box-shadow: 0 0 14px rgba(156, 88, 36, 0.25);
 }
 
 /* Mobile Drawer */
 [data-theme="unified"] .mobile-nav-drawer {
-  background: rgba(14, 18, 15, 0.96);
-  border: 1px solid rgba(229, 184, 105, 0.20);
+  background: rgba(234, 239, 230, 0.96);
+  border: 1px solid rgba(156, 88, 36, 0.20);
 }
 
 [data-theme="unified"] .mobile-nav-drawer .nav-link.active {
-  background: rgba(229, 184, 105, 0.16) !important;
-  color: var(--c-lemon-cream) !important;
+  background: rgba(156, 88, 36, 0.14) !important;
+  color: #132A13 !important;
 }
 
-/* Pitch-Black Hero Arc with Luminous Cursor Flare */
+/* Pitch-Black Hero Arc with Luminous Cursor Flare (Retains Signature Dark Hero Drama) */
 [data-theme="unified"] .hero-section {
   background-color: #000000 !important;
 }
@@ -4146,7 +4154,7 @@ h6 {
 
 [data-theme="unified"] .ultravibe-torch-shine {
   background-image: url('../assets/ultravibe-20-dark.webp');
-  filter: brightness(1.15) saturate(1.15) drop-shadow(0 0 25px rgba(229, 184, 105, 0.35));
+  filter: brightness(1.15) saturate(1.15) drop-shadow(0 0 25px rgba(197, 160, 89, 0.35));
 }
 
 [data-theme="unified"] .hero-section .ambient-orb {
@@ -4168,10 +4176,10 @@ h6 {
 }
 
 [data-theme="unified"] .subpage-hero::before {
-  background: radial-gradient(ellipse 65% 50% at center, rgba(229, 184, 105, 0.18) 0%, rgba(236, 243, 158, 0.12) 40%, transparent 75%);
+  background: radial-gradient(ellipse 65% 50% at center, rgba(197, 160, 89, 0.20) 0%, rgba(156, 88, 36, 0.14) 40%, transparent 75%);
 }
 
-/* Frosted Titanium Smoked Crystal Cards */
+/* Luminous Warm Alabaster Linen Cards */
 [data-theme="unified"] .spotlight-card,
 [data-theme="unified"] .service-card,
 [data-theme="unified"] .platform-eco-card,
@@ -4185,19 +4193,19 @@ h6 {
 [data-theme="unified"] .contact-card-box,
 [data-theme="unified"] .contact-confidentiality-card,
 [data-theme="unified"] .process-flow-container {
-  background: linear-gradient(145deg, rgba(22, 28, 24, 0.78) 0%, rgba(13, 17, 14, 0.90) 100%) !important;
-  border: 1px solid rgba(229, 184, 105, 0.18) !important;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.90) 0%, rgba(240, 246, 238, 0.82) 100%) !important;
+  border: 1px solid rgba(156, 88, 36, 0.18) !important;
   box-shadow:
-    0 16px 40px -8px rgba(0, 0, 0, 0.55),
-    0 2px 8px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(229, 184, 105, 0.32),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+    0 14px 34px -8px rgba(19, 42, 19, 0.08),
+    0 2px 6px rgba(156, 88, 36, 0.04),
+    inset 0 1px 0 #FFFFFF,
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6) !important;
 }
 
 [data-theme="unified"] .spotlight-card::before {
   background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),
-      rgba(229, 184, 105, 0.18) 0%,
-      rgba(236, 243, 158, 0.10) 35%,
+      rgba(197, 160, 89, 0.20) 0%,
+      rgba(156, 88, 36, 0.10) 35%,
       transparent 65%);
 }
 
@@ -4208,197 +4216,198 @@ h6 {
 [data-theme="unified"] .stat-box:hover,
 [data-theme="unified"] .info-item-card:hover {
   transform: translateY(-6px) !important;
-  border-color: rgba(229, 184, 105, 0.45) !important;
+  border-color: rgba(156, 88, 36, 0.42) !important;
   box-shadow:
-    0 24px 50px -10px rgba(0, 0, 0, 0.70),
-    0 0 24px var(--c-gold-glow),
-    inset 0 1px 0 rgba(243, 202, 109, 0.55),
-    inset 0 0 0 1px rgba(229, 184, 105, 0.20) !important;
+    0 22px 46px -10px rgba(156, 88, 36, 0.18),
+    0 0 24px rgba(197, 160, 89, 0.22),
+    inset 0 1px 0 #FFFFFF !important;
 }
 
 /* Carousel Buttons */
 [data-theme="unified"] .carousel-btn {
-  border-color: rgba(229, 184, 105, 0.25);
-  background: rgba(20, 26, 22, 0.7);
-  color: var(--c-gold-primary);
+  border-color: rgba(156, 88, 36, 0.25);
+  background: rgba(255, 255, 255, 0.90);
+  color: var(--c-bronze-primary);
 }
 
 [data-theme="unified"] .carousel-btn:hover:not(:disabled) {
-  background: var(--c-gold-soft);
-  border-color: var(--c-gold-primary);
+  background: var(--c-bronze-primary);
+  border-color: var(--c-bronze-primary);
   color: #FFFFFF;
-  box-shadow: 0 0 16px var(--c-gold-glow);
+  box-shadow: 0 0 16px rgba(156, 88, 36, 0.35);
 }
 
 /* Service Cards Typography & Micro-animations */
 [data-theme="unified"] .service-category {
-  color: var(--c-gold-primary);
+  color: var(--c-bronze-primary);
+  font-weight: 700;
 }
 
 [data-theme="unified"] .service-card:hover .service-category {
-  color: var(--c-lemon-cream);
+  color: var(--c-bronze-accent);
 }
 
 [data-theme="unified"] .service-card:hover .service-title {
-  color: #FFFFFF;
+  color: #132A13;
 }
 
 [data-theme="unified"] .service-card:hover .service-brief {
-  color: rgba(255, 255, 255, 0.90);
+  color: #2C3E2A;
 }
 
 [data-theme="unified"] .service-card-footer {
-  border-top-color: rgba(229, 184, 105, 0.16);
+  border-top-color: rgba(156, 88, 36, 0.14);
 }
 
 [data-theme="unified"] .service-learn-more {
-  color: var(--c-gold-primary);
+  color: var(--c-bronze-primary);
+  font-weight: 700;
 }
 
 [data-theme="unified"] .service-card:hover .service-learn-more {
-  color: #FFFFFF;
+  color: #132A13;
 }
 
 [data-theme="unified"] .service-icon-bubble {
-  color: var(--c-gold-primary);
-  background: rgba(229, 184, 105, 0.12);
-  border-color: rgba(229, 184, 105, 0.25);
+  color: var(--c-bronze-primary);
+  background: rgba(156, 88, 36, 0.10);
+  border-color: rgba(156, 88, 36, 0.25);
 }
 
 [data-theme="unified"] .service-card:hover .service-icon-bubble {
   color: #FFFFFF;
-  background: var(--c-gold-soft);
-  border-color: var(--c-gold-primary);
-  box-shadow: 0 10px 24px var(--c-gold-glow);
+  background: var(--c-bronze-primary);
+  border-color: var(--c-bronze-primary);
+  box-shadow: 0 10px 22px rgba(156, 88, 36, 0.35);
 }
 
 /* Financial Stats Numbers & Bars */
 [data-theme="unified"] .stat-number {
-  background: linear-gradient(135deg, #FFFFFF 0%, var(--c-gold-primary) 55%, var(--c-lemon-cream) 100%);
+  background: linear-gradient(135deg, #132A13 0%, #9C5824 50%, #C5A059 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 16px rgba(229, 184, 105, 0.28));
+  filter: drop-shadow(0 2px 14px rgba(156, 88, 36, 0.20));
 }
 
 [data-theme="unified"] .stat-bar {
-  background: linear-gradient(90deg, var(--c-gold-primary), var(--c-lemon-cream));
-  box-shadow: 0 0 14px var(--c-gold-glow);
+  background: linear-gradient(90deg, #9C5824, #C5A059);
+  box-shadow: 0 0 12px rgba(156, 88, 36, 0.25);
 }
 
 /* Badges & Section Tags */
 [data-theme="unified"] .badge-pill {
-  background: linear-gradient(135deg, rgba(26, 32, 28, 0.75) 0%, rgba(16, 20, 17, 0.85) 100%) !important;
-  border: 1px solid rgba(229, 184, 105, 0.30) !important;
-  color: var(--c-gold-primary) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 245, 238, 0.90)) !important;
+  border: 1px solid rgba(156, 88, 36, 0.28) !important;
+  color: var(--c-bronze-primary) !important;
 }
 
 [data-theme="unified"] .badge-dot {
-  background-color: var(--c-gold-primary) !important;
-  box-shadow: 0 0 12px var(--c-gold-primary), 0 0 24px var(--c-gold-glow) !important;
+  background-color: #C47335 !important;
+  box-shadow: 0 0 10px #C47335, 0 0 20px rgba(196, 115, 53, 0.40) !important;
 }
 
 [data-theme="unified"] .section-tag {
-  color: var(--c-gold-primary);
-  background: rgba(229, 184, 105, 0.10);
-  border: 1px solid rgba(229, 184, 105, 0.22);
+  color: var(--c-bronze-primary);
+  background: rgba(156, 88, 36, 0.10);
+  border: 1px solid rgba(156, 88, 36, 0.24);
 }
 
 /* Primary CTA Buttons */
 [data-theme="unified"] .btn-cta,
 [data-theme="unified"] .btn-hero-primary,
 [data-theme="unified"] .btn-banner {
-  background: linear-gradient(135deg, #1C241E 0%, #2A382E 50%, #3B4E41 100%) !important;
-  border: 1px solid rgba(229, 184, 105, 0.38) !important;
-  color: var(--c-gold-primary) !important;
+  background: linear-gradient(135deg, #243E23 0%, #1A3219 50%, #132A13 100%) !important;
+  border: 1px solid rgba(197, 160, 89, 0.50) !important;
+  color: var(--c-lemon-cream) !important;
   box-shadow:
-    0 6px 20px rgba(0, 0, 0, 0.45),
-    0 0 20px rgba(229, 184, 105, 0.20),
-    inset 0 1px 0 rgba(229, 184, 105, 0.35) !important;
+    0 6px 20px rgba(19, 42, 19, 0.22),
+    0 0 18px rgba(197, 160, 89, 0.20),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
 }
 
 [data-theme="unified"] .btn-cta:hover,
 [data-theme="unified"] .btn-hero-primary:hover,
 [data-theme="unified"] .btn-banner:hover {
-  background: linear-gradient(135deg, #242E27 0%, #34463A 50%, #476050 100%) !important;
-  border-color: var(--c-gold-primary) !important;
+  background: linear-gradient(135deg, #9C5824 0%, #7D4318 100%) !important;
+  border-color: #C5A059 !important;
   color: #FFFFFF !important;
   box-shadow:
-    0 10px 28px rgba(0, 0, 0, 0.65),
-    0 0 30px var(--c-gold-glow),
-    inset 0 1px 0 rgba(243, 202, 109, 0.60) !important;
+    0 10px 28px rgba(156, 88, 36, 0.35),
+    0 0 26px rgba(197, 160, 89, 0.40),
+    inset 0 1px 0 #FFFFFF !important;
 }
 
 /* Secondary CTA Buttons */
 [data-theme="unified"] .btn-hero-secondary,
 [data-theme="unified"] .btn-cta-secondary {
-  background: rgba(22, 28, 24, 0.65) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  color: var(--text-primary) !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(156, 88, 36, 0.25) !important;
+  color: #132A13 !important;
 }
 
 [data-theme="unified"] .btn-hero-secondary:hover,
 [data-theme="unified"] .btn-cta-secondary:hover {
-  border-color: var(--c-gold-primary) !important;
-  color: var(--c-gold-primary) !important;
-  background: var(--c-gold-soft) !important;
+  border-color: var(--c-bronze-primary) !important;
+  color: var(--c-bronze-primary) !important;
+  background: rgba(156, 88, 36, 0.08) !important;
 }
 
 /* Interactive Accordions, Tabs & Forms */
 [data-theme="unified"] .faq-question-btn:hover {
-  color: var(--c-gold-primary);
+  color: var(--c-bronze-primary);
 }
 
 [data-theme="unified"] .platform-tab-btn.active {
-  background: linear-gradient(135deg, rgba(229, 184, 105, 0.20), rgba(144, 169, 85, 0.25));
-  color: #FFFFFF;
-  border-color: var(--c-gold-primary);
+  background: linear-gradient(135deg, rgba(156, 88, 36, 0.16), rgba(49, 87, 44, 0.22));
+  color: #132A13;
+  border-color: var(--c-bronze-primary);
 }
 
 [data-theme="unified"] .platform-icon-box {
-  color: var(--c-gold-primary);
-  background: linear-gradient(135deg, rgba(229, 184, 105, 0.18), rgba(49, 87, 44, 0.35));
+  color: var(--c-bronze-primary);
+  background: linear-gradient(135deg, rgba(156, 88, 36, 0.14), rgba(197, 160, 89, 0.20));
 }
 
 [data-theme="unified"] .platform-badge-tag {
-  background: rgba(229, 184, 105, 0.16);
-  color: var(--c-gold-primary);
+  background: rgba(156, 88, 36, 0.14);
+  color: var(--c-bronze-primary);
 }
 
 [data-theme="unified"] .member-role {
-  color: var(--c-gold-primary);
+  color: var(--c-bronze-primary);
 }
 
 [data-theme="unified"] .info-icon-bubble {
-  color: var(--c-gold-primary);
+  color: var(--c-bronze-primary);
 }
 
 /* Modals & Inputs */
 [data-theme="unified"] .modal-box {
-  background: rgba(14, 18, 15, 0.95);
-  border: 1px solid rgba(229, 184, 105, 0.25);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.70);
+  background: rgba(248, 251, 246, 0.98);
+  border: 1px solid rgba(156, 88, 36, 0.25);
+  box-shadow: 0 25px 60px rgba(19, 42, 19, 0.18);
 }
 
 [data-theme="unified"] input,
 [data-theme="unified"] select,
 [data-theme="unified"] textarea {
-  background: rgba(20, 26, 22, 0.75) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(156, 88, 36, 0.22) !important;
+  color: #132A13 !important;
 }
 
 [data-theme="unified"] input:focus,
 [data-theme="unified"] select:focus,
 [data-theme="unified"] textarea:focus {
-  border-color: var(--c-gold-primary) !important;
-  box-shadow: 0 0 12px var(--c-gold-glow) !important;
+  border-color: var(--c-bronze-primary) !important;
+  box-shadow: 0 0 12px rgba(156, 88, 36, 0.25) !important;
 }
 
 /* Footer & Watermark */
 [data-theme="unified"] .footer-links-list a:hover {
-  color: var(--c-gold-primary);
+  color: var(--c-bronze-primary);
 }
 
 [data-theme="unified"] .footer-watermark {
-  color: rgba(255, 255, 255, 0.03);
+  color: rgba(19, 42, 19, 0.04);
 }
