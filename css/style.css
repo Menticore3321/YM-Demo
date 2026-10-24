@@ -126,7 +126,7 @@ html {
 body {
   position: relative;
   font-family: var(--font-main);
-  background-color: transparent;
+  background-color: #FAF9F3;
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
@@ -134,7 +134,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Lively Animated Botanical Gradient Canvas */
+/* Subtle Global Atmospheric Light */
 body::before {
   content: '';
   position: fixed;
@@ -143,30 +143,8 @@ body::before {
   height: 140vh;
   z-index: -2;
   pointer-events: none;
-  background:
-    radial-gradient(ellipse 65% 55% at 20% 30%, rgba(236, 243, 158, 0.48) 0%, transparent 65%),
-    radial-gradient(ellipse 55% 60% at 85% 25%, rgba(144, 169, 85, 0.28) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 55% at 75% 80%, rgba(236, 243, 158, 0.38) 0%, transparent 65%),
-    radial-gradient(ellipse 55% 50% at 20% 85%, rgba(79, 119, 45, 0.20) 0%, transparent 65%),
-    radial-gradient(ellipse 45% 45% at 50% 50%, rgba(144, 169, 85, 0.16) 0%, transparent 60%),
-    linear-gradient(135deg, #F5F9F0 0%, #EEF6E7 30%, #F7FAF1 70%, #E9F2E2 100%);
-  background-size: 150% 150%;
-  filter: blur(45px);
-  animation: livelyGradientMesh 18s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
-  will-change: transform, filter;
-  transition: background 1.4s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s ease;
-}
-
-[data-theme="dark"] body::before {
-  background:
-    radial-gradient(ellipse 65% 55% at 20% 25%, rgba(79, 119, 45, 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 60% at 85% 20%, rgba(144, 169, 85, 0.10) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 55% at 75% 75%, rgba(49, 87, 44, 0.10) 0%, transparent 65%),
-    radial-gradient(ellipse 55% 50% at 20% 80%, rgba(144, 169, 85, 0.08) 0%, transparent 65%),
-    radial-gradient(ellipse 45% 45% at 50% 50%, rgba(236, 243, 158, 0.04) 0%, transparent 60%),
-    linear-gradient(135deg, #0A0D0B 0%, #121613 35%, #0F1310 70%, #080A09 100%);
-  background-size: 150% 150%;
-  filter: blur(45px);
+  background: radial-gradient(circle at 50% 50%, rgba(236, 243, 158, 0.04) 0%, transparent 65%);
+  opacity: 0.5;
 }
 
 @keyframes livelyGradientMesh {
@@ -449,19 +427,20 @@ h6 {
   align-items: center;
   justify-content: center;
   padding: 0 32px;
-  background: var(--bg-glass);
+  background: rgba(10, 15, 10, 0.78);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid var(--border-divide);
+  border-bottom: 1px solid rgba(144, 169, 85, 0.16);
   transition: var(--transition);
 }
 
 .site-header.scrolled {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  background: rgba(8, 12, 8, 0.90);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.50);
 }
 
 [data-theme="dark"] .site-header.scrolled {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.60);
 }
 
 .nav-pill {
@@ -508,7 +487,7 @@ h6 {
   font-size: 1.25rem;
   font-weight: 800;
   letter-spacing: 0.04em;
-  color: var(--text-primary);
+  color: #FFFFFF !important;
   line-height: 1.1;
 }
 
@@ -516,12 +495,12 @@ h6 {
   font-size: 0.70rem;
   letter-spacing: 0.2em;
   font-weight: 700;
-  color: var(--c-leaf-green);
+  color: var(--c-lemon-cream);
   text-transform: uppercase;
 }
 
 [data-theme="dark"] .brand-subtitle {
-  color: var(--c-sage-green);
+  color: var(--c-lemon-cream);
 }
 
 /* Center Capsule Dock Navigation */
@@ -530,17 +509,18 @@ h6 {
   align-items: center;
   gap: 6px;
   list-style: none;
-  background: var(--bg-tertiary);
+  background: rgba(20, 28, 21, 0.82);
   padding: 5px 8px;
   border-radius: var(--radius-full);
-  border: 1px solid var(--border-subtle);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(144, 169, 85, 0.22);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
 }
 
 .nav-link {
   font-size: 0.92rem;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: #D6E3D4;
   padding: 8px 18px;
   border-radius: var(--radius-full);
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
@@ -549,8 +529,8 @@ h6 {
 }
 
 .nav-link:hover {
-  color: var(--text-primary);
-  background: var(--bg-card);
+  color: var(--c-lemon-cream);
+  background: rgba(255, 255, 255, 0.08);
   box-shadow: var(--shadow-sm);
 }
 
@@ -761,11 +741,12 @@ h6 {
   justify-content: center;
   padding: 140px 24px 80px;
   overflow: hidden;
-  background-color: var(--bg-primary);
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
 }
 
 [data-theme="dark"] .hero-section {
-  background-color: transparent !important;
+  background-color: #000000 !important;
 }
 
 /* ==========================================================================
@@ -781,16 +762,16 @@ h6 {
   will-change: transform;
 }
 
-/* Base resting arc - gentle ambient glow */
+/* Base resting arc - dark glowing horizon */
 .ultravibe-gradient-art {
   position: absolute;
   inset: 0;
-  background-image: url('../assets/ultravibe-20-light.webp');
+  background-image: url('../assets/ultravibe-20-dark.webp');
   background-position: center bottom;
   background-size: cover;
   background-repeat: no-repeat;
   transform-origin: center bottom;
-  opacity: 0.25;
+  opacity: 0.40;
   pointer-events: none;
   animation: ultravibe-breathe-light 16s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
   will-change: transform, opacity;
@@ -799,7 +780,7 @@ h6 {
 
 [data-theme="dark"] .ultravibe-gradient-art {
   background-image: url('../assets/ultravibe-20-dark.webp');
-  opacity: 0.35;
+  opacity: 0.40;
 }
 
 /* Localized Torch Spotlight Layer - ONLY shines directly where cursor is hovering */
@@ -4073,4 +4054,361 @@ h6 {
   .spotlight-card.tilt-card {
     padding: 22px 16px !important;
   }
+}
+
+/* ==========================================================================
+   Continuous Cinematic Scroll Gradient Journey:
+   Pitch Black (Top) -> Gradually tones down to #FAF9F3 (Middle) ->
+   Gradually deepens back to Dark Green -> Ends in Pitch Black (Bottom)
+   ========================================================================== */
+
+/* 1. Top Hero Section: Deep Pitch Black Luxury Atmosphere */
+.hero-section,
+.subpage-hero {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  position: relative;
+  z-index: 2 !important;
+}
+
+.hero-section .hero-title,
+.subpage-hero h1 {
+  color: #FFFFFF !important;
+}
+
+.hero-section .hero-subtitle,
+.subpage-hero p {
+  color: #CAD5C5 !important;
+}
+
+.hero-section .ultravibe-gradient-art {
+  background-image: url('../assets/ultravibe-20-dark.webp') !important;
+  opacity: 0.40 !important;
+}
+
+.hero-section .ultravibe-torch-shine {
+  background-image: url('../assets/ultravibe-20-dark.webp') !important;
+}
+
+/* 2. Transition 1: How We Help Section (Pitch Black gradually tones down to #FAF9F3) */
+.how-we-help-section {
+  padding: 96px 0;
+  background: linear-gradient(180deg, #000000 0%, #09130A 16%, #173118 36%, #365A29 58%, #8E9F76 80%, #FAF9F3 100%) !important;
+  position: relative;
+}
+
+.how-we-help-section .section-title {
+  color: #FFFFFF !important;
+}
+
+.how-we-help-section .section-subtitle {
+  color: #D6E4D3 !important;
+}
+
+.how-we-help-section .help-tab-btn {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(236, 243, 158, 0.3) !important;
+  backdrop-filter: blur(10px);
+}
+
+.how-we-help-section .help-tab-btn.active {
+  background: #ECF39E !important;
+  color: #132A13 !important;
+  border-color: #ECF39E !important;
+  box-shadow: 0 4px 16px rgba(236, 243, 158, 0.35) !important;
+}
+
+.how-we-help-section .help-card {
+  background: #FFFFFF !important;
+  color: #132A13 !important;
+  border: 1px solid rgba(79, 119, 45, 0.16) !important;
+  box-shadow: 0 16px 42px rgba(19, 42, 19, 0.10) !important;
+}
+
+.how-we-help-section .help-card-title {
+  color: #132A13 !important;
+}
+
+.how-we-help-section .help-card-text {
+  color: #384C35 !important;
+}
+
+.how-we-help-section .help-checklist li {
+  color: #263824 !important;
+}
+
+/* 3. Middle Zone: #FAF9F3 (Services Carousel & Proven Metrics) */
+.services-section {
+  padding: 96px 0;
+  background-color: #FAF9F3 !important;
+  position: relative;
+}
+
+.services-section .section-title {
+  color: #132A13 !important;
+}
+
+.services-section .section-title .text-brand {
+  color: #31572C !important;
+}
+
+.services-section .section-subtitle {
+  color: #40523D !important;
+}
+
+.services-section .carousel-btn {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(79, 119, 45, 0.20) !important;
+  color: #132A13 !important;
+  box-shadow: 0 4px 12px rgba(19, 42, 19, 0.06) !important;
+}
+
+.services-section .carousel-btn:hover:not(:disabled) {
+  background: #132A13 !important;
+  color: #ECF39E !important;
+  border-color: #132A13 !important;
+}
+
+.services-section .service-card {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(79, 119, 45, 0.14) !important;
+  box-shadow: 0 10px 30px rgba(19, 42, 19, 0.06) !important;
+}
+
+.services-section .service-title {
+  color: #132A13 !important;
+}
+
+.services-section .service-brief {
+  color: #40523D !important;
+}
+
+.services-section .service-category {
+  color: #4F772D !important;
+}
+
+.services-section .service-learn-more {
+  color: #31572C !important;
+}
+
+.services-section .service-icon-bubble {
+  background: rgba(236, 243, 158, 0.40) !important;
+  border: 1px solid rgba(79, 119, 45, 0.22) !important;
+  color: #132A13 !important;
+}
+
+.services-section .service-card:hover {
+  transform: translateY(-8px) !important;
+  border-color: var(--c-forest-green) !important;
+  box-shadow: 0 22px 50px rgba(19, 42, 19, 0.14), 0 0 25px rgba(236, 243, 158, 0.40) !important;
+}
+
+.expertise-section {
+  padding: 88px 0;
+  background-color: #FAF9F3 !important;
+}
+
+.expertise-section .section-title {
+  color: #132A13 !important;
+}
+
+.expertise-section .section-title .text-brand {
+  color: #31572C !important;
+}
+
+.expertise-section .section-subtitle {
+  color: #40523D !important;
+}
+
+/* 4. Transition 2: Whom We Serve (#FAF9F3 gradually deepens back to Dark Green) */
+.industries-section {
+  padding: 96px 0;
+  background: linear-gradient(180deg, #FAF9F3 0%, #D7E2CD 20%, #768F55 45%, #2D5028 75%, #132A13 100%) !important;
+  position: relative;
+}
+
+.industries-section .section-title {
+  color: #132A13 !important;
+}
+
+.industries-section .section-title .text-brand {
+  color: #31572C !important;
+}
+
+.industries-section .section-subtitle {
+  color: #40523D !important;
+}
+
+.industries-section .industry-tab-btn {
+  background: #FFFFFF !important;
+  color: #132A13 !important;
+  border: 1px solid rgba(79, 119, 45, 0.20) !important;
+  box-shadow: 0 2px 8px rgba(19, 42, 19, 0.05) !important;
+}
+
+.industries-section .industry-tab-btn.active {
+  background: #132A13 !important;
+  color: #ECF39E !important;
+  border-color: #132A13 !important;
+  box-shadow: 0 4px 14px rgba(19, 42, 19, 0.25) !important;
+}
+
+.industries-section .industry-card-active {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border: 1px solid rgba(79, 119, 45, 0.20) !important;
+  box-shadow: 0 20px 48px rgba(19, 42, 19, 0.16) !important;
+}
+
+.industries-section .industry-card-title {
+  color: #132A13 !important;
+}
+
+.industries-section .industry-card-desc {
+  color: #384C35 !important;
+}
+
+.industries-section .industry-feature-tag {
+  background: rgba(236, 243, 158, 0.40) !important;
+  color: #132A13 !important;
+  border: 1px solid rgba(79, 119, 45, 0.18) !important;
+}
+
+/* 5. Lower Zone: Deep Dark Green (Tech Platforms, Team, & FAQ) */
+.tech-solar-section {
+  padding: 100px 0 90px;
+  background: #132A13 !important;
+  color: #FFFFFF !important;
+}
+
+.tech-solar-section .section-title {
+  color: #FFFFFF !important;
+}
+
+.tech-solar-section .section-subtitle {
+  color: #CAD5C5 !important;
+}
+
+.tech-solar-section .platform-tab-btn {
+  background: rgba(255, 255, 255, 0.10) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(144, 169, 85, 0.30) !important;
+}
+
+.tech-solar-section .platform-tab-btn.active {
+  background: #ECF39E !important;
+  color: #132A13 !important;
+  border-color: #ECF39E !important;
+}
+
+.tech-solar-section .platform-eco-card {
+  background: rgba(24, 34, 24, 0.88) !important;
+  border: 1px solid rgba(144, 169, 85, 0.25) !important;
+  color: #FFFFFF !important;
+}
+
+.team-section {
+  padding: 96px 0;
+  background: linear-gradient(180deg, #132A13 0%, #102411 100%) !important;
+  color: #FFFFFF !important;
+}
+
+.team-section .section-title {
+  color: #FFFFFF !important;
+}
+
+.team-section .team-member-card {
+  background: rgba(22, 34, 22, 0.85) !important;
+  border: 1px solid rgba(144, 169, 85, 0.25) !important;
+  color: #FFFFFF !important;
+}
+
+.faq-section {
+  padding: 96px 0;
+  background: linear-gradient(180deg, #102411 0%, #0D1C0E 50%, #071107 100%) !important;
+  color: #FFFFFF !important;
+}
+
+.faq-section .section-title {
+  color: #FFFFFF !important;
+}
+
+.faq-section .section-subtitle {
+  color: #CAD5C5 !important;
+}
+
+.faq-question-btn {
+  color: #FFFFFF !important;
+}
+
+.faq-answer-panel p {
+  color: #C5D2C4 !important;
+}
+
+.faq-item {
+  border-bottom-color: rgba(144, 169, 85, 0.20) !important;
+}
+
+.faq-accordion {
+  border-top-color: rgba(144, 169, 85, 0.20) !important;
+}
+
+/* 6. Final Zone: Transition to Pitch Black at the End of the Page */
+.cta-banner-section {
+  padding: 80px 24px;
+  background: linear-gradient(180deg, #071107 0%, #030803 50%, #000000 100%) !important;
+}
+
+.site-footer {
+  background-color: #000000 !important;
+  padding: 80px 24px 40px;
+  border-top: 1px solid rgba(144, 169, 85, 0.20) !important;
+  color: #FFFFFF !important;
+}
+
+.site-footer .footer-col-title {
+  color: #FFFFFF !important;
+}
+
+.site-footer .footer-address,
+.site-footer .footer-links-list a {
+  color: #A3B5A1 !important;
+}
+
+.site-footer .footer-links-list a:hover {
+  color: #ECF39E !important;
+}
+
+.site-footer .footer-watermark {
+  color: rgba(255, 255, 255, 0.04) !important;
+}
+
+.site-footer .footer-bottom-bar {
+  border-top-color: rgba(144, 169, 85, 0.18) !important;
+  color: #7E947C !important;
+}
+
+/* 7. Subpages Content Styling in #FAF9F3 */
+.content-section,
+.about-mission-section,
+.pricing-section,
+.contact-section,
+.careers-section {
+  background-color: #FAF9F3 !important;
+}
+
+.content-section .section-title,
+.about-mission-section .section-title,
+.pricing-section .section-title,
+.contact-section .section-title,
+.careers-section .section-title {
+  color: #132A13 !important;
+}
+
+.content-section p,
+.about-mission-section p,
+.pricing-section p,
+.contact-section p,
+.careers-section p {
+  color: #40523D !important;
 }
