@@ -204,6 +204,7 @@ body::before {
   filter: blur(45px);
   animation: livelyGradientMesh 18s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
   will-change: transform, filter;
+  transition: background 1.4s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s ease;
 }
 
 [data-theme="dark"] body::before {
@@ -228,6 +229,102 @@ body::before {
     linear-gradient(135deg, #EAEFE6 0%, #E3EADF 35%, #EDE6DC 70%, #E5ECE0 100%);
   background-size: 150% 150%;
   filter: blur(45px);
+}
+
+/* ==========================================================================
+   Scroll-Driven Chromatic Cascade Mood States
+   Fluidly morphs the canvas atmosphere section-by-section as the user navigates
+   ========================================================================== */
+
+/* 1. Hero Arc: Deep Obsidian Drama */
+[data-theme="unified"] body[data-cascade="hero"]::before {
+  background:
+    radial-gradient(ellipse 65% 55% at 50% 40%, rgba(197, 160, 89, 0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 50% at 20% 80%, rgba(49, 87, 44, 0.16) 0%, transparent 65%),
+    linear-gradient(135deg, #000000 0%, #080C08 50%, #000000 100%);
+  filter: blur(48px);
+}
+
+/* 2. Solutions Carousel & How We Help: Luminous Warm Sand & Lemon Cream */
+[data-theme="unified"] body[data-cascade="sand"]::before {
+  background:
+    radial-gradient(ellipse 65% 55% at 20% 25%, rgba(197, 160, 89, 0.24) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 60% at 85% 20%, rgba(236, 243, 158, 0.35) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 55% at 75% 75%, rgba(184, 115, 51, 0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 50% at 20% 80%, rgba(144, 169, 85, 0.22) 0%, transparent 65%),
+    linear-gradient(135deg, #EAEFE6 0%, #E3EADF 35%, #EDE6DC 70%, #E5ECE0 100%);
+  filter: blur(45px);
+}
+
+/* 3. Institutional Metrics & Industries: Deep Emerald Forest & Liquid Gold */
+[data-theme="unified"] body[data-cascade="emerald"]::before {
+  background:
+    radial-gradient(ellipse 65% 55% at 20% 30%, rgba(197, 160, 89, 0.28) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 60% at 80% 25%, rgba(236, 243, 158, 0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 55% at 50% 80%, rgba(49, 87, 44, 0.40) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 50% at 15% 85%, rgba(184, 115, 51, 0.22) 0%, transparent 65%),
+    linear-gradient(135deg, #0E1C10 0%, #162817 40%, #101F12 70%, #09130A 100%);
+  filter: blur(48px);
+}
+
+[data-theme="unified"] body[data-cascade="emerald"] .expertise-section .section-title,
+[data-theme="unified"] body[data-cascade="emerald"] .industries-section .section-title {
+  color: #FFFFFF !important;
+}
+
+[data-theme="unified"] body[data-cascade="emerald"] .expertise-section .section-subtitle,
+[data-theme="unified"] body[data-cascade="emerald"] .industries-section .section-subtitle {
+  color: #CBD7CA !important;
+}
+
+[data-theme="unified"] body[data-cascade="emerald"] .stat-box {
+  background: linear-gradient(145deg, rgba(22, 38, 24, 0.82) 0%, rgba(12, 22, 13, 0.94) 100%) !important;
+  border: 1px solid rgba(197, 160, 89, 0.32) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.50), inset 0 1px 0 rgba(236, 243, 158, 0.35) !important;
+}
+
+[data-theme="unified"] body[data-cascade="emerald"] .stat-label {
+  color: #E2ECE1 !important;
+}
+
+[data-theme="unified"] body[data-cascade="emerald"] .industry-tab-btn {
+  background: rgba(22, 38, 24, 0.65) !important;
+  border-color: rgba(197, 160, 89, 0.25) !important;
+  color: #CBD7CA !important;
+}
+
+[data-theme="unified"] body[data-cascade="emerald"] .industry-tab-btn.active {
+  background: linear-gradient(135deg, #31572C, #9C5824) !important;
+  color: #FFFFFF !important;
+  border-color: #C5A059 !important;
+}
+
+/* 4. Ecosystem & Practice Leadership: Luminous Sage Linen */
+[data-theme="unified"] body[data-cascade="sage"]::before {
+  background:
+    radial-gradient(ellipse 65% 55% at 25% 30%, rgba(236, 243, 158, 0.32) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 60% at 80% 25%, rgba(144, 169, 85, 0.26) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 55% at 75% 75%, rgba(197, 160, 89, 0.20) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(156, 88, 36, 0.14) 0%, transparent 65%),
+    linear-gradient(135deg, #E2EAE0 0%, #D8E3D5 45%, #E5ECE2 100%);
+  filter: blur(45px);
+}
+
+/* 5. Executive CTA Banner & Deep Footer: Obsidian Black & Liquid Brass */
+[data-theme="unified"] body[data-cascade="obsidian"]::before {
+  background:
+    radial-gradient(ellipse 65% 55% at 50% 20%, rgba(197, 160, 89, 0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 50% at 80% 70%, rgba(49, 87, 44, 0.25) 0%, transparent 65%),
+    linear-gradient(135deg, #070A08 0%, #0E140F 50%, #050705 100%);
+  filter: blur(48px);
+}
+
+[data-theme="unified"] body[data-cascade="obsidian"] .cta-banner-title {
+  color: #FFFFFF !important;
+}
+
+[data-theme="unified"] body[data-cascade="obsidian"] .cta-banner-desc {
+  color: #CBD7CA !important;
 }
 
 @keyframes livelyGradientMesh {

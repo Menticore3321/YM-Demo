@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFaqAccordion();
   initModals();
   initContactForms();
+  initScrollChromaticCascade();
 });
 
 /* ==========================================================================
@@ -966,6 +967,49 @@ function initPlatformFilter() {
       });
     });
   });
+}
+
+/* ==========================================================================
+   17. Scroll-Driven Chromatic Cascade
+   Dynamically morphs background atmosphere across sections as the user scrolls
+   ========================================================================== */
+function initScrollChromaticCascade() {
+  const sections = [
+    { selector: '.hero-section, .subpage-hero', cascade: 'hero' },
+    { selector: '.how-we-help-section, .services-section, .content-section', cascade: 'sand' },
+    { selector: '.expertise-section, .industries-section', cascade: 'emerald' },
+    { selector: '.tech-solar-section, .team-section, .faq-section', cascade: 'sage' },
+    { selector: '.cta-banner-section, .site-footer', cascade: 'obsidian' }
+  ];
+
+  // Set initial cascade
+  document.body.setAttribute('data-cascade', 'hero');
+
+  const targets = [];
+  sections.forEach(group => {
+    const elements = document.querySelectorAll(group.selector);
+    elements.forEach(el => {
+      targets.push({ el, cascade: group.cascade });
+    });
+  });
+
+  if (!targets.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const matched = targets.find(t => t.el === entry.target);
+        if (matched) {
+          document.body.setAttribute('data-cascade', matched.cascade);
+        }
+      }
+    });
+  }, {
+    threshold: 0.22,
+    rootMargin: '-10% 0px -20% 0px'
+  });
+
+  targets.forEach(t => observer.observe(t.el));
 }
 
 
