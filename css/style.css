@@ -182,7 +182,7 @@ section,
 .matrix-grid-bg {
   position: fixed;
   inset: 0;
-  z-index: 1 !important;
+  z-index: 2 !important;
   pointer-events: none;
   overflow: hidden;
   display: block !important;
@@ -213,19 +213,19 @@ section,
   opacity: 0.55;
 }
 
-/* Interactive Cursor Spotlight Illuminating the Dot Matrix on Hover - Softened and Subdued */
+/* Interactive Cursor Spotlight Illuminating the Dot Matrix on Hover across all sections */
 .matrix-grid-bg::after,
 [data-theme="dark"] .matrix-grid-bg::after {
   content: '';
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle, rgba(236, 243, 158, 0.45) 1.2px, transparent 1.2px),
-    linear-gradient(to right, rgba(144, 169, 85, 0.14) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(144, 169, 85, 0.14) 1px, transparent 1px);
+    radial-gradient(circle, rgba(236, 243, 158, 0.70) 1.5px, transparent 1.5px),
+    linear-gradient(to right, rgba(144, 169, 85, 0.22) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(144, 169, 85, 0.22) 1px, transparent 1px);
   background-size: 36px 36px, 36px 36px, 36px 36px;
-  mask-image: radial-gradient(circle 260px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 20%, rgba(0, 0, 0, 0.45) 50%, transparent 80%);
-  -webkit-mask-image: radial-gradient(circle 260px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 20%, rgba(0, 0, 0, 0.45) 50%, transparent 80%);
+  mask-image: radial-gradient(circle 320px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 25%, rgba(0, 0, 0, 0.45) 55%, transparent 85%);
+  -webkit-mask-image: radial-gradient(circle 320px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 25%, rgba(0, 0, 0, 0.45) 55%, transparent 85%);
   pointer-events: none;
   will-change: mask-image, -webkit-mask-image;
 }
@@ -4087,13 +4087,13 @@ h6 {
    Gradually deepens back to Dark Green -> Ends in Pitch Black (Bottom)
    ========================================================================== */
 
-/* 1. Top Hero Section: Deep Pitch Black Luxury Atmosphere (Arc ONLY on hover) */
+/* 1. Top Hero Section: Deep Pitch Black Luxury Atmosphere (Arc ONLY emerges on hover) */
 .hero-section,
 .subpage-hero {
   background-color: #000000 !important;
   color: #FFFFFF !important;
   position: relative;
-  z-index: 5 !important;
+  z-index: auto !important;
 }
 
 .hero-section .hero-title,
@@ -4104,9 +4104,23 @@ h6 {
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
 }
 
+/* Bright, pristine luminous gradient for "... in Corporate Finance & Advisory" */
+.hero-section .hero-title .text-gradient,
+.hero-title .text-gradient,
+.hero-section .text-gradient {
+  background: linear-gradient(135deg, #FFFFFF 0%, #E6F4B8 45%, #ECF39E 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #ECF39E !important;
+  filter: drop-shadow(0 2px 14px rgba(236, 243, 158, 0.35)) !important;
+  display: inline-block !important;
+}
+
+/* Crisp readable description */
+.hero-section .hero-description,
 .hero-section .hero-subtitle,
 .subpage-hero p {
-  color: #CAD5C5 !important;
+  color: #D6E4D3 !important;
   position: relative !important;
   z-index: 10 !important;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
@@ -4119,7 +4133,19 @@ h6 {
   z-index: 10 !important;
 }
 
-/* Celestial Arc Horizon: Pitch Black (opacity 0) at rest, blossoms with glow on hover */
+/* Celestial Arc Wrapper: Completely hidden (opacity 0) at rest, smoothly comes out on hover */
+.hero-section .ultravibe-bg-wrapper {
+  opacity: 0 !important;
+  transform: translateY(40px) scale(0.96) !important;
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  pointer-events: none !important;
+}
+
+.hero-section:hover .ultravibe-bg-wrapper {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}
+
 .hero-section .ultravibe-gradient-art {
   background-image: url('../assets/ultravibe-20-dark.webp') !important;
   opacity: 0 !important;
@@ -4127,7 +4153,7 @@ h6 {
 }
 
 .hero-section:hover .ultravibe-gradient-art {
-  opacity: 0.65 !important;
+  opacity: 0.75 !important;
 }
 
 .hero-section .ultravibe-torch-shine {
@@ -4149,12 +4175,26 @@ h6 {
   opacity: 0.8 !important;
 }
 
+.hero-section .spotlight-radial,
+.hero-section .ambient-orb {
+  opacity: 0 !important;
+  transition: opacity 0.65s ease !important;
+}
+
+.hero-section:hover .spotlight-radial {
+  opacity: 0.35 !important;
+}
+
+.hero-section:hover .ambient-orb {
+  opacity: 0.25 !important;
+}
+
 /* 2. Transition 1: How We Help Section (Pitch Black gradually tones down to #FAF9F3) */
 .how-we-help-section {
   padding: 96px 0;
   background: linear-gradient(180deg, #000000 0%, #09130A 16%, #173118 36%, #365A29 58%, #8E9F76 80%, #FAF9F3 100%) !important;
   position: relative;
-  z-index: 5 !important;
+  z-index: auto !important;
 }
 
 .how-we-help-section .container,
@@ -4463,13 +4503,67 @@ h6 {
   border: 1px solid rgba(236, 243, 158, 0.30) !important;
 }
 
+/* Custom Industry Box (Don't see your specific sector?) - 100% Crisp & High Contrast */
+.custom-industry-box {
+  background:
+    radial-gradient(circle at 50% 12%, rgba(79, 119, 45, 0.35) 0%, transparent 65%),
+    linear-gradient(165deg, rgba(17, 27, 18, 0.96) 0%, rgba(10, 17, 11, 0.98) 100%) !important;
+  border: 1px solid rgba(144, 169, 85, 0.35) !important;
+  position: relative !important;
+  z-index: 10 !important;
+  text-align: center;
+  padding: 38px 28px !important;
+  border-radius: var(--radius-lg);
+  max-width: 740px;
+  margin: 48px auto 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+.custom-industry-box h4 {
+  color: #FFFFFF !important;
+  font-size: 1.45rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 12px !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+}
+
+.custom-industry-box p {
+  color: #D6E4D3 !important;
+  font-size: 1.05rem !important;
+  line-height: 1.65 !important;
+  margin-bottom: 24px !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9) !important;
+}
+
+.custom-industry-box .btn-cta {
+  background: #ECF39E !important;
+  color: #132A13 !important;
+  font-weight: 800 !important;
+  border: 1px solid #ECF39E !important;
+  box-shadow: 0 4px 18px rgba(236, 243, 158, 0.35) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 12px 28px !important;
+  border-radius: 9999px !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+}
+
+.custom-industry-box .btn-cta:hover {
+  background: #FFFFFF !important;
+  color: #132A13 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 24px rgba(255, 255, 255, 0.4) !important;
+}
+
 /* 5. Lower Zone: Deep Dark Green (Tech Platforms, Team, & FAQ) */
 .tech-solar-section {
   padding: 100px 0 90px;
   background: #132A13 !important;
   color: #FFFFFF !important;
   position: relative;
-  z-index: 5 !important;
+  z-index: auto !important;
 }
 
 .tech-solar-section .container,
@@ -4491,7 +4585,7 @@ h6 {
 }
 
 .tech-solar-section .section-subtitle {
-  color: #E2ECE0 !important;
+  color: #D6E4D3 !important;
   position: relative !important;
   z-index: 10 !important;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
@@ -4524,7 +4618,7 @@ h6 {
   background: linear-gradient(180deg, #132A13 0%, #102411 100%) !important;
   color: #FFFFFF !important;
   position: relative;
-  z-index: 5 !important;
+  z-index: auto !important;
 }
 
 .team-section .container,
@@ -4545,6 +4639,13 @@ h6 {
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
 }
 
+.team-section .section-subtitle {
+  color: #D6E4D3 !important;
+  position: relative !important;
+  z-index: 10 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+}
+
 .team-section .team-member-card {
   background: rgba(22, 34, 22, 0.85) !important;
   border: 1px solid rgba(144, 169, 85, 0.25) !important;
@@ -4558,7 +4659,7 @@ h6 {
   background: linear-gradient(180deg, #102411 0%, #0D1C0E 50%, #071107 100%) !important;
   color: #FFFFFF !important;
   position: relative;
-  z-index: 5 !important;
+  z-index: auto !important;
 }
 
 .faq-section .container,
@@ -4580,7 +4681,7 @@ h6 {
 }
 
 .faq-section .section-subtitle {
-  color: #CAD5C5 !important;
+  color: #D6E4D3 !important;
   position: relative !important;
   z-index: 10 !important;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
