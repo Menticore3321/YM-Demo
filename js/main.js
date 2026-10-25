@@ -725,9 +725,8 @@ function initCursorGlow() {
    12. High-Performance 3D Card Tilt & Interactive Cursor Border Glow
    ========================================================================== */
 function initTiltAndSpotlightCards() {
-  const isFinePointer = window.matchMedia('(pointer: fine)').matches;
   const cards = document.querySelectorAll(
-    '.service-card, .spotlight-card, .platform-eco-card, .team-member-card, .help-card, .info-item-card, .contact-card-box'
+    '.service-card, .spotlight-card, .platform-eco-card, .team-member-card, .help-card, .info-item-card, .contact-card-box, .tilt-card'
   );
 
   cards.forEach(card => {
@@ -735,15 +734,21 @@ function initTiltAndSpotlightCards() {
     let isHovering = false;
     let rafId = null;
 
-    const onMouseEnter = () => {
+    const updateBounds = () => {
       bounds = card.getBoundingClientRect();
-      isHovering = true;
-      card.style.transition = 'transform 0.08s ease-out, box-shadow 0.25s ease';
     };
 
-    const onMouseMove = (e) => {
+    const onPointerEnter = (e) => {
+      if (e.pointerType === 'touch') return;
+      updateBounds();
+      isHovering = true;
+      card.style.transition = 'transform 0.12s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.25s ease';
+    };
+
+    const onPointerMove = (e) => {
+      if (e.pointerType === 'touch') return;
       if (!isHovering || !bounds) {
-        bounds = card.getBoundingClientRect();
+        updateBounds();
         isHovering = true;
       }
 
@@ -754,21 +759,20 @@ function initTiltAndSpotlightCards() {
       card.style.setProperty('--mouse-x', `${mouseX.toFixed(1)}px`);
       card.style.setProperty('--mouse-y', `${mouseY.toFixed(1)}px`);
 
-      if (isFinePointer) {
-        if (rafId) cancelAnimationFrame(rafId);
-        rafId = requestAnimationFrame(() => {
-          const width = bounds.width;
-          const height = bounds.height;
-          // Calculate subtle 3D tilt angles (-7 to +7 deg)
-          const rotateY = ((mouseX / width) - 0.5) * 14;
-          const rotateX = ((mouseY / height) - 0.5) * -14;
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const width = bounds.width;
+        const height = bounds.height;
+        // Calculate punchy, responsive 3D tilt angles (-8 to +8 deg)
+        const rotateY = ((mouseX / width) - 0.5) * 16;
+        const rotateX = ((mouseY / height) - 0.5) * -16;
 
-          card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-8px) scale3d(1.02, 1.02, 1.02)`;
-        });
-      }
+        card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-8px) scale3d(1.025, 1.025, 1.025)`;
+      });
     };
 
-    const onMouseLeave = () => {
+    const onPointerLeave = (e) => {
+      if (e.pointerType === 'touch') return;
       isHovering = false;
       if (rafId) cancelAnimationFrame(rafId);
       card.style.setProperty('--mouse-x', '-500px');
@@ -777,9 +781,9 @@ function initTiltAndSpotlightCards() {
       card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale3d(1, 1, 1)';
     };
 
-    card.addEventListener('mouseenter', onMouseEnter, { passive: true });
-    card.addEventListener('mousemove', onMouseMove, { passive: true });
-    card.addEventListener('mouseleave', onMouseLeave, { passive: true });
+    card.addEventListener('pointerenter', onPointerEnter, { passive: true });
+    card.addEventListener('pointermove', onPointerMove, { passive: true });
+    card.addEventListener('pointerleave', onPointerLeave, { passive: true });
   });
 }
 

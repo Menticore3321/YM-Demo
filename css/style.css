@@ -1480,6 +1480,7 @@ section {
   padding: 34px 30px;
   scroll-snap-align: start;
   cursor: pointer;
+  transform-style: preserve-3d;
   will-change: transform, box-shadow;
   transition:
     transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
@@ -1491,7 +1492,11 @@ section {
 /* Hover Lift & Active Spring Physics (Fallback when JS tilt is inactive) */
 .service-card:hover {
   transform: translateY(-8px) scale(1.015);
-  border-color: rgba(236, 243, 158, 0.45);
+  border-color: rgba(236, 243, 158, 0.35);
+  box-shadow:
+    0 28px 58px -12px rgba(0, 0, 0, 0.90),
+    0 0 36px rgba(236, 243, 158, 0.22),
+    inset 0 1px 0 rgba(236, 243, 158, 0.45);
 }
 
 .service-card:active {
@@ -1500,13 +1505,11 @@ section {
 }
 
 /* Service Card Hover Elevation Glow */
-.service-card:hover,
 [data-theme="dark"] .service-card:hover {
   box-shadow:
     0 28px 58px -12px rgba(0, 0, 0, 0.90),
     0 0 36px rgba(236, 243, 158, 0.22),
     inset 0 1px 0 rgba(236, 243, 158, 0.45);
-  border-color: rgba(236, 243, 158, 0.50);
 }
 
 /* Ambient Radial Top-Right Glow Bloom */
@@ -3041,14 +3044,15 @@ section {
   border-radius: inherit;
   padding: 1.5px;
   background: radial-gradient(
-    360px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    380px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
     #ECF39E 0%,
-    rgba(243, 202, 109, 0.75) 25%,
-    rgba(144, 169, 85, 0.30) 50%,
+    rgba(243, 202, 109, 0.85) 30%,
+    rgba(144, 169, 85, 0.40) 55%,
     transparent 75%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   pointer-events: none;
   opacity: 0;
