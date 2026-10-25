@@ -153,19 +153,19 @@ section,
   display: block !important;
 }
 
-/* Base Micro Dot-Matrix & Geometric Grid: Soft, Refined Atmospheric Presence */
+/* Base Micro Dot-Matrix & Geometric Grid: Rich Luxury Champagne Gold Presence */
 .matrix-grid-bg::before,
 [data-theme="dark"] .matrix-grid-bg::before {
   content: '';
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle, rgba(144, 169, 85, 0.42) 1.5px, transparent 1.5px),
-    linear-gradient(to right, rgba(144, 169, 85, 0.15) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(144, 169, 85, 0.15) 1px, transparent 1px);
+    radial-gradient(circle, rgba(212, 160, 23, 0.65) 1.5px, transparent 1.5px),
+    linear-gradient(to right, rgba(212, 160, 23, 0.22) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(212, 160, 23, 0.22) 1px, transparent 1px);
   background-size: 36px 36px, 36px 36px, 36px 36px;
   background-position: 0 0, 0 0, 0 0;
-  opacity: 0.75;
+  opacity: 0.85;
   animation: matrixBreath 12s ease-in-out infinite alternate;
 }
 
@@ -176,45 +176,45 @@ section,
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle, rgba(236, 243, 158, 1) 2px, transparent 2px),
-    linear-gradient(to right, rgba(236, 243, 158, 0.55) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(236, 243, 158, 0.55) 1px, transparent 1px);
+    radial-gradient(circle, #E5B020 2.2px, rgba(184, 134, 11, 0.95) 2.2px, transparent 3px),
+    linear-gradient(to right, rgba(200, 140, 15, 0.85) 1.2px, transparent 1.2px),
+    linear-gradient(to bottom, rgba(200, 140, 15, 0.85) 1.2px, transparent 1.2px);
   background-size: 36px 36px, 36px 36px, 36px 36px;
-  mask-image: radial-gradient(circle 380px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 30%, rgba(0, 0, 0, 0.55) 60%, transparent 90%);
-  -webkit-mask-image: radial-gradient(circle 380px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 30%, rgba(0, 0, 0, 0.55) 60%, transparent 90%);
+  mask-image: radial-gradient(circle 420px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 30%, rgba(0, 0, 0, 0.6) 65%, transparent 92%);
+  -webkit-mask-image: radial-gradient(circle 420px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 30%, rgba(0, 0, 0, 0.6) 65%, transparent 92%);
   pointer-events: none;
   will-change: mask-image, -webkit-mask-image;
 }
 
 @keyframes matrixBreath {
   0% {
-    opacity: 0.65;
+    opacity: 0.70;
     transform: scale(1);
   }
   50% {
-    opacity: 0.90;
+    opacity: 0.95;
     transform: scale(1.006);
   }
   100% {
-    opacity: 0.65;
+    opacity: 0.70;
     transform: scale(1);
   }
 }
 
-/* Ambient Cursor Glow */
+/* Ambient Cursor Glow (Warm Golden Halo) */
 .cursor-glow {
   position: fixed;
   top: 0;
   left: 0;
-  width: 380px;
-  height: 380px;
+  width: 400px;
+  height: 400px;
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
   z-index: 0;
-  background: radial-gradient(circle, rgba(236, 243, 158, 0.18) 0%, rgba(144, 169, 85, 0.10) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(229, 176, 32, 0.22) 0%, rgba(197, 145, 22, 0.10) 45%, transparent 70%);
   filter: blur(35px);
-  opacity: 0.55;
+  opacity: 0.65;
   transition: opacity 0.3s ease;
   will-change: transform;
 }
@@ -4100,7 +4100,7 @@ h6 {
 /* 2. Transition 1: How We Help Section (Pitch Black gradually tones down through lush forest green to Creamish Linen #FAF9F3 - Grids & lines emerge gradually as black dims) */
 .how-we-help-section {
   padding: 96px 0;
-  background: linear-gradient(180deg, #000000 0%, rgba(9, 19, 10, 0.94) 14%, rgba(23, 49, 24, 0.78) 35%, rgba(54, 90, 41, 0.72) 58%, rgba(142, 159, 118, 0.72) 80%, rgba(250, 249, 243, 0.82) 100%) !important;
+  background: linear-gradient(180deg, #000000 0%, rgba(9, 19, 10, 0.94) 14%, rgba(23, 49, 24, 0.78) 35%, rgba(54, 90, 41, 0.72) 58%, rgba(142, 159, 118, 0.72) 80%, rgba(250, 249, 243, 0.65) 100%) !important;
   position: relative !important;
   z-index: 2 !important;
 }
@@ -4266,12 +4266,10 @@ h6 {
   transform: scale(1.35) translate(-10px, 10px);
 }
 
-/* 3. Middle Zone: #FAF9F3 Creamish Linen Canvas (Services Carousel & Proven Metrics - Dot-matrix grid & hover spotlight active) */
+/* 3. Middle Zone: #FAF9F3 Creamish Linen Canvas (Services Carousel & Proven Metrics - Golden dot-matrix grid & hover spotlight active) */
 .services-section {
   padding: 96px 0;
-  background-color: rgba(250, 249, 243, 0.82) !important;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(250, 249, 243, 0.65) !important;
   position: relative !important;
   z-index: 2 !important;
 }
@@ -4368,9 +4366,7 @@ h6 {
 
 .expertise-section {
   padding: 88px 0;
-  background-color: rgba(250, 249, 243, 0.82) !important;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(250, 249, 243, 0.65) !important;
   position: relative !important;
   z-index: 2 !important;
 }
@@ -4393,7 +4389,7 @@ h6 {
 /* 4. Transition 2: Whom We Serve (#FAF9F3 gradually deepens back into Forest Green with dot-matrix grid active) */
 .industries-section {
   padding: 96px 0;
-  background: linear-gradient(180deg, rgba(250, 249, 243, 0.82) 0%, rgba(215, 226, 205, 0.78) 20%, rgba(118, 143, 85, 0.78) 45%, rgba(45, 80, 40, 0.80) 75%, rgba(19, 42, 19, 0.85) 100%) !important;
+  background: linear-gradient(180deg, rgba(250, 249, 243, 0.65) 0%, rgba(215, 226, 205, 0.78) 20%, rgba(118, 143, 85, 0.78) 45%, rgba(45, 80, 40, 0.80) 75%, rgba(19, 42, 19, 0.85) 100%) !important;
   position: relative !important;
   z-index: 2 !important;
 }
@@ -4550,6 +4546,23 @@ h6 {
   z-index: 2 !important;
 }
 
+/* Smooth Seamless Fade Transition when Team Section follows a Light Linen Section (e.g. on about.html) */
+#team.team-section,
+.team-section.has-linen-transition,
+.subpage-light-section + .team-section,
+.subpage-light-section + .divider + .team-section {
+  padding: 140px 0 96px !important;
+  background: linear-gradient(180deg, 
+    rgba(250, 249, 243, 0.65) 0px, 
+    rgba(225, 233, 215, 0.72) 40px, 
+    rgba(165, 188, 140, 0.78) 90px, 
+    rgba(80, 115, 65, 0.84) 150px, 
+    rgba(32, 60, 30, 0.88) 210px, 
+    rgba(19, 42, 19, 0.90) 280px, 
+    rgba(16, 36, 17, 0.92) 100%
+  ) !important;
+}
+
 .team-section .container,
 .team-section .section-header {
   position: relative !important;
@@ -4640,6 +4653,24 @@ h6 {
   z-index: 2 !important;
 }
 
+/* Smooth Seamless Fade Transition when CTA Banner Section follows a Light Linen Section */
+.cta-banner-section.from-linen,
+.subpage-light-section + .cta-banner-section,
+.subpage-light-section + .divider + .cta-banner-section,
+.subpage-transition-section + .cta-banner-section,
+.subpage-transition-section + .divider + .cta-banner-section {
+  padding: 120px 24px 80px !important;
+  background: linear-gradient(180deg, 
+    rgba(250, 249, 243, 0.65) 0%, 
+    rgba(215, 226, 205, 0.72) 15%, 
+    rgba(118, 143, 85, 0.78) 32%, 
+    rgba(45, 80, 40, 0.84) 52%, 
+    rgba(19, 42, 19, 0.90) 72%, 
+    rgba(7, 17, 7, 0.96) 88%, 
+    #000000 100%
+  ) !important;
+}
+
 .site-footer {
   background-color: #000000 !important;
   padding: 80px 24px 40px;
@@ -4675,7 +4706,7 @@ h6 {
 
 /* Subpage Transition Section: Smooth Flow from Pitch Black into Linen - Grids & lines emerge gradually as black dims */
 .subpage-transition-section {
-  background: linear-gradient(180deg, #000000 0%, rgba(9, 19, 10, 0.94) 14%, rgba(23, 49, 24, 0.78) 35%, rgba(54, 90, 41, 0.72) 58%, rgba(142, 159, 118, 0.72) 80%, rgba(250, 249, 243, 0.82) 100%) !important;
+  background: linear-gradient(180deg, #000000 0%, rgba(9, 19, 10, 0.94) 14%, rgba(23, 49, 24, 0.78) 35%, rgba(54, 90, 41, 0.72) 58%, rgba(142, 159, 118, 0.72) 80%, rgba(250, 249, 243, 0.65) 100%) !important;
   position: relative;
   z-index: 2 !important;
   width: 100%;
@@ -4814,16 +4845,14 @@ h6 {
   transform: translateY(-2px);
 }
 
-/* Subpage Light Sections (Linen Architecture matching Landing Page - Dot-matrix grid & hover spotlight active) */
+/* Subpage Light Sections (Linen Architecture matching Landing Page - Golden dot-matrix grid & hover spotlight active) */
 .subpage-light-section,
 .content-section,
 .about-mission-section,
 .pricing-section,
 .contact-section,
 .careers-section {
-  background-color: rgba(250, 249, 243, 0.82) !important;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(250, 249, 243, 0.65) !important;
   position: relative;
   z-index: 2 !important;
   width: 100%;
