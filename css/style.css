@@ -5055,6 +5055,38 @@ body.intro-active #brand-home-link {
   visibility: hidden !important;
 }
 
+body.intro-active .site-header .nav-links,
+body.intro-active .site-header .nav-actions,
+body.intro-active .site-header .mobile-menu-btn,
+body.intro-active main {
+  opacity: 0 !important;
+  transform: translateY(14px) !important;
+  pointer-events: none !important;
+}
+
+body.intro-docked .site-header .nav-links,
+body.intro-docked .site-header .nav-actions,
+body.intro-docked .site-header .mobile-menu-btn {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  pointer-events: auto !important;
+  transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, 
+              transform 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.15s !important;
+}
+
+body.intro-docked main {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  pointer-events: auto !important;
+  transition: opacity 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.25s, 
+              transform 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.25s !important;
+}
+
+.intro-brand-stage.is-docked {
+  filter: drop-shadow(0 0 18px rgba(236, 243, 158, 0.35));
+  transition: filter 0.8s ease;
+}
+
 .intro-loader-overlay {
   position: fixed;
   inset: 0;

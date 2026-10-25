@@ -971,15 +971,15 @@ function initBrandIntro() {
     return;
   }
 
-  // Active intro state: lock scroll and hide nav brand element initially
+  // Active intro state: lock scroll and keep site hidden initially
   document.body.classList.add('intro-active');
 
-  // Safety fallback: if anything prevents the timeline from finishing, guarantee cleanup after 3.5s
-  const safetyTimer = setTimeout(completeIntro, 3500);
+  // Safety fallback: if anything prevents the timeline from finishing, guarantee cleanup after 5s
+  const safetyTimer = setTimeout(completeIntro, 5000);
 
   function completeIntro() {
     clearTimeout(safetyTimer);
-    document.body.classList.remove('intro-active');
+    document.body.classList.remove('intro-active', 'intro-docked');
     if (navBrand) {
       navBrand.style.opacity = '1';
       navBrand.style.visibility = 'visible';
@@ -999,12 +999,13 @@ function initBrandIntro() {
     logoImg.classList.add('is-visible');
   }, 140);
 
-  // Step 2: Reveal typography from the side of the logo (780ms)
+  // Step 2: Reveal typography from the side of the logo (750ms)
   setTimeout(() => {
     textReveal.classList.add('is-revealed');
-  }, 780);
+  }, 750);
 
-  // Step 3: Fly from center directly into the navigation bar logo position (1900ms)
+  // Step 3: Fly from center directly into the navigation bar logo position (1750ms)
+  // Overlay remains solid dark so user clearly watches the logo travel and dock into place
   setTimeout(() => {
     const targetRect = navBrand.getBoundingClientRect();
     const stageRect = stage.getBoundingClientRect();
@@ -1015,21 +1016,28 @@ function initBrandIntro() {
       const scale = targetRect.height / stageRect.height;
 
       stage.style.transformOrigin = 'top left';
-      stage.style.transition = 'transform 0.95s cubic-bezier(0.2, 0.9, 0.2, 1), opacity 0.85s ease';
+      stage.style.transition = 'transform 0.95s cubic-bezier(0.16, 1, 0.3, 1)';
       stage.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(${scale})`;
     } else {
       stage.style.transition = 'transform 0.85s ease, opacity 0.85s ease';
       stage.style.transform = 'translate(-50%, -150%) scale(0.65)';
       stage.style.opacity = '0';
     }
+  }, 1750);
 
-    // Fade out dark overlay simultaneously
-    introLoader.style.transition = 'opacity 0.90s cubic-bezier(0.2, 0.9, 0.2, 1)';
+  // Step 4: The Docking & Settle Moment (2750ms)
+  // Logo has now arrived at the nav bar. Now it settles, and the entire website reveals slowly.
+  setTimeout(() => {
+    stage.classList.add('is-docked');
+    document.body.classList.add('intro-docked');
+
+    // Fade out dark overlay gracefully and slowly (1.25s)
+    introLoader.style.transition = 'opacity 1.25s cubic-bezier(0.16, 1, 0.3, 1)';
     introLoader.style.opacity = '0';
-  }, 1900);
+  }, 2750);
 
-  // Step 4: Completion handoff (2850ms)
-  setTimeout(completeIntro, 2850);
+  // Step 5: Clean hand-off after site has fully revealed (4000ms)
+  setTimeout(completeIntro, 4000);
 }
 
 
