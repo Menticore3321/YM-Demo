@@ -891,6 +891,8 @@ function initHeroParallax() {
     });
 
     hero.addEventListener('mouseleave', () => {
+      hero.style.setProperty('--cursor-x', '-500px');
+      hero.style.setProperty('--cursor-y', '-500px');
       if (spotlight) {
         spotlight.style.transform = 'translateX(-50%) translateY(0)';
       }
