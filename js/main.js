@@ -4,6 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
+  initBrandIntro();
   initNavigation();
   initScrollProgress();
   initCursorGlow();
@@ -943,6 +944,94 @@ function initPlatformFilter() {
     });
   });
 }
+
+/* ==========================================================================
+   17. Signature Luxury Brand Intro Animation Sequence
+   ========================================================================== */
+function initBrandIntro() {
+  const introLoader = document.getElementById('intro-loader');
+  const stage = document.getElementById('intro-brand-stage');
+  const logoImg = document.getElementById('intro-logo-img');
+  const textReveal = document.getElementById('intro-text-reveal');
+  const navBrand = document.getElementById('brand-home-link');
+
+  if (!introLoader || !stage || !logoImg || !textReveal || !navBrand) return;
+
+  // Check if intro has already run in this session (unless forced via ?intro=1)
+  const isForced = window.location.search.includes('intro=1');
+  let hasPlayed = false;
+  try {
+    hasPlayed = sessionStorage.getItem('ym_intro_played') === 'true';
+  } catch (e) {
+    /* ignore session access restrictions */
+  }
+
+  if (hasPlayed && !isForced) {
+    introLoader.remove();
+    return;
+  }
+
+  // Active intro state: lock scroll and hide nav brand element initially
+  document.body.classList.add('intro-active');
+
+  // Safety fallback: if anything prevents the timeline from finishing, guarantee cleanup after 3.5s
+  const safetyTimer = setTimeout(completeIntro, 3500);
+
+  function completeIntro() {
+    clearTimeout(safetyTimer);
+    document.body.classList.remove('intro-active');
+    if (navBrand) {
+      navBrand.style.opacity = '1';
+      navBrand.style.visibility = 'visible';
+    }
+    if (introLoader && introLoader.parentNode) {
+      introLoader.remove();
+    }
+    try {
+      sessionStorage.setItem('ym_intro_played', 'true');
+    } catch (e) {
+      /* ignore */
+    }
+  }
+
+  // Step 1: Reveal logo with golden aura in center (140ms)
+  setTimeout(() => {
+    logoImg.classList.add('is-visible');
+  }, 140);
+
+  // Step 2: Reveal typography from the side of the logo (780ms)
+  setTimeout(() => {
+    textReveal.classList.add('is-revealed');
+  }, 780);
+
+  // Step 3: Fly from center directly into the navigation bar logo position (1900ms)
+  setTimeout(() => {
+    const targetRect = navBrand.getBoundingClientRect();
+    const stageRect = stage.getBoundingClientRect();
+
+    if (targetRect.width > 0 && targetRect.height > 0) {
+      const deltaX = targetRect.left - stageRect.left;
+      const deltaY = targetRect.top - stageRect.top;
+      const scale = targetRect.height / stageRect.height;
+
+      stage.style.transformOrigin = 'top left';
+      stage.style.transition = 'transform 0.95s cubic-bezier(0.2, 0.9, 0.2, 1), opacity 0.85s ease';
+      stage.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(${scale})`;
+    } else {
+      stage.style.transition = 'transform 0.85s ease, opacity 0.85s ease';
+      stage.style.transform = 'translate(-50%, -150%) scale(0.65)';
+      stage.style.opacity = '0';
+    }
+
+    // Fade out dark overlay simultaneously
+    introLoader.style.transition = 'opacity 0.90s cubic-bezier(0.2, 0.9, 0.2, 1)';
+    introLoader.style.opacity = '0';
+  }, 1900);
+
+  // Step 4: Completion handoff (2850ms)
+  setTimeout(completeIntro, 2850);
+}
+
 
 
 
