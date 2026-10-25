@@ -4930,6 +4930,7 @@ section {
 /* Light Section Cards (Crisp High-End Corporate Cards) */
 .about-values-grid>div,
 .careers-culture-grid .spotlight-card,
+.careers-culture-grid>div,
 .process-flow-container {
   background: #FFFFFF !important;
   border: 1px solid rgba(19, 42, 19, 0.12) !important;
@@ -4941,7 +4942,8 @@ section {
 }
 
 .about-values-grid>div:hover,
-.careers-culture-grid .spotlight-card:hover {
+.careers-culture-grid .spotlight-card:hover,
+.careers-culture-grid>div:hover {
   border-color: #31572C !important;
   box-shadow: 0 8px 24px rgba(19, 42, 19, 0.12) !important;
   transform: translateY(-4px) !important;
@@ -4949,18 +4951,30 @@ section {
 
 .about-values-grid h3,
 .careers-culture-grid h3,
+.careers-culture-grid .spotlight-card h3,
+.subpage-light-section .spotlight-card h3,
+.subpage-light-section h3,
 .process-flow-container h4 {
   color: #132A13 !important;
   font-weight: 700 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
   text-shadow: none !important;
 }
 
 .about-values-grid p,
 .careers-culture-grid p,
+.careers-culture-grid .spotlight-card p,
+.subpage-light-section .spotlight-card p,
+.subpage-light-section p,
 .process-flow-container p {
   color: #243823 !important;
   font-weight: 500 !important;
   line-height: 1.68 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
   text-shadow: none !important;
 }
 
