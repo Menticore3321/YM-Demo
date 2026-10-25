@@ -954,8 +954,10 @@ function initBrandIntro() {
   const logoImg = document.getElementById('intro-logo-img');
   const textReveal = document.getElementById('intro-text-reveal');
   const navBrand = document.getElementById('brand-home-link');
+  const curtain = document.getElementById('intro-curtain');
+  const ambient = document.getElementById('intro-ambient');
 
-  if (!introLoader || !stage || !logoImg || !textReveal || !navBrand) return;
+  if (!introLoader || !stage || !logoImg || !textReveal || !navBrand || !curtain) return;
 
   // Check if intro has already run in this session (unless forced via ?intro=1)
   const isForced = window.location.search.includes('intro=1');
@@ -971,7 +973,7 @@ function initBrandIntro() {
     return;
   }
 
-  // Active intro state: lock scroll and keep site hidden initially
+  // Active intro state: lock scroll and keep site hidden behind dark curtain
   document.body.classList.add('intro-active');
 
   // Safety fallback: if anything prevents the timeline from finishing, guarantee cleanup after 5s
@@ -999,45 +1001,51 @@ function initBrandIntro() {
     logoImg.classList.add('is-visible');
   }, 140);
 
-  // Step 2: Reveal typography from the side of the logo (750ms)
+  // Step 2: Reveal typography smoothly from the side of the logo (780ms)
   setTimeout(() => {
     textReveal.classList.add('is-revealed');
-  }, 750);
+  }, 780);
 
-  // Step 3: Fly from center directly into the navigation bar logo position (1750ms)
-  // Overlay remains solid dark so user clearly watches the logo travel and dock into place
+  // Step 3: Fly from center directly into the navigation bar logo position (1850ms)
+  // NOTICE: Curtain stays pitch dark so user clearly watches the logo travel and dock into navbar
   setTimeout(() => {
     const targetRect = navBrand.getBoundingClientRect();
-    const stageRect = stage.getBoundingClientRect();
+    const startRect = stage.getBoundingClientRect();
 
     if (targetRect.width > 0 && targetRect.height > 0) {
-      const deltaX = targetRect.left - stageRect.left;
-      const deltaY = targetRect.top - stageRect.top;
-      const scale = targetRect.height / stageRect.height;
+      // Calculate exact distance from current center position to target navbar position
+      const deltaX = targetRect.left - startRect.left;
+      const deltaY = targetRect.top - startRect.top;
+      // Calculate scale relative to target height
+      const scale = targetRect.height / startRect.height;
 
-      stage.style.transformOrigin = 'top left';
-      stage.style.transition = 'transform 0.95s cubic-bezier(0.16, 1, 0.3, 1)';
-      stage.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(${scale})`;
+      stage.style.transformOrigin = '0 0';
+      stage.style.transition = 'transform 1.05s cubic-bezier(0.16, 1, 0.3, 1)';
+      stage.style.transform = `translate3d(${deltaX}px, ${deltaY}px, 0) scale(${scale})`;
     } else {
-      stage.style.transition = 'transform 0.85s ease, opacity 0.85s ease';
-      stage.style.transform = 'translate(-50%, -150%) scale(0.65)';
+      stage.style.transition = 'transform 0.9s ease, opacity 0.8s ease';
+      stage.style.transform = 'translate3d(0, -120px, 0) scale(0.7)';
       stage.style.opacity = '0';
     }
-  }, 1750);
+  }, 1850);
 
-  // Step 4: The Docking & Settle Moment (2750ms)
+  // Step 4: The Docking Moment (2950ms)
   // Logo has now arrived at the nav bar. Now it settles, and the entire website reveals slowly.
   setTimeout(() => {
     stage.classList.add('is-docked');
     document.body.classList.add('intro-docked');
 
-    // Fade out dark overlay gracefully and slowly (1.25s)
-    introLoader.style.transition = 'opacity 1.25s cubic-bezier(0.16, 1, 0.3, 1)';
-    introLoader.style.opacity = '0';
-  }, 2750);
+    // Fade out ambient aura and dark curtain slowly (1.35s)
+    if (ambient) {
+      ambient.style.transition = 'opacity 0.8s ease';
+      ambient.style.opacity = '0';
+    }
+    curtain.style.transition = 'opacity 1.35s cubic-bezier(0.16, 1, 0.3, 1)';
+    curtain.style.opacity = '0';
+  }, 2950);
 
-  // Step 5: Clean hand-off after site has fully revealed (4000ms)
-  setTimeout(completeIntro, 4000);
+  // Step 5: Clean hand-off after site has fully revealed (4300ms)
+  setTimeout(completeIntro, 4300);
 }
 
 

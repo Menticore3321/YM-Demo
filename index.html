@@ -5,21 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>YoungMark Global Advisory - Strategic Financial Management &amp; Advisory</title>
   <meta name="description" content="YoungMark Global Advisory delivers elite financial consulting, outsourced fractional CFO advisory, full-cycle corporate bookkeeping, MIS analytics, and tax compliance for modern enterprises worldwide.">
-  <link rel="stylesheet" href="css/style.css?v=7.3">
+  <link rel="stylesheet" href="css/style.css?v=7.4">
   <link rel="icon" href="assets/Logo.png" type="image/png">
+  <script>
+    try {
+      if (sessionStorage.getItem('ym_intro_played') && !window.location.search.includes('intro=1')) {
+        document.documentElement.classList.add('no-intro');
+      }
+    } catch (e) {}
+  </script>
 </head>
 <body>
   <!-- Signature Luxury Brand Intro Animation -->
   <div id="intro-loader" class="intro-loader-overlay" aria-hidden="true">
-    <div class="intro-loader-ambient"></div>
-    <div class="intro-brand-stage" id="intro-brand-stage">
-      <div class="intro-logo-box">
-        <img src="assets/Logo.png" alt="YoungMark Global Advisory" class="intro-logo-img" id="intro-logo-img">
-        <div class="intro-logo-halo"></div>
-      </div>
-      <div class="intro-text-reveal" id="intro-text-reveal">
-        <span class="intro-title">YOUNGMARK</span>
-        <span class="intro-subtitle">Global Advisory</span>
+    <div class="intro-curtain" id="intro-curtain"></div>
+    <div class="intro-loader-ambient" id="intro-ambient"></div>
+    <div class="intro-stage-center-anchor" id="intro-stage-anchor">
+      <div class="intro-brand-stage" id="intro-brand-stage">
+        <div class="intro-logo-box">
+          <img src="assets/Logo.png" alt="YoungMark Global Advisory" class="intro-logo-img" id="intro-logo-img">
+          <div class="intro-logo-halo"></div>
+        </div>
+        <div class="intro-text-reveal" id="intro-text-reveal">
+          <div class="intro-text-inner">
+            <span class="intro-title">YOUNGMARK</span>
+            <span class="intro-subtitle">Global Advisory</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -961,6 +973,6 @@
     </div>
   </div>
 
-  <script src="js/main.js?v=7.3"></script>
+  <script src="js/main.js?v=7.4"></script>
 </body>
 </html>
