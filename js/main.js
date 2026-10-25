@@ -8,8 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initScrollProgress();
   initCursorGlow();
-  initCardSpotlight();
-  initTiltCards();
+  initTiltAndSpotlightCards();
   initScrollReveal();
   initHeroParallax();
   initHowWeHelp();
@@ -723,48 +722,64 @@ function initCursorGlow() {
 }
 
 /* ==========================================================================
-   12. Card Spotlight on Mouse Move (Aceternity style)
+   12. High-Performance 3D Card Tilt & Interactive Cursor Border Glow
    ========================================================================== */
-function initCardSpotlight() {
-  const cards = document.querySelectorAll('.spotlight-card, .service-card, .team-member-card, .help-card, .info-item-card, .contact-card-box');
+function initTiltAndSpotlightCards() {
+  const isFinePointer = window.matchMedia('(pointer: fine)').matches;
+  const cards = document.querySelectorAll(
+    '.service-card, .spotlight-card, .platform-eco-card, .team-member-card, .help-card, .info-item-card, .contact-card-box'
+  );
+
   cards.forEach(card => {
-    card.classList.add('spotlight-card');
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      card.style.setProperty('--mouse-x', `${x}px`);
-      card.style.setProperty('--mouse-y', `${y}px`);
-    });
-  });
-}
+    let bounds = null;
+    let isHovering = false;
+    let rafId = null;
 
-/* ==========================================================================
-   13. 3D Card Tilt Physics
-   ========================================================================== */
-function initTiltCards() {
-  if (!window.matchMedia('(pointer: fine)').matches) return;
+    const onMouseEnter = () => {
+      bounds = card.getBoundingClientRect();
+      isHovering = true;
+      card.style.transition = 'transform 0.08s ease-out, box-shadow 0.25s ease';
+    };
 
-  const tiltCards = document.querySelectorAll('.tilt-card, .team-member-card, .service-card');
-  tiltCards.forEach(card => {
-    card.classList.add('tilt-card');
+    const onMouseMove = (e) => {
+      if (!isHovering || !bounds) {
+        bounds = card.getBoundingClientRect();
+        isHovering = true;
+      }
 
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const width = rect.width;
-      const height = rect.height;
-      const mouseX = e.clientX - rect.left;
-      const mouseY = e.clientY - rect.top;
+      const mouseX = e.clientX - bounds.left;
+      const mouseY = e.clientY - bounds.top;
 
-      const rotateY = ((mouseX / width) - 0.5) * 12; // -6 to 6 deg
-      const rotateX = (((mouseY / height) - 0.5) * -12); // -6 to 6 deg
+      // Update cursor coordinates for dynamic masked border glow & surface bloom
+      card.style.setProperty('--mouse-x', `${mouseX.toFixed(1)}px`);
+      card.style.setProperty('--mouse-y', `${mouseY.toFixed(1)}px`);
 
-      card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
-    });
+      if (isFinePointer) {
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          const width = bounds.width;
+          const height = bounds.height;
+          // Calculate subtle 3D tilt angles (-7 to +7 deg)
+          const rotateY = ((mouseX / width) - 0.5) * 14;
+          const rotateX = ((mouseY / height) - 0.5) * -14;
 
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-    });
+          card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-8px) scale3d(1.02, 1.02, 1.02)`;
+        });
+      }
+    };
+
+    const onMouseLeave = () => {
+      isHovering = false;
+      if (rafId) cancelAnimationFrame(rafId);
+      card.style.setProperty('--mouse-x', '-500px');
+      card.style.setProperty('--mouse-y', '-500px');
+      card.style.transition = 'transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease';
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale3d(1, 1, 1)';
+    };
+
+    card.addEventListener('mouseenter', onMouseEnter, { passive: true });
+    card.addEventListener('mousemove', onMouseMove, { passive: true });
+    card.addEventListener('mouseleave', onMouseLeave, { passive: true });
   });
 }
 
