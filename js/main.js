@@ -19,60 +19,18 @@ document.addEventListener('DOMContentLoaded', () => {
   initFaqAccordion();
   initModals();
   initContactForms();
-  initScrollChromaticCascade();
 });
 
 /* ==========================================================================
-   1. Theme Management (Light / Dark Mode)
+   1. Theme Management (Permanent Slate-Obsidian Dark Mode)
    ========================================================================== */
-function updateThemeButtonState(theme) {
-  const toggleBtns = document.querySelectorAll('.theme-toggle-btn');
-  let iconSvg = '';
-  let tooltip = '';
-
-  if (theme === 'dark') {
-    // Sun icon - click to switch to Light Mode
-    iconSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
-    tooltip = 'Switch to Light Mode';
-  } else {
-    // Crescent Moon icon - click to switch to Dark Mode
-    iconSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
-    tooltip = 'Switch to Dark Mode';
-  }
-
-  toggleBtns.forEach(btn => {
-    btn.innerHTML = iconSvg;
-    btn.setAttribute('title', tooltip);
-    btn.setAttribute('aria-label', tooltip);
-  });
-}
-
 function initTheme() {
-  const toggleBtns = document.querySelectorAll('.theme-toggle-btn');
-  const storedTheme = localStorage.getItem('ym-theme');
-  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-  const activeTheme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
-  document.documentElement.setAttribute('data-theme', activeTheme);
-  updateThemeButtonState(activeTheme);
-
-  toggleBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('ym-theme', newTheme);
-      updateThemeButtonState(newTheme);
-
-      const themeNames = {
-        'dark': 'Dark Mode (Deep Forest)',
-        'light': 'Light Mode (Organic Linen)'
-      };
-
-      showToast(`Switched to ${themeNames[newTheme] || newTheme}`);
-    });
-  });
+  try {
+    localStorage.removeItem('ym-theme');
+  } catch (e) {
+    /* ignore storage access restrictions */
+  }
+  document.documentElement.setAttribute('data-theme', 'dark');
 }
 
 /* ==========================================================================
@@ -646,6 +604,26 @@ function initContactForms() {
       }, 700);
     });
   });
+
+  // Auto-select practice from URL query (?service=...)
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const serviceParam = params.get('service');
+    if (serviceParam) {
+      const select = document.getElementById('practice-focus');
+      if (select) {
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].value.toLowerCase().includes(serviceParam.toLowerCase()) ||
+              serviceParam.toLowerCase().includes(select.options[i].value.toLowerCase())) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }
+  } catch (err) {
+    /* ignore search param errors */
+  }
 }
 
 function showToast(message) {
@@ -968,49 +946,6 @@ function initPlatformFilter() {
       });
     });
   });
-}
-
-/* ==========================================================================
-   17. Scroll-Driven Chromatic Cascade
-   Dynamically morphs background atmosphere across sections as the user scrolls
-   ========================================================================== */
-function initScrollChromaticCascade() {
-  const sections = [
-    { selector: '.hero-section, .subpage-hero', cascade: 'hero' },
-    { selector: '.how-we-help-section, .services-section, .content-section', cascade: 'sand' },
-    { selector: '.expertise-section, .industries-section', cascade: 'emerald' },
-    { selector: '.tech-solar-section, .team-section, .faq-section', cascade: 'sage' },
-    { selector: '.cta-banner-section, .site-footer', cascade: 'obsidian' }
-  ];
-
-  // Set initial cascade
-  document.body.setAttribute('data-cascade', 'hero');
-
-  const targets = [];
-  sections.forEach(group => {
-    const elements = document.querySelectorAll(group.selector);
-    elements.forEach(el => {
-      targets.push({ el, cascade: group.cascade });
-    });
-  });
-
-  if (!targets.length) return;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const matched = targets.find(t => t.el === entry.target);
-        if (matched) {
-          document.body.setAttribute('data-cascade', matched.cascade);
-        }
-      }
-    });
-  }, {
-    threshold: 0.22,
-    rootMargin: '-10% 0px -20% 0px'
-  });
-
-  targets.forEach(t => observer.observe(t.el));
 }
 
 

@@ -11,7 +11,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
-:root {
+:root,
+[data-theme="dark"] {
   /* Leafy Green Garden Palette */
   --c-dark-green: #132A13;
   --c-forest-green: #31572C;
@@ -19,64 +20,14 @@
   --c-sage-green: #90A955;
   --c-lemon-cream: #ECF39E;
 
-  /* Champagne Gold / Warm Brass Luxury Accents (Light Mode) */
-  --c-gold-primary: #C5A059;
-  --c-gold-hover: #AF8840;
-  --c-gold-soft: rgba(197, 160, 89, 0.14);
-  --c-gold-border: rgba(197, 160, 89, 0.28);
-  --c-gold-glow: rgba(197, 160, 89, 0.28);
-
-  /* Theme Tokens - Light Mode Rebalanced with Organic Lemon/Sage Linen */
-  --bg-primary: #F7FAF2;
-  --bg-secondary: rgba(236, 243, 158, 0.22);
-  --bg-section-glass: rgba(244, 249, 239, 0.82);
-  --bg-tertiary: #EBF3E3;
-  --bg-card: rgba(249, 252, 246, 0.88);
-  --bg-glass: rgba(247, 251, 243, 0.90);
-  --border-glass: rgba(79, 119, 45, 0.16);
-
-  --text-primary: #132A13;
-  --text-secondary: #2E452B;
-  --text-muted: #556B52;
-  --text-inverse: #ECF39E;
-
-  --brand-primary: #31572C;
-  --brand-hover: #132A13;
-  --brand-accent: #4F772D;
-  --brand-soft: rgba(236, 243, 158, 0.40);
-  --brand-highlight: #ECF39E;
-  --brand-highlight-text: #132A13;
-
-  --border-subtle: rgba(79, 119, 45, 0.15);
-  --border-divide: rgba(79, 119, 45, 0.12);
-
-  --shadow-sm: 0 2px 6px rgba(19, 42, 19, 0.05);
-  --shadow-md: 0 6px 20px rgba(19, 42, 19, 0.08);
-  --shadow-lg: 0 16px 40px rgba(19, 42, 19, 0.11);
-  --shadow-glow: 0 0 32px rgba(144, 169, 85, 0.25), 0 0 60px rgba(236, 243, 158, 0.35);
-
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-xl: 32px;
-  --radius-full: 9999px;
-
-  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-heading: 'Outfit', 'Plus Jakarta Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-
-  --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-[data-theme="dark"] {
-  /* Radiant Liquid Gold Luxury Accents (Dark Mode) */
+  /* Radiant Liquid Gold Luxury Accents */
   --c-gold-primary: #F3CA6D;
   --c-gold-hover: #FFE28C;
   --c-gold-soft: rgba(243, 202, 109, 0.15);
   --c-gold-border: rgba(243, 202, 109, 0.32);
   --c-gold-glow: rgba(243, 202, 109, 0.38);
 
-  /* Clean Slate-Obsidian Canvas (Eliminates Muddy Green Swamp) */
+  /* Clean Slate-Obsidian Deep Forest Canvas */
   --bg-primary: #0E120F;
   --bg-secondary: rgba(22, 28, 23, 0.65);
   --bg-section-glass: rgba(18, 24, 19, 0.60);
@@ -104,6 +55,18 @@
   --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.50);
   --shadow-lg: 0 16px 42px rgba(0, 0, 0, 0.70);
   --shadow-glow: 0 0 35px rgba(236, 243, 158, 0.20), 0 0 70px rgba(144, 169, 85, 0.14);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Base Resets */
@@ -118,6 +81,8 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  background-color: #0E120F;
+  color-scheme: dark;
 }
 
 /* ==========================================================================
@@ -126,7 +91,7 @@ html {
 body {
   position: relative;
   font-family: var(--font-main);
-  background-color: #FAF9F3;
+  background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
@@ -182,7 +147,7 @@ section,
 .matrix-grid-bg {
   position: fixed;
   inset: 0;
-  z-index: 2 !important;
+  z-index: 1 !important;
   pointer-events: none;
   overflow: hidden;
   display: block !important;
@@ -324,16 +289,11 @@ section,
   will-change: transform;
 }
 
+.cursor-glow,
 [data-theme="dark"] .cursor-glow {
   opacity: 0.65;
   background: radial-gradient(circle, rgba(236, 243, 158, 0.14) 0%, rgba(144, 169, 85, 0.08) 45%, transparent 70%);
   filter: blur(20px);
-}
-
-[data-theme="light"] .cursor-glow {
-  opacity: 0.45;
-  background: radial-gradient(circle, rgba(79, 119, 45, 0.12) 0%, rgba(144, 169, 85, 0.06) 50%, transparent 70%);
-  filter: blur(24px);
 }
 
 a {
@@ -548,29 +508,6 @@ h6 {
   gap: 12px;
 }
 
-.theme-toggle-btn {
-  width: 42px;
-  height: 42px;
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-secondary);
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border-subtle);
-  transition: var(--transition);
-}
-
-.theme-toggle-btn:hover {
-  background: var(--brand-soft);
-  color: var(--c-forest-green);
-  transform: rotate(15deg);
-  border-color: var(--c-sage-green);
-}
-
-[data-theme="dark"] .theme-toggle-btn:hover {
-  color: var(--c-lemon-cream);
-}
 
 .btn-cta {
   display: inline-flex;
@@ -830,43 +767,27 @@ h6 {
   opacity: 1;
 }
 
-[data-theme="light"] .ultravibe-cursor-shine {
-  background: radial-gradient(ellipse at center, rgba(236, 243, 158, 0.85) 0%, rgba(144, 169, 85, 0.45) 35%, rgba(49, 87, 44, 0.15) 60%, transparent 80%);
-  mix-blend-mode: multiply;
-  opacity: 0;
-}
-
-[data-theme="light"] .hero-section:hover .ultravibe-cursor-shine {
-  opacity: 0.8;
-}
-
 /* Resting ambient orbs and spotlights in dark mode */
+.hero-section .ambient-orb,
 [data-theme="dark"] .hero-section .ambient-orb {
   opacity: 0;
   transition: opacity 0.5s ease;
 }
 
+.hero-section:hover .ambient-orb,
 [data-theme="dark"] .hero-section:hover .ambient-orb {
   opacity: 0.25;
 }
 
+.hero-section .spotlight-radial,
 [data-theme="dark"] .hero-section .spotlight-radial {
   opacity: 0;
   transition: opacity 0.5s ease;
 }
 
+.hero-section:hover .spotlight-radial,
 [data-theme="dark"] .hero-section:hover .spotlight-radial {
   opacity: 0.45;
-}
-
-[data-theme="light"] .ultravibe-cursor-shine {
-  background: radial-gradient(ellipse at center, rgba(236, 243, 158, 0.85) 0%, rgba(144, 169, 85, 0.45) 35%, rgba(49, 87, 44, 0.15) 60%, transparent 80%);
-  mix-blend-mode: multiply;
-  opacity: 0;
-}
-
-[data-theme="light"] .hero-section:hover .ultravibe-cursor-shine {
-  opacity: 0.8;
 }
 
 /* Keyframes for Ultravibe-20 Horizon Gradient Animation */
@@ -1510,19 +1431,8 @@ h6 {
   transition-duration: 0.15s;
 }
 
-/* Light Theme Hover Elevation Glow */
-:root .service-card:hover,
-[data-theme="light"] .service-card:hover {
-  box-shadow:
-    0 26px 54px -12px rgba(19, 42, 19, 0.18),
-    0 6px 16px rgba(19, 42, 19, 0.06),
-    0 0 28px rgba(236, 243, 158, 0.40),
-    inset 0 1px 0 var(--c-lemon-cream),
-    inset 0 0 0 1px rgba(236, 243, 158, 0.6) !important;
-  border-color: var(--c-forest-green) !important;
-}
-
-/* Dark Theme Hover Elevation Glow */
+/* Service Card Hover Elevation Glow */
+.service-card:hover,
 [data-theme="dark"] .service-card:hover {
   box-shadow:
     0 28px 58px -12px rgba(0, 0, 0, 0.90),
@@ -1558,25 +1468,15 @@ h6 {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--c-leaf-green);
+  color: var(--c-sage-green);
   margin-bottom: 10px;
   transition: color 0.3s ease, letter-spacing 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-[data-theme="dark"] .service-category {
-  color: var(--c-sage-green);
-}
-
-.service-card:hover .service-category {
-  letter-spacing: 0.17em;
-}
-
-[data-theme="light"] .service-card:hover .service-category {
-  color: var(--c-forest-green);
-}
-
+.service-card:hover .service-category,
 [data-theme="dark"] .service-card:hover .service-category {
   color: var(--c-lemon-cream);
+  letter-spacing: 0.17em;
 }
 
 /* Service Title Fluid Micro-Interaction */
@@ -2731,9 +2631,20 @@ h6 {
 .form-select:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: var(--c-forest-green);
-  background: var(--bg-card);
-  box-shadow: 0 0 0 3px rgba(49, 87, 44, 0.15);
+  border-color: rgba(236, 243, 158, 0.7);
+  background: rgba(20, 30, 21, 0.95);
+  box-shadow: 0 0 0 3px rgba(236, 243, 158, 0.2);
+}
+
+.form-select option {
+  background-color: #121913;
+  color: #FFFFFF;
+  padding: 8px;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--text-muted);
 }
 
 .contact-info-panel {
@@ -2872,15 +2783,8 @@ h6 {
   will-change: transform;
 }
 
-/* Light Theme: High-contrast rich botanical glow */
-:root .cursor-glow,
-[data-theme="light"] .cursor-glow {
-  background: radial-gradient(circle, rgba(49, 87, 44, 0.10) 0%, rgba(144, 169, 85, 0.05) 40%, transparent 75%);
-  filter: blur(35px);
-  opacity: 0.40;
-}
-
-/* Dark Theme: Soft pale lemon & sage atmospheric glow */
+/* Ambient Cursor Glow */
+.cursor-glow,
 [data-theme="dark"] .cursor-glow {
   background: radial-gradient(circle, rgba(236, 243, 158, 0.16) 0%, rgba(144, 169, 85, 0.10) 40%, transparent 70%);
   filter: blur(42px);
@@ -3287,40 +3191,23 @@ h6 {
   will-change: transform;
 }
 
-/* Light Theme Orbs: Fresh botanical glow with visible depth */
-:root .ambient-orb,
-[data-theme="light"] .ambient-orb {
-  opacity: 0.85;
-}
-
-:root .ambient-orb.orb-1,
-[data-theme="light"] .ambient-orb.orb-1 {
-  background: radial-gradient(circle, rgba(236, 243, 158, 0.48) 0%, rgba(144, 169, 85, 0.22) 50%, transparent 75%);
-}
-
-:root .ambient-orb.orb-2,
-[data-theme="light"] .ambient-orb.orb-2 {
-  background: radial-gradient(circle, rgba(144, 169, 85, 0.28) 0%, rgba(79, 119, 45, 0.14) 55%, transparent 75%);
-}
-
-:root .ambient-orb.orb-3,
-[data-theme="light"] .ambient-orb.orb-3 {
-  background: radial-gradient(circle, rgba(236, 243, 158, 0.42) 0%, rgba(163, 189, 104, 0.18) 50%, transparent 75%);
-}
-
-/* Dark Theme Orbs: Luminous Pale Lemon & Sage Auroras */
+/* Atmospheric Ambient Orbs */
+.ambient-orb,
 [data-theme="dark"] .ambient-orb {
   opacity: 0.85;
 }
 
+.ambient-orb.orb-1,
 [data-theme="dark"] .ambient-orb.orb-1 {
   background: radial-gradient(circle, rgba(236, 243, 158, 0.26) 0%, rgba(144, 169, 85, 0.20) 45%, transparent 75%);
 }
 
+.ambient-orb.orb-2,
 [data-theme="dark"] .ambient-orb.orb-2 {
   background: radial-gradient(circle, rgba(144, 169, 85, 0.32) 0%, rgba(79, 119, 45, 0.16) 50%, transparent 75%);
 }
 
+.ambient-orb.orb-3,
 [data-theme="dark"] .ambient-orb.orb-3 {
   background: radial-gradient(circle, rgba(236, 243, 158, 0.35) 0%, rgba(163, 189, 104, 0.18) 45%, transparent 75%);
 }
@@ -4052,18 +3939,18 @@ h6 {
 }
 
 /* ==========================================================================
-   Continuous Cinematic Scroll Gradient Journey:
-   Pitch Black (Top) -> Gradually tones down to #FAF9F3 (Middle) ->
-   Gradually deepens back to Dark Green -> Ends in Pitch Black (Bottom)
+   Continuous Cinematic Dark Obsidian Gradient Journey:
+   Deep Pitch Black (Top) -> Rich Obsidian Forest (Middle) ->
+   Deep Emerald Slate -> Velvet Obsidian Black (Bottom)
    ========================================================================== */
 
-/* 1. Top Hero Section: Deep Pitch Black Luxury Atmosphere (Arc ONLY emerges on hover) */
+/* 1. Top Hero Section: Deep Pitch Black Luxury Atmosphere (No grids on pitch black, green arc ONLY on landing page hover) */
 .hero-section,
 .subpage-hero {
   background-color: #000000 !important;
   color: #FFFFFF !important;
-  position: relative;
-  z-index: auto !important;
+  position: relative !important;
+  z-index: 2 !important;
 }
 
 .hero-section .hero-title,
@@ -4104,60 +3991,59 @@ h6 {
   z-index: 10 !important;
 }
 
-/* Celestial Arc Wrapper: Completely hidden (opacity 0) at rest, smoothly comes out on hover */
-.hero-section .ultravibe-bg-wrapper,
-.subpage-hero .ultravibe-bg-wrapper {
+/* Celestial Green Arc (Strictly Exclusive to Landing Page Hero): Completely hidden at rest, smoothly comes out on hover */
+.hero-section .ultravibe-bg-wrapper {
   opacity: 0 !important;
   transform: translateY(40px) scale(0.96) !important;
   transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) !important;
   pointer-events: none !important;
 }
 
-.hero-section:hover .ultravibe-bg-wrapper,
-.subpage-hero:hover .ultravibe-bg-wrapper {
+.hero-section:hover .ultravibe-bg-wrapper {
   opacity: 1 !important;
   transform: translateY(0) scale(1) !important;
 }
 
-.hero-section .ultravibe-gradient-art,
-.subpage-hero .ultravibe-gradient-art {
+.hero-section .ultravibe-gradient-art {
   background-image: url('../assets/ultravibe-20-dark.webp') !important;
   opacity: 0 !important;
   transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.hero-section:hover .ultravibe-gradient-art,
-.subpage-hero:hover .ultravibe-gradient-art {
+.hero-section:hover .ultravibe-gradient-art {
   opacity: 0.75 !important;
 }
 
-.hero-section .ultravibe-torch-shine,
-.subpage-hero .ultravibe-torch-shine {
+.hero-section .ultravibe-torch-shine {
   background-image: url('../assets/ultravibe-20-dark.webp') !important;
   opacity: 0 !important;
   transition: opacity 0.4s ease !important;
 }
 
-.hero-section:hover .ultravibe-torch-shine,
-.subpage-hero:hover .ultravibe-torch-shine {
+.hero-section:hover .ultravibe-torch-shine {
   opacity: 1 !important;
 }
 
-.hero-section .ultravibe-cursor-shine,
-.subpage-hero .ultravibe-cursor-shine {
+.hero-section .ultravibe-cursor-shine {
   opacity: 0 !important;
   transition: opacity 0.4s ease !important;
 }
 
-.hero-section:hover .ultravibe-cursor-shine,
-.subpage-hero:hover .ultravibe-cursor-shine {
+.hero-section:hover .ultravibe-cursor-shine {
   opacity: 0.8 !important;
+}
+
+/* Subpage heroes: Strictly NO green arc */
+.subpage-hero .ultravibe-bg-wrapper,
+.subpage-hero::before {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
 }
 
 .hero-section .spotlight-radial,
 .hero-section .ambient-orb,
-.subpage-hero .ambient-orb,
-.subpage-hero::before {
+.subpage-hero .ambient-orb {
   opacity: 0 !important;
   transition: opacity 0.65s ease !important;
 }
@@ -4172,12 +4058,12 @@ h6 {
   opacity: 0.25 !important;
 }
 
-/* 2. Transition 1: How We Help Section (Pitch Black gradually tones down to #FAF9F3) */
+/* 2. Transition 1: How We Help Section (Deep Pitch Black flowing into Rich Obsidian Forest - Grids & lines emerge gradually as black dims) */
 .how-we-help-section {
   padding: 96px 0;
-  background: linear-gradient(180deg, #000000 0%, #09130A 16%, #173118 36%, #365A29 58%, #8E9F76 80%, #FAF9F3 100%) !important;
-  position: relative;
-  z-index: auto !important;
+  background: linear-gradient(180deg, #000000 0%, rgba(8, 17, 9, 0.96) 18%, rgba(15, 28, 16, 0.80) 55%, rgba(19, 36, 20, 0.65) 100%) !important;
+  position: relative !important;
+  z-index: 2 !important;
 }
 
 .how-we-help-section .container,
@@ -4341,14 +4227,16 @@ h6 {
   transform: scale(1.35) translate(-10px, 10px);
 }
 
-/* 3. Middle Zone: #FAF9F3 (Services Carousel & Proven Metrics) */
+/* 3. Services Carousel & Proven Metrics in Rich Obsidian Slate */
 .services-section {
   padding: 96px 0;
-  background-color: #FAF9F3 !important;
-  position: relative;
+  background: linear-gradient(180deg, rgba(19, 36, 20, 0.65) 0%, rgba(13, 24, 14, 0.60) 50%, rgba(16, 28, 17, 0.65) 100%) !important;
+  position: relative !important;
+  z-index: 2 !important;
 }
 
-/* Section Tags & Subtitles on #FAF9F3 Canvas */
+/* Universal High-End Badges & Section Tags */
+.section-tag,
 .services-section .section-tag,
 .expertise-section .section-tag,
 .industries-section .section-tag,
@@ -4356,23 +4244,8 @@ h6 {
 .about-mission-section .section-tag,
 .pricing-section .section-tag,
 .contact-section .section-tag,
-.careers-section .section-tag {
-  display: inline-flex !important;
-  align-items: center !important;
-  font-size: 0.84rem !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.12em !important;
-  text-transform: uppercase !important;
-  color: #132A13 !important;
-  background: rgba(19, 42, 19, 0.08) !important;
-  border: 1.5px solid rgba(19, 42, 19, 0.30) !important;
-  padding: 6px 18px !important;
-  border-radius: var(--radius-full) !important;
-  box-shadow: 0 2px 10px rgba(19, 42, 19, 0.08) !important;
-  margin-bottom: 16px !important;
-}
-
-/* Section Tags & Badges on Dark Background Sections */
+.careers-section .section-tag,
+.subpage-light-section .section-tag,
 .hero-section .badge-pill,
 .subpage-hero .badge-pill,
 .subpage-transition-section .section-tag,
@@ -4408,64 +4281,77 @@ h6 {
 }
 
 .services-section .section-title {
-  color: #132A13 !important;
+  color: #FFFFFF !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
 }
 
 .services-section .section-title .text-brand {
-  color: #31572C !important;
+  color: #ECF39E !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
 }
 
 .services-section .section-subtitle {
-  color: #40523D !important;
+  color: #D6E4D3 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
 }
 
 .services-section .carousel-btn {
-  background: #132A13 !important;
+  background: rgba(19, 42, 19, 0.85) !important;
   border: 1px solid rgba(144, 169, 85, 0.35) !important;
   color: #ECF39E !important;
-  box-shadow: 0 4px 16px rgba(19, 42, 19, 0.18) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5) !important;
 }
 
 .services-section .carousel-btn:hover:not(:disabled) {
   background: #31572C !important;
   color: #FFFFFF !important;
-  box-shadow: 0 6px 22px rgba(19, 42, 19, 0.28) !important;
+  border-color: #ECF39E !important;
+  box-shadow: 0 6px 22px rgba(236, 243, 158, 0.3) !important;
 }
 
 .expertise-section {
   padding: 88px 0;
-  background-color: #FAF9F3 !important;
+  background: rgba(13, 23, 14, 0.65) !important;
+  position: relative !important;
+  z-index: 2 !important;
 }
 
 .expertise-section .section-title {
-  color: #132A13 !important;
+  color: #FFFFFF !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
 }
 
 .expertise-section .section-title .text-brand {
-  color: #31572C !important;
+  color: #ECF39E !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
 }
 
 .expertise-section .section-subtitle {
-  color: #40523D !important;
+  color: #D6E4D3 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
 }
 
-/* 4. Transition 2: Whom We Serve (#FAF9F3 gradually deepens back to Dark Green) */
+/* 4. Industries Section (Whom We Serve) in Obsidian Forest */
 .industries-section {
   padding: 96px 0;
-  background: linear-gradient(180deg, #FAF9F3 0%, #D7E2CD 20%, #768F55 45%, #2D5028 75%, #132A13 100%) !important;
-  position: relative;
+  background: linear-gradient(180deg, rgba(13, 23, 14, 0.65) 0%, rgba(17, 32, 18, 0.65) 40%, rgba(19, 42, 19, 0.65) 100%) !important;
+  position: relative !important;
+  z-index: 2 !important;
 }
 
 .industries-section .section-title {
-  color: #132A13 !important;
+  color: #FFFFFF !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
 }
 
 .industries-section .section-title .text-brand {
-  color: #31572C !important;
+  color: #ECF39E !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
 }
 
 .industries-section .section-subtitle {
-  color: #40523D !important;
+  color: #D6E4D3 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
 }
 
 .industries-section .industry-tab-btn {
@@ -4544,10 +4430,10 @@ h6 {
 /* 5. Lower Zone: Deep Dark Green (Tech Platforms, Team, & FAQ) */
 .tech-solar-section {
   padding: 100px 0 90px;
-  background: #132A13 !important;
+  background: linear-gradient(180deg, rgba(19, 42, 19, 0.65) 0%, rgba(17, 35, 17, 0.65) 100%) !important;
   color: #FFFFFF !important;
-  position: relative;
-  z-index: auto !important;
+  position: relative !important;
+  z-index: 2 !important;
 }
 
 .tech-solar-section .container,
@@ -4599,10 +4485,10 @@ h6 {
 
 .team-section {
   padding: 96px 0;
-  background: linear-gradient(180deg, #132A13 0%, #102411 100%) !important;
+  background: linear-gradient(180deg, rgba(19, 42, 19, 0.60) 0%, rgba(16, 36, 17, 0.65) 100%) !important;
   color: #FFFFFF !important;
-  position: relative;
-  z-index: auto !important;
+  position: relative !important;
+  z-index: 2 !important;
 }
 
 .team-section .container,
@@ -4640,10 +4526,10 @@ h6 {
 
 .faq-section {
   padding: 96px 0;
-  background: linear-gradient(180deg, #102411 0%, #0D1C0E 50%, #071107 100%) !important;
+  background: linear-gradient(180deg, rgba(16, 36, 17, 0.65) 0%, rgba(13, 28, 14, 0.75) 50%, rgba(7, 17, 7, 0.85) 100%) !important;
   color: #FFFFFF !important;
-  position: relative;
-  z-index: auto !important;
+  position: relative !important;
+  z-index: 2 !important;
 }
 
 .faq-section .container,
@@ -4687,10 +4573,12 @@ h6 {
   border-top-color: rgba(144, 169, 85, 0.20) !important;
 }
 
-/* 6. Final Zone: Transition to Pitch Black at the End of the Page */
+/* 6. Final Zone: Transition to Pitch Black at the End of the Page - Grids & lines fade out into pitch black */
 .cta-banner-section {
   padding: 80px 24px;
-  background: linear-gradient(180deg, #071107 0%, #030803 50%, #000000 100%) !important;
+  background: linear-gradient(180deg, rgba(7, 17, 7, 0.70) 0%, rgba(3, 8, 3, 0.94) 55%, #000000 100%) !important;
+  position: relative !important;
+  z-index: 2 !important;
 }
 
 .site-footer {
@@ -4698,6 +4586,8 @@ h6 {
   padding: 80px 24px 40px;
   border-top: 1px solid rgba(144, 169, 85, 0.20) !important;
   color: #FFFFFF !important;
+  position: relative !important;
+  z-index: 2 !important;
 }
 
 .site-footer .footer-col-title {
@@ -4724,11 +4614,11 @@ h6 {
 
 /* 7. Subpage Atmospheric Architecture & Complete Readability across Services, About, Careers, Contact */
 
-/* Subpage Transition Section: Smooth Flow from Pitch Black into Linen */
+/* Subpage Transition Section: Smooth Flow from Pitch Black into Dark Forest Obsidian - Grids & lines emerge gradually as black dims */
 .subpage-transition-section {
-  background: linear-gradient(180deg, #000000 0%, #09130A 16%, #173118 36%, #365A29 58%, #8E9F76 80%, #FAF9F3 100%) !important;
-  position: relative;
-  z-index: auto !important;
+  background: linear-gradient(180deg, #000000 0%, rgba(8, 17, 9, 0.96) 18%, rgba(15, 28, 16, 0.80) 55%, rgba(19, 36, 20, 0.65) 100%) !important;
+  position: relative !important;
+  z-index: 2 !important;
   width: 100%;
 }
 
@@ -4865,16 +4755,16 @@ h6 {
   transform: translateY(-2px);
 }
 
-/* Subpage Light Sections (Linen Architecture matching Landing Page) */
+/* Subpage Obsidian Dark Sections */
 .subpage-light-section,
 .content-section,
 .about-mission-section,
 .pricing-section,
 .contact-section,
 .careers-section {
-  background-color: #FAF9F3 !important;
-  position: relative;
-  z-index: auto !important;
+  background: rgba(14, 18, 15, 0.70) !important;
+  position: relative !important;
+  z-index: 2 !important;
   width: 100%;
 }
 
@@ -4889,10 +4779,14 @@ h6 {
 }
 
 .subpage-light-section .section-tag {
-  color: #132A13 !important;
-  background: rgba(19, 42, 19, 0.08) !important;
-  border: 1.5px solid rgba(19, 42, 19, 0.28) !important;
-  box-shadow: 0 2px 8px rgba(19, 42, 19, 0.06) !important;
+  color: #ECF39E !important;
+  background: rgba(10, 20, 11, 0.90) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1.5px solid rgba(236, 243, 158, 0.45) !important;
+  padding: 6px 18px !important;
+  border-radius: var(--radius-full) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.65), 0 0 12px rgba(236, 243, 158, 0.18) !important;
   position: relative !important;
   z-index: 10 !important;
 }
@@ -4900,35 +4794,37 @@ h6 {
 .subpage-light-section .section-title,
 .content-section .section-title,
 .pricing-section .section-title {
-  color: #132A13 !important;
+  color: #FFFFFF !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: none !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
 }
 
 .subpage-light-section .section-title .text-brand {
-  color: #31572C !important;
-  text-shadow: none !important;
+  color: #ECF39E !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
 }
 
 .subpage-light-section .section-subtitle,
 .subpage-light-section p,
 .content-section p,
 .pricing-section p {
-  color: #40523D !important;
+  color: #CAD5C5 !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: none !important;
 }
 
-/* Light Section Cards (Crisp High-End Corporate Cards) */
+/* Subpage Cards in Obsidian Glass */
 .about-values-grid>div,
 .careers-culture-grid .spotlight-card,
 .process-flow-container {
-  background: #FFFFFF !important;
-  border: 1px solid rgba(19, 42, 19, 0.12) !important;
+  background-color: #0b140d !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(79, 119, 45, 0.35) 0%, transparent 65%),
+    linear-gradient(165deg, rgba(18, 28, 19, 0.98) 0%, rgba(10, 17, 11, 1) 100%) !important;
+  border: 1px solid rgba(144, 169, 85, 0.32) !important;
   border-radius: var(--radius-lg) !important;
-  box-shadow: 0 4px 18px rgba(19, 42, 19, 0.06) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7), 0 0 25px rgba(144, 169, 85, 0.15) !important;
   transition: var(--transition) !important;
   position: relative !important;
   z-index: 10 !important;
@@ -4936,42 +4832,41 @@ h6 {
 
 .about-values-grid>div:hover,
 .careers-culture-grid .spotlight-card:hover {
-  border-color: #31572C !important;
-  box-shadow: 0 8px 24px rgba(19, 42, 19, 0.12) !important;
+  border-color: rgba(236, 243, 158, 0.65) !important;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.85), 0 0 35px rgba(144, 169, 85, 0.35) !important;
   transform: translateY(-4px) !important;
 }
 
 .about-values-grid h3,
 .careers-culture-grid h3,
 .process-flow-container h4 {
-  color: #132A13 !important;
+  color: #FFFFFF !important;
   font-weight: 700 !important;
-  text-shadow: none !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8) !important;
 }
 
 .about-values-grid p,
 .careers-culture-grid p,
 .process-flow-container p {
-  color: #40523D !important;
+  color: #CAD5C5 !important;
   line-height: 1.65 !important;
-  text-shadow: none !important;
 }
 
 .careers-culture-grid .service-icon-bubble {
-  background: rgba(49, 87, 44, 0.08) !important;
-  border: 1px solid rgba(49, 87, 44, 0.20) !important;
-  color: #31572C !important;
+  background: rgba(236, 243, 158, 0.15) !important;
+  border: 1px solid rgba(236, 243, 158, 0.35) !important;
+  color: #ECF39E !important;
 }
 
 .process-flow-container .services-process-grid>div {
-  background: #FAF9F3 !important;
-  border: 1px solid rgba(19, 42, 19, 0.10) !important;
+  background: rgba(22, 34, 22, 0.85) !important;
+  border: 1px solid rgba(144, 169, 85, 0.25) !important;
 }
 
 .process-flow-container .services-process-grid h4 {
-  color: #132A13 !important;
+  color: #FFFFFF !important;
 }
 
 .process-flow-container .services-process-grid p {
-  color: #40523D !important;
+  color: #CAD5C5 !important;
 }
