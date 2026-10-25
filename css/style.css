@@ -4100,7 +4100,7 @@ h6 {
 /* 2. Transition 1: How We Help Section (Pitch Black gradually tones down through lush forest green to Creamish Linen #FAF9F3 - Grids & lines emerge gradually as black dims) */
 .how-we-help-section {
   padding: 96px 0;
-  background: linear-gradient(180deg, #000000 0%, rgba(9, 19, 10, 0.94) 14%, rgba(23, 49, 24, 0.78) 35%, rgba(54, 90, 41, 0.72) 58%, rgba(142, 159, 118, 0.72) 80%, rgba(250, 249, 243, 0.65) 100%) !important;
+  background: linear-gradient(180deg, #000000 0%, rgba(9, 19, 10, 0.94) 14%, rgba(23, 49, 24, 0.78) 35%, rgba(54, 90, 41, 0.72) 58%, rgba(142, 159, 118, 0.72) 80%, rgba(250, 249, 243, 0.92) 100%) !important;
   position: relative !important;
   z-index: 2 !important;
 }
@@ -4269,7 +4269,7 @@ h6 {
 /* 3. Middle Zone: #FAF9F3 Creamish Linen Canvas (Services Carousel & Proven Metrics - Golden dot-matrix grid & hover spotlight active) */
 .services-section {
   padding: 96px 0;
-  background-color: rgba(250, 249, 243, 0.65) !important;
+  background-color: rgba(250, 249, 243, 0.92) !important;
   position: relative !important;
   z-index: 2 !important;
 }
@@ -4347,7 +4347,9 @@ h6 {
 }
 
 .services-section .section-subtitle {
-  color: #40523D !important;
+  color: #243823 !important;
+  font-weight: 500 !important;
+  line-height: 1.68 !important;
   text-shadow: none !important;
 }
 
@@ -4366,7 +4368,7 @@ h6 {
 
 .expertise-section {
   padding: 88px 0;
-  background-color: rgba(250, 249, 243, 0.65) !important;
+  background-color: rgba(250, 249, 243, 0.92) !important;
   position: relative !important;
   z-index: 2 !important;
 }
@@ -4382,14 +4384,16 @@ h6 {
 }
 
 .expertise-section .section-subtitle {
-  color: #40523D !important;
+  color: #243823 !important;
+  font-weight: 500 !important;
+  line-height: 1.68 !important;
   text-shadow: none !important;
 }
 
 /* 4. Transition 2: Whom We Serve (#FAF9F3 gradually deepens back into Forest Green with dot-matrix grid active) */
 .industries-section {
   padding: 96px 0;
-  background: linear-gradient(180deg, rgba(250, 249, 243, 0.65) 0%, rgba(215, 226, 205, 0.78) 20%, rgba(118, 143, 85, 0.78) 45%, rgba(45, 80, 40, 0.80) 75%, rgba(19, 42, 19, 0.85) 100%) !important;
+  background: linear-gradient(180deg, rgba(250, 249, 243, 0.92) 0%, rgba(215, 226, 205, 0.85) 20%, rgba(118, 143, 85, 0.80) 45%, rgba(45, 80, 40, 0.82) 75%, rgba(19, 42, 19, 0.88) 100%) !important;
   position: relative !important;
   z-index: 2 !important;
 }
@@ -4405,7 +4409,9 @@ h6 {
 }
 
 .industries-section .section-subtitle {
-  color: #40523D !important;
+  color: #243823 !important;
+  font-weight: 500 !important;
+  line-height: 1.68 !important;
   text-shadow: none !important;
 }
 
@@ -4553,10 +4559,10 @@ h6 {
 .subpage-light-section + .divider + .team-section {
   padding: 140px 0 96px !important;
   background: linear-gradient(180deg, 
-    rgba(250, 249, 243, 0.65) 0px, 
-    rgba(225, 233, 215, 0.72) 40px, 
-    rgba(165, 188, 140, 0.78) 90px, 
-    rgba(80, 115, 65, 0.84) 150px, 
+    rgba(250, 249, 243, 0.92) 0px, 
+    rgba(225, 233, 215, 0.86) 40px, 
+    rgba(165, 188, 140, 0.82) 90px, 
+    rgba(80, 115, 65, 0.85) 150px, 
     rgba(32, 60, 30, 0.88) 210px, 
     rgba(19, 42, 19, 0.90) 280px, 
     rgba(16, 36, 17, 0.92) 100%
@@ -4661,9 +4667,9 @@ h6 {
 .subpage-transition-section + .divider + .cta-banner-section {
   padding: 120px 24px 80px !important;
   background: linear-gradient(180deg, 
-    rgba(250, 249, 243, 0.65) 0%, 
-    rgba(215, 226, 205, 0.72) 15%, 
-    rgba(118, 143, 85, 0.78) 32%, 
+    rgba(250, 249, 243, 0.92) 0%, 
+    rgba(215, 226, 205, 0.85) 15%, 
+    rgba(118, 143, 85, 0.80) 32%, 
     rgba(45, 80, 40, 0.84) 52%, 
     rgba(19, 42, 19, 0.90) 72%, 
     rgba(7, 17, 7, 0.96) 88%, 
@@ -4706,7 +4712,7 @@ h6 {
 
 /* Subpage Transition Section: Smooth Flow from Pitch Black into Linen - Grids & lines emerge gradually as black dims */
 .subpage-transition-section {
-  background: linear-gradient(180deg, #000000 0%, rgba(9, 19, 10, 0.94) 14%, rgba(23, 49, 24, 0.78) 35%, rgba(54, 90, 41, 0.72) 58%, rgba(142, 159, 118, 0.72) 80%, rgba(250, 249, 243, 0.65) 100%) !important;
+  background: linear-gradient(180deg, #000000 0%, rgba(9, 19, 10, 0.94) 14%, rgba(23, 49, 24, 0.78) 35%, rgba(54, 90, 41, 0.72) 58%, rgba(142, 159, 118, 0.72) 80%, rgba(250, 249, 243, 0.92) 100%) !important;
   position: relative;
   z-index: 2 !important;
   width: 100%;
@@ -4852,7 +4858,7 @@ h6 {
 .pricing-section,
 .contact-section,
 .careers-section {
-  background-color: rgba(250, 249, 243, 0.65) !important;
+  background-color: rgba(250, 249, 243, 0.92) !important;
   position: relative;
   z-index: 2 !important;
   width: 100%;
@@ -4895,7 +4901,9 @@ h6 {
 .subpage-light-section p,
 .content-section p,
 .pricing-section p {
-  color: #40523D !important;
+  color: #243823 !important;
+  font-weight: 500 !important;
+  line-height: 1.68 !important;
   position: relative !important;
   z-index: 10 !important;
   text-shadow: none !important;
@@ -4932,8 +4940,9 @@ h6 {
 .about-values-grid p,
 .careers-culture-grid p,
 .process-flow-container p {
-  color: #40523D !important;
-  line-height: 1.65 !important;
+  color: #243823 !important;
+  font-weight: 500 !important;
+  line-height: 1.68 !important;
   text-shadow: none !important;
 }
 
