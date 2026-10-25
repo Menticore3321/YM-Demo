@@ -2206,7 +2206,10 @@ section {
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-primary);
-  transition: var(--transition);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
 }
 
 .faq-question-btn:hover {
@@ -2227,32 +2230,49 @@ section {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: transform 0.3s ease;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .faq-item.active .faq-toggle-icon {
   transform: rotate(180deg);
   background: var(--c-forest-green);
+  border-color: var(--c-forest-green);
   color: #FFFFFF;
 }
 
+[data-theme="dark"] .faq-item.active .faq-toggle-icon {
+  background: var(--c-lemon-cream);
+  border-color: var(--c-lemon-cream);
+  color: #132A13;
+}
+
 .faq-answer-panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s cubic-bezier(0, 1, 0, 1), padding 0.35s ease;
-  padding: 0 12px;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .faq-item.active .faq-answer-panel {
-  max-height: 500px;
-  padding: 0 12px 24px;
-  transition: max-height 0.35s cubic-bezier(1, 0, 1, 0);
+  grid-template-rows: 1fr;
 }
 
 .faq-answer-panel p {
+  overflow: hidden;
+  min-height: 0;
+  padding: 0 12px;
+  margin: 0;
   font-size: 1rem;
   color: var(--text-secondary);
   line-height: 1.7;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.22s ease, transform 0.22s ease, padding 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-item.active .faq-answer-panel p {
+  padding: 0 12px 24px;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ==========================================================================
@@ -5100,8 +5120,8 @@ body.intro-docked .site-header .mobile-menu-btn {
   opacity: 1 !important;
   transform: translateY(0) !important;
   pointer-events: auto !important;
-  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, 
-              transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s !important;
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s !important;
 }
 
 .intro-loader-overlay {
@@ -5136,8 +5156,15 @@ body.intro-docked .site-header .mobile-menu-btn {
 }
 
 @keyframes introAmbientPulse {
-  0% { transform: translate(-50%, -50%) scale(0.90); opacity: 0.55; }
-  100% { transform: translate(-50%, -50%) scale(1.10); opacity: 0.95; }
+  0% {
+    transform: translate(-50%, -50%) scale(0.90);
+    opacity: 0.55;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1.10);
+    opacity: 0.95;
+  }
 }
 
 .intro-stage-center-anchor {
@@ -5197,7 +5224,7 @@ body.intro-docked .site-header .mobile-menu-btn {
   pointer-events: none;
 }
 
-.intro-logo-img.is-visible + .intro-logo-halo {
+.intro-logo-img.is-visible+.intro-logo-halo {
   opacity: 1;
 }
 
@@ -5205,8 +5232,8 @@ body.intro-docked .site-header .mobile-menu-btn {
   display: grid;
   grid-template-columns: 0fr;
   opacity: 0;
-  transition: grid-template-columns 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
-              opacity 0.6s ease;
+  transition: grid-template-columns 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.6s ease;
 }
 
 .intro-text-reveal.is-revealed {
