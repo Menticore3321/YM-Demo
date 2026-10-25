@@ -686,12 +686,12 @@ h6 {
    ========================================================================== */
 .ultravibe-bg-wrapper {
   position: absolute;
-  inset: -15% -10% -10% -10%;
+  inset: 0;
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+  will-change: transform, opacity;
 }
 
 /* Base resting arc - dark glowing horizon */
@@ -703,32 +703,35 @@ h6 {
   background-size: cover;
   background-repeat: no-repeat;
   transform-origin: center bottom;
-  opacity: 0;
+  opacity: 0.18;
   pointer-events: none;
-  animation: ultravibe-breathe-light 16s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
-  will-change: transform, opacity;
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
+  transition: opacity 0.5s ease;
 }
 
 [data-theme="dark"] .ultravibe-gradient-art {
   background-image: url('../assets/ultravibe-20-dark.webp');
-  opacity: 0;
+  opacity: 0.18;
 }
 
-/* Localized Torch Spotlight Layer - ONLY shines directly where cursor is hovering */
+.hero-section:hover .ultravibe-gradient-art {
+  opacity: 0.85;
+}
+
+/* Localized Torch Spotlight Layer - perfectly synchronized with the arc */
 .ultravibe-torch-shine {
   position: absolute;
   inset: 0;
-  background-image: url('../assets/ultravibe-20-light.webp');
+  background-image: url('../assets/ultravibe-20-dark.webp');
   background-position: center bottom;
   background-size: cover;
   background-repeat: no-repeat;
   transform-origin: center bottom;
   opacity: 0;
-  filter: brightness(1.4) saturate(1.3) drop-shadow(0 0 35px rgba(144, 169, 85, 0.45));
+  filter: brightness(1.25) saturate(1.2) drop-shadow(0 0 30px rgba(144, 169, 85, 0.45));
   pointer-events: none;
-  -webkit-mask-image: radial-gradient(circle 620px at var(--cursor-x, 50%) var(--cursor-y, 65%), black 15%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.2) 75%, transparent 100%);
-  mask-image: radial-gradient(circle 620px at var(--cursor-x, 50%) var(--cursor-y, 65%), black 15%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.2) 75%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle 480px at var(--cursor-x, 50%) var(--cursor-y, 65%), black 15%, rgba(0, 0, 0, 0.55) 50%, transparent 85%);
+  mask-image: radial-gradient(circle 480px at var(--cursor-x, 50%) var(--cursor-y, 65%), black 15%, rgba(0, 0, 0, 0.55) 50%, transparent 85%);
   transition: opacity 0.35s ease;
   will-change: opacity, -webkit-mask-image, mask-image;
   z-index: 1;
@@ -736,10 +739,10 @@ h6 {
 
 [data-theme="dark"] .ultravibe-torch-shine {
   background-image: url('../assets/ultravibe-20-dark.webp');
-  filter: brightness(1.15) saturate(1.15) drop-shadow(0 0 25px rgba(144, 169, 85, 0.35));
+  filter: brightness(1.25) saturate(1.2) drop-shadow(0 0 30px rgba(144, 169, 85, 0.45));
 }
 
-/* When cursor hovers over hero, only the cursor torch spot illuminates the arc */
+/* When cursor hovers over hero, the cursor torch spot illuminates the arc */
 .hero-section:hover .ultravibe-torch-shine {
   opacity: 1;
 }
@@ -747,14 +750,14 @@ h6 {
 /* Interactive Cursor Horizon Flare */
 .ultravibe-cursor-shine {
   position: absolute;
-  top: var(--cursor-y, 65%);
-  left: var(--cursor-x, 50%);
-  width: 780px;
-  height: 520px;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  width: 500px;
+  height: 350px;
+  transform: translate3d(calc(var(--cursor-x, 50vw) - 250px), calc(var(--cursor-y, 50vh) - 175px), 0);
   border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(144, 169, 85, 0.32) 0%, rgba(49, 87, 44, 0.12) 35%, transparent 70%);
-  filter: blur(40px);
+  background: radial-gradient(ellipse at center, rgba(236, 243, 158, 0.25) 0%, rgba(144, 169, 85, 0.12) 40%, transparent 70%);
+  filter: blur(35px);
   mix-blend-mode: screen;
   opacity: 0;
   pointer-events: none;
@@ -1652,14 +1655,17 @@ h6 {
   border: 1px solid rgba(79, 119, 45, 0.45) !important;
   box-shadow: 0 10px 28px rgba(19, 42, 19, 0.25) !important;
 }
+
 .stats-grid .stat-box:nth-child(1) .stat-number {
   background: none !important;
   -webkit-text-fill-color: #FFFFFF !important;
   color: #FFFFFF !important;
 }
+
 .stats-grid .stat-box:nth-child(1) .stat-label {
   color: rgba(255, 255, 255, 0.88) !important;
 }
+
 .stats-grid .stat-box:nth-child(1) .stat-bar {
   background: var(--c-lemon-cream) !important;
   box-shadow: 0 0 10px rgba(236, 243, 158, 0.5) !important;
@@ -1670,14 +1676,17 @@ h6 {
   border: 1px solid rgba(144, 169, 85, 0.50) !important;
   box-shadow: 0 10px 28px rgba(79, 119, 45, 0.28) !important;
 }
+
 .stats-grid .stat-box:nth-child(2) .stat-number {
   background: none !important;
   -webkit-text-fill-color: #FFFFFF !important;
   color: #FFFFFF !important;
 }
+
 .stats-grid .stat-box:nth-child(2) .stat-label {
   color: rgba(255, 255, 255, 0.92) !important;
 }
+
 .stats-grid .stat-box:nth-child(2) .stat-bar {
   background: #FFFFFF !important;
 }
@@ -1687,14 +1696,17 @@ h6 {
   border: 1px solid rgba(236, 243, 158, 0.90) !important;
   box-shadow: 0 14px 34px rgba(236, 243, 158, 0.38) !important;
 }
+
 .stats-grid .stat-box:nth-child(3) .stat-number {
   background: none !important;
   -webkit-text-fill-color: #132A13 !important;
   color: #132A13 !important;
 }
+
 .stats-grid .stat-box:nth-child(3) .stat-label {
   color: #1E3F20 !important;
 }
+
 .stats-grid .stat-box:nth-child(3) .stat-bar {
   background: #132A13 !important;
 }
@@ -1704,14 +1716,17 @@ h6 {
   border: 1px solid rgba(144, 169, 85, 0.50) !important;
   box-shadow: 0 10px 28px rgba(144, 169, 85, 0.28) !important;
 }
+
 .stats-grid .stat-box:nth-child(4) .stat-number {
   background: none !important;
   -webkit-text-fill-color: #FFFFFF !important;
   color: #FFFFFF !important;
 }
+
 .stats-grid .stat-box:nth-child(4) .stat-label {
   color: rgba(255, 255, 255, 0.92) !important;
 }
+
 .stats-grid .stat-box:nth-child(4) .stat-bar {
   background: var(--c-lemon-cream) !important;
 }
@@ -3991,33 +4006,31 @@ h6 {
   z-index: 10 !important;
 }
 
-/* Celestial Green Arc (Strictly Exclusive to Landing Page Hero): Completely hidden at rest, smoothly comes out on hover */
+/* Celestial Green Arc (Strictly Exclusive to Landing Page Hero): Completely hidden at rest, smoothly comes out on hover without transform jitter */
 .hero-section .ultravibe-bg-wrapper {
   opacity: 0 !important;
-  transform: translateY(40px) scale(0.96) !important;
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1) !important;
   pointer-events: none !important;
 }
 
 .hero-section:hover .ultravibe-bg-wrapper {
   opacity: 1 !important;
-  transform: translateY(0) scale(1) !important;
 }
 
 .hero-section .ultravibe-gradient-art {
   background-image: url('../assets/ultravibe-20-dark.webp') !important;
   opacity: 0 !important;
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .hero-section:hover .ultravibe-gradient-art {
-  opacity: 0.75 !important;
+  opacity: 0.85 !important;
 }
 
 .hero-section .ultravibe-torch-shine {
   background-image: url('../assets/ultravibe-20-dark.webp') !important;
   opacity: 0 !important;
-  transition: opacity 0.4s ease !important;
+  transition: opacity 0.35s ease !important;
 }
 
 .hero-section:hover .ultravibe-torch-shine {
@@ -4026,11 +4039,11 @@ h6 {
 
 .hero-section .ultravibe-cursor-shine {
   opacity: 0 !important;
-  transition: opacity 0.4s ease !important;
+  transition: opacity 0.35s ease !important;
 }
 
 .hero-section:hover .ultravibe-cursor-shine {
-  opacity: 0.8 !important;
+  opacity: 0.85 !important;
 }
 
 /* Subpage heroes: Strictly NO green arc */
@@ -4058,10 +4071,10 @@ h6 {
   opacity: 0.25 !important;
 }
 
-/* 2. Transition 1: How We Help Section (Deep Pitch Black flowing into Rich Obsidian Forest - Grids & lines emerge gradually as black dims) */
+/* 2. Transition 1: How We Help Section (Pitch Black gradually tones down through lush forest green to Creamish Linen #FAF9F3) */
 .how-we-help-section {
   padding: 96px 0;
-  background: linear-gradient(180deg, #000000 0%, rgba(8, 17, 9, 0.96) 18%, rgba(15, 28, 16, 0.80) 55%, rgba(19, 36, 20, 0.65) 100%) !important;
+  background: linear-gradient(180deg, #000000 0%, #09130A 16%, #173118 36%, #365A29 58%, #8E9F76 80%, #FAF9F3 100%) !important;
   position: relative !important;
   z-index: 2 !important;
 }
@@ -4227,16 +4240,15 @@ h6 {
   transform: scale(1.35) translate(-10px, 10px);
 }
 
-/* 3. Services Carousel & Proven Metrics in Rich Obsidian Slate */
+/* 3. Middle Zone: #FAF9F3 Creamish Linen Canvas (Services Carousel & Proven Metrics) */
 .services-section {
   padding: 96px 0;
-  background: linear-gradient(180deg, rgba(19, 36, 20, 0.65) 0%, rgba(13, 24, 14, 0.60) 50%, rgba(16, 28, 17, 0.65) 100%) !important;
+  background-color: #FAF9F3 !important;
   position: relative !important;
   z-index: 2 !important;
 }
 
-/* Universal High-End Badges & Section Tags */
-.section-tag,
+/* Universal Section Tags on #FAF9F3 Linen Canvas */
 .services-section .section-tag,
 .expertise-section .section-tag,
 .industries-section .section-tag,
@@ -4245,7 +4257,25 @@ h6 {
 .pricing-section .section-tag,
 .contact-section .section-tag,
 .careers-section .section-tag,
-.subpage-light-section .section-tag,
+.subpage-light-section .section-tag {
+  display: inline-flex !important;
+  align-items: center !important;
+  font-size: 0.84rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: #132A13 !important;
+  background: rgba(19, 42, 19, 0.08) !important;
+  border: 1.5px solid rgba(19, 42, 19, 0.30) !important;
+  padding: 6px 18px !important;
+  border-radius: var(--radius-full) !important;
+  box-shadow: 0 2px 10px rgba(19, 42, 19, 0.08) !important;
+  margin-bottom: 16px !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* Section Tags & Badges on Dark Background Sections */
 .hero-section .badge-pill,
 .subpage-hero .badge-pill,
 .subpage-transition-section .section-tag,
@@ -4281,77 +4311,76 @@ h6 {
 }
 
 .services-section .section-title {
-  color: #FFFFFF !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
+  color: #132A13 !important;
+  text-shadow: none !important;
 }
 
 .services-section .section-title .text-brand {
-  color: #ECF39E !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
+  color: #31572C !important;
+  text-shadow: none !important;
 }
 
 .services-section .section-subtitle {
-  color: #D6E4D3 !important;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+  color: #40523D !important;
+  text-shadow: none !important;
 }
 
 .services-section .carousel-btn {
-  background: rgba(19, 42, 19, 0.85) !important;
+  background: #132A13 !important;
   border: 1px solid rgba(144, 169, 85, 0.35) !important;
   color: #ECF39E !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 4px 16px rgba(19, 42, 19, 0.18) !important;
 }
 
 .services-section .carousel-btn:hover:not(:disabled) {
   background: #31572C !important;
   color: #FFFFFF !important;
-  border-color: #ECF39E !important;
-  box-shadow: 0 6px 22px rgba(236, 243, 158, 0.3) !important;
+  box-shadow: 0 6px 22px rgba(19, 42, 19, 0.28) !important;
 }
 
 .expertise-section {
   padding: 88px 0;
-  background: rgba(13, 23, 14, 0.65) !important;
+  background-color: #FAF9F3 !important;
   position: relative !important;
   z-index: 2 !important;
 }
 
 .expertise-section .section-title {
-  color: #FFFFFF !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
+  color: #132A13 !important;
+  text-shadow: none !important;
 }
 
 .expertise-section .section-title .text-brand {
-  color: #ECF39E !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
+  color: #31572C !important;
+  text-shadow: none !important;
 }
 
 .expertise-section .section-subtitle {
-  color: #D6E4D3 !important;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+  color: #40523D !important;
+  text-shadow: none !important;
 }
 
-/* 4. Industries Section (Whom We Serve) in Obsidian Forest */
+/* 4. Transition 2: Whom We Serve (#FAF9F3 gradually deepens back into Forest Green) */
 .industries-section {
   padding: 96px 0;
-  background: linear-gradient(180deg, rgba(13, 23, 14, 0.65) 0%, rgba(17, 32, 18, 0.65) 40%, rgba(19, 42, 19, 0.65) 100%) !important;
+  background: linear-gradient(180deg, #FAF9F3 0%, #D7E2CD 20%, #768F55 45%, #2D5028 75%, #132A13 100%) !important;
   position: relative !important;
   z-index: 2 !important;
 }
 
 .industries-section .section-title {
-  color: #FFFFFF !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
+  color: #132A13 !important;
+  text-shadow: none !important;
 }
 
 .industries-section .section-title .text-brand {
-  color: #ECF39E !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
+  color: #31572C !important;
+  text-shadow: none !important;
 }
 
 .industries-section .section-subtitle {
-  color: #D6E4D3 !important;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+  color: #40523D !important;
+  text-shadow: none !important;
 }
 
 .industries-section .industry-tab-btn {
@@ -4430,7 +4459,7 @@ h6 {
 /* 5. Lower Zone: Deep Dark Green (Tech Platforms, Team, & FAQ) */
 .tech-solar-section {
   padding: 100px 0 90px;
-  background: linear-gradient(180deg, rgba(19, 42, 19, 0.65) 0%, rgba(17, 35, 17, 0.65) 100%) !important;
+  background: #132A13 !important;
   color: #FFFFFF !important;
   position: relative !important;
   z-index: 2 !important;
@@ -4485,7 +4514,7 @@ h6 {
 
 .team-section {
   padding: 96px 0;
-  background: linear-gradient(180deg, rgba(19, 42, 19, 0.60) 0%, rgba(16, 36, 17, 0.65) 100%) !important;
+  background: linear-gradient(180deg, #132A13 0%, #102411 100%) !important;
   color: #FFFFFF !important;
   position: relative !important;
   z-index: 2 !important;
@@ -4526,7 +4555,7 @@ h6 {
 
 .faq-section {
   padding: 96px 0;
-  background: linear-gradient(180deg, rgba(16, 36, 17, 0.65) 0%, rgba(13, 28, 14, 0.75) 50%, rgba(7, 17, 7, 0.85) 100%) !important;
+  background: linear-gradient(180deg, #102411 0%, #0D1C0E 50%, #071107 100%) !important;
   color: #FFFFFF !important;
   position: relative !important;
   z-index: 2 !important;
@@ -4576,7 +4605,7 @@ h6 {
 /* 6. Final Zone: Transition to Pitch Black at the End of the Page - Grids & lines fade out into pitch black */
 .cta-banner-section {
   padding: 80px 24px;
-  background: linear-gradient(180deg, rgba(7, 17, 7, 0.70) 0%, rgba(3, 8, 3, 0.94) 55%, #000000 100%) !important;
+  background: linear-gradient(180deg, #071107 0%, #030803 50%, #000000 100%) !important;
   position: relative !important;
   z-index: 2 !important;
 }
@@ -4614,10 +4643,10 @@ h6 {
 
 /* 7. Subpage Atmospheric Architecture & Complete Readability across Services, About, Careers, Contact */
 
-/* Subpage Transition Section: Smooth Flow from Pitch Black into Dark Forest Obsidian - Grids & lines emerge gradually as black dims */
+/* Subpage Transition Section: Smooth Flow from Pitch Black into Linen */
 .subpage-transition-section {
-  background: linear-gradient(180deg, #000000 0%, rgba(8, 17, 9, 0.96) 18%, rgba(15, 28, 16, 0.80) 55%, rgba(19, 36, 20, 0.65) 100%) !important;
-  position: relative !important;
+  background: linear-gradient(180deg, #000000 0%, #09130A 16%, #173118 36%, #365A29 58%, #8E9F76 80%, #FAF9F3 100%) !important;
+  position: relative;
   z-index: 2 !important;
   width: 100%;
 }
@@ -4755,15 +4784,15 @@ h6 {
   transform: translateY(-2px);
 }
 
-/* Subpage Obsidian Dark Sections */
+/* Subpage Light Sections (Linen Architecture matching Landing Page) */
 .subpage-light-section,
 .content-section,
 .about-mission-section,
 .pricing-section,
 .contact-section,
 .careers-section {
-  background: rgba(14, 18, 15, 0.70) !important;
-  position: relative !important;
+  background-color: #FAF9F3 !important;
+  position: relative;
   z-index: 2 !important;
   width: 100%;
 }
@@ -4779,14 +4808,10 @@ h6 {
 }
 
 .subpage-light-section .section-tag {
-  color: #ECF39E !important;
-  background: rgba(10, 20, 11, 0.90) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border: 1.5px solid rgba(236, 243, 158, 0.45) !important;
-  padding: 6px 18px !important;
-  border-radius: var(--radius-full) !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.65), 0 0 12px rgba(236, 243, 158, 0.18) !important;
+  color: #132A13 !important;
+  background: rgba(19, 42, 19, 0.08) !important;
+  border: 1.5px solid rgba(19, 42, 19, 0.28) !important;
+  box-shadow: 0 2px 8px rgba(19, 42, 19, 0.06) !important;
   position: relative !important;
   z-index: 10 !important;
 }
@@ -4794,37 +4819,35 @@ h6 {
 .subpage-light-section .section-title,
 .content-section .section-title,
 .pricing-section .section-title {
-  color: #FFFFFF !important;
+  color: #132A13 !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
+  text-shadow: none !important;
 }
 
 .subpage-light-section .section-title .text-brand {
-  color: #ECF39E !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
+  color: #31572C !important;
+  text-shadow: none !important;
 }
 
 .subpage-light-section .section-subtitle,
 .subpage-light-section p,
 .content-section p,
 .pricing-section p {
-  color: #CAD5C5 !important;
+  color: #40523D !important;
   position: relative !important;
   z-index: 10 !important;
+  text-shadow: none !important;
 }
 
-/* Subpage Cards in Obsidian Glass */
+/* Light Section Cards (Crisp High-End Corporate Cards) */
 .about-values-grid>div,
 .careers-culture-grid .spotlight-card,
 .process-flow-container {
-  background-color: #0b140d !important;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(79, 119, 45, 0.35) 0%, transparent 65%),
-    linear-gradient(165deg, rgba(18, 28, 19, 0.98) 0%, rgba(10, 17, 11, 1) 100%) !important;
-  border: 1px solid rgba(144, 169, 85, 0.32) !important;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(19, 42, 19, 0.12) !important;
   border-radius: var(--radius-lg) !important;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7), 0 0 25px rgba(144, 169, 85, 0.15) !important;
+  box-shadow: 0 4px 18px rgba(19, 42, 19, 0.06) !important;
   transition: var(--transition) !important;
   position: relative !important;
   z-index: 10 !important;
@@ -4832,41 +4855,42 @@ h6 {
 
 .about-values-grid>div:hover,
 .careers-culture-grid .spotlight-card:hover {
-  border-color: rgba(236, 243, 158, 0.65) !important;
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.85), 0 0 35px rgba(144, 169, 85, 0.35) !important;
+  border-color: #31572C !important;
+  box-shadow: 0 8px 24px rgba(19, 42, 19, 0.12) !important;
   transform: translateY(-4px) !important;
 }
 
 .about-values-grid h3,
 .careers-culture-grid h3,
 .process-flow-container h4 {
-  color: #FFFFFF !important;
+  color: #132A13 !important;
   font-weight: 700 !important;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8) !important;
+  text-shadow: none !important;
 }
 
 .about-values-grid p,
 .careers-culture-grid p,
 .process-flow-container p {
-  color: #CAD5C5 !important;
+  color: #40523D !important;
   line-height: 1.65 !important;
+  text-shadow: none !important;
 }
 
 .careers-culture-grid .service-icon-bubble {
-  background: rgba(236, 243, 158, 0.15) !important;
-  border: 1px solid rgba(236, 243, 158, 0.35) !important;
-  color: #ECF39E !important;
+  background: rgba(49, 87, 44, 0.08) !important;
+  border: 1px solid rgba(49, 87, 44, 0.20) !important;
+  color: #31572C !important;
 }
 
 .process-flow-container .services-process-grid>div {
-  background: rgba(22, 34, 22, 0.85) !important;
-  border: 1px solid rgba(144, 169, 85, 0.25) !important;
+  background: #FAF9F3 !important;
+  border: 1px solid rgba(19, 42, 19, 0.10) !important;
 }
 
 .process-flow-container .services-process-grid h4 {
-  color: #FFFFFF !important;
+  color: #132A13 !important;
 }
 
 .process-flow-container .services-process-grid p {
-  color: #CAD5C5 !important;
+  color: #40523D !important;
 }

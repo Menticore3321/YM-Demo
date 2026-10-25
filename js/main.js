@@ -879,10 +879,7 @@ function initHeroParallax() {
         spotlight.style.transform = `translateX(calc(-50% + ${x * 40}px)) translateY(${y * 30}px)`;
       }
 
-      if (ultravibeWrapper) {
-        ultravibeWrapper.style.transform = `translate3d(${-x * 22}px, ${-y * 14}px, 0)`;
-      }
-
+      // ultravibeWrapper remains fixed at center bottom to ensure cursor spotlight coordinates stay 100% aligned with the arc art
       if (auroraBeam) {
         auroraBeam.style.transform = `translate3d(${x * 35}px, ${y * 18}px, 0)`;
       }
@@ -896,9 +893,6 @@ function initHeroParallax() {
     hero.addEventListener('mouseleave', () => {
       if (spotlight) {
         spotlight.style.transform = 'translateX(-50%) translateY(0)';
-      }
-      if (ultravibeWrapper) {
-        ultravibeWrapper.style.transform = '';
       }
       if (auroraBeam) {
         auroraBeam.style.transform = '';
