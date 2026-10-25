@@ -1010,18 +1010,26 @@ function initBrandIntro() {
   // NOTICE: Curtain stays pitch dark so user clearly watches the logo travel and dock into navbar
   setTimeout(() => {
     const targetRect = navBrand.getBoundingClientRect();
-    const startRect = stage.getBoundingClientRect();
+    const currentRect = stage.getBoundingClientRect();
 
     if (targetRect.width > 0 && targetRect.height > 0) {
-      // Calculate exact distance from current center position to target navbar position
-      const deltaX = targetRect.left - startRect.left;
-      const deltaY = targetRect.top - startRect.top;
-      // Calculate scale relative to target height
-      const scale = targetRect.height / startRect.height;
-
+      // Lock stage to exact current rendered screen coordinates
+      stage.style.position = 'fixed';
+      stage.style.left = `${currentRect.left}px`;
+      stage.style.top = `${currentRect.top}px`;
+      stage.style.margin = '0';
       stage.style.transformOrigin = '0 0';
+      stage.style.transform = 'scale(1.4)';
+
+      // Force browser reflow to register fixed coordinates
+      void stage.offsetWidth;
+
+      // Animate smoothly to target navbar position and scale down to 1.0
+      const deltaX = targetRect.left - currentRect.left;
+      const deltaY = targetRect.top - currentRect.top;
+
       stage.style.transition = 'transform 1.05s cubic-bezier(0.16, 1, 0.3, 1)';
-      stage.style.transform = `translate3d(${deltaX}px, ${deltaY}px, 0) scale(${scale})`;
+      stage.style.transform = `translate3d(${deltaX}px, ${deltaY}px, 0) scale(1)`;
     } else {
       stage.style.transition = 'transform 0.9s ease, opacity 0.8s ease';
       stage.style.transform = 'translate3d(0, -120px, 0) scale(0.7)';
@@ -1035,17 +1043,17 @@ function initBrandIntro() {
     stage.classList.add('is-docked');
     document.body.classList.add('intro-docked');
 
-    // Fade out ambient aura and dark curtain slowly (1.35s)
+    // Fade out ambient aura and dark curtain smoothly (1.25s)
     if (ambient) {
-      ambient.style.transition = 'opacity 0.8s ease';
+      ambient.style.transition = 'opacity 0.7s ease';
       ambient.style.opacity = '0';
     }
-    curtain.style.transition = 'opacity 1.35s cubic-bezier(0.16, 1, 0.3, 1)';
+    curtain.style.transition = 'opacity 1.25s cubic-bezier(0.16, 1, 0.3, 1)';
     curtain.style.opacity = '0';
   }, 2950);
 
-  // Step 5: Clean hand-off after site has fully revealed (4300ms)
-  setTimeout(completeIntro, 4300);
+  // Step 5: Clean hand-off after site has fully revealed (4200ms)
+  setTimeout(completeIntro, 4200);
 }
 
 
