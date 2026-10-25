@@ -191,10 +191,12 @@ section,
     opacity: 0.70;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.95;
     transform: scale(1.006);
   }
+
   100% {
     opacity: 0.70;
     transform: scale(1);
@@ -4573,18 +4575,17 @@ section {
 /* Smooth Seamless Fade Transition when Team Section follows a Light Linen Section (e.g. on about.html) */
 #team.team-section,
 .team-section.has-linen-transition,
-.subpage-light-section + .team-section,
-.subpage-light-section + .divider + .team-section {
+.subpage-light-section+.team-section,
+.subpage-light-section+.divider+.team-section {
   padding: 140px 0 96px !important;
-  background: linear-gradient(180deg, 
-    rgba(250, 249, 243, 0.92) 0px, 
-    rgba(225, 233, 215, 0.86) 40px, 
-    rgba(165, 188, 140, 0.82) 90px, 
-    rgba(80, 115, 65, 0.85) 150px, 
-    rgba(32, 60, 30, 0.88) 210px, 
-    rgba(19, 42, 19, 0.90) 280px, 
-    rgba(16, 36, 17, 0.92) 100%
-  ) !important;
+  background: linear-gradient(180deg,
+      rgba(250, 249, 243, 0.92) 0px,
+      rgba(225, 233, 215, 0.86) 40px,
+      rgba(165, 188, 140, 0.82) 90px,
+      rgba(80, 115, 65, 0.85) 150px,
+      rgba(32, 60, 30, 0.88) 210px,
+      rgba(19, 42, 19, 0.90) 280px,
+      rgba(16, 36, 17, 0.92) 100%) !important;
 }
 
 .team-section .container,
@@ -4679,20 +4680,19 @@ section {
 
 /* Smooth Seamless Fade Transition when CTA Banner Section follows a Light Linen Section */
 .cta-banner-section.from-linen,
-.subpage-light-section + .cta-banner-section,
-.subpage-light-section + .divider + .cta-banner-section,
-.subpage-transition-section + .cta-banner-section,
-.subpage-transition-section + .divider + .cta-banner-section {
+.subpage-light-section+.cta-banner-section,
+.subpage-light-section+.divider+.cta-banner-section,
+.subpage-transition-section+.cta-banner-section,
+.subpage-transition-section+.divider+.cta-banner-section {
   padding: 120px 24px 80px !important;
-  background: linear-gradient(180deg, 
-    rgba(250, 249, 243, 0.92) 0%, 
-    rgba(215, 226, 205, 0.85) 15%, 
-    rgba(118, 143, 85, 0.80) 32%, 
-    rgba(45, 80, 40, 0.84) 52%, 
-    rgba(19, 42, 19, 0.90) 72%, 
-    rgba(7, 17, 7, 0.96) 88%, 
-    #000000 100%
-  ) !important;
+  background: linear-gradient(180deg,
+      rgba(250, 249, 243, 0.92) 0%,
+      rgba(215, 226, 205, 0.85) 15%,
+      rgba(118, 143, 85, 0.80) 32%,
+      rgba(45, 80, 40, 0.84) 52%,
+      rgba(19, 42, 19, 0.90) 72%,
+      rgba(7, 17, 7, 0.96) 88%,
+      #000000 100%) !important;
 }
 
 .site-footer {
@@ -4981,4 +4981,49 @@ section {
 
 .process-flow-container .services-process-grid p {
   color: #40523D !important;
+}
+
+/* Financial Lifecycle Accuracy Stat Banner */
+.process-stat-banner {
+  margin-top: 40px !important;
+  padding: 20px 28px !important;
+  background: linear-gradient(135deg, rgba(236, 243, 158, 0.35) 0%, rgba(144, 169, 85, 0.22) 100%) !important;
+  border: 1.5px solid rgba(49, 87, 44, 0.28) !important;
+  border-radius: var(--radius-lg) !important;
+  text-align: center !important;
+  box-shadow: 0 4px 18px rgba(19, 42, 19, 0.05) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+}
+
+.process-stat-banner p {
+  font-size: 1.05rem !important;
+  color: #132A13 !important;
+  font-weight: 600 !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+  text-shadow: none !important;
+}
+
+.process-stat-banner .stat-highlight {
+  color: #1A3817 !important;
+  font-weight: 800 !important;
+  font-size: 1.12rem !important;
+}
+
+.process-stat-banner .stat-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #31572C;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: bold;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(49, 87, 44, 0.25);
 }
