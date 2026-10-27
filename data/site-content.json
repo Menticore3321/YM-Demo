@@ -1,13 +1,19 @@
 {
   "brand": {
     "name": "YoungMark Global Advisory",
-    "title": "YoungMark",
+    "title": "YOUNGMARK",
     "subtitle": "Global Advisory",
     "tagline": "Strategic Financial Architecture & Fiduciary Precision",
     "logoUrl": "assets/Logo.png",
     "faviconUrl": "assets/Logo.png",
     "headerCtaText": "Schedule Discovery Call",
-    "headerCtaLink": "contact.html"
+    "headerCtaLink": "contact.html",
+    "navLinks": [
+      { "label": "Services", "url": "services.html" },
+      { "label": "About", "url": "about.html" },
+      { "label": "Careers", "url": "careers.html" },
+      { "label": "Contact", "url": "contact.html" }
+    ]
   },
   "theme": {
     "cForestDark": "#132A13",
@@ -18,10 +24,15 @@
     "cGoldGlow": "#F3CA6D",
     "bgDark": "#0B110C",
     "bgSurface": "#141D15",
+    "bgCard": "#141E15",
     "gridDotColor": "#D4A017",
     "gridLineColor": "#6B500F",
     "gridSpotlightDot": "#E5B020",
-    "gridOpacity": 0.80
+    "gridOpacity": 0.80,
+    "heroOrb1": "rgba(79, 119, 45, 0.35)",
+    "heroOrb2": "rgba(236, 243, 158, 0.30)",
+    "textPrimary": "#FFFFFF",
+    "textSecondary": "#D6E3D4"
   },
   "hero": {
     "badgeText": "Institutional Advisory & Outsourced CFO",
@@ -35,69 +46,60 @@
     "secondaryCtaLink": "contact.html",
     "statBanner": "✦ 99.8% Financial Precision: Guaranteed audit-ready accuracy across all ledger postings."
   },
-  "metrics": [
-    {
-      "id": "metric-1",
-      "number": 1.4,
-      "prefix": "$",
-      "suffix": "B+",
-      "label": "Transaction Volume Reconciled",
-      "subtext": "Managed across private equity, venture portfolios, and corporate accounts."
-    },
-    {
-      "id": "metric-2",
-      "number": 99.8,
-      "prefix": "",
-      "suffix": "%",
-      "label": "Audit & Statutory Compliance Rate",
-      "subtext": "Zero material adjustments across external Big Four and regulatory audits."
-    },
-    {
-      "id": "metric-3",
-      "number": 48,
-      "prefix": "",
-      "suffix": " Hrs",
-      "label": "Month-End Close SLA",
-      "subtext": "Guaranteed 48-hour delivery of consolidated board-ready management packs."
-    },
-    {
-      "id": "metric-4",
-      "number": 180,
-      "prefix": "",
-      "suffix": "+",
-      "label": "Enterprise & Portfolio Clients",
-      "subtext": "Global footprint spanning the Americas, EMEA, and Asia-Pacific."
-    }
-  ],
-  "processAccuracyStat": {
-    "text": "Institutional Governance SLA: Zero material adjustments across external Big Four & statutory audits. Guaranteed 48-hour delivery of consolidated board-ready financial intelligence packs."
+  "howWeHelp": {
+    "sectionTag": "Operational Pillars",
+    "sectionTitle": "Architecting Institutional Financial Resilience",
+    "sectionSubtitle": "A structured, three-phase advisory framework engineered to transform complex operational bookkeeping into predictive strategic growth.",
+    "pillars": [
+      {
+        "id": "help-1",
+        "tabLabel": "Cleanse & Reconcile",
+        "title": "CLEANSE & RECONCILE",
+        "description": "We deploy rigorous audit checks and transaction reconciliation processes to resolve legacy accounting discrepancies. Our team restructures your chart of accounts, clears unmapped ledger entries, and rectifies prior-period variances for pristine audit readiness.",
+        "checklist": [
+          "Multi-year historical ledger catching up & clearing",
+          "Chart of Accounts reorganization & sub-ledger alignment",
+          "Bank, credit card & escrow account reconciliations"
+        ],
+        "visualTitle": "Ledger Integrity Status",
+        "visualBadge": "100% RECONCILED",
+        "visualDesc": "Unreconciled balances: 0 | Discrepancies cleared: 100% | Statutory compliance: Verified"
+      },
+      {
+        "id": "help-2",
+        "tabLabel": "Sustain & Comply",
+        "title": "SUSTAIN & COMPLY",
+        "description": "Continuous financial stewardship that eliminates month-end friction. Our scheduled daily ledger posting, accounts payable/receivable management, and statutory tax filings preserve financial accuracy all year round.",
+        "checklist": [
+          "Daily transaction ledgering & vendor matching",
+          "Fast 5-day month-end financial close schedule",
+          "Timely tax filing, GST/TDS/1099 compliance & payroll journals"
+        ],
+        "visualTitle": "Accounting Rhythm",
+        "visualBadge": "DAILY DISCIPLINE",
+        "visualDesc": "Reliable financial workflows executed by certified accounting professionals."
+      },
+      {
+        "id": "help-3",
+        "tabLabel": "Strategize & Scale",
+        "title": "STRATEGIZE & SCALE",
+        "description": "We turn spotless financial records into your primary growth driver. Our fractional CFOs build dynamic cash flow forecasts, optimize capital structure, model unit economics, and prepare compelling board and investor presentations.",
+        "checklist": [
+          "3-Statement financial projections & dynamic scenario models",
+          "Working capital optimization & treasury modeling",
+          "Capital raise preparation, M&A due diligence & valuation decks"
+        ],
+        "visualTitle": "CFO Strategic Impact",
+        "visualBadge": "EXECUTIVE VALUE",
+        "visualDesc": "Actionable C-suite financial intelligence driving calculated capital bets."
+      }
+    ]
   },
-  "howWeHelp": [
-    {
-      "id": "help-1",
-      "number": "01",
-      "title": "Institutional Financial Foundations",
-      "description": "Establish bulletproof chart of accounts, automated ingestion feeds, and GAAP/IFRS compliant transaction workflows from day one."
-    },
-    {
-      "id": "help-2",
-      "number": "02",
-      "title": "Fractional CFO & Capital Strategy",
-      "description": "Access elite executive financial steering, dynamic 3-statement modeling, capital allocation guidance, and investor board representations."
-    },
-    {
-      "id": "help-3",
-      "number": "03",
-      "title": "Predictive MIS & Data Cockpits",
-      "description": "Transform static spreadsheets into real-time business intelligence cockpits with unit economics, cash burn runways, and margin telemetry."
-    },
-    {
-      "id": "help-4",
-      "number": "04",
-      "title": "Global Tax Governance & Filing",
-      "description": "Navigate multi-jurisdictional compliance, statutory filings, cross-border transfer pricing, and proactive fiscal liability mitigation."
-    }
-  ],
+  "servicesSection": {
+    "sectionTag": "Finance Practices",
+    "sectionTitle": "Our Financial Solutions",
+    "sectionSubtitle": "Comprehensive corporate financial services and fractional executive advisory."
+  },
   "services": [
     {
       "id": "service-1",
@@ -140,15 +142,15 @@
     },
     {
       "id": "service-4",
-      "category": "Statutory Governance",
-      "title": "Strategic Tax Governance & Compliance",
-      "brief": "Corporate direct and indirect tax structuring, GST/VAT reconciliations, and cross-border statutory compliance.",
+      "category": "Treasury Operations",
+      "title": "Accounts Payable & Receivable",
+      "brief": "Systematized vendor disbursements, two-way invoice matching, billing dispute resolution, and active customer collection management.",
       "deliverables": [
-        "Corporate Income Tax Preparation & Advance Filing",
-        "Multi-State GST, Sales Tax & VAT Reconciliations",
-        "International Transfer Pricing Documentation",
-        "R&D Tax Credit & Incentive Capitalization",
-        "Statutory Audit Defense Binder Support"
+        "Automated 2-Way & 3-Way Invoice Matching",
+        "Vendor Payment Scheduling & Early Pay Discount Capture",
+        "Customer Aging Invoicing & Proactive Collections",
+        "1099 Contractor Compliance & Withholding Filing",
+        "Cash Inflow/Outflow Weekly Runway Updates"
       ]
     },
     {
@@ -166,52 +168,413 @@
     },
     {
       "id": "service-6",
-      "category": "Specialized Funds",
-      "title": "Real Estate & Fund Accounting",
-      "brief": "Specialized accounting architecture for real estate syndicates, property portfolios, and private equity funds.",
+      "category": "Taxation & Regulatory",
+      "title": "Tax Strategy & Compliance",
+      "brief": "Proactive corporate tax optimization, compliant filings, and statutory audit representation.",
       "deliverables": [
-        "Capital Call & Distribution Waterfall Calculation",
-        "Property-Level P&L and Rent Roll Reconciliations",
-        "CAM (Common Area Maintenance) Recovery Audits",
-        "Fund NAV (Net Asset Value) Calculations",
-        "Investor Capital Account Statement Distribution"
+        "Corporate Income Tax Preparation & Advance Filing",
+        "Multi-State GST, Sales Tax & VAT Reconciliations",
+        "International Transfer Pricing Documentation",
+        "R&D Tax Credit & Incentive Capitalization",
+        "Statutory Audit Defense Binder Support"
+      ]
+    },
+    {
+      "id": "service-7",
+      "category": "Sector Finance",
+      "title": "Real Estate & Fund Accounting",
+      "brief": "Dedicated Yardi financial oversight, CAM expense reconciliations, and investor distribution modeling.",
+      "deliverables": [
+        "Yardi & Real Estate Financial Ledger Oversight",
+        "CAM & Operating Expense Pooling Reconciliations",
+        "Tenant Rent Roll & Escrow Management",
+        "Fund Level Investor Distribution Schedules",
+        "Property Acquisition Due Diligence Audits"
+      ]
+    },
+    {
+      "id": "service-8",
+      "category": "Assurance & Governance",
+      "title": "Audit Readiness & Controls",
+      "brief": "Rigorous internal controls design, SOP standardization, and comprehensive audit schedule preparation.",
+      "deliverables": [
+        "Internal Financial Control (IFC) Frameworks",
+        "Standard Operating Procedures (SOP) Formulation",
+        "Audit Trail Verification & Balance Sheet Binders",
+        "Risk Assessment & Fraud Mitigation Policies",
+        "Coordination with Statutory Audit Teams"
       ]
     }
   ],
+  "metricsSection": {
+    "sectionTag": "Fiduciary Track Record",
+    "sectionTitle": "Our Proven Metrics",
+    "sectionSubtitle": "A battle-tested financial advisory cohort dedicated to eliminating accounting inaccuracies, safeguarding compliance, and unlocking capital efficiency."
+  },
+  "metrics": [
+    {
+      "id": "metric-1",
+      "number": 150,
+      "prefix": "",
+      "suffix": "+",
+      "label": "Clients Advised Worldwide",
+      "subtext": "Managed across private equity, venture portfolios, and corporate accounts."
+    },
+    {
+      "id": "metric-2",
+      "number": 45,
+      "prefix": "",
+      "suffix": "+",
+      "label": "Chartered Accountants & Advisors",
+      "subtext": "Elite cohort of senior CPAs, controllers, and forensic modelers."
+    },
+    {
+      "id": "metric-3",
+      "number": 12,
+      "prefix": "",
+      "suffix": "+",
+      "label": "Years of Advisory Practice",
+      "subtext": "Institutional excellence guiding high-growth mid-market enterprises."
+    },
+    {
+      "id": "metric-4",
+      "number": 350,
+      "prefix": "",
+      "suffix": "k+",
+      "label": "Billable Advisory Hours",
+      "subtext": "Flawless ledger execution, audit defenses, and strategic board representations."
+    }
+  ],
+  "processAccuracyStat": {
+    "text": "Institutional Governance SLA: Zero material adjustments across external Big Four & statutory audits. Guaranteed 48-hour delivery of consolidated board-ready financial intelligence packs."
+  },
+  "industriesSection": {
+    "sectionTag": "Industry Focus",
+    "sectionTitle": "Whom We Serve",
+    "sectionSubtitle": "Specialized financial advisory and accounting practices tailored to the commercial realities of your industry.",
+    "customBoxTitle": "Don't see your specific sector?",
+    "customBoxSubtitle": "Our financial advisory frameworks and accounting methodologies are tailored to your company's operational complexities.",
+    "customBoxCta": "Request Tailored Advisory Consultation",
+    "customBoxLink": "contact.html",
+    "industries": [
+      {
+        "id": "realestate",
+        "tabLabel": "Real Estate & Funds",
+        "title": "Real Estate Developers & Asset Managers",
+        "description": "End-to-end financial operations and fund accounting for asset managers, REITs, general partners, and property operators. We oversee property general ledgers, rent roll reconciliations, CAM pooling, and investor distributions.",
+        "tags": [
+          "Full-Cycle Property Accounting",
+          "Yardi Financial Management",
+          "CAM & Lease Reconciliations",
+          "Portfolio Level KPI Dashboards",
+          "Escrow & Tenant Security Audits",
+          "Investor Distribution Modeling"
+        ]
+      },
+      {
+        "id": "tech",
+        "tabLabel": "Tech & High-Growth",
+        "title": "SaaS, Software & High-Growth Startups",
+        "description": "Sophisticated financial modeling, subscription billing recognition (ASC 606), churn analytics, and venture-ready data rooms for fast-scaling technology companies.",
+        "tags": [
+          "SaaS Metrics & CAC/LTV Telemetry",
+          "ASC 606 Revenue Recognition",
+          "Venture Capital Due Diligence",
+          "Multi-Currency Subsidiary Ledgers",
+          "Burn Rate & Runway Extension",
+          "Cap Table Reconciliation"
+        ]
+      },
+      {
+        "id": "healthcare",
+        "tabLabel": "Healthcare & Clinical",
+        "title": "Healthcare Systems, Clinics & BioTech",
+        "description": "Fiduciary accounting frameworks tailored to medical clinics, multi-location dental networks, diagnostics providers, and biotech laboratories navigating strict statutory reporting.",
+        "tags": [
+          "Insurance Reimbursement Reconciliations",
+          "Departmental Cost-Center Accounting",
+          "Multi-Location Clinical Ledgers",
+          "Equipment Lease Depreciation",
+          "Strict Statutory Compliance",
+          "HIPAA-Aware Financial Telemetry"
+        ]
+      },
+      {
+        "id": "ecommerce",
+        "tabLabel": "E-Commerce & Retail",
+        "title": "Omnichannel Retail & E-Commerce Brands",
+        "description": "Multi-channel revenue clearing across Shopify, Amazon, Stripe, and global marketplaces. Inventory costing, landed cost calculations, and sales tax filings across jurisdictions.",
+        "tags": [
+          "Multi-Channel Settlement Ingestion",
+          "COGS & Landed Cost Tracking",
+          "Cross-Border Sales Tax & VAT",
+          "Inventory Cycle Reconciliation",
+          "Cash Flow Influx Projections",
+          "Merchant Reserve Audits"
+        ]
+      },
+      {
+        "id": "professional",
+        "tabLabel": "Professional Services",
+        "title": "Consultancies, Law Firms & Agencies",
+        "description": "WIP (Work-In-Progress) accounting, billable utilization dashboards, client trust account management, and partner distribution waterfalls.",
+        "tags": [
+          "Utilization & Realization Rates",
+          "WIP Aging & Retainer Tracking",
+          "Client Trust & Escrow Governance",
+          "Partner Capital Accounts",
+          "Project Profitability Scoring",
+          "Quarterly Tax Distributions"
+        ]
+      },
+      {
+        "id": "hospitality",
+        "tabLabel": "Hospitality & Chains",
+        "title": "Hospitality Groups & Restaurant Franchises",
+        "description": "Daily flash sales reconciliations, prime cost tracking (food, beverage, labor), multi-location sales tax compliance, and automated payroll journals.",
+        "tags": [
+          "Daily POS Settlement Audits",
+          "Prime Cost Margins Telemetry",
+          "Franchise Royalty Schedules",
+          "Vendor Invoicing & AP Automation",
+          "Tip Allocation & Payroll Journals",
+          "Multi-Unit Consolidation"
+        ]
+      }
+    ]
+  },
+  "platformsSection": {
+    "sectionTag": "Financial Infrastructure",
+    "sectionTitle": "Mastery Across Global Financial Platforms",
+    "sectionSubtitle": "Our Chartered Accountants and controllers operate fluently across the world's most trusted accounting, ERP, and treasury platforms.",
+    "ctaTitle": "Ready to Elevate Your Financial Infrastructure?",
+    "ctaButton": "Consult with Our Advisory Team",
+    "ctaLink": "contact.html",
+    "platforms": [
+      {
+        "initials": "NS",
+        "badge": "ENTERPRISE ERP",
+        "name": "Oracle NetSuite",
+        "description": "Multi-entity consolidations, multi-currency general ledgers, and automated ASC 606 revenue recognition.",
+        "metric": "✓ Full-Cycle GL & Audit Ready"
+      },
+      {
+        "initials": "YV",
+        "badge": "PROPTECH & FUNDS",
+        "name": "Yardi Voyager",
+        "description": "Institutional commercial and residential real estate fund accounting, CAM reconciliations, and investor waterfall schedules.",
+        "metric": "✓ CAM & Fund Accounting"
+      },
+      {
+        "initials": "QB",
+        "badge": "CORE ACCOUNTING",
+        "name": "QuickBooks Online",
+        "description": "Automated chart of accounts, bank feed rules, accounts payable/receivable automation, and rapid month-end closing.",
+        "metric": "✓ 5-Day Fast Close"
+      },
+      {
+        "initials": "SI",
+        "badge": "CLOUD FINANCIALS",
+        "name": "Sage Intacct",
+        "description": "Dimensional general ledgers, project-level accounting, SaaS metric dashboards, and multi-location compliance.",
+        "metric": "✓ Dimensional Reporting"
+      },
+      {
+        "initials": "XL",
+        "badge": "FINANCIAL MODELING",
+        "name": "Advanced Excel & Models",
+        "description": "Custom dynamic 3-statement models, DCF valuations, debt covenant trackers, and board scenario analyses.",
+        "metric": "✓ Audit-Grade Modeling"
+      },
+      {
+        "initials": "PB",
+        "badge": "EXECUTIVE BI",
+        "name": "Microsoft PowerBI",
+        "description": "Real-time automated financial ingestion, KPI cockpits, rolling cash forecasting, and executive data visualizations.",
+        "metric": "✓ Real-Time KPI Dashboards"
+      },
+      {
+        "initials": "XR",
+        "badge": "INTERNATIONAL GL",
+        "name": "Xero Global",
+        "description": "Cross-border multi-currency ledgers, automated bank feeds, sales tax compliance, and seamless third-party app synchronization.",
+        "metric": "✓ Multi-Currency Sync"
+      },
+      {
+        "initials": "BD",
+        "badge": "SPEND CONTROL",
+        "name": "Bill.com AP & AR",
+        "description": "Automated approval workflows, two-way matching, vendor payment disbursement, and seamless general ledger synchronization.",
+        "metric": "✓ Zero-Touch AP Workflows"
+      },
+      {
+        "initials": "RP",
+        "badge": "TREASURY & CARDS",
+        "name": "Ramp Treasury",
+        "description": "Real-time expense policy enforcement, corporate card management, vendor contract renegotiation, and working capital preservation.",
+        "metric": "✓ Real-Time Spend Guardrails"
+      },
+      {
+        "initials": "ZB",
+        "badge": "MANAGEMENT ACCOUNTING",
+        "name": "Zoho Books Suite",
+        "description": "Custom inventory valuation, cost-center tracking, automated billing schedules, and statutory GST / tax compliance.",
+        "metric": "✓ Cost-Center Control"
+      },
+      {
+        "initials": "PR",
+        "badge": "PAYROLL COMPLIANCE",
+        "name": "ADP & Gusto",
+        "description": "Comprehensive payroll journal entries, multi-state tax withholdings, contractor 1099 compliance, and benefit accruals.",
+        "metric": "✓ Flawless Payroll Ledgering"
+      },
+      {
+        "initials": "EN",
+        "badge": "OPEN ERP LEDGERS",
+        "name": "ERPNext Financials",
+        "description": "Manufacturing cost accounting, supply chain ledger integration, project billing, and custom financial workflow engineering.",
+        "metric": "✓ Full Supply-Chain GL"
+      }
+    ]
+  },
+  "teamSection": {
+    "sectionTag": "Partnership",
+    "sectionTitle": "Leadership & Senior Advisors",
+    "sectionSubtitle": "An elite cohort of Chartered Accountants, financial modelers, and corporate controllers committed to your commercial success.",
+    "rosterCta": "Meet Our Complete Advisory Roster →",
+    "rosterLink": "about.html#team"
+  },
   "team": [
     {
       "id": "team-1",
-      "name": "Marcus Vance",
-      "role": "Managing Partner & Chief Financial Strategist",
-      "bio": "Former Big Four Audit Director with 18+ years orchestrating institutional accounting and debt structuring for mid-market funds.",
-      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
-      "linkedin": "https://linkedin.com"
+      "initials": "WZ",
+      "name": "Wei Zhang",
+      "role": "Founder & Senior Partner",
+      "specialization": "Financial Operations & Corporate Strategy Specialist",
+      "snippet": "Visionary leadership in corporate financial advisory, Yardi real estate accounting, and capital planning.",
+      "bio": "Visionary financial leader with extensive experience delivering institutional advisory, real estate portfolio accounting, and strategic controllership for multinational operations.",
+      "avatar": "",
+      "competencies": ["Corporate Financial Strategy", "Real Estate Fund Accounting", "Working Capital Optimization", "Strategic Growth"]
     },
     {
       "id": "team-2",
-      "name": "Elena Rostova",
-      "role": "Senior Director of Global Tax & Cross-Border Governance",
-      "bio": "Chartered Tax Advisor specializing in cross-border transfer pricing, corporate restructuring, and global fiscal compliance.",
-      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
-      "linkedin": "https://linkedin.com"
+      "initials": "LC",
+      "name": "Li Chen, CPA",
+      "role": "Partner & Financial Architect",
+      "specialization": "CPA, Advisory & Corporate Finance",
+      "snippet": "Senior CPA spearheading strategic CFO advisory, capital allocation, and governance.",
+      "bio": "Strategic finance leader advising corporations on capital structuring, budgeting cycles, and statutory governance. Renowned for turning complex balance sheets into high-yield financial roadmaps.",
+      "avatar": "",
+      "competencies": ["Virtual CFO Advisory", "Corporate Governance", "Capital Budgeting", "Audit Preparation"]
     },
     {
       "id": "team-3",
-      "name": "David Sterling",
-      "role": "Director of Strategic Accounting & Audit Systems",
-      "bio": "Certified Internal Auditor and CPA leading full-cycle corporate bookkeeping, internal controls, and enterprise ERP integrations.",
-      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
-      "linkedin": "https://linkedin.com"
+      "initials": "JW",
+      "name": "Jun Wang, CPA",
+      "role": "Partner & SME Outsourcing Lead",
+      "specialization": "CPA, Global Accounting Operations",
+      "snippet": "Delivers turnkey finance operations and international accounting architectures for fast-growing ventures.",
+      "bio": "Pioneering end-to-end accounting outsourcing models for SMEs and international clients. Expert in multi-currency ledger consolidation and automated month-end close schedules.",
+      "avatar": "",
+      "competencies": ["SME Outsourcing", "International Accounting", "Cash Flow Control", "Tax Compliance"]
     },
     {
       "id": "team-4",
-      "name": "Priya Sharma",
-      "role": "Head of Fractional CFO Services & Capital Advisory",
-      "bio": "Ex-investment banker and venture CFO managing liquidity runways, fundraising rounds, and corporate M&A transactions.",
-      "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80",
-      "linkedin": "https://linkedin.com"
+      "initials": "ML",
+      "name": "Mei-Ling Liu, CPA",
+      "role": "Partner & Assurance Lead",
+      "specialization": "CPA, Enterprise Financial Controls",
+      "snippet": "Champion of financial accuracy, SOP standardizations, and comprehensive statutory reporting.",
+      "bio": "Ensuring institutional accuracy through meticulous bookkeeping routines, internal control frameworks, and compliance reporting that guarantees audit peace of mind.",
+      "avatar": "",
+      "competencies": ["Audit & Assurance", "Internal Controls", "Standard Operating Procedures", "Statutory Reporting"]
     }
   ],
+  "faqSection": {
+    "sectionTag": "Clarity",
+    "sectionTitle": "Frequently Asked Questions",
+    "sectionSubtitle": "Find immediate answers to key inquiries regarding our financial advisory model, accounting standards, and engagement scopes."
+  },
+  "faqs": [
+    {
+      "id": "faq-1",
+      "question": "What core financial advisory services does YoungMark Global Advisory offer?",
+      "answer": "We deliver an integrated suite of corporate financial services: fractional Virtual CFO leadership, full-cycle bookkeeping, Accounts Payable/Receivable management, custom MIS reporting, tax planning & compliance, internal controls design, and specialized real estate fund accounting."
+    },
+    {
+      "id": "faq-2",
+      "question": "How does outsourcing Accounts Payable and Receivable optimize our cash flow?",
+      "answer": "Outsourcing AR and AP standardizes the entire invoicing, collection, and vendor payout workflow. We reduce Days Sales Outstanding (DSO) through structured customer follow-ups and automated collection reminders, while ensuring AP disbursements capture early-pay discounts and avoid duplicate charges."
+    },
+    {
+      "id": "faq-3",
+      "question": "What is MIS reporting and why is it critical for executive leadership?",
+      "answer": "Management Information Systems (MIS) provide customized, real-time executive dashboards that extract key performance indicators across revenue, gross margins, customer acquisition costs, and departmental burn. Instead of waiting weeks for retrospective reports, leadership gains instant data to make agile business bets."
+    },
+    {
+      "id": "faq-4",
+      "question": "How does the Virtual CFO engagement model work?",
+      "answer": "Our Virtual CFO service provides senior strategic financial leadership on a flexible fractional retainer. We handle multi-scenario forecasting, capital raise preparation, investor deck builds, bank covenant reviews, and participation in executive board meetings without the $300k+ overhead of an in-house hire."
+    },
+    {
+      "id": "faq-5",
+      "question": "Which accounting software systems and ERPs do you support?",
+      "answer": "Our Chartered Accountants are certified across QuickBooks Online, Oracle NetSuite Financials, Xero, Zoho Books, Sage Intacct, and ERPNext, ensuring seamless adoption of your existing accounting tech stack."
+    },
+    {
+      "id": "faq-6",
+      "question": "What specific expertise do you offer for Yardi and Real Estate accounting?",
+      "answer": "Our real estate specialists manage Yardi Voyager and Breeze financial ledgers for commercial and residential operators. Services include CAM expense pooling, lease abstracting, tenant rent roll reconciliations, and custom monthly financial reporting packages."
+    },
+    {
+      "id": "faq-7",
+      "question": "Do you partner with cross-border, international, and multi-currency clients?",
+      "answer": "Yes. A substantial portion of our client base operates across the US, UK, Middle East, Canada, and India. We manage multi-currency revaluations, intercompany transfers, transfer pricing schedules, and localized compliance reporting seamlessly."
+    },
+    {
+      "id": "faq-8",
+      "question": "How do you guarantee client data privacy and fiduciary confidentiality?",
+      "answer": "We mandate military-grade end-to-end encryption (AES-256), multi-factor authentication (MFA), role-based access control, and strict non-disclosure agreements (NDAs) to protect all sensitive corporate financial information."
+    }
+  ],
+  "ctaBanner": {
+    "title": "Ready to Elevate Your Financial Architecture?",
+    "description": "Schedule an executive discovery session with our senior partners to explore tailored accounting and strategic CFO advisory packages.",
+    "buttonText": "Schedule Discovery Call",
+    "buttonLink": "contact.html"
+  },
+  "footer": {
+    "brandDescription": "Empowering modern businesses with precision accounting, fractional CFO intelligence, and scalable corporate financial advisory.",
+    "addressTitle": "Headquarters & Executive Office:",
+    "addressText": "Tower B, 7th Floor, Logix Cyber Park, Sector 62, Noida, Uttar Pradesh 201309",
+    "solutionsTitle": "Financial Practices",
+    "solutionsLinks": [
+      { "label": "Virtual CFO Advisory", "url": "services.html" },
+      { "label": "Full-Cycle Bookkeeping", "url": "services.html" },
+      { "label": "Executive MIS & Analytics", "url": "services.html" },
+      { "label": "Tax Strategy & Compliance", "url": "services.html" },
+      { "label": "Real Estate Fund Accounting", "url": "services.html" },
+      { "label": "Audit Readiness & Controls", "url": "services.html" }
+    ],
+    "firmTitle": "The Advisory Firm",
+    "firmLinks": [
+      { "label": "About Leadership", "url": "about.html" },
+      { "label": "Core Methodology", "url": "about.html#methodology" },
+      { "label": "Careers & Culture", "url": "careers.html" },
+      { "label": "Industry Practice Areas", "url": "services.html#industries" },
+      { "label": "Client Testimonials", "url": "about.html#testimonials" },
+      { "label": "Schedule Consultation", "url": "contact.html" }
+    ],
+    "legalTitle": "Governance & Legal",
+    "legalLinks": [
+      { "label": "Terms of Engagement", "url": "terms-of-service.html" },
+      { "label": "Privacy & Data Policy", "url": "privacy-policy.html" },
+      { "label": "Cookie Disclosures", "url": "cookies.html" }
+    ],
+    "watermark": "YoungMark",
+    "copyright": "© 2026 YoungMark Global Advisory. All rights reserved.",
+    "slogan": "Engineered for enterprise excellence & precision governance."
+  },
   "careers": [
     {
       "id": "job-1",
@@ -277,40 +640,18 @@
       }
     ]
   },
-  "faqs": [
-    {
-      "id": "faq-1",
-      "question": "What separates YoungMark Global Advisory from traditional bookkeeping firms?",
-      "answer": "Unlike traditional bookkeeping agencies that merely catalog historical receipts once a month, YoungMark operates as an integrated financial engineering partner. We combine real-time ledger accounting, predictive fractional CFO advisory, and automated BI dashboards to provide executive teams with daily cash clarity and audit-grade financial statements."
-    },
-    {
-      "id": "faq-2",
-      "question": "How quickly can your team onboard and take over our financial operations?",
-      "answer": "Our standardized 14-day transition framework begins with an immediate financial hygiene and ledger integrity audit. Within 5 business days, we establish read-only API feeds to your existing banking and ERP systems without disrupting daily operations. Full operational handoff is typically achieved within 10 to 14 business days."
-    },
-    {
-      "id": "faq-3",
-      "question": "Do you support multi-entity, multi-currency, and cross-border businesses?",
-      "answer": "Yes. Our senior controllers and Chartered Accountants routinely architect consolidation schedules for international holding corporations, cross-border subsidiaries, and fund syndicates spanning the US, UK, EU, UAE, India, and Singapore."
-    },
-    {
-      "id": "faq-4",
-      "question": "Which accounting software and ERP platforms do you work with?",
-      "answer": "We are platform-agnostic with deep certified engineering expertise across QuickBooks Online & Enterprise, NetSuite, Xero, SAP Business One, Zoho Books, Sage Intacct, and Tally Prime. We integrate these with BI tools like PowerBI, Tableau, and automated reconciliation pipelines."
-    },
-    {
-      "id": "faq-5",
-      "question": "How does fractional CFO advisory work compared to hiring a full-time executive?",
-      "answer": "A full-time Tier-1 CFO typically commands $350K–$500K+ in annual compensation plus equity. YoungMark's Fractional CFO practice grants you on-demand access to battle-tested CFOs and financial analysts at a fraction of the cost, scaling dynamically with your transaction volume, fundraising cycles, or M&A initiatives."
-    }
-  ],
   "contact": {
-    "primaryEmail": "advisory@youngmark.com",
+    "primaryEmail": "info@youngmarkglobal.com",
     "supportEmail": "clients@youngmark.com",
     "careersEmail": "careers@youngmark.com",
-    "primaryPhone": "+1 (800) 492-8172",
-    "internationalPhone": "+44 20 7946 0912",
+    "primaryPhone": "+91 120 456 7890",
+    "internationalPhone": "+1 (800) 492-8172",
     "offices": [
+      {
+        "city": "Noida (HQ)",
+        "address": "Tower B, 7th Floor, Logix Cyber Park, Sector 62, Noida, Uttar Pradesh 201309",
+        "phone": "+91 120 456 7890"
+      },
       {
         "city": "New York",
         "address": "450 Lexington Avenue, 38th Floor, New York, NY 10017",
@@ -325,19 +666,16 @@
         "city": "Singapore",
         "address": "Marina Bay Financial Centre, Tower 2, Singapore 018983",
         "phone": "+65 6789 0123"
-      },
-      {
-        "city": "Mumbai",
-        "address": "Bandra Kurla Complex, One BKC, G Block, Mumbai 400051",
-        "phone": "+91 22 6123 4567"
       }
     ],
     "social": {
       "linkedin": "https://linkedin.com",
-      "twitter": "https://twitter.com",
-      "youtube": "https://youtube.com"
+      "twitter": "https://x.com",
+      "youtube": "https://youtube.com",
+      "instagram": "https://instagram.com",
+      "facebook": "https://facebook.com"
     },
-    "copyright": "© 2026 YoungMark Global Advisory. All rights reserved. Confidential Fiduciary Counsel."
+    "copyright": "© 2026 YoungMark Global Advisory. All rights reserved."
   },
   "legal": {
     "termsOfService": {
@@ -367,7 +705,7 @@
         },
         {
           "heading": "6. Governing Law & Dispute Resolution",
-          "body": "These Terms of Service and any contractual disputes shall be governed by and construed in accordance with the laws of the State of New York, USA, without regard to its conflict of law principles."
+          "body": "These Terms of Service and any contractual disputes shall be governed by and construed in accordance with the laws of Uttar Pradesh, India, with exclusive jurisdiction in Gautam Buddha Nagar (Noida)."
         }
       ]
     },

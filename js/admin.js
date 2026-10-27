@@ -189,13 +189,18 @@
     populateBrandForm();
     populateThemeForm();
     populateHeroForm();
+    populatePillarsForm();
     populateMetricsForm();
     populateServicesForm();
+    populateIndustriesForm();
+    populatePlatformsForm();
     populateTeamForm();
     populateCareersForm();
     populateAboutForm();
     populateFaqsForm();
+    populateCtaBannerForm();
     populateContactForm();
+    populateFooterForm();
     populateLegalForm();
   }
 
@@ -208,6 +213,64 @@
     bindInput('brand-logo-url', b.logoUrl, (v) => { b.logoUrl = v; broadcastPreviewUpdate(); });
     bindInput('brand-cta-text', b.headerCtaText, (v) => { b.headerCtaText = v; broadcastPreviewUpdate(); });
     bindInput('brand-cta-link', b.headerCtaLink, (v) => { b.headerCtaLink = v; broadcastPreviewUpdate(); });
+
+    populateNavLinksForm();
+  }
+
+  function populateNavLinksForm() {
+    const b = siteData.brand || {};
+    if (!b.navLinks) b.navLinks = [];
+    const container = document.getElementById('brand-nav-links-container');
+    if (!container) return;
+    container.innerHTML = '';
+
+    b.navLinks.forEach((link, index) => {
+      const box = document.createElement('div');
+      box.className = 'card-item-box';
+      box.style.marginBottom = '12px';
+      box.innerHTML = `
+        <div class="card-item-header" style="margin-bottom: 8px;">
+          <span class="card-item-title">Nav Link #${index + 1}: ${link.label}</span>
+          <button class="btn-icon-danger btn-delete-nav-link" title="Delete Link">&times;</button>
+        </div>
+        <div class="form-row">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Link Label</label>
+            <input type="text" class="form-input nav-label" value="${link.label}">
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Target URL</label>
+            <input type="text" class="form-input nav-url" value="${link.url}">
+          </div>
+        </div>
+      `;
+
+      box.querySelector('.nav-label').addEventListener('input', (e) => {
+        link.label = e.target.value;
+        broadcastPreviewUpdate();
+      });
+      box.querySelector('.nav-url').addEventListener('input', (e) => {
+        link.url = e.target.value;
+        broadcastPreviewUpdate();
+      });
+      box.querySelector('.btn-delete-nav-link').addEventListener('click', () => {
+        b.navLinks.splice(index, 1);
+        populateNavLinksForm();
+        broadcastPreviewUpdate();
+      });
+
+      container.appendChild(box);
+    });
+
+    const addBtn = document.getElementById('btn-add-nav-link');
+    if (addBtn && !addBtn.dataset.bound) {
+      addBtn.dataset.bound = 'true';
+      addBtn.addEventListener('click', () => {
+        b.navLinks.push({ label: 'New Link', url: '#' });
+        populateNavLinksForm();
+        broadcastPreviewUpdate();
+      });
+    }
   }
 
   // B. Theme & Colors Form
@@ -220,6 +283,12 @@
     bindColorPicker('theme-lemon-cream', 'theme-lemon-cream-hex', t.cLemonCream, (v) => { t.cLemonCream = v; broadcastPreviewUpdate(); });
     bindColorPicker('theme-gold-glow', 'theme-gold-glow-hex', t.cGoldGlow, (v) => { t.cGoldGlow = v; broadcastPreviewUpdate(); });
     bindColorPicker('theme-bg-dark', 'theme-bg-dark-hex', t.bgDark, (v) => { t.bgDark = v; broadcastPreviewUpdate(); });
+
+    // Canvas surfaces and typography
+    bindColorPicker('theme-bg-surface', 'theme-bg-surface-hex', t.bgSurface || '#141D15', (v) => { t.bgSurface = v; broadcastPreviewUpdate(); });
+    bindColorPicker('theme-bg-card', 'theme-bg-card-hex', t.bgCard || '#141E15', (v) => { t.bgCard = v; broadcastPreviewUpdate(); });
+    bindColorPicker('theme-text-primary', 'theme-text-primary-hex', t.textPrimary || '#FFFFFF', (v) => { t.textPrimary = v; broadcastPreviewUpdate(); });
+    bindColorPicker('theme-text-secondary', 'theme-text-secondary-hex', t.textSecondary || '#D6E3D4', (v) => { t.textSecondary = v; broadcastPreviewUpdate(); });
 
     // Grid Geometry & Dot-Matrix
     bindColorPicker('theme-grid-dot', 'theme-grid-dot-hex', t.gridDotColor || '#D4A017', (v) => { t.gridDotColor = v; broadcastPreviewUpdate(); });
@@ -256,6 +325,75 @@
     // Process Stat Banner
     const pStat = siteData.processAccuracyStat || {};
     bindInput('process-accuracy-stat-text', pStat.text, (v) => { pStat.text = v; broadcastPreviewUpdate(); });
+  }
+
+  // C2. Operational Pillars Form
+  function populatePillarsForm() {
+    const p = siteData.howWeHelp || {};
+    bindInput('pillars-header-tag', p.sectionTag, (v) => { p.sectionTag = v; broadcastPreviewUpdate(); });
+    bindInput('pillars-header-title', p.sectionTitle, (v) => { p.sectionTitle = v; broadcastPreviewUpdate(); });
+    bindInput('pillars-header-subtitle', p.sectionSubtitle, (v) => { p.sectionSubtitle = v; broadcastPreviewUpdate(); });
+
+    const container = document.getElementById('pillars-list-container');
+    if (!container) return;
+    container.innerHTML = '';
+
+    (p.pillars || []).forEach((pillar, index) => {
+      const box = document.createElement('div');
+      box.className = 'card-item-box';
+      const checklistStr = (pillar.checklist || []).join('\n');
+
+      box.innerHTML = `
+        <div class="card-item-header">
+          <span class="card-item-title">Pillar #${index + 1}: ${pillar.title}</span>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Tab Label</label>
+            <input type="text" class="form-input pillar-tab" value="${pillar.tabLabel || ''}">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Headline Title</label>
+            <input type="text" class="form-input pillar-title" value="${pillar.title}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description Paragraph</label>
+          <textarea class="form-textarea pillar-desc" rows="3">${pillar.description}</textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Checklist Bullet Points <span class="form-label-hint">One item per line</span></label>
+          <textarea class="form-textarea pillar-check" rows="3">${checklistStr}</textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Visual Card Badge</label>
+            <input type="text" class="form-input pillar-vbadge" value="${pillar.visualBadge || ''}">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Visual Card Metric</label>
+            <input type="text" class="form-input pillar-vmetric" value="${pillar.metric || ''}">
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label">Visual Card Title</label>
+          <input type="text" class="form-input pillar-vtitle" value="${pillar.visualTitle || ''}">
+        </div>
+      `;
+
+      box.querySelector('.pillar-tab').addEventListener('input', (e) => { pillar.tabLabel = e.target.value; broadcastPreviewUpdate(); });
+      box.querySelector('.pillar-title').addEventListener('input', (e) => { pillar.title = e.target.value; broadcastPreviewUpdate(); });
+      box.querySelector('.pillar-desc').addEventListener('input', (e) => { pillar.description = e.target.value; broadcastPreviewUpdate(); });
+      box.querySelector('.pillar-check').addEventListener('input', (e) => {
+        pillar.checklist = e.target.value.split('\n').filter((l) => l.trim().length > 0);
+        broadcastPreviewUpdate();
+      });
+      box.querySelector('.pillar-vbadge').addEventListener('input', (e) => { pillar.visualBadge = e.target.value; broadcastPreviewUpdate(); });
+      box.querySelector('.pillar-vmetric').addEventListener('input', (e) => { pillar.metric = e.target.value; broadcastPreviewUpdate(); });
+      box.querySelector('.pillar-vtitle').addEventListener('input', (e) => { pillar.visualTitle = e.target.value; broadcastPreviewUpdate(); });
+
+      container.appendChild(box);
+    });
   }
 
   // D. Proven Metrics Form
@@ -400,6 +538,116 @@
         broadcastPreviewUpdate();
       });
     }
+  }
+
+  // E2. Industries & Sectors Form
+  function populateIndustriesForm() {
+    const ind = siteData.industriesSection || {};
+    bindInput('industries-section-tag', ind.sectionTag, (v) => { ind.sectionTag = v; broadcastPreviewUpdate(); });
+    bindInput('industries-section-title', ind.sectionTitle, (v) => { ind.sectionTitle = v; broadcastPreviewUpdate(); });
+    bindInput('industries-section-subtitle', ind.sectionSubtitle, (v) => { ind.sectionSubtitle = v; broadcastPreviewUpdate(); });
+
+    // Custom Sector Box
+    bindInput('industries-custom-title', ind.customBoxTitle, (v) => { ind.customBoxTitle = v; broadcastPreviewUpdate(); });
+    bindInput('industries-custom-subtitle', ind.customBoxSubtitle, (v) => { ind.customBoxSubtitle = v; broadcastPreviewUpdate(); });
+    bindInput('industries-custom-cta', ind.customBoxCta, (v) => { ind.customBoxCta = v; broadcastPreviewUpdate(); });
+    bindInput('industries-custom-link', ind.customBoxLink, (v) => { ind.customBoxLink = v; broadcastPreviewUpdate(); });
+
+    const container = document.getElementById('industries-list-container');
+    if (!container) return;
+    container.innerHTML = '';
+
+    (ind.industries || []).forEach((industry, index) => {
+      const box = document.createElement('div');
+      box.className = 'card-item-box';
+      const tagsStr = (industry.tags || []).join(', ');
+
+      box.innerHTML = `
+        <div class="card-item-header">
+          <span class="card-item-title">Sector #${index + 1}: ${industry.name}</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Sector Name</label>
+          <input type="text" class="form-input ind-name" value="${industry.name}">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Sector Description</label>
+          <textarea class="form-textarea ind-desc" rows="3">${industry.description}</textarea>
+        </div>
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label">Focus Areas / Tags <span class="form-label-hint">Comma separated</span></label>
+          <input type="text" class="form-input ind-tags" value="${tagsStr}">
+        </div>
+      `;
+
+      box.querySelector('.ind-name').addEventListener('input', (e) => { industry.name = e.target.value; broadcastPreviewUpdate(); });
+      box.querySelector('.ind-desc').addEventListener('input', (e) => { industry.description = e.target.value; broadcastPreviewUpdate(); });
+      box.querySelector('.ind-tags').addEventListener('input', (e) => {
+        industry.tags = e.target.value.split(',').map((t) => t.trim()).filter((t) => t.length > 0);
+        broadcastPreviewUpdate();
+      });
+
+      container.appendChild(box);
+    });
+  }
+
+  // E3. Platforms & Integrations Form
+  function populatePlatformsForm() {
+    const platSec = siteData.platformsSection || {};
+    bindInput('platforms-section-tag', platSec.sectionTag, (v) => { platSec.sectionTag = v; broadcastPreviewUpdate(); });
+    bindInput('platforms-section-title', platSec.sectionTitle, (v) => { platSec.sectionTitle = v; broadcastPreviewUpdate(); });
+    bindInput('platforms-section-subtitle', platSec.sectionSubtitle, (v) => { platSec.sectionSubtitle = v; broadcastPreviewUpdate(); });
+
+    // Solar CTA
+    bindInput('platforms-cta-title', platSec.ctaTitle, (v) => { platSec.ctaTitle = v; broadcastPreviewUpdate(); });
+    bindInput('platforms-cta-btn', platSec.ctaButton, (v) => { platSec.ctaButton = v; broadcastPreviewUpdate(); });
+    bindInput('platforms-cta-link', platSec.ctaLink, (v) => { platSec.ctaLink = v; broadcastPreviewUpdate(); });
+
+    const container = document.getElementById('platforms-list-container');
+    if (!container) return;
+    container.innerHTML = '';
+
+    (platSec.platforms || []).forEach((platform, index) => {
+      const box = document.createElement('div');
+      box.className = 'card-item-box';
+      box.innerHTML = `
+        <div class="card-item-header">
+          <span class="card-item-title">#${index + 1}: ${platform.name} (${platform.badge})</span>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Software Name</label>
+            <input type="text" class="form-input p-name" value="${platform.name}">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Initials / Icon Text</label>
+            <input type="text" class="form-input p-initials" value="${platform.initials}">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Category Badge</label>
+            <input type="text" class="form-input p-badge" value="${platform.badge}">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Metric / SLA Highlight</label>
+            <input type="text" class="form-input p-metric" value="${platform.metric}">
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label">Capabilities Description</label>
+          <textarea class="form-textarea p-desc" rows="2">${platform.description}</textarea>
+        </div>
+      `;
+
+      box.querySelector('.p-name').addEventListener('input', (e) => { platform.name = e.target.value; broadcastPreviewUpdate(); });
+      box.querySelector('.p-initials').addEventListener('input', (e) => { platform.initials = e.target.value; broadcastPreviewUpdate(); });
+      box.querySelector('.p-badge').addEventListener('input', (e) => { platform.badge = e.target.value; broadcastPreviewUpdate(); });
+      box.querySelector('.p-metric').addEventListener('input', (e) => { platform.metric = e.target.value; broadcastPreviewUpdate(); });
+      box.querySelector('.p-desc').addEventListener('input', (e) => { platform.description = e.target.value; broadcastPreviewUpdate(); });
+
+      container.appendChild(box);
+    });
   }
 
   // F. Team & Leadership Form
@@ -690,7 +938,16 @@
     }
   }
 
-  // J. Contact & Footer Form
+  // I2. Call to Action Banner Form
+  function populateCtaBannerForm() {
+    const cta = siteData.ctaBanner || {};
+    bindInput('cta-banner-title', cta.title, (v) => { cta.title = v; broadcastPreviewUpdate(); });
+    bindInput('cta-banner-desc', cta.description, (v) => { cta.description = v; broadcastPreviewUpdate(); });
+    bindInput('cta-banner-btn-text', cta.buttonText, (v) => { cta.buttonText = v; broadcastPreviewUpdate(); });
+    bindInput('cta-banner-btn-link', cta.buttonLink, (v) => { cta.buttonLink = v; broadcastPreviewUpdate(); });
+  }
+
+  // J. Contact & Global Offices Form
   function populateContactForm() {
     const c = siteData.contact || {};
     bindInput('contact-primary-email', c.primaryEmail, (v) => { c.primaryEmail = v; broadcastPreviewUpdate(); });
@@ -698,7 +955,6 @@
     bindInput('contact-careers-email', c.careersEmail, (v) => { c.careersEmail = v; broadcastPreviewUpdate(); });
     bindInput('contact-primary-phone', c.primaryPhone, (v) => { c.primaryPhone = v; broadcastPreviewUpdate(); });
     bindInput('contact-intl-phone', c.internationalPhone, (v) => { c.internationalPhone = v; broadcastPreviewUpdate(); });
-    bindInput('contact-copyright', c.copyright, (v) => { c.copyright = v; broadcastPreviewUpdate(); });
 
     // Global Offices
     const offContainer = document.getElementById('contact-offices-container');
@@ -738,6 +994,61 @@
         offContainer.appendChild(offBox);
       });
     }
+  }
+
+  // J2. Deep Institutional Footer Form
+  function populateFooterForm() {
+    const f = siteData.footer || {};
+    bindInput('footer-brand-desc', f.brandDescription, (v) => { f.brandDescription = v; broadcastPreviewUpdate(); });
+    bindInput('footer-address', f.addressText, (v) => { f.addressText = v; broadcastPreviewUpdate(); });
+    bindInput('footer-watermark', f.watermark, (v) => { f.watermark = v; broadcastPreviewUpdate(); });
+    bindInput('footer-copyright', f.copyright, (v) => { f.copyright = v; broadcastPreviewUpdate(); });
+    bindInput('footer-slogan', f.slogan, (v) => { f.slogan = v; broadcastPreviewUpdate(); });
+
+    // Link groups helper
+    function renderLinkList(containerId, listKey) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = '';
+      if (!f[listKey]) f[listKey] = [];
+
+      f[listKey].forEach((link, idx) => {
+        const row = document.createElement('div');
+        row.style.display = 'flex';
+        row.style.gap = '8px';
+        row.style.marginBottom = '8px';
+        row.innerHTML = `
+          <input type="text" class="form-input f-label" value="${link.label}" placeholder="Label" style="flex: 1;">
+          <input type="text" class="form-input f-url" value="${link.url}" placeholder="URL" style="flex: 1;">
+          <button class="btn-icon-danger btn-del" style="flex-shrink: 0;">&times;</button>
+        `;
+        row.querySelector('.f-label').addEventListener('input', (e) => { link.label = e.target.value; broadcastPreviewUpdate(); });
+        row.querySelector('.f-url').addEventListener('input', (e) => { link.url = e.target.value; broadcastPreviewUpdate(); });
+        row.querySelector('.btn-del').addEventListener('click', () => {
+          f[listKey].splice(idx, 1);
+          renderLinkList(containerId, listKey);
+          broadcastPreviewUpdate();
+        });
+        container.appendChild(row);
+      });
+
+      const addBtn = document.createElement('button');
+      addBtn.className = 'btn-add-item';
+      addBtn.style.padding = '4px 10px';
+      addBtn.style.fontSize = '0.8rem';
+      addBtn.style.marginTop = '4px';
+      addBtn.textContent = '+ Add Link';
+      addBtn.onclick = () => {
+        f[listKey].push({ label: 'New Link', url: '#' });
+        renderLinkList(containerId, listKey);
+        broadcastPreviewUpdate();
+      };
+      container.appendChild(addBtn);
+    }
+
+    renderLinkList('footer-solutions-container', 'solutionLinks');
+    renderLinkList('footer-firm-container', 'firmLinks');
+    renderLinkList('footer-legal-container', 'legalLinks');
   }
 
   // K. Legal Policies Form (Terms of Service, Privacy Policy, Cookie Policy)

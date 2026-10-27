@@ -67,13 +67,18 @@
         <button class="tab-btn active" data-tab="brand">🏢 Brand &amp; Nav</button>
         <button class="tab-btn" data-tab="theme">🎨 Colors</button>
         <button class="tab-btn" data-tab="hero">🏠 Hero</button>
+        <button class="tab-btn" data-tab="pillars">🏛️ Pillars</button>
         <button class="tab-btn" data-tab="metrics">📊 Metrics</button>
         <button class="tab-btn" data-tab="services">💼 Services</button>
+        <button class="tab-btn" data-tab="industries">🏭 Industries</button>
+        <button class="tab-btn" data-tab="platforms">⚡ Platforms</button>
         <button class="tab-btn" data-tab="team">👥 Team</button>
         <button class="tab-btn" data-tab="careers">💼 Careers</button>
         <button class="tab-btn" data-tab="about">🏛️ About</button>
         <button class="tab-btn" data-tab="faqs">❓ FAQs</button>
+        <button class="tab-btn" data-tab="cta">📣 CTA Banner</button>
         <button class="tab-btn" data-tab="contact">📞 Contact</button>
+        <button class="tab-btn" data-tab="footer">👣 Footer</button>
         <button class="tab-btn" data-tab="legal">⚖️ T&amp;C &amp; Policies</button>
         <button class="tab-btn" data-tab="deploy">🚀 Git Deploy</button>
       </nav>
@@ -113,13 +118,23 @@
               <input type="text" id="brand-cta-link" class="form-input" placeholder="contact.html">
             </div>
           </div>
+
+          <div class="panel-header" style="margin-top: 28px; margin-bottom: 14px;">
+            <h3 style="font-size: 1.1rem; color: #FFFFFF; font-weight: 700;">Header Navigation Links</h3>
+            <p class="panel-subtitle">Manage all navbar pill links (label &amp; target link destination).</p>
+          </div>
+          <div id="brand-nav-links-container"></div>
+          <button class="btn-add-item" id="btn-add-nav-link" style="margin-top: 10px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            + Add Nav Link
+          </button>
         </div>
 
         <!-- Tab 2: Theme & Colors -->
         <div class="admin-tab-panel" id="panel-theme">
           <div class="panel-header">
-            <h2 class="panel-title">Global Garden Color Palette</h2>
-            <p class="panel-subtitle">Live interactive color pickers. Changes immediately update across all cards, buttons, backgrounds, and glow effects.</p>
+            <h2 class="panel-title">Global Garden Color Palette &amp; Theming</h2>
+            <p class="panel-subtitle">Live interactive color pickers. Changes immediately update across all cards, buttons, backgrounds, typography, and glow effects.</p>
           </div>
           <div class="form-group">
             <label class="form-label">Forest Dark Base (Brand Primary)</label>
@@ -163,11 +178,44 @@
               <input type="text" id="theme-gold-glow-hex" class="color-hex-val">
             </div>
           </div>
+
+          <div class="panel-header" style="margin-top: 28px; margin-bottom: 16px;">
+            <h3 style="font-size: 1.1rem; color: #FFFFFF; font-weight: 700;">Background Surfaces &amp; Typography Colors</h3>
+            <p class="panel-subtitle">Fine-tune foundational canvas darks, glassmorphic card containers, and textual hierarchy.</p>
+          </div>
           <div class="form-group">
-            <label class="form-label">Deep Obsidian Background</label>
+            <label class="form-label">Deep Obsidian Background (Canvas)</label>
             <div class="color-input-group">
               <input type="color" id="theme-bg-dark" class="color-picker">
               <input type="text" id="theme-bg-dark-hex" class="color-hex-val">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Surface Layer Background</label>
+            <div class="color-input-group">
+              <input type="color" id="theme-bg-surface" class="color-picker">
+              <input type="text" id="theme-bg-surface-hex" class="color-hex-val">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Card Container Background</label>
+            <div class="color-input-group">
+              <input type="color" id="theme-bg-card" class="color-picker">
+              <input type="text" id="theme-bg-card-hex" class="color-hex-val">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Primary Heading Text Color</label>
+            <div class="color-input-group">
+              <input type="color" id="theme-text-primary" class="color-picker">
+              <input type="text" id="theme-text-primary-hex" class="color-hex-val">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Secondary Body Text Color</label>
+            <div class="color-input-group">
+              <input type="color" id="theme-text-secondary" class="color-picker">
+              <input type="text" id="theme-text-secondary-hex" class="color-hex-val">
             </div>
           </div>
 
@@ -260,6 +308,30 @@
           </div>
         </div>
 
+        <!-- Tab: Operational Pillars -->
+        <div class="admin-tab-panel" id="panel-pillars">
+          <div class="panel-header">
+            <h2 class="panel-title">Operational Pillars &amp; How We Help</h2>
+            <p class="panel-subtitle">The 3 core strategic pillars (Cleanse, Sustain, Strategize) with audit checklists, badges, and metrics.</p>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Section Tag Badge</label>
+            <input type="text" id="pillars-header-tag" class="form-input" placeholder="Operational Pillars">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Section Main Title</label>
+            <input type="text" id="pillars-header-title" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Section Subtitle</label>
+            <textarea id="pillars-header-subtitle" class="form-textarea" rows="2"></textarea>
+          </div>
+          <div class="panel-header" style="margin-top: 24px; margin-bottom: 12px;">
+            <h3 style="font-size: 1.1rem; color: #FFFFFF; font-weight: 700;">The 3 Strategic Pillars</h3>
+          </div>
+          <div id="pillars-list-container"></div>
+        </div>
+
         <!-- Tab 4: Proven Metrics -->
         <div class="admin-tab-panel" id="panel-metrics">
           <div class="panel-header">
@@ -280,6 +352,94 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             + Add New Practice Card
           </button>
+        </div>
+
+        <!-- Tab: Whom We Serve / Industries -->
+        <div class="admin-tab-panel" id="panel-industries">
+          <div class="panel-header">
+            <h2 class="panel-title">Whom We Serve (Sectors &amp; Industries)</h2>
+            <p class="panel-subtitle">Manage sector focus tabs, descriptions, specialty tag chips, and the bespoke sector CTA banner.</p>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Section Tag Badge</label>
+            <input type="text" id="industries-section-tag" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Section Main Title</label>
+            <input type="text" id="industries-section-title" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Section Subtitle</label>
+            <textarea id="industries-section-subtitle" class="form-textarea" rows="2"></textarea>
+          </div>
+          <div class="panel-header" style="margin-top: 24px; margin-bottom: 12px;">
+            <h3 style="font-size: 1.1rem; color: #FFFFFF; font-weight: 700;">6 Specialized Industry Sectors</h3>
+          </div>
+          <div id="industries-list-container"></div>
+          
+          <div class="card-item-box" style="margin-top: 24px; border-color: rgba(236, 243, 158, 0.3);">
+            <h3 style="font-size: 1.1rem; color: var(--c-lemon); margin-bottom: 12px;">Custom Sector Consultation Box</h3>
+            <div class="form-group">
+              <label class="form-label">Box Heading</label>
+              <input type="text" id="industries-custom-title" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Box Subtitle</label>
+              <textarea id="industries-custom-subtitle" class="form-textarea" rows="2"></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">CTA Button Label</label>
+                <input type="text" id="industries-custom-cta" class="form-input">
+              </div>
+              <div class="form-group">
+                <label class="form-label">CTA Destination Link</label>
+                <input type="text" id="industries-custom-link" class="form-input">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab: Platforms & Software Ecosystem -->
+        <div class="admin-tab-panel" id="panel-platforms">
+          <div class="panel-header">
+            <h2 class="panel-title">Financial Platforms &amp; Software Integrations</h2>
+            <p class="panel-subtitle">Edit the 12 integrated enterprise ERPs, FP&amp;A platforms, and solar CTA overlay.</p>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Section Tag Badge</label>
+            <input type="text" id="platforms-section-tag" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Section Main Title</label>
+            <input type="text" id="platforms-section-title" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Section Subtitle</label>
+            <textarea id="platforms-section-subtitle" class="form-textarea" rows="2"></textarea>
+          </div>
+          <div class="panel-header" style="margin-top: 24px; margin-bottom: 12px;">
+            <h3 style="font-size: 1.1rem; color: #FFFFFF; font-weight: 700;">12 Platform Integration Cards</h3>
+          </div>
+          <div id="platforms-list-container"></div>
+
+          <div class="card-item-box" style="margin-top: 24px; border-color: rgba(236, 243, 158, 0.3);">
+            <h3 style="font-size: 1.1rem; color: var(--c-lemon); margin-bottom: 12px;">Solar CTA Overlay</h3>
+            <div class="form-group">
+              <label class="form-label">Overlay Headline</label>
+              <input type="text" id="platforms-cta-title" class="form-input">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">CTA Button Text</label>
+                <input type="text" id="platforms-cta-btn" class="form-input">
+              </div>
+              <div class="form-group">
+                <label class="form-label">CTA Button Link</label>
+                <input type="text" id="platforms-cta-link" class="form-input">
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Tab 6: Team & Employees -->
@@ -341,11 +501,37 @@
           </button>
         </div>
 
-        <!-- Tab 10: Contact & Footer -->
+        <!-- Tab: Call to Action Banner -->
+        <div class="admin-tab-panel" id="panel-cta">
+          <div class="panel-header">
+            <h2 class="panel-title">Call to Action (Consultation Banner)</h2>
+            <p class="panel-subtitle">Customize the bottom pre-footer high-conversion engagement strip.</p>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Headline Title</label>
+            <input type="text" id="cta-banner-title" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Description Paragraph</label>
+            <textarea id="cta-banner-desc" class="form-textarea" rows="3"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">CTA Button Label</label>
+              <input type="text" id="cta-banner-btn-text" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">CTA Button Link</label>
+              <input type="text" id="cta-banner-btn-link" class="form-input">
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 10: Contact & Global Offices -->
         <div class="admin-tab-panel" id="panel-contact">
           <div class="panel-header">
             <h2 class="panel-title">Contact Information &amp; Global Offices</h2>
-            <p class="panel-subtitle">Emails, phone lines, international office locations, and footer copyright.</p>
+            <p class="panel-subtitle">Emails, phone lines, international office locations, and communication channels.</p>
           </div>
           <div class="form-row">
             <div class="form-group">
@@ -371,14 +557,56 @@
             <label class="form-label">International Phone</label>
             <input type="text" id="contact-intl-phone" class="form-input">
           </div>
-          <div class="form-group">
-            <label class="form-label">Footer Copyright Notice</label>
-            <input type="text" id="contact-copyright" class="form-input">
-          </div>
           <div class="panel-header" style="margin-top: 24px;">
             <h3 style="font-size: 1.1rem; color: #FFFFFF; font-weight: 700;">Global Office Locations</h3>
           </div>
           <div id="contact-offices-container"></div>
+        </div>
+
+        <!-- Tab: Deep Institutional Footer -->
+        <div class="admin-tab-panel" id="panel-footer">
+          <div class="panel-header">
+            <h2 class="panel-title">Deep Institutional Footer</h2>
+            <p class="panel-subtitle">Manage brand mission description, office address, solutions links, firm links, legal links, and copyright notices.</p>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Brand Mission Blurb</label>
+            <textarea id="footer-brand-desc" class="form-textarea" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Physical Office Address</label>
+            <textarea id="footer-address" class="form-textarea" rows="2"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Background Giant Watermark Text</label>
+              <input type="text" id="footer-watermark" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Footer Slogan / Quote</label>
+              <input type="text" id="footer-slogan" class="form-input">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Footer Copyright Notice</label>
+            <input type="text" id="footer-copyright" class="form-input">
+          </div>
+
+          <div class="panel-header" style="margin-top: 24px; margin-bottom: 12px;">
+            <h3 style="font-size: 1.1rem; color: #FFFFFF; font-weight: 700;">Footer Navigation Groups</h3>
+          </div>
+          <div class="card-item-box" style="margin-bottom: 16px;">
+            <h4 style="font-size: 1rem; color: var(--c-lemon); margin-bottom: 8px;">Solutions Links</h4>
+            <div id="footer-solutions-container"></div>
+          </div>
+          <div class="card-item-box" style="margin-bottom: 16px;">
+            <h4 style="font-size: 1rem; color: var(--c-lemon); margin-bottom: 8px;">Firm Links</h4>
+            <div id="footer-firm-container"></div>
+          </div>
+          <div class="card-item-box">
+            <h4 style="font-size: 1rem; color: var(--c-lemon); margin-bottom: 8px;">Legal Links</h4>
+            <div id="footer-legal-container"></div>
+          </div>
         </div>
 
         <!-- Tab 11: Legal: T&C / Privacy / Cookies -->
