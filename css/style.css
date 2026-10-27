@@ -425,7 +425,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 24px;
+  padding: 0 clamp(20px, 3.5vw, 52px);
   background: rgba(10, 15, 10, 0.78);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
@@ -444,7 +444,7 @@ section {
 
 .nav-pill {
   width: 100%;
-  max-width: 1360px;
+  max-width: 100%;
   height: 100%;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -2346,10 +2346,10 @@ section {
   border: 1.5px solid var(--c-lemon-cream) !important;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.40), 0 0 20px rgba(236, 243, 158, 0.30) !important;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              background 0.2s ease,
-              color 0.2s ease,
-              border-color 0.2s ease !important;
+    box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease !important;
   position: relative;
   overflow: hidden;
   line-height: 1;
@@ -3013,8 +3013,8 @@ section {
   transform-style: preserve-3d;
   will-change: transform;
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.3s ease;
+    box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease;
 }
 
 /* Fallback hover when mouse is static */
@@ -3043,13 +3043,11 @@ section {
   inset: -1.5px;
   border-radius: inherit;
   padding: 1.5px;
-  background: radial-gradient(
-    380px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
-    #ECF39E 0%,
-    rgba(243, 202, 109, 0.85) 30%,
-    rgba(144, 169, 85, 0.40) 55%,
-    transparent 75%
-  );
+  background: radial-gradient(380px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+      #ECF39E 0%,
+      rgba(243, 202, 109, 0.85) 30%,
+      rgba(144, 169, 85, 0.40) 55%,
+      transparent 75%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -3080,12 +3078,10 @@ section {
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background: radial-gradient(
-    480px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
-    rgba(236, 243, 158, 0.09) 0%,
-    rgba(144, 169, 85, 0.04) 35%,
-    transparent 65%
-  );
+  background: radial-gradient(480px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+      rgba(236, 243, 158, 0.09) 0%,
+      rgba(144, 169, 85, 0.04) 35%,
+      transparent 65%);
   opacity: 0;
   transition: opacity 0.35s ease;
   z-index: 1;
@@ -3100,10 +3096,10 @@ section {
 }
 
 /* 3D Parallax Layering for Card Contents */
-.service-card > *,
-.team-member-card > *,
-.platform-eco-card > *,
-.spotlight-card > * {
+.service-card>*,
+.team-member-card>*,
+.platform-eco-card>*,
+.spotlight-card>* {
   position: relative;
   z-index: 2;
   transform-style: preserve-3d;
