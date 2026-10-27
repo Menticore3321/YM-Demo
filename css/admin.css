@@ -6,11 +6,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --admin-bg-base: #070B08;
-  --admin-bg-panel: #0E140F;
-  --admin-bg-card: #151F17;
-  --admin-bg-hover: #1C2B1F;
-  --admin-border: rgba(144, 169, 85, 0.16);
+  --admin-bg-base: #141715;
+  --admin-bg-panel: #1A1F1B;
+  --admin-bg-card: #222923;
+  --admin-bg-hover: #2B342C;
+  --admin-border: rgba(144, 169, 85, 0.18);
   --admin-border-focus: rgba(236, 243, 158, 0.60);
   
   --c-forest: #132A13;
@@ -20,9 +20,9 @@
   --c-lemon: #ECF39E;
   --c-gold: #F3CA6D;
   
-  --text-main: #FFFFFF;
-  --text-sub: #A8BBA5;
-  --text-muted: #6B7F68;
+  --text-main: #F6F5EE;
+  --text-sub: #D8DCCF;
+  --text-muted: #8E9C8D;
   
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-heading: 'Outfit', 'Plus Jakarta Sans', sans-serif;
@@ -56,7 +56,7 @@ body {
    ========================================================================== */
 .admin-header {
   height: 70px;
-  background: rgba(11, 16, 12, 0.95);
+  background: rgba(20, 24, 21, 0.95);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--admin-border);
   display: flex;
@@ -76,14 +76,16 @@ body {
 .admin-brand-logo {
   height: 42px;
   width: auto;
-  border-radius: 8px;
+  object-fit: contain;
+  background: transparent !important;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
 }
 
 .admin-brand-title {
   font-family: var(--font-heading);
   font-size: 1.15rem;
   font-weight: 700;
-  color: #FFFFFF;
+  color: var(--text-main);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -557,14 +559,14 @@ body {
   justify-content: center;
   padding: 20px;
   overflow: hidden;
-  background: radial-gradient(circle at center, #0F1710 0%, #060907 100%);
+  background: radial-gradient(circle at center, #1B211C 0%, #111512 100%);
 }
 
 .preview-device-frame {
   width: 100%;
   height: 100%;
   max-width: 100%;
-  background: #000000;
+  background: #161A17;
   border-radius: var(--radius-lg);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -588,7 +590,7 @@ body {
   height: 100%;
   border: none;
   display: block;
-  background: #0B110C;
+  background: #161A17;
 }
 
 /* ==========================================================================

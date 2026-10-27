@@ -301,13 +301,13 @@
     bindColorPicker('theme-sage-green', 'theme-sage-green-hex', t.cSageGreen, (v) => { t.cSageGreen = v; broadcastPreviewUpdate(); });
     bindColorPicker('theme-lemon-cream', 'theme-lemon-cream-hex', t.cLemonCream, (v) => { t.cLemonCream = v; broadcastPreviewUpdate(); });
     bindColorPicker('theme-gold-glow', 'theme-gold-glow-hex', t.cGoldGlow, (v) => { t.cGoldGlow = v; broadcastPreviewUpdate(); });
-    bindColorPicker('theme-bg-dark', 'theme-bg-dark-hex', t.bgDark, (v) => { t.bgDark = v; broadcastPreviewUpdate(); });
+    bindColorPicker('theme-bg-dark', 'theme-bg-dark-hex', t.bgDark || '#161A17', (v) => { t.bgDark = v; broadcastPreviewUpdate(); });
 
     // Canvas surfaces and typography
-    bindColorPicker('theme-bg-surface', 'theme-bg-surface-hex', t.bgSurface || '#141D15', (v) => { t.bgSurface = v; broadcastPreviewUpdate(); });
-    bindColorPicker('theme-bg-card', 'theme-bg-card-hex', t.bgCard || '#141E15', (v) => { t.bgCard = v; broadcastPreviewUpdate(); });
-    bindColorPicker('theme-text-primary', 'theme-text-primary-hex', t.textPrimary || '#FFFFFF', (v) => { t.textPrimary = v; broadcastPreviewUpdate(); });
-    bindColorPicker('theme-text-secondary', 'theme-text-secondary-hex', t.textSecondary || '#D6E3D4', (v) => { t.textSecondary = v; broadcastPreviewUpdate(); });
+    bindColorPicker('theme-bg-surface', 'theme-bg-surface-hex', t.bgSurface || '#1E2420', (v) => { t.bgSurface = v; broadcastPreviewUpdate(); });
+    bindColorPicker('theme-bg-card', 'theme-bg-card-hex', t.bgCard || '#252C26', (v) => { t.bgCard = v; broadcastPreviewUpdate(); });
+    bindColorPicker('theme-text-primary', 'theme-text-primary-hex', t.textPrimary || '#F6F5EE', (v) => { t.textPrimary = v; broadcastPreviewUpdate(); });
+    bindColorPicker('theme-text-secondary', 'theme-text-secondary-hex', t.textSecondary || '#D8DCCF', (v) => { t.textSecondary = v; broadcastPreviewUpdate(); });
 
     // Grid Geometry & Dot-Matrix
     bindColorPicker('theme-grid-dot', 'theme-grid-dot-hex', t.gridDotColor || '#D4A017', (v) => { t.gridDotColor = v; broadcastPreviewUpdate(); });

@@ -27,18 +27,20 @@
   --c-gold-border: rgba(243, 202, 109, 0.32);
   --c-gold-glow: rgba(243, 202, 109, 0.38);
 
-  /* Clean Slate-Obsidian Deep Forest Canvas */
-  --bg-primary: #0E120F;
-  --bg-secondary: rgba(22, 28, 23, 0.65);
-  --bg-section-glass: rgba(18, 24, 19, 0.60);
-  --bg-tertiary: #131814;
-  --bg-card: rgba(24, 31, 25, 0.85);
-  --bg-glass: rgba(16, 21, 17, 0.90);
+  /* Clean Slate-Obsidian Deep Charcoal Canvas - Color Theory Tuned */
+  --bg-base: #161A17;
+  --bg-primary: #161A17;
+  --bg-surface: #1E2420;
+  --bg-secondary: rgba(30, 36, 32, 0.70);
+  --bg-section-glass: rgba(26, 31, 27, 0.65);
+  --bg-tertiary: #1E2420;
+  --bg-card: rgba(37, 44, 38, 0.85);
+  --bg-glass: rgba(22, 26, 23, 0.92);
   --border-glass: rgba(144, 169, 85, 0.22);
 
-  --text-primary: #FFFFFF;
-  --text-secondary: #CAD5C5;
-  --text-muted: #8E9C8D;
+  --text-primary: #F6F5EE;
+  --text-secondary: #D8DCCF;
+  --text-muted: #9FA89B;
   --text-inverse: #132A13;
 
   --brand-primary: #A3BD68;
@@ -81,7 +83,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
-  background-color: #0E120F;
+  background-color: #161A17;
   color-scheme: dark;
 }
 
@@ -467,16 +469,17 @@ section {
 .brand-logo-img {
   height: 52px;
   width: auto;
-  border-radius: 10px;
   object-fit: contain;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  transition: transform 0.25s ease;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35));
+  transition: transform 0.25s ease, filter 0.25s ease;
   display: block;
   flex-shrink: 0;
+  background: transparent !important;
 }
 
 .brand-logo-img:hover {
-  transform: scale(1.05);
+  transform: scale(1.04);
+  filter: drop-shadow(0 4px 14px rgba(236, 243, 158, 0.28));
 }
 
 .brand-text {
@@ -491,7 +494,7 @@ section {
   font-size: 1.25rem;
   font-weight: 800;
   letter-spacing: 0.04em;
-  color: #FFFFFF !important;
+  color: var(--text-primary, #F6F5EE) !important;
   line-height: 1.1;
   margin: 0;
   padding: 0;
@@ -738,12 +741,12 @@ section {
   justify-content: center;
   padding: 140px 24px 80px;
   overflow: hidden;
-  background-color: #000000 !important;
-  color: #FFFFFF !important;
+  background-color: var(--bg-primary, #161A17) !important;
+  color: var(--text-primary, #F6F5EE) !important;
 }
 
 [data-theme="dark"] .hero-section {
-  background-color: #000000 !important;
+  background-color: var(--bg-primary, #161A17) !important;
 }
 
 /* ==========================================================================
@@ -1110,7 +1113,7 @@ section {
 .subpage-hero {
   position: relative;
   width: 100%;
-  background-color: #000000 !important;
+  background-color: var(--bg-primary, #161A17) !important;
   overflow: hidden;
   padding: 160px 24px 80px;
   text-align: center;
@@ -4158,21 +4161,21 @@ section {
    Deep Emerald Slate -> Velvet Obsidian Black (Bottom)
    ========================================================================== */
 
-/* 1. Top Hero Section: Deep Pitch Black Luxury Atmosphere (No grids on pitch black, green arc ONLY on landing page hover) */
+/* 1. Top Hero Section: Deep Charcoal Slate Luxury Atmosphere - Color Theory Tuned */
 .hero-section,
 .subpage-hero {
-  background-color: #000000 !important;
-  color: #FFFFFF !important;
+  background-color: var(--bg-primary, #161A17) !important;
+  color: var(--text-primary, #F6F5EE) !important;
   position: relative !important;
   z-index: 2 !important;
 }
 
 .hero-section .hero-title,
 .subpage-hero h1 {
-  color: #FFFFFF !important;
+  color: var(--text-primary, #F6F5EE) !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.75), 0 0 6px rgba(0, 0, 0, 0.6) !important;
 }
 
 /* Pure Palette Light Sage Green (#90A955) for "... in Corporate Finance & Advisory" (Solid Text Color, No Shade) */
@@ -4272,10 +4275,10 @@ section {
   opacity: 0.25 !important;
 }
 
-/* 2. Transition 1: How We Help Section (Pitch Black gradually tones down through lush forest green to Creamish Linen #FAF9F3 - Grids & lines emerge gradually as black dims) */
+/* 2. Transition 1: How We Help Section (Charcoal Slate gradually tones down through lush forest green to Creamish Linen #FAF9F3) */
 .how-we-help-section {
   padding: 96px 0;
-  background: linear-gradient(180deg, #000000 0%, rgba(9, 19, 10, 0.94) 14%, rgba(23, 49, 24, 0.78) 35%, rgba(54, 90, 41, 0.72) 58%, rgba(142, 159, 118, 0.72) 80%, rgba(250, 249, 243, 0.92) 100%) !important;
+  background: linear-gradient(180deg, #161A17 0%, rgba(22, 28, 23, 0.94) 14%, rgba(23, 49, 24, 0.78) 35%, rgba(54, 90, 41, 0.72) 58%, rgba(142, 159, 118, 0.72) 80%, rgba(250, 249, 243, 0.92) 100%) !important;
   position: relative !important;
   z-index: 2 !important;
 }
@@ -4287,10 +4290,10 @@ section {
 }
 
 .how-we-help-section .section-title {
-  color: #FFFFFF !important;
+  color: var(--text-primary, #F6F5EE) !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.75), 0 0 6px rgba(0, 0, 0, 0.6) !important;
 }
 
 .how-we-help-section .section-title .text-brand {
@@ -4825,10 +4828,10 @@ section {
   border-top-color: rgba(144, 169, 85, 0.20) !important;
 }
 
-/* 6. Final Zone: Transition to Pitch Black at the End of the Page - Grids & lines fade out into pitch black */
+/* 6. Final Zone: Transition to Charcoal Slate at the End of the Page - Color Theory Tuned */
 .cta-banner-section {
   padding: 80px 24px;
-  background: linear-gradient(180deg, rgba(12, 26, 12, 0.90) 0%, rgba(5, 12, 5, 0.96) 50%, #000000 100%) !important;
+  background: linear-gradient(180deg, rgba(22, 28, 23, 0.90) 0%, rgba(20, 25, 21, 0.96) 50%, #161A17 100%) !important;
   position: relative !important;
   z-index: 2 !important;
 }
@@ -4845,22 +4848,22 @@ section {
       rgba(215, 226, 205, 0.85) 15%,
       rgba(118, 143, 85, 0.80) 32%,
       rgba(45, 80, 40, 0.84) 52%,
-      rgba(19, 42, 19, 0.90) 72%,
-      rgba(7, 17, 7, 0.96) 88%,
-      #000000 100%) !important;
+      rgba(30, 42, 32, 0.90) 72%,
+      rgba(24, 30, 25, 0.96) 88%,
+      #161A17 100%) !important;
 }
 
 .site-footer {
-  background-color: #000000 !important;
+  background-color: var(--bg-primary, #161A17) !important;
   padding: 80px 24px 40px;
   border-top: 1px solid rgba(144, 169, 85, 0.20) !important;
-  color: #FFFFFF !important;
+  color: var(--text-primary, #F6F5EE) !important;
   position: relative !important;
   z-index: 2 !important;
 }
 
 .site-footer .footer-col-title {
-  color: #FFFFFF !important;
+  color: var(--text-primary, #F6F5EE) !important;
 }
 
 .site-footer .footer-address,
@@ -4873,7 +4876,7 @@ section {
 }
 
 .site-footer .footer-watermark {
-  color: rgba(255, 255, 255, 0.04) !important;
+  color: rgba(246, 245, 238, 0.04) !important;
 }
 
 .site-footer .footer-bottom-bar {
@@ -4883,9 +4886,9 @@ section {
 
 /* 7. Subpage Atmospheric Architecture & Complete Readability across Services, About, Careers, Contact */
 
-/* Subpage Transition Section: Smooth Flow from Pitch Black into Linen - Grids & lines emerge gradually as black dims */
+/* Subpage Transition Section: Smooth Flow from Charcoal Slate into Linen */
 .subpage-transition-section {
-  background: linear-gradient(180deg, #000000 0%, rgba(9, 19, 10, 0.94) 14%, rgba(23, 49, 24, 0.78) 35%, rgba(54, 90, 41, 0.72) 58%, rgba(142, 159, 118, 0.72) 80%, rgba(250, 249, 243, 0.92) 100%) !important;
+  background: linear-gradient(180deg, #161A17 0%, rgba(22, 28, 23, 0.94) 14%, rgba(23, 49, 24, 0.78) 35%, rgba(54, 90, 41, 0.72) 58%, rgba(142, 159, 118, 0.72) 80%, rgba(250, 249, 243, 0.92) 100%) !important;
   position: relative;
   z-index: 2 !important;
   width: 100%;
@@ -5308,18 +5311,18 @@ body.intro-docked .site-header .mobile-menu-btn {
 .intro-logo-img {
   height: 52px !important;
   width: auto !important;
-  border-radius: 10px !important;
   object-fit: contain !important;
   opacity: 0;
   transform: scale(0.65);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.45));
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), filter 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  background: transparent !important;
 }
 
 .intro-logo-img.is-visible {
   opacity: 1;
   transform: scale(1);
-  box-shadow: 0 0 35px rgba(236, 243, 158, 0.35), 0 4px 20px rgba(0, 0, 0, 0.50);
+  filter: drop-shadow(0 0 25px rgba(236, 243, 158, 0.40)) drop-shadow(0 4px 14px rgba(0, 0, 0, 0.40));
 }
 
 .intro-logo-halo {

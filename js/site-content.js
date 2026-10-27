@@ -98,8 +98,15 @@
         root.style.setProperty('--c-lemon-pastel', t.cLemonCream);
       }
       if (t.cGoldGlow) root.style.setProperty('--c-gold-glow', t.cGoldGlow);
-      if (t.bgDark) root.style.setProperty('--bg-base', t.bgDark);
-      if (t.bgSurface) root.style.setProperty('--bg-surface', t.bgSurface);
+      if (t.bgDark) {
+        root.style.setProperty('--bg-base', t.bgDark);
+        root.style.setProperty('--bg-primary', t.bgDark);
+        document.documentElement.style.backgroundColor = t.bgDark;
+      }
+      if (t.bgSurface) {
+        root.style.setProperty('--bg-surface', t.bgSurface);
+        root.style.setProperty('--bg-tertiary', t.bgSurface);
+      }
       if (t.bgCard) root.style.setProperty('--bg-card', t.bgCard);
       if (t.gridDotColor) root.style.setProperty('--grid-dot-color', t.gridDotColor);
       if (t.gridLineColor) root.style.setProperty('--grid-line-color', t.gridLineColor);
