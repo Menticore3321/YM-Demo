@@ -40,6 +40,17 @@
           const stored = localStorage.getItem(previewKey) || localStorage.getItem('ym_site_content');
           if (stored) {
             const parsed = JSON.parse(stored);
+            // Sanitize legacy dark theme values from previous sessions
+            if (parsed && parsed.theme) {
+              const bg = (parsed.theme.bgDark || '').toLowerCase();
+              if (bg.startsWith('#0') || bg.startsWith('#1') || bg.startsWith('#2') || bg.startsWith('#3') || bg === '') {
+                delete parsed.theme.bgDark;
+                delete parsed.theme.bgSurface;
+                delete parsed.theme.bgCard;
+                delete parsed.theme.textPrimary;
+                delete parsed.theme.textSecondary;
+              }
+            }
             merged = deepMerge(defaultData, parsed);
           }
         } catch (e) {
@@ -99,9 +110,15 @@
       }
       if (t.cGoldGlow) root.style.setProperty('--c-gold-glow', t.cGoldGlow);
       if (t.bgDark) {
-        root.style.setProperty('--bg-base', t.bgDark);
-        root.style.setProperty('--bg-primary', t.bgDark);
-        document.documentElement.style.backgroundColor = t.bgDark;
+        let bg = t.bgDark.trim();
+        const lower = bg.toLowerCase();
+        if (lower.startsWith('#0') || lower.startsWith('#1') || lower.startsWith('#2') || lower.startsWith('#3')) {
+          bg = '#FBF9F4';
+        }
+        root.style.setProperty('--bg-base', bg);
+        root.style.setProperty('--bg-primary', bg);
+        document.documentElement.style.backgroundColor = bg;
+        if (document.body) document.body.style.backgroundColor = bg;
       }
       if (t.bgSurface) {
         root.style.setProperty('--bg-surface', t.bgSurface);

@@ -27,10 +27,18 @@ document.addEventListener('DOMContentLoaded', () => {
 function initTheme() {
   try {
     localStorage.removeItem('ym-theme');
+    localStorage.removeItem('ym_theme');
+    const stored = localStorage.getItem('ym_site_content');
+    if (stored && (stored.includes('#131614') || stored.includes('#0A110B') || stored.includes('#161A17') || stored.includes('#1e2420'))) {
+      localStorage.removeItem('ym_site_content');
+      localStorage.removeItem('ym_cms_preview_data');
+    }
   } catch (e) {
     /* ignore storage access restrictions */
   }
   document.documentElement.setAttribute('data-theme', 'light');
+  document.documentElement.style.backgroundColor = '#FBF9F4';
+  if (document.body) document.body.style.backgroundColor = '#FBF9F4';
 }
 
 /* ==========================================================================
