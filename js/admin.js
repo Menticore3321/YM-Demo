@@ -15,6 +15,7 @@
     setupDeviceSwitching();
     setupPageSelector();
     setupModalHandlers();
+    setupVisualClickToEdit();
 
     // Load initial data
     try {
@@ -128,6 +129,59 @@
     }
   }
 
+  // 5b. Visual Click-to-Edit Inspector Bridge
+  function setupVisualClickToEdit() {
+    let isVisualActive = true;
+    const toggleBtn = document.getElementById('btn-toggle-visual-edit');
+
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        isVisualActive = !isVisualActive;
+        toggleBtn.className = isVisualActive ? 'btn-visual-mode active' : 'btn-visual-mode inactive';
+        toggleBtn.innerHTML = isVisualActive ? '✏️ Click-to-Edit: ON' : '👁️ Click-to-Edit: OFF';
+
+        if (previewIframe && previewIframe.contentWindow) {
+          previewIframe.contentWindow.postMessage(
+            {
+              type: 'YM_CMS_TOGGLE_VISUAL_MODE',
+              active: isVisualActive,
+            },
+            '*'
+          );
+        }
+      });
+    }
+
+    // Listen for direct clicks on elements inside the preview iframe
+    window.addEventListener('message', (event) => {
+      if (!event.data) return;
+      if (event.data.type === 'YM_CMS_FOCUS_FIELD') {
+        const { tab, fieldId } = event.data;
+
+        // 1. Switch to the matching tab
+        const tabBtn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
+        if (tabBtn) tabBtn.click();
+
+        // 2. Find and highlight the exact field
+        setTimeout(() => {
+          const targetEl = document.getElementById(fieldId);
+          if (targetEl) {
+            targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            targetEl.classList.add('admin-field-focused');
+
+            if (targetEl.tagName === 'INPUT' || targetEl.tagName === 'TEXTAREA') {
+              targetEl.focus();
+            }
+
+            setTimeout(() => {
+              targetEl.classList.remove('admin-field-focused');
+            }, 2400);
+          }
+        }, 120);
+      }
+    });
+  }
+
   // 6. Populate Forms
   function populateAllForms() {
     if (!siteData) return;
@@ -166,6 +220,24 @@
     bindColorPicker('theme-lemon-cream', 'theme-lemon-cream-hex', t.cLemonCream, (v) => { t.cLemonCream = v; broadcastPreviewUpdate(); });
     bindColorPicker('theme-gold-glow', 'theme-gold-glow-hex', t.cGoldGlow, (v) => { t.cGoldGlow = v; broadcastPreviewUpdate(); });
     bindColorPicker('theme-bg-dark', 'theme-bg-dark-hex', t.bgDark, (v) => { t.bgDark = v; broadcastPreviewUpdate(); });
+
+    // Grid Geometry & Dot-Matrix
+    bindColorPicker('theme-grid-dot', 'theme-grid-dot-hex', t.gridDotColor || '#D4A017', (v) => { t.gridDotColor = v; broadcastPreviewUpdate(); });
+    bindColorPicker('theme-grid-line', 'theme-grid-line-hex', t.gridLineColor || '#6B500F', (v) => { t.gridLineColor = v; broadcastPreviewUpdate(); });
+    bindColorPicker('theme-grid-spotlight', 'theme-grid-spotlight-hex', t.gridSpotlightDot || '#E5B020', (v) => { t.gridSpotlightDot = v; broadcastPreviewUpdate(); });
+
+    const opacitySlider = document.getElementById('theme-grid-opacity');
+    const opacityValText = document.getElementById('theme-grid-opacity-val');
+    if (opacitySlider) {
+      opacitySlider.value = t.gridOpacity !== undefined ? t.gridOpacity : 0.8;
+      if (opacityValText) opacityValText.textContent = Math.round(opacitySlider.value * 100) + '%';
+      opacitySlider.oninput = (e) => {
+        const val = parseFloat(e.target.value);
+        t.gridOpacity = val;
+        if (opacityValText) opacityValText.textContent = Math.round(val * 100) + '%';
+        broadcastPreviewUpdate();
+      };
+    }
   }
 
   // C. Hero Form

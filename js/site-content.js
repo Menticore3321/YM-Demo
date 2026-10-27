@@ -83,6 +83,11 @@
       }
       if (data.theme.cGoldGlow) root.style.setProperty('--c-gold-glow', data.theme.cGoldGlow);
       if (data.theme.bgDark) root.style.setProperty('--bg-base', data.theme.bgDark);
+      if (data.theme.gridDotColor) root.style.setProperty('--grid-dot-color', data.theme.gridDotColor);
+      if (data.theme.gridLineColor) root.style.setProperty('--grid-line-color', data.theme.gridLineColor);
+      if (data.theme.gridSpotlightDot) root.style.setProperty('--grid-spotlight-dot', data.theme.gridSpotlightDot);
+      if (data.theme.gridSpotlightLine) root.style.setProperty('--grid-spotlight-line', data.theme.gridSpotlightLine);
+      if (data.theme.gridOpacity !== undefined) root.style.setProperty('--grid-opacity', data.theme.gridOpacity);
     }
 
     // B. Apply Brand
@@ -341,11 +346,118 @@
     }
   }
 
+  // 4. Visual Click-to-Edit Inspector for Admin Studio Iframe
+  function setupVisualInspector() {
+    if (window.parent === window) return; // Only active inside Admin Studio iframe
+
+    let visualModeActive = true;
+
+    // Inject Inspector Highlight Styles
+    const style = document.createElement('style');
+    style.id = 'ym-cms-inspector-styles';
+    style.textContent = `
+      .ym-cms-highlightable {
+        cursor: pointer !important;
+        outline: 1.5px dashed rgba(236, 243, 158, 0.45) !important;
+        outline-offset: 3px !important;
+        position: relative !important;
+        transition: outline 0.15s ease, background 0.15s ease !important;
+      }
+      .ym-cms-highlightable:hover {
+        outline: 2px solid #ECF39E !important;
+        background: rgba(236, 243, 158, 0.12) !important;
+      }
+      .ym-cms-highlightable:hover::after {
+        content: attr(data-cms-label);
+        position: absolute;
+        top: -24px;
+        left: 0;
+        background: #132A13;
+        color: #ECF39E;
+        border: 1px solid #ECF39E;
+        font-family: sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 4px;
+        white-space: nowrap;
+        z-index: 999999;
+        pointer-events: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      }
+    `;
+    document.head.appendChild(style);
+
+    const editableMappings = [
+      { selector: '.brand-link', tab: 'brand', field: 'brand-title', label: '✏️ Edit Brand Title & Logo' },
+      { selector: '.site-header .btn-cta', tab: 'brand', field: 'brand-cta-text', label: '✏️ Edit Header CTA' },
+      { selector: '.hero-section .badge-pill', tab: 'hero', field: 'hero-badge', label: '✏️ Edit Hero Badge' },
+      { selector: '.hero-title', tab: 'hero', field: 'hero-title-highlight', label: '✏️ Edit Hero Headline' },
+      { selector: '.hero-subtitle', tab: 'hero', field: 'hero-subtitle', label: '✏️ Edit Hero Subtitle' },
+      { selector: '.hero-actions .btn-primary, .hero-actions .btn-brand', tab: 'hero', field: 'hero-primary-cta-text', label: '✏️ Edit Primary CTA' },
+      { selector: '.hero-actions .btn-glass, .hero-actions .btn-secondary', tab: 'hero', field: 'hero-secondary-cta-text', label: '✏️ Edit Secondary CTA' },
+      { selector: '.process-stat-banner', tab: 'hero', field: 'process-accuracy-stat-text', label: '✏️ Edit Accuracy Stat Banner' },
+      { selector: '.stat-box', tab: 'metrics', field: 'metrics-list-container', label: '✏️ Edit Proven Metrics' },
+      { selector: '.service-card', tab: 'services', field: 'services-list-container', label: '✏️ Edit Service Cards' },
+      { selector: '.team-member-card', tab: 'team', field: 'team-list-container', label: '✏️ Edit Team Member' },
+      { selector: '.job-card, .opening-card', tab: 'careers', field: 'careers-list-container', label: '✏️ Edit Job Opening' },
+      { selector: '.faq-item', tab: 'faqs', field: 'faqs-list-container', label: '✏️ Edit FAQ' },
+      { selector: '.subpage-hero h1', tab: 'hero', field: 'hero-title-highlight', label: '✏️ Edit Section Title' },
+      { selector: '.legal-content-body', tab: 'legal', field: 'tos-intro', label: '✏️ Edit Legal Clauses & T&C' }
+    ];
+
+    function applyInspectorMarkers() {
+      if (!visualModeActive) {
+        document.querySelectorAll('.ym-cms-highlightable').forEach(el => {
+          el.classList.remove('ym-cms-highlightable');
+        });
+        return;
+      }
+
+      editableMappings.forEach(mapping => {
+        document.querySelectorAll(mapping.selector).forEach(el => {
+          el.classList.add('ym-cms-highlightable');
+          el.setAttribute('data-cms-label', mapping.label);
+          el.setAttribute('data-cms-tab', mapping.tab);
+          el.setAttribute('data-cms-field', mapping.field);
+
+          el.onclick = (e) => {
+            if (!visualModeActive) return;
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.parent.postMessage({
+              type: 'YM_CMS_FOCUS_FIELD',
+              tab: mapping.tab,
+              fieldId: mapping.field
+            }, '*');
+          };
+        });
+      });
+    }
+
+    applyInspectorMarkers();
+    setTimeout(applyInspectorMarkers, 600);
+    setTimeout(applyInspectorMarkers, 1500);
+
+    // Toggle listener from parent admin
+    window.addEventListener('message', (event) => {
+      if (event.data && event.data.type === 'YM_CMS_TOGGLE_VISUAL_MODE') {
+        visualModeActive = event.data.active;
+        applyInspectorMarkers();
+      }
+    });
+  }
+
   // Self-execute on DOM ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initContent);
+    document.addEventListener('DOMContentLoaded', () => {
+      initContent();
+      setupVisualInspector();
+    });
   } else {
     initContent();
+    setupVisualInspector();
   }
 
   // Export for external callers if needed

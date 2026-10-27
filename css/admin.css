@@ -659,3 +659,44 @@ body {
   margin-top: 14px;
   line-height: 1.6;
 }
+
+/* ==========================================================================
+   Click-to-Edit Visual Mode & Field Focus Highlight
+   ========================================================================== */
+.btn-visual-mode {
+  background: rgba(236, 243, 158, 0.12);
+  color: var(--c-lemon);
+  border: 1px solid rgba(236, 243, 158, 0.35);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-visual-mode.active {
+  background: var(--c-kombu);
+  color: var(--c-lemon);
+  border-color: var(--c-lemon);
+  box-shadow: 0 0 14px rgba(236, 243, 158, 0.35);
+}
+
+.btn-visual-mode.inactive {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+}
+
+.admin-field-focused {
+  border-color: var(--c-lemon) !important;
+  background: #1F2E22 !important;
+  box-shadow: 0 0 0 3px rgba(236, 243, 158, 0.50), 0 0 24px rgba(236, 243, 158, 0.35) !important;
+  transform: scale(1.02);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+

@@ -17,7 +17,11 @@
     "cLemonCream": "#ECF39E",
     "cGoldGlow": "#F3CA6D",
     "bgDark": "#0B110C",
-    "bgSurface": "#141D15"
+    "bgSurface": "#141D15",
+    "gridDotColor": "#D4A017",
+    "gridLineColor": "#6B500F",
+    "gridSpotlightDot": "#E5B020",
+    "gridOpacity": 0.80
   },
   "hero": {
     "badgeText": "Institutional Advisory & Outsourced CFO",
