@@ -1,0 +1,417 @@
+{
+  "brand": {
+    "name": "YoungMark Global Advisory",
+    "title": "YoungMark",
+    "subtitle": "Global Advisory",
+    "tagline": "Strategic Financial Architecture & Fiduciary Precision",
+    "logoUrl": "assets/Logo.png",
+    "faviconUrl": "assets/Logo.png",
+    "headerCtaText": "Schedule Discovery Call",
+    "headerCtaLink": "contact.html"
+  },
+  "theme": {
+    "cForestDark": "#132A13",
+    "cKombuGreen": "#31572C",
+    "cLeafGreen": "#4F772D",
+    "cSageGreen": "#90A955",
+    "cLemonCream": "#ECF39E",
+    "cGoldGlow": "#F3CA6D",
+    "bgDark": "#0B110C",
+    "bgSurface": "#141D15"
+  },
+  "hero": {
+    "badgeText": "Institutional Advisory & Outsourced CFO",
+    "titlePrefix": "Strategic Financial",
+    "titleHighlight": "Architecture",
+    "titleSuffix": "& Fiduciary Precision",
+    "subtitle": "We partner with visionary enterprises, high-growth startups, and mid-market corporations to establish audit-grade accounting, predictive cash-flow runways, and executive-tier governance.",
+    "primaryCtaText": "Explore Practices",
+    "primaryCtaLink": "#services",
+    "secondaryCtaText": "Book Consultation",
+    "secondaryCtaLink": "contact.html",
+    "statBanner": "✦ 99.8% Financial Precision: Guaranteed audit-ready accuracy across all ledger postings."
+  },
+  "metrics": [
+    {
+      "id": "metric-1",
+      "number": 1.4,
+      "prefix": "$",
+      "suffix": "B+",
+      "label": "Transaction Volume Reconciled",
+      "subtext": "Managed across private equity, venture portfolios, and corporate accounts."
+    },
+    {
+      "id": "metric-2",
+      "number": 99.8,
+      "prefix": "",
+      "suffix": "%",
+      "label": "Audit & Statutory Compliance Rate",
+      "subtext": "Zero material adjustments across external Big Four and regulatory audits."
+    },
+    {
+      "id": "metric-3",
+      "number": 48,
+      "prefix": "",
+      "suffix": " Hrs",
+      "label": "Month-End Close SLA",
+      "subtext": "Guaranteed 48-hour delivery of consolidated board-ready management packs."
+    },
+    {
+      "id": "metric-4",
+      "number": 180,
+      "prefix": "",
+      "suffix": "+",
+      "label": "Enterprise & Portfolio Clients",
+      "subtext": "Global footprint spanning the Americas, EMEA, and Asia-Pacific."
+    }
+  ],
+  "processAccuracyStat": {
+    "text": "Institutional Governance SLA: Zero material adjustments across external Big Four & statutory audits. Guaranteed 48-hour delivery of consolidated board-ready financial intelligence packs."
+  },
+  "howWeHelp": [
+    {
+      "id": "help-1",
+      "number": "01",
+      "title": "Institutional Financial Foundations",
+      "description": "Establish bulletproof chart of accounts, automated ingestion feeds, and GAAP/IFRS compliant transaction workflows from day one."
+    },
+    {
+      "id": "help-2",
+      "number": "02",
+      "title": "Fractional CFO & Capital Strategy",
+      "description": "Access elite executive financial steering, dynamic 3-statement modeling, capital allocation guidance, and investor board representations."
+    },
+    {
+      "id": "help-3",
+      "number": "03",
+      "title": "Predictive MIS & Data Cockpits",
+      "description": "Transform static spreadsheets into real-time business intelligence cockpits with unit economics, cash burn runways, and margin telemetry."
+    },
+    {
+      "id": "help-4",
+      "number": "04",
+      "title": "Global Tax Governance & Filing",
+      "description": "Navigate multi-jurisdictional compliance, statutory filings, cross-border transfer pricing, and proactive fiscal liability mitigation."
+    }
+  ],
+  "services": [
+    {
+      "id": "service-1",
+      "category": "Financial Operations",
+      "title": "Full-Cycle Bookkeeping",
+      "brief": "Meticulous ledger recording, scheduled bank balancing, and audit-ready P&L and balance sheet statements.",
+      "deliverables": [
+        "Daily Transaction Ingestion & Categorization",
+        "Bank, Credit & Escrow Reconciliation",
+        "Preparation of Balance Sheets & P&L Statements",
+        "Month-End Accrual Adjustments",
+        "Audit Schedule Generation"
+      ]
+    },
+    {
+      "id": "service-2",
+      "category": "Business Intelligence",
+      "title": "Management Information Systems (MIS)",
+      "brief": "Empower executives with real-time financial reporting and interactive KPI cockpits synthesized across multi-entity figures.",
+      "deliverables": [
+        "Custom Executive PowerBI & Tableau Dashboards",
+        "Unit Economics & Customer Margin Metrics",
+        "Cash Flow Variance Tracking & Rolling Projections",
+        "Departmental Budget vs. Actual Analysis",
+        "Automated Scheduled Delivery for Board Meetings"
+      ]
+    },
+    {
+      "id": "service-3",
+      "category": "Executive Advisory",
+      "title": "Fractional & Virtual CFO",
+      "brief": "High-level fiscal steering, runway extension modeling, debt covenants, and board presentation collateral.",
+      "deliverables": [
+        "Dynamic 3-Statement Financial Modeling & Scenario Forecasting",
+        "Working Capital Runway & Burn Rate Optimization",
+        "Series A-D Capital Raise Deck & Data Room Curation",
+        "M&A Due Diligence & Valuation Modeling",
+        "Board of Directors Financial Representations"
+      ]
+    },
+    {
+      "id": "service-4",
+      "category": "Statutory Governance",
+      "title": "Strategic Tax Governance & Compliance",
+      "brief": "Corporate direct and indirect tax structuring, GST/VAT reconciliations, and cross-border statutory compliance.",
+      "deliverables": [
+        "Corporate Income Tax Preparation & Advance Filing",
+        "Multi-State GST, Sales Tax & VAT Reconciliations",
+        "International Transfer Pricing Documentation",
+        "R&D Tax Credit & Incentive Capitalization",
+        "Statutory Audit Defense Binder Support"
+      ]
+    },
+    {
+      "id": "service-5",
+      "category": "Capital Advisory",
+      "title": "Financial Due Diligence & M&A Advisory",
+      "brief": "Quality of Earnings (QofE) analyses, working capital peg determinations, and deep financial hygiene investigations.",
+      "deliverables": [
+        "Buy-Side & Sell-Side Quality of Earnings (QofE)",
+        "Net Working Capital (NWC) Peg Calculations",
+        "Historical Financial Normalization & EBITDA Adjustments",
+        "Post-Merger Financial Integration Architecture",
+        "Vendor Due Diligence Vendor Packs"
+      ]
+    },
+    {
+      "id": "service-6",
+      "category": "Specialized Funds",
+      "title": "Real Estate & Fund Accounting",
+      "brief": "Specialized accounting architecture for real estate syndicates, property portfolios, and private equity funds.",
+      "deliverables": [
+        "Capital Call & Distribution Waterfall Calculation",
+        "Property-Level P&L and Rent Roll Reconciliations",
+        "CAM (Common Area Maintenance) Recovery Audits",
+        "Fund NAV (Net Asset Value) Calculations",
+        "Investor Capital Account Statement Distribution"
+      ]
+    }
+  ],
+  "team": [
+    {
+      "id": "team-1",
+      "name": "Marcus Vance",
+      "role": "Managing Partner & Chief Financial Strategist",
+      "bio": "Former Big Four Audit Director with 18+ years orchestrating institutional accounting and debt structuring for mid-market funds.",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+      "linkedin": "https://linkedin.com"
+    },
+    {
+      "id": "team-2",
+      "name": "Elena Rostova",
+      "role": "Senior Director of Global Tax & Cross-Border Governance",
+      "bio": "Chartered Tax Advisor specializing in cross-border transfer pricing, corporate restructuring, and global fiscal compliance.",
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
+      "linkedin": "https://linkedin.com"
+    },
+    {
+      "id": "team-3",
+      "name": "David Sterling",
+      "role": "Director of Strategic Accounting & Audit Systems",
+      "bio": "Certified Internal Auditor and CPA leading full-cycle corporate bookkeeping, internal controls, and enterprise ERP integrations.",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
+      "linkedin": "https://linkedin.com"
+    },
+    {
+      "id": "team-4",
+      "name": "Priya Sharma",
+      "role": "Head of Fractional CFO Services & Capital Advisory",
+      "bio": "Ex-investment banker and venture CFO managing liquidity runways, fundraising rounds, and corporate M&A transactions.",
+      "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80",
+      "linkedin": "https://linkedin.com"
+    }
+  ],
+  "careers": [
+    {
+      "id": "job-1",
+      "title": "Senior Corporate Accountant & Controller",
+      "department": "Financial Operations",
+      "type": "Full-Time",
+      "location": "Remote / Hybrid (NYC / London / Mumbai)",
+      "experience": "5+ Years",
+      "description": "Lead multi-entity bookkeeping, general ledger reconciliations, and monthly financial close cycles for high-growth enterprise clients.",
+      "perks": "Competitive Salary, 401(k) / Provident Match, Comprehensive Health Coverage, Annual Learning Stipend."
+    },
+    {
+      "id": "job-2",
+      "title": "Fractional CFO Advisory Associate",
+      "department": "Strategic Advisory",
+      "type": "Full-Time",
+      "location": "Remote / Hybrid (NYC / London)",
+      "experience": "4+ Years",
+      "description": "Build dynamic 3-statement forecast models, conduct cash runway analysis, and prepare investor data room collateral for venture-backed portfolios.",
+      "perks": "Equity Incentive Pool, Flexible Remote Policy, Executive Mentorship, Performance Bonus."
+    },
+    {
+      "id": "job-3",
+      "title": "International Corporate Tax Specialist",
+      "department": "Tax & Compliance",
+      "type": "Full-Time",
+      "location": "Hybrid (London / Singapore / Remote)",
+      "experience": "6+ Years",
+      "description": "Manage cross-border tax planning, multi-state sales tax, GST/VAT filings, and transfer pricing documentation across global corporate groups.",
+      "perks": "Top-tier Medical & Dental, Global Mobility Options, Professional Certification Sponsorship."
+    },
+    {
+      "id": "job-4",
+      "title": "Financial Systems & BI Developer (PowerBI / NetSuite)",
+      "department": "Technology & MIS",
+      "type": "Full-Time",
+      "location": "Remote Worldwide",
+      "experience": "3+ Years",
+      "description": "Design automated ETL financial ingestion pipelines, connect ERPs to PowerBI dashboards, and architect real-time KPI cockpits.",
+      "perks": "Home Office Budget, Flexible Hours, Latest Apple Gear, Annual Global Retreat."
+    }
+  ],
+  "about": {
+    "title": "About YoungMark Global Advisory",
+    "mission": "To engineer uncompromising institutional financial infrastructure for modern corporations, blending fiduciary integrity, algorithmic precision, and strategic capital foresight.",
+    "vision": "To be the premier global fiduciary partner for mid-market and enterprise organizations navigating complex statutory landscapes and exponential growth.",
+    "fiduciaryPrinciples": [
+      {
+        "title": "Absolute Fiduciary Duty",
+        "description": "We act strictly in our clients' best long-term financial interest, maintaining total independence, transparency, and objective governance."
+      },
+      {
+        "title": "Audit-Grade Rigor",
+        "description": "Every journal entry, allocation, and financial report undergoes dual-review verification adhering strictly to GAAP and IFRS standards."
+      },
+      {
+        "title": "Predictive Capital Stewardship",
+        "description": "We believe financial records should look forward, not backward. Our modeling empowers executives to make preemptive decisions."
+      },
+      {
+        "title": "Zero-Compromise Security",
+        "description": "Enterprise-grade AES-256 encryption, SOC 2 compliance standards, and air-gapped data segregation protect confidential corporate telemetry."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "id": "faq-1",
+      "question": "What separates YoungMark Global Advisory from traditional bookkeeping firms?",
+      "answer": "Unlike traditional bookkeeping agencies that merely catalog historical receipts once a month, YoungMark operates as an integrated financial engineering partner. We combine real-time ledger accounting, predictive fractional CFO advisory, and automated BI dashboards to provide executive teams with daily cash clarity and audit-grade financial statements."
+    },
+    {
+      "id": "faq-2",
+      "question": "How quickly can your team onboard and take over our financial operations?",
+      "answer": "Our standardized 14-day transition framework begins with an immediate financial hygiene and ledger integrity audit. Within 5 business days, we establish read-only API feeds to your existing banking and ERP systems without disrupting daily operations. Full operational handoff is typically achieved within 10 to 14 business days."
+    },
+    {
+      "id": "faq-3",
+      "question": "Do you support multi-entity, multi-currency, and cross-border businesses?",
+      "answer": "Yes. Our senior controllers and Chartered Accountants routinely architect consolidation schedules for international holding corporations, cross-border subsidiaries, and fund syndicates spanning the US, UK, EU, UAE, India, and Singapore."
+    },
+    {
+      "id": "faq-4",
+      "question": "Which accounting software and ERP platforms do you work with?",
+      "answer": "We are platform-agnostic with deep certified engineering expertise across QuickBooks Online & Enterprise, NetSuite, Xero, SAP Business One, Zoho Books, Sage Intacct, and Tally Prime. We integrate these with BI tools like PowerBI, Tableau, and automated reconciliation pipelines."
+    },
+    {
+      "id": "faq-5",
+      "question": "How does fractional CFO advisory work compared to hiring a full-time executive?",
+      "answer": "A full-time Tier-1 CFO typically commands $350K–$500K+ in annual compensation plus equity. YoungMark's Fractional CFO practice grants you on-demand access to battle-tested CFOs and financial analysts at a fraction of the cost, scaling dynamically with your transaction volume, fundraising cycles, or M&A initiatives."
+    }
+  ],
+  "contact": {
+    "primaryEmail": "advisory@youngmark.com",
+    "supportEmail": "clients@youngmark.com",
+    "careersEmail": "careers@youngmark.com",
+    "primaryPhone": "+1 (800) 492-8172",
+    "internationalPhone": "+44 20 7946 0912",
+    "offices": [
+      {
+        "city": "New York",
+        "address": "450 Lexington Avenue, 38th Floor, New York, NY 10017",
+        "phone": "+1 (212) 555-0198"
+      },
+      {
+        "city": "London",
+        "address": "100 Bishopsgate, Level 24, London EC2N 4AG, United Kingdom",
+        "phone": "+44 20 7946 0199"
+      },
+      {
+        "city": "Singapore",
+        "address": "Marina Bay Financial Centre, Tower 2, Singapore 018983",
+        "phone": "+65 6789 0123"
+      },
+      {
+        "city": "Mumbai",
+        "address": "Bandra Kurla Complex, One BKC, G Block, Mumbai 400051",
+        "phone": "+91 22 6123 4567"
+      }
+    ],
+    "social": {
+      "linkedin": "https://linkedin.com",
+      "twitter": "https://twitter.com",
+      "youtube": "https://youtube.com"
+    },
+    "copyright": "© 2026 YoungMark Global Advisory. All rights reserved. Confidential Fiduciary Counsel."
+  },
+  "legal": {
+    "termsOfService": {
+      "effectiveDate": "October 24, 2026",
+      "lastUpdated": "October 24, 2026",
+      "intro": "These Master Advisory Terms of Service constitute a legally binding agreement between YoungMark Global Advisory and the corporate client entity. By engaging our advisory, accounting, fractional CFO, or MIS services, you affirm acceptance of these terms.",
+      "sections": [
+        {
+          "heading": "1. Scope of Engagement & Professional Standards",
+          "body": "YoungMark Global Advisory delivers financial management, fractional CFO advisory, corporate bookkeeping, tax planning, and business intelligence services in accordance with established GAAP/IFRS standards. Deliverables are prepared based on transactional records and declarations furnished by the Client."
+        },
+        {
+          "heading": "2. Client Obligations & Data Integrity",
+          "body": "The Client agrees to grant timely, accurate, and unencumbered access to source bank accounts, merchant portals, invoicing streams, and corporate ledgers. YoungMark shall not be liable for regulatory penalties resulting from falsified or withheld client data."
+        },
+        {
+          "heading": "3. Fiduciary Duty & Strict Confidentiality",
+          "body": "YoungMark acknowledges and assumes a binding fiduciary standard with respect to Client financial records. All proprietary corporate records, cap tables, margins, and banking feeds remain strictly confidential and subject to institutional non-disclosure covenants."
+        },
+        {
+          "heading": "4. Intellectual Property & Deliverables",
+          "body": "Upon receipt of due advisory compensation, all custom board decks, MIS reports, and financial models generated specifically for the Client become the exclusive property of the Client entity."
+        },
+        {
+          "heading": "5. Limitation of Liability",
+          "body": "To the maximum extent permitted under applicable corporate law, YoungMark's aggregate financial liability arising out of or related to advisory engagements shall not exceed the total advisory fees paid by the Client in the trailing 12-month period."
+        },
+        {
+          "heading": "6. Governing Law & Dispute Resolution",
+          "body": "These Terms of Service and any contractual disputes shall be governed by and construed in accordance with the laws of the State of New York, USA, without regard to its conflict of law principles."
+        }
+      ]
+    },
+    "privacyPolicy": {
+      "effectiveDate": "October 24, 2026",
+      "lastUpdated": "October 24, 2026",
+      "intro": "At YoungMark Global Advisory, protecting confidential financial records, executive identities, and corporate transactional telemetry is our utmost institutional priority.",
+      "sections": [
+        {
+          "heading": "1. Categories of Information Collected",
+          "body": "We collect corporate entity information, banking statements, transaction registers, tax identifier numbers, payroll registers, and authorized executive contact details required to execute fiduciary engagements."
+        },
+        {
+          "heading": "2. Institutional Purpose of Processing",
+          "body": "Client information is processed solely for preparing statutory reconciliations, executive management packs, tax filings, payroll disbursements, and fiduciary advisory deliverables."
+        },
+        {
+          "heading": "3. Zero Third-Party Monetization Policy",
+          "body": "YoungMark maintains a strict policy: we do not sell, license, monetize, or disclose client financial records or personal identities to any third-party advertisers, brokers, or data clearinghouses."
+        },
+        {
+          "heading": "4. Military-Grade Encryption & Cloud Architecture",
+          "body": "All financial records are encrypted at rest using AES-256 bit encryption and in transit using TLS 1.3. Access is restricted via multi-factor biometric authentication and role-based clearance hierarchies."
+        },
+        {
+          "heading": "5. Corporate Data Retention & Permanent Deletion",
+          "body": "Records are retained strictly for the duration mandated by statutory tax and corporate audit regulations. Upon contractual termination and satisfaction of statutory holding requirements, records are permanently purged."
+        }
+      ]
+    },
+    "cookiePolicy": {
+      "effectiveDate": "October 24, 2026",
+      "lastUpdated": "October 24, 2026",
+      "intro": "YoungMark Global Advisory uses strictly essential and functional session tokens to facilitate secure client navigation, theme preference retention, and anonymous server telemetry.",
+      "sections": [
+        {
+          "heading": "1. What Are Cookies and Tokens?",
+          "body": "Small encrypted text files stored on your local browser to authenticate session continuity, remember dark-mode preferences, and prevent malicious Cross-Site Request Forgery (CSRF)."
+        },
+        {
+          "heading": "2. Essential Operational Cookies",
+          "body": "These tokens are technically strictly required for site navigation, intro animation status preservation, and secure consultation modal dispatch."
+        },
+        {
+          "heading": "3. Managing Your Preferences",
+          "body": "You may block or delete cookies via your browser settings at any time; however, blocking essential cookies may impact interactive portal functionality."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YoungMark Executive Admin Studio &amp; Visual CMS</title>
+  <link rel="icon" href="assets/Logo.png" type="image/png">
+  <link rel="stylesheet" href="css/admin.css?v=1.0">
+</head>
+<body>
+
+  <!-- Top Header Bar -->
+  <header class="admin-header">
+    <div class="admin-header-brand">
+      <img src="assets/Logo.png" alt="YoungMark Logo" class="admin-brand-logo">
+      <div class="admin-brand-title">
+        YoungMark <span class="admin-badge-cms">Executive Studio CMS</span>
+      </div>
+    </div>
+
+    <div class="admin-header-center">
+      <div class="admin-status-pill">
+        <span class="admin-status-dot"></span>
+        <span id="admin-status-text">Staging Draft (Preview Live)</span>
+      </div>
+
+      <div class="device-switcher">
+        <button class="device-btn active" data-device="desktop">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Desktop
+        </button>
+        <button class="device-btn" data-device="tablet">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          Tablet
+        </button>
+        <button class="device-btn" data-device="mobile">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          Mobile
+        </button>
+      </div>
+    </div>
+
+    <div class="admin-header-actions">
+      <button class="btn-admin btn-admin-glass" id="btn-reset-defaults" title="Reset Staging to Default Production Content">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        Reset
+      </button>
+      <button class="btn-admin btn-admin-glass" id="btn-export-json" title="Download Master site-content.json Backup">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export JSON
+      </button>
+      <button class="btn-admin btn-admin-primary" id="btn-open-publish-modal">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        🚀 Publish to Live Website
+      </button>
+    </div>
+  </header>
+
+  <!-- Master Split-Screen Workspace -->
+  <main class="admin-workspace">
+
+    <!-- Left Controls Editor Pane -->
+    <aside class="admin-editor-pane">
+
+      <!-- Navigation Tabs -->
+      <nav class="admin-tabs-nav">
+        <button class="tab-btn active" data-tab="brand">🏢 Brand &amp; Nav</button>
+        <button class="tab-btn" data-tab="theme">🎨 Colors</button>
+        <button class="tab-btn" data-tab="hero">🏠 Hero</button>
+        <button class="tab-btn" data-tab="metrics">📊 Metrics</button>
+        <button class="tab-btn" data-tab="services">💼 Services</button>
+        <button class="tab-btn" data-tab="team">👥 Team</button>
+        <button class="tab-btn" data-tab="careers">💼 Careers</button>
+        <button class="tab-btn" data-tab="about">🏛️ About</button>
+        <button class="tab-btn" data-tab="faqs">❓ FAQs</button>
+        <button class="tab-btn" data-tab="contact">📞 Contact</button>
+        <button class="tab-btn" data-tab="legal">⚖️ T&amp;C &amp; Policies</button>
+        <button class="tab-btn" data-tab="deploy">🚀 Git Deploy</button>
+      </nav>
+
+      <!-- Scrollable Panels Container -->
+      <div class="admin-tab-content-area">
+
+        <!-- Tab 1: Brand & Nav -->
+        <div class="admin-tab-panel active" id="panel-brand">
+          <div class="panel-header">
+            <h2 class="panel-title">Brand Identity &amp; Header Navigation</h2>
+            <p class="panel-subtitle">Manage company naming, logo assets, header buttons, and navigation links.</p>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Brand Title (Header Main)</label>
+            <input type="text" id="brand-title" class="form-input" placeholder="YoungMark">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Brand Subtitle (Pill Tagline)</label>
+            <input type="text" id="brand-subtitle" class="form-input" placeholder="Global Advisory">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Company Mission Tagline</label>
+            <input type="text" id="brand-tagline" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Logo Image Path / URL</label>
+            <input type="text" id="brand-logo-url" class="form-input" placeholder="assets/Logo.png">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Header Rightmost CTA Button Text</label>
+              <input type="text" id="brand-cta-text" class="form-input" placeholder="Schedule Discovery Call">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Header CTA Target Link</label>
+              <input type="text" id="brand-cta-link" class="form-input" placeholder="contact.html">
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Theme & Colors -->
+        <div class="admin-tab-panel" id="panel-theme">
+          <div class="panel-header">
+            <h2 class="panel-title">Global Garden Color Palette</h2>
+            <p class="panel-subtitle">Live interactive color pickers. Changes immediately update across all cards, buttons, backgrounds, and glow effects.</p>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Forest Dark Base (Brand Primary)</label>
+            <div class="color-input-group">
+              <input type="color" id="theme-forest-dark" class="color-picker">
+              <input type="text" id="theme-forest-dark-hex" class="color-hex-val">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Kombu Forest Green (Secondary &amp; Borders)</label>
+            <div class="color-input-group">
+              <input type="color" id="theme-kombu-green" class="color-picker">
+              <input type="text" id="theme-kombu-green-hex" class="color-hex-val">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Leaf Moss Green (Buttons &amp; Badges)</label>
+            <div class="color-input-group">
+              <input type="color" id="theme-leaf-green" class="color-picker">
+              <input type="text" id="theme-leaf-green-hex" class="color-hex-val">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Sage Olive Green (Subtitles &amp; Details)</label>
+            <div class="color-input-group">
+              <input type="color" id="theme-sage-green" class="color-picker">
+              <input type="text" id="theme-sage-green-hex" class="color-hex-val">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Pale Lemon Cream (Primary Accent &amp; Highlights)</label>
+            <div class="color-input-group">
+              <input type="color" id="theme-lemon-cream" class="color-picker">
+              <input type="text" id="theme-lemon-cream-hex" class="color-hex-val">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Golden Glow (Radial Ambient Sheen)</label>
+            <div class="color-input-group">
+              <input type="color" id="theme-gold-glow" class="color-picker">
+              <input type="text" id="theme-gold-glow-hex" class="color-hex-val">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Deep Obsidian Background</label>
+            <div class="color-input-group">
+              <input type="color" id="theme-bg-dark" class="color-picker">
+              <input type="text" id="theme-bg-dark-hex" class="color-hex-val">
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Hero Section -->
+        <div class="admin-tab-panel" id="panel-hero">
+          <div class="panel-header">
+            <h2 class="panel-title">Hero Section &amp; Main Headline</h2>
+            <p class="panel-subtitle">Customize the primary above-the-fold value proposition and conversion triggers.</p>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Top Pill Badge</label>
+            <input type="text" id="hero-badge" class="form-input">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Title Prefix</label>
+              <input type="text" id="hero-title-prefix" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Title Gradient Highlight</label>
+              <input type="text" id="hero-title-highlight" class="form-input">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Title Suffix</label>
+            <input type="text" id="hero-title-suffix" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Hero Subtitle Paragraph</label>
+            <textarea id="hero-subtitle" class="form-textarea" rows="3"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Primary Button Text</label>
+              <input type="text" id="hero-primary-cta-text" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Primary Button Link</label>
+              <input type="text" id="hero-primary-cta-link" class="form-input">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Secondary Button Text</label>
+              <input type="text" id="hero-secondary-cta-text" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Secondary Button Link</label>
+              <input type="text" id="hero-secondary-cta-link" class="form-input">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Lifecycle Accuracy Stat Banner</label>
+            <textarea id="process-accuracy-stat-text" class="form-textarea" rows="3"></textarea>
+          </div>
+        </div>
+
+        <!-- Tab 4: Proven Metrics -->
+        <div class="admin-tab-panel" id="panel-metrics">
+          <div class="panel-header">
+            <h2 class="panel-title">Institutional Proven Metrics &amp; SLAs</h2>
+            <p class="panel-subtitle">Edit the animated counter statistics, numbers, suffixes, and labels displayed to enterprise clients.</p>
+          </div>
+          <div id="metrics-list-container"></div>
+        </div>
+
+        <!-- Tab 5: Services Cards -->
+        <div class="admin-tab-panel" id="panel-services">
+          <div class="panel-header">
+            <h2 class="panel-title">Services Carousel &amp; Practice Cards</h2>
+            <p class="panel-subtitle">Edit all practice areas, deliverables lists, and modal preview details. Add new cards or delete outdated ones.</p>
+          </div>
+          <div id="services-list-container"></div>
+          <button class="btn-add-item" id="btn-add-service">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            + Add New Practice Card
+          </button>
+        </div>
+
+        <!-- Tab 6: Team & Employees -->
+        <div class="admin-tab-panel" id="panel-team">
+          <div class="panel-header">
+            <h2 class="panel-title">Leadership Cohort &amp; Employees Manager</h2>
+            <p class="panel-subtitle">Manage all team members: update names, change designations, replace photos, and edit biographies.</p>
+          </div>
+          <div id="team-list-container"></div>
+          <button class="btn-add-item" id="btn-add-team">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            + Add New Team Member
+          </button>
+        </div>
+
+        <!-- Tab 7: Careers Openings -->
+        <div class="admin-tab-panel" id="panel-careers">
+          <div class="panel-header">
+            <h2 class="panel-title">Careers &amp; Open Positions</h2>
+            <p class="panel-subtitle">Add and manage active job listings, experience criteria, perks, and descriptions shown on the careers page.</p>
+          </div>
+          <div id="careers-list-container"></div>
+          <button class="btn-add-item" id="btn-add-career">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            + Add New Job Opening
+          </button>
+        </div>
+
+        <!-- Tab 8: About & Fiduciary Principles -->
+        <div class="admin-tab-panel" id="panel-about">
+          <div class="panel-header">
+            <h2 class="panel-title">About Section &amp; Fiduciary Standards</h2>
+            <p class="panel-subtitle">Institutional mission, vision, and core fiduciary principles.</p>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Corporate Mission Statement</label>
+            <textarea id="about-mission" class="form-textarea" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Corporate Vision</label>
+            <textarea id="about-vision" class="form-textarea" rows="3"></textarea>
+          </div>
+          <div class="panel-header" style="margin-top: 24px;">
+            <h3 style="font-size: 1.1rem; color: #FFFFFF; font-weight: 700;">Fiduciary Principles</h3>
+          </div>
+          <div id="about-principles-container"></div>
+        </div>
+
+        <!-- Tab 9: Frequently Asked Questions -->
+        <div class="admin-tab-panel" id="panel-faqs">
+          <div class="panel-header">
+            <h2 class="panel-title">FAQ Accordion Management</h2>
+            <p class="panel-subtitle">Edit the exact questions and answers that appear in the high-performance 60fps FAQ accordion.</p>
+          </div>
+          <div id="faqs-list-container"></div>
+          <button class="btn-add-item" id="btn-add-faq">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            + Add New FAQ Question
+          </button>
+        </div>
+
+        <!-- Tab 10: Contact & Footer -->
+        <div class="admin-tab-panel" id="panel-contact">
+          <div class="panel-header">
+            <h2 class="panel-title">Contact Information &amp; Global Offices</h2>
+            <p class="panel-subtitle">Emails, phone lines, international office locations, and footer copyright.</p>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Primary Advisory Email</label>
+              <input type="email" id="contact-primary-email" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Client Support Email</label>
+              <input type="email" id="contact-support-email" class="form-input">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Careers Email</label>
+              <input type="email" id="contact-careers-email" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Primary Phone</label>
+              <input type="text" id="contact-primary-phone" class="form-input">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">International Phone</label>
+            <input type="text" id="contact-intl-phone" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Footer Copyright Notice</label>
+            <input type="text" id="contact-copyright" class="form-input">
+          </div>
+          <div class="panel-header" style="margin-top: 24px;">
+            <h3 style="font-size: 1.1rem; color: #FFFFFF; font-weight: 700;">Global Office Locations</h3>
+          </div>
+          <div id="contact-offices-container"></div>
+        </div>
+
+        <!-- Tab 11: Legal: T&C / Privacy / Cookies -->
+        <div class="admin-tab-panel" id="panel-legal">
+          <div class="panel-header">
+            <h2 class="panel-title">Terms &amp; Conditions, Privacy Policy &amp; Cookies</h2>
+            <p class="panel-subtitle">Granular editing for legal clauses, dates, introductions, and fiduciary covenants.</p>
+          </div>
+          
+          <!-- Terms of Service Sub-block -->
+          <div class="card-item-box" style="margin-bottom: 24px; border-color: rgba(236, 243, 158, 0.3);">
+            <h3 style="font-size: 1.15rem; color: var(--c-lemon); margin-bottom: 14px;">1. Terms of Service (Master Advisory Agreement)</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Effective Date</label>
+                <input type="text" id="tos-effective-date" class="form-input">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Last Updated</label>
+                <input type="text" id="tos-last-updated" class="form-input">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Introduction Preamble</label>
+              <textarea id="tos-intro" class="form-textarea" rows="3"></textarea>
+            </div>
+            <label class="form-label" style="margin-top: 16px;">T&amp;C Clauses</label>
+            <div id="tos-clauses-container"></div>
+          </div>
+
+          <!-- Privacy Policy Sub-block -->
+          <div class="card-item-box" style="margin-bottom: 24px;">
+            <h3 style="font-size: 1.15rem; color: var(--c-lemon); margin-bottom: 14px;">2. Privacy &amp; Data Security Policy</h3>
+            <div class="form-group">
+              <label class="form-label">Effective Date</label>
+              <input type="text" id="priv-effective-date" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Policy Intro</label>
+              <textarea id="priv-intro" class="form-textarea" rows="3"></textarea>
+            </div>
+            <label class="form-label" style="margin-top: 16px;">Privacy Clauses</label>
+            <div id="priv-clauses-container"></div>
+          </div>
+
+          <!-- Cookie Policy Sub-block -->
+          <div class="card-item-box">
+            <h3 style="font-size: 1.15rem; color: var(--c-lemon); margin-bottom: 14px;">3. Cookie &amp; Session Token Policy</h3>
+            <div class="form-group">
+              <label class="form-label">Effective Date</label>
+              <input type="text" id="cook-effective-date" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Cookie Policy Intro</label>
+              <textarea id="cook-intro" class="form-textarea" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 12: Deployment & Git Sync -->
+        <div class="admin-tab-panel" id="panel-deploy">
+          <div class="panel-header">
+            <h2 class="panel-title">Automated GitHub Commit &amp; Vercel Deployment</h2>
+            <p class="panel-subtitle">Configure your GitHub connection to enable 1-click cloud commit and deployment directly from this interface.</p>
+          </div>
+          <div class="card-item-box">
+            <div class="form-group">
+              <label class="form-label">Target Repository</label>
+              <input type="text" id="deploy-repo-input" class="form-input" value="Menticore3321/YM-Demo" readonly>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Target Production Branch</label>
+              <input type="text" id="deploy-branch-input" class="form-input" value="main" readonly>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <p style="font-size: 0.85rem; color: var(--text-sub); line-height: 1.6;">
+                Whenever you click <strong style="color: var(--c-lemon);">"Publish to Live Website"</strong>, your updates in <code style="color: var(--c-lemon);">data/site-content.json</code> are committed directly to <code style="color: var(--c-lemon);">main</code>, triggering automatic Vercel production rebuild across worldwide CDNs.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- Right Live Interactive Preview Pane -->
+    <section class="admin-preview-pane">
+      <div class="preview-toolbar">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <label style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);">Preview Page:</label>
+          <select id="preview-page-select" class="preview-page-select">
+            <option value="index.html">Home Page (index.html)</option>
+            <option value="services.html">Services &amp; Practices (services.html)</option>
+            <option value="about.html">About Us (about.html)</option>
+            <option value="careers.html">Careers &amp; Openings (careers.html)</option>
+            <option value="contact.html">Contact &amp; Book (contact.html)</option>
+            <option value="terms-of-service.html">Terms of Service (terms-of-service.html)</option>
+            <option value="privacy-policy.html">Privacy Policy (privacy-policy.html)</option>
+            <option value="cookies.html">Cookie Policy (cookies.html)</option>
+          </select>
+          <button class="btn-admin btn-admin-glass" id="btn-preview-refresh" style="padding: 4px 10px; font-size: 0.75rem;">
+            ⟳ Reload
+          </button>
+        </div>
+
+        <div class="preview-meta-info">
+          <span>Interactive Live Staging</span>
+          <span>•</span>
+          <span style="color: var(--c-lemon);">0ms Real-Time Mirroring</span>
+        </div>
+      </div>
+
+      <!-- Viewport Frame Wrapping Iframe -->
+      <div class="preview-viewport-container">
+        <div class="preview-device-frame" id="preview-device-frame">
+          <iframe id="preview-iframe" class="preview-iframe" src="index.html"></iframe>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Publish & Commit Modal -->
+  <div class="modal-overlay" id="publish-modal">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="btn-close-publish-modal">&times;</button>
+      <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: #FFFFFF; margin-bottom: 8px;">
+        Publish Changes to Live Website
+      </h2>
+      <p style="font-size: 0.88rem; color: var(--text-sub); line-height: 1.5;">
+        Ready to commit your staging content to the live website? This commits your updates to the GitHub repository (<code style="color: var(--c-lemon);">Menticore3321/YM-Demo</code>), triggering an automatic Vercel production rebuild.
+      </p>
+
+      <div class="commit-step-box">
+        <div class="form-group">
+          <label class="form-label">
+            GitHub Personal Access Token (PAT)
+            <span class="form-label-hint">Optional: paste for 1-click cloud commit</span>
+          </label>
+          <input type="password" id="gh-token-input" class="form-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+        </div>
+        <div class="form-row">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Target Repository</label>
+            <input type="text" id="gh-repo-input" class="form-input" value="Menticore3321/YM-Demo">
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Branch</label>
+            <input type="text" id="gh-branch-input" class="form-input" value="main">
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 12px; margin-top: 20px;">
+        <button class="btn-admin btn-admin-primary" id="btn-execute-commit" style="flex: 1; justify-content: center; padding: 12px;">
+          🚀 Execute Commit &amp; Deploy
+        </button>
+      </div>
+
+      <!-- Live Log Terminal -->
+      <pre class="log-terminal" id="commit-log" style="display: none;"></pre>
+    </div>
+  </div>
+
+  <script src="js/admin.js?v=1.0"></script>
+</body>
+</html>
