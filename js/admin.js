@@ -9,6 +9,21 @@
   let siteData = null;
   const previewIframe = document.getElementById('preview-iframe');
 
+  function deepMerge(target, source) {
+    if (!source || typeof source !== 'object') return target;
+    const output = Array.isArray(target) ? [...target] : Object.assign({}, target);
+    for (const key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        if (source[key] !== null && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+          output[key] = deepMerge(target && target[key] ? target[key] : {}, source[key]);
+        } else {
+          output[key] = source[key];
+        }
+      }
+    }
+    return output;
+  }
+
   // 1. Initialize Studio
   async function initStudio() {
     setupTabSwitching();
@@ -17,17 +32,18 @@
     setupModalHandlers();
     setupVisualClickToEdit();
 
-    // Load initial data
+    // Load initial data with deep schema fallback
     try {
+      const res = await fetch('data/site-content.json');
+      const defaults = await res.json();
       const stored = localStorage.getItem('ym_site_content');
       if (stored) {
-        siteData = JSON.parse(stored);
+        siteData = deepMerge(defaults, JSON.parse(stored));
       } else {
-        const res = await fetch('data/site-content.json');
-        siteData = await res.json();
+        siteData = defaults;
       }
     } catch (e) {
-      console.warn('Admin CMS: Error loading data, fetching default', e);
+      console.warn('Admin CMS: Error loading defaults, fetching directly', e);
       const res = await fetch('data/site-content.json');
       siteData = await res.json();
     }
@@ -118,6 +134,9 @@
       pageSelect.addEventListener('change', (e) => {
         const targetUrl = e.target.value;
         previewIframe.src = targetUrl;
+        previewIframe.onload = () => {
+          setTimeout(broadcastPreviewUpdate, 150);
+        };
       });
     }
 
@@ -1148,8 +1167,9 @@
     const hexInput = document.getElementById(hexId);
     if (!picker || !hexInput) return;
 
-    picker.value = initialVal || '#000000';
-    hexInput.value = initialVal || '#000000';
+    const safeHex = (initialVal && /^#[0-9a-fA-F]{6}$/.test(initialVal)) ? initialVal : '#132A13';
+    picker.value = safeHex;
+    hexInput.value = initialVal || safeHex;
 
     picker.oninput = (e) => {
       hexInput.value = e.target.value;
@@ -1157,7 +1177,9 @@
     };
 
     hexInput.oninput = (e) => {
-      picker.value = e.target.value;
+      if (/^#[0-9a-fA-F]{6}$/.test(e.target.value)) {
+        picker.value = e.target.value;
+      }
       onChange(e.target.value);
     };
   }
