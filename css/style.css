@@ -12,51 +12,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root,
-[data-theme="dark"] {
+[data-theme="light"] {
   /* Leafy Green Garden Palette */
   --c-dark-green: #132A13;
   --c-forest-green: #31572C;
   --c-leaf-green: #4F772D;
   --c-sage-green: #90A955;
-  --c-lemon-cream: #ECF39E;
+  --c-lemon-cream: #31572C;
 
   /* Radiant Liquid Gold Luxury Accents */
-  --c-gold-primary: #F3CA6D;
-  --c-gold-hover: #FFE28C;
-  --c-gold-soft: rgba(243, 202, 109, 0.15);
-  --c-gold-border: rgba(243, 202, 109, 0.32);
-  --c-gold-glow: rgba(243, 202, 109, 0.38);
+  --c-gold-primary: #C8962E;
+  --c-gold-hover: #D4A017;
+  --c-gold-soft: rgba(200, 150, 46, 0.12);
+  --c-gold-border: rgba(200, 150, 46, 0.30);
+  --c-gold-glow: rgba(200, 150, 46, 0.25);
 
-  /* Clean Slate-Obsidian Deep Charcoal Canvas - Color Theory Tuned */
-  --bg-base: #131614;
-  --bg-primary: #131614;
-  --bg-surface: #1B221D;
-  --bg-secondary: rgba(26, 34, 28, 0.70);
-  --bg-section-glass: rgba(22, 28, 23, 0.65);
-  --bg-tertiary: #1B221D;
-  --bg-card: rgba(35, 45, 37, 0.85);
-  --bg-glass: rgba(19, 24, 20, 0.92);
-  --border-glass: rgba(144, 169, 85, 0.22);
+  /* Prestigious Warm Ivory & Heritage Linen Canvas - Light Theme */
+  --bg-base: #FBF9F4;
+  --bg-primary: #FBF9F4;
+  --bg-surface: #F4F0E8;
+  --bg-secondary: #F4F0E8;
+  --bg-section-glass: rgba(244, 240, 232, 0.85);
+  --bg-tertiary: #EDE8DE;
+  --bg-card: #FFFFFF;
+  --bg-glass: rgba(251, 249, 244, 0.94);
+  --border-glass: rgba(49, 87, 44, 0.12);
 
-  --text-primary: #F6F5EE;
-  --text-secondary: #D8DCCF;
-  --text-muted: #9FA89B;
-  --text-inverse: #132A13;
+  --text-primary: #132A13;
+  --text-secondary: #3A4E3A;
+  --text-muted: #607260;
+  --text-inverse: #FFFFFF;
 
-  --brand-primary: #A3BD68;
-  --brand-hover: #ECF39E;
-  --brand-accent: #ECF39E;
-  --brand-soft: rgba(236, 243, 158, 0.12);
-  --brand-highlight: #ECF39E;
-  --brand-highlight-text: #132A13;
+  --brand-primary: #31572C;
+  --brand-hover: #4F772D;
+  --brand-accent: #31572C;
+  --brand-soft: rgba(79, 119, 45, 0.08);
+  --brand-highlight: #31572C;
+  --brand-highlight-text: #FFFFFF;
 
-  --border-subtle: rgba(144, 169, 85, 0.18);
-  --border-divide: rgba(144, 169, 85, 0.14);
+  --border-subtle: rgba(49, 87, 44, 0.12);
+  --border-divide: rgba(49, 87, 44, 0.10);
 
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.50);
-  --shadow-lg: 0 16px 42px rgba(0, 0, 0, 0.70);
-  --shadow-glow: 0 0 35px rgba(236, 243, 158, 0.20), 0 0 70px rgba(144, 169, 85, 0.14);
+  --shadow-sm: 0 2px 6px rgba(19, 42, 19, 0.04);
+  --shadow-md: 0 8px 24px rgba(19, 42, 19, 0.06);
+  --shadow-lg: 0 16px 38px rgba(19, 42, 19, 0.08);
+  --shadow-glow: 0 0 35px rgba(79, 119, 45, 0.10);
 
   --radius-sm: 8px;
   --radius-md: 14px;
@@ -83,8 +83,8 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
-  background-color: #131614;
-  color-scheme: dark;
+  background-color: #FBF9F4;
+  color-scheme: light;
 }
 
 /* ==========================================================================
@@ -144,97 +144,19 @@ section,
 }
 
 /* ==========================================================================
-   Modern Dot-Matrix & Geometric Grid with Interactive Cursor Spotlight Glow
+   Modern Dot-Matrix & Geometric Grid: Completely Disabled (User Preference)
    ========================================================================== */
-.matrix-grid-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 1 !important;
-  pointer-events: none;
-  overflow: hidden;
-  display: block !important;
-}
-
-/* Base Micro Dot-Matrix & Geometric Grid: Dynamic Theme Variables */
+.matrix-grid-bg,
 .matrix-grid-bg::before,
-[data-theme="dark"] .matrix-grid-bg::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(circle, var(--grid-dot-color, rgba(212, 160, 23, 0.60)) 1.5px, transparent 1.5px),
-    linear-gradient(to right, var(--grid-line-color, rgba(212, 160, 23, 0.12)) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-line-color, rgba(212, 160, 23, 0.12)) 1px, transparent 1px);
-  background-size: 36px 36px, 36px 36px, 36px 36px;
-  background-position: 0 0, 0 0, 0 0;
-  opacity: var(--grid-opacity, 0.80);
-  animation: matrixBreath 12s ease-in-out infinite alternate;
-}
-
-/* Interactive Cursor Spotlight Illuminating the Dot Matrix on Hover across all sections */
 .matrix-grid-bg::after,
-[data-theme="dark"] .matrix-grid-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(circle, var(--grid-spotlight-dot, #E5B020) 2.2px, transparent 3px),
-    linear-gradient(to right, var(--grid-spotlight-line, rgba(200, 140, 15, 0.85)) 1.2px, transparent 1.2px),
-    linear-gradient(to bottom, var(--grid-spotlight-line, rgba(200, 140, 15, 0.85)) 1.2px, transparent 1.2px);
-  background-size: 36px 36px, 36px 36px, 36px 36px;
-  mask-image: radial-gradient(circle 420px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 30%, rgba(0, 0, 0, 0.6) 65%, transparent 92%);
-  -webkit-mask-image: radial-gradient(circle 420px at var(--mouse-screen-x, -500px) var(--mouse-screen-y, -500px), black 30%, rgba(0, 0, 0, 0.6) 65%, transparent 92%);
-  pointer-events: none;
-  will-change: mask-image, -webkit-mask-image;
-}
-
-@keyframes matrixBreath {
-  0% {
-    opacity: 0.70;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.95;
-    transform: scale(1.006);
-  }
-
-  100% {
-    opacity: 0.70;
-    transform: scale(1);
-  }
-}
-
-/* Ambient Cursor Glow (Warm Golden Halo) */
-.cursor-glow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 400px;
-  height: 400px;
-  border-radius: 50%;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-  background: radial-gradient(circle, rgba(229, 176, 32, 0.22) 0%, rgba(197, 145, 22, 0.10) 45%, transparent 70%);
-  filter: blur(35px);
-  opacity: 0.65;
-  transition: opacity 0.3s ease;
-  will-change: transform;
-}
-
-/* ==========================================================================
-   Global Cinematic Atmospheric Vignette
-   ========================================================================== */
+.cursor-glow,
 .site-vignette {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 3;
-  pointer-events: none;
-  background: radial-gradient(ellipse 82% 82% at 50% 50%, transparent 48%, rgba(0, 0, 0, 0.16) 72%, rgba(0, 0, 0, 0.44) 100%);
-  mix-blend-mode: multiply;
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 /* Floating Glassmorphic Header & System Overlays (Strictly on TOP of scrolling content) */
@@ -285,44 +207,7 @@ section,
   z-index: 5 !important;
 }
 
-@keyframes matrixBreath {
-  0% {
-    opacity: 0.70;
-    transform: scale(1);
-  }
 
-  50% {
-    opacity: 1;
-    transform: scale(1.008);
-  }
-
-  100% {
-    opacity: 0.70;
-    transform: scale(1);
-  }
-}
-
-/* Ambient Cursor Glow */
-.cursor-glow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 380px;
-  height: 380px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  will-change: transform;
-}
-
-.cursor-glow,
-[data-theme="dark"] .cursor-glow {
-  opacity: 0.65;
-  background: radial-gradient(circle, rgba(236, 243, 158, 0.14) 0%, rgba(144, 169, 85, 0.08) 45%, transparent 70%);
-  filter: blur(20px);
-}
 
 a {
   color: inherit;
@@ -428,20 +313,20 @@ section {
   align-items: center;
   justify-content: center;
   padding: 0 clamp(20px, 3.5vw, 52px);
-  background: rgba(10, 15, 10, 0.78);
+  background: rgba(251, 249, 244, 0.92);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(144, 169, 85, 0.16);
+  border-bottom: 1px solid rgba(49, 87, 44, 0.10);
   transition: var(--transition);
 }
 
 .site-header.scrolled {
-  background: rgba(8, 12, 8, 0.90);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.50);
+  background: rgba(251, 249, 244, 0.98);
+  box-shadow: 0 10px 30px rgba(19, 42, 19, 0.06);
 }
 
 [data-theme="dark"] .site-header.scrolled {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.60);
+  box-shadow: 0 10px 30px rgba(19, 42, 19, 0.06);
 }
 
 .nav-pill {
@@ -470,7 +355,7 @@ section {
   height: 52px;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35));
+  filter: drop-shadow(0 2px 8px rgba(19, 42, 19, 0.12));
   transition: transform 0.25s ease, filter 0.25s ease;
   display: block;
   flex-shrink: 0;
@@ -479,7 +364,7 @@ section {
 
 .brand-logo-img:hover {
   transform: scale(1.04);
-  filter: drop-shadow(0 4px 14px rgba(236, 243, 158, 0.28));
+  filter: drop-shadow(0 4px 14px rgba(79, 119, 45, 0.25));
 }
 
 .brand-text {
@@ -494,7 +379,7 @@ section {
   font-size: 1.25rem;
   font-weight: 800;
   letter-spacing: 0.04em;
-  color: var(--text-primary, #F6F5EE) !important;
+  color: #132A13 !important;
   line-height: 1.1;
   margin: 0;
   padding: 0;
@@ -504,7 +389,7 @@ section {
   font-size: 0.70rem;
   letter-spacing: 0.2em;
   font-weight: 700;
-  color: var(--c-lemon-cream);
+  color: #4F772D !important;
   text-transform: uppercase;
   margin-top: 3px;
   line-height: 1;
@@ -512,7 +397,7 @@ section {
 }
 
 [data-theme="dark"] .brand-subtitle {
-  color: var(--c-lemon-cream);
+  color: #4F772D !important;
 }
 
 /* Center Capsule Dock Navigation */
@@ -522,11 +407,11 @@ section {
   align-items: center;
   gap: 6px;
   list-style: none;
-  background: rgba(20, 28, 21, 0.82);
+  background: rgba(255, 255, 255, 0.88);
   padding: 5px 8px;
   border-radius: var(--radius-full);
-  border: 1px solid rgba(144, 169, 85, 0.22);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(49, 87, 44, 0.14);
+  box-shadow: 0 2px 10px rgba(19, 42, 19, 0.05);
   backdrop-filter: blur(12px);
   margin: 0;
 }
@@ -534,7 +419,7 @@ section {
 .nav-link {
   font-size: 0.92rem;
   font-weight: 600;
-  color: #D6E3D4;
+  color: #2D422E;
   padding: 8px 18px;
   border-radius: var(--radius-full);
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
@@ -548,22 +433,21 @@ section {
 }
 
 .nav-link:hover {
-  color: var(--c-lemon-cream);
-  background: rgba(255, 255, 255, 0.08);
+  color: #132A13;
+  background: rgba(79, 119, 45, 0.09);
   box-shadow: var(--shadow-sm);
 }
 
 .nav-link.active {
-  color: var(--c-lemon-cream) !important;
-  background: var(--c-forest-green) !important;
-  box-shadow: 0 3px 12px rgba(49, 87, 44, 0.35);
+  color: #FFFFFF !important;
+  background: #31572C !important;
+  box-shadow: 0 3px 12px rgba(49, 87, 44, 0.30);
   font-weight: 700;
 }
 
 [data-theme="dark"] .nav-link.active {
-  color: #132A13 !important;
-  background: var(--c-lemon-cream) !important;
-  box-shadow: 0 3px 14px rgba(236, 243, 158, 0.35);
+  color: #FFFFFF !important;
+  background: #31572C !important;
 }
 
 .nav-actions {
@@ -578,16 +462,16 @@ section {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: linear-gradient(135deg, var(--c-forest-green), var(--c-leaf-green));
-  color: var(--c-lemon-cream) !important;
+  background: linear-gradient(135deg, #31572C, #4F772D);
+  color: #FFFFFF !important;
   font-size: 0.90rem;
   font-weight: 700;
   padding: 10px 22px;
   min-height: 42px;
   box-sizing: border-box;
   border-radius: var(--radius-full);
-  box-shadow: 0 4px 16px rgba(49, 87, 44, 0.35);
-  border: 1px solid rgba(236, 243, 158, 0.3);
+  box-shadow: 0 4px 16px rgba(49, 87, 44, 0.25);
+  border: 1px solid rgba(49, 87, 44, 0.25);
   transition: var(--transition);
   text-decoration: none;
   line-height: 1;
@@ -595,10 +479,10 @@ section {
 }
 
 .btn-cta:hover {
-  background: linear-gradient(135deg, var(--c-dark-green), var(--c-forest-green));
-  box-shadow: 0 6px 22px rgba(19, 42, 19, 0.45);
+  background: linear-gradient(135deg, #132A13, #31572C);
+  box-shadow: 0 6px 22px rgba(19, 42, 19, 0.35);
   transform: translateY(-2px);
-  border-color: var(--c-lemon-cream);
+  border-color: #31572C;
 }
 
 .btn-cta-secondary {
@@ -606,9 +490,9 @@ section {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: var(--bg-card);
-  color: var(--text-primary);
-  border: 1px solid var(--border-subtle);
+  background: #FFFFFF;
+  color: #132A13;
+  border: 1px solid rgba(49, 87, 44, 0.20);
   font-size: 0.88rem;
   font-weight: 600;
   padding: 10px 20px;
@@ -617,8 +501,8 @@ section {
 }
 
 .btn-cta-secondary:hover {
-  background: var(--bg-tertiary);
-  border-color: var(--c-sage-green);
+  background: #F4F0E8;
+  border-color: #4F772D;
   transform: translateY(-1px);
 }
 
@@ -629,8 +513,9 @@ section {
   border-radius: var(--radius-full);
   align-items: center;
   justify-content: center;
-  background: var(--bg-tertiary);
-  color: var(--text-primary);
+  background: #FFFFFF;
+  color: #132A13;
+  border: 1px solid rgba(49, 87, 44, 0.15);
 }
 
 /* Mobile Drawer */
@@ -639,12 +524,12 @@ section {
   top: 76px;
   left: 14px;
   right: 14px;
-  background: var(--bg-card);
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid rgba(49, 87, 44, 0.15);
   border-radius: 20px;
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 48px rgba(19, 42, 19, 0.12);
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -659,10 +544,8 @@ section {
 }
 
 [data-theme="dark"] .mobile-nav-drawer {
-  background: rgba(12, 18, 12, 0.94);
-  border: 1px solid rgba(236, 243, 158, 0.22);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(236, 243, 158, 0.12);
-  backdrop-filter: blur(24px);
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(49, 87, 44, 0.15);
 }
 
 .mobile-nav-drawer.open {
@@ -1117,28 +1000,14 @@ section {
 .subpage-hero {
   position: relative;
   width: 100%;
-  background-color: var(--bg-primary, #161A17) !important;
+  background-color: var(--bg-primary) !important;
   overflow: hidden;
   padding: 160px 24px 80px;
   text-align: center;
 }
 
 .subpage-hero::before {
-  content: '';
-  position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 700px;
-  height: 380px;
-  background: radial-gradient(ellipse at center, rgba(144, 169, 85, 0.22) 0%, rgba(236, 243, 158, 0.1) 40%, transparent 75%);
-  filter: blur(55px);
-  pointer-events: none;
-  z-index: 3;
-}
-
-[data-theme="dark"] .subpage-hero::before {
-  background: radial-gradient(ellipse at center, rgba(236, 243, 158, 0.22) 0%, rgba(144, 169, 85, 0.20) 40%, transparent 75%);
+  display: none !important;
 }
 
 .subpage-hero h1 {
@@ -1147,42 +1016,42 @@ section {
   letter-spacing: -0.025em;
   line-height: 1.2;
   margin-bottom: 20px;
-  color: #FFFFFF !important;
+  color: #132A13 !important;
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.95);
+  text-shadow: none !important;
 }
 
 .subpage-hero h1 .text-gradient {
-  color: #90A955 !important;
-  background: none !important;
-  -webkit-background-clip: unset !important;
-  -webkit-text-fill-color: #90A955 !important;
+  color: #31572C !important;
+  background: linear-gradient(135deg, #132A13 0%, #31572C 50%, #4F772D 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
   text-shadow: none !important;
   filter: none !important;
 }
 
 .subpage-hero p {
   font-size: clamp(1rem, 1.6vw, 1.15rem);
-  color: #CAD5C5 !important;
+  color: #3A4E3A !important;
   max-width: 740px;
   margin: 0 auto;
   line-height: 1.7;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95);
+  text-shadow: none !important;
 }
 
 .subpage-hero .badge-pill {
-  color: #ECF39E !important;
-  background: rgba(10, 20, 11, 0.90) !important;
-  border: 1.5px solid rgba(236, 243, 158, 0.45) !important;
+  color: #31572C !important;
+  background: rgba(79, 119, 45, 0.08) !important;
+  border: 1px solid rgba(49, 87, 44, 0.20) !important;
   position: relative !important;
   z-index: 10 !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.65) !important;
+  box-shadow: 0 4px 16px rgba(19, 42, 19, 0.06) !important;
   margin-bottom: 24px !important;
 }
 
@@ -4160,37 +4029,36 @@ section {
 }
 
 /* ==========================================================================
-   Continuous Cinematic Dark Obsidian Gradient Journey:
-   Deep Pitch Black (Top) -> Rich Obsidian Forest (Middle) ->
-   Deep Emerald Slate -> Velvet Obsidian Black (Bottom)
+   Continuous Luxury Light Theme Architecture:
+   Warm Ivory Alabaster Canvas -> Refined Heritage Linen & White Glass Elevation
    ========================================================================== */
 
-/* 1. Top Hero Section: Deep Charcoal Slate Luxury Atmosphere - Color Theory Tuned */
+/* 1. Hero & Subpage Hero: Warm Ivory Alabaster Editorial Canvas */
 .hero-section,
 .subpage-hero {
   background: transparent !important;
   background-color: transparent !important;
-  color: var(--text-primary, #F6F5EE) !important;
+  color: #132A13 !important;
   position: relative !important;
   z-index: 2 !important;
 }
 
 .hero-section .hero-title,
 .subpage-hero h1 {
-  color: var(--text-primary, #F6F5EE) !important;
+  color: #132A13 !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.75), 0 0 6px rgba(0, 0, 0, 0.6) !important;
+  text-shadow: none !important;
 }
 
-/* Pure Palette Light Sage Green (#90A955) for "... in Corporate Finance & Advisory" (Solid Text Color, No Shade) */
 .hero-section .hero-title .text-gradient,
 .hero-title .text-gradient,
-.hero-section .text-gradient {
-  background: none !important;
-  -webkit-background-clip: unset !important;
-  -webkit-text-fill-color: #90A955 !important;
-  color: #90A955 !important;
+.hero-section .text-gradient,
+.subpage-hero h1 .text-gradient {
+  background: linear-gradient(135deg, #132A13 0%, #31572C 50%, #4F772D 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #31572C !important;
   filter: none !important;
   text-shadow: none !important;
   display: inline-block !important;
@@ -4200,10 +4068,10 @@ section {
 .hero-section .hero-description,
 .hero-section .hero-subtitle,
 .subpage-hero p {
-  color: #D6E4D3 !important;
+  color: #3A4E3A !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+  text-shadow: none !important;
 }
 
 .hero-section .hero-actions,
@@ -4213,49 +4081,11 @@ section {
   z-index: 10 !important;
 }
 
-/* Celestial Green Arc (Strictly Exclusive to Landing Page Hero): Completely hidden at rest, ONLY illuminates right where cursor hovers */
-.hero-section .ultravibe-bg-wrapper {
-  opacity: 1 !important;
-  pointer-events: none !important;
-}
-
-.hero-section .ultravibe-gradient-art {
-  background-image: url('../assets/ultravibe-20-dark.webp') !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-/* Base arc NEVER illuminates across the full width on hover - keeps rest of arc dark */
-.hero-section:hover .ultravibe-gradient-art {
-  opacity: 0 !important;
-}
-
-.hero-section .ultravibe-torch-shine {
-  background-image: url('../assets/ultravibe-20-dark.webp') !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-  -webkit-mask-image: radial-gradient(circle 380px at var(--cursor-x, -500px) var(--cursor-y, -500px), black 20%, rgba(0, 0, 0, 0.6) 55%, transparent 85%) !important;
-  mask-image: radial-gradient(circle 380px at var(--cursor-x, -500px) var(--cursor-y, -500px), black 20%, rgba(0, 0, 0, 0.6) 55%, transparent 85%) !important;
-  filter: brightness(1.3) saturate(1.25) drop-shadow(0 0 35px rgba(144, 169, 85, 0.6)) !important;
-  transition: opacity 0.35s ease !important;
-  z-index: 2 !important;
-}
-
-/* ONLY the torch spotlight under the cursor lights up the green arc */
-.hero-section:hover .ultravibe-torch-shine {
-  opacity: 1 !important;
-}
-
-.hero-section .ultravibe-cursor-shine {
-  opacity: 0 !important;
-  transition: opacity 0.35s ease !important;
-}
-
-.hero-section:hover .ultravibe-cursor-shine {
-  opacity: 0.9 !important;
-}
-
-/* Subpage heroes: Strictly NO green arc */
+/* Hero background glow */
+.hero-section .ultravibe-bg-wrapper,
+.hero-section .ultravibe-gradient-art,
+.hero-section .ultravibe-torch-shine,
+.hero-section .ultravibe-cursor-shine,
 .subpage-hero .ultravibe-bg-wrapper,
 .subpage-hero::before {
   display: none !important;
@@ -4272,16 +4102,11 @@ section {
 
 .hero-section:hover .spotlight-radial,
 .subpage-hero:hover .spotlight-radial {
-  opacity: 0.35 !important;
-}
-
-.hero-section:hover .ambient-orb,
-.subpage-hero:hover .ambient-orb {
-  opacity: 0.25 !important;
+  opacity: 0.15 !important;
 }
 
 /* ==========================================================================
-   Luminous Champagne Gold Laser Light-Blades (Precision Horizon Separators)
+   Refined Champagne Gold Hairline Separators
    ========================================================================== */
 .how-we-help-section::before,
 .services-section::before,
@@ -4299,39 +4124,30 @@ section {
   width: 84%;
   max-width: 1140px;
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(243, 202, 109, 0.12) 15%, rgba(243, 202, 109, 0.85) 50%, rgba(243, 202, 109, 0.12) 85%, transparent 100%);
-  box-shadow: 0 0 16px rgba(243, 202, 109, 0.45), 0 0 32px rgba(144, 169, 85, 0.25);
+  background: linear-gradient(90deg, transparent 0%, rgba(200, 150, 46, 0.15) 20%, rgba(200, 150, 46, 0.40) 50%, rgba(200, 150, 46, 0.15) 80%, transparent 100%);
+  box-shadow: 0 0 10px rgba(200, 150, 46, 0.12);
   pointer-events: none;
   z-index: 15;
 }
 
-/* 2. Operational Pillars Stage: Rich Forest Emerald Depth Zone & 3D Glass Pedestal */
+/* 2. Operational Pillars Stage */
 .how-we-help-section {
-  padding: 108px 0 100px;
-  background:
-    radial-gradient(ellipse 70% 45% at 50% 25%, rgba(49, 87, 44, 0.28) 0%, transparent 70%),
-    radial-gradient(circle at 50% 88%, rgba(243, 202, 109, 0.08) 0%, transparent 50%),
-    linear-gradient(180deg, #131614 0%, #0E1711 35%, #0B130E 70%, #131614 100%) !important;
+  padding: 100px 0 92px;
+  background: #F4F0E8 !important;
   position: relative !important;
   z-index: 2 !important;
   overflow: hidden;
 }
 
-/* 3D Elevated Floating Glass Pedestal Stage */
 .how-we-help-section .help-showcase-container {
   max-width: 1140px;
   margin: 0 auto;
   position: relative;
   padding: 36px 36px 44px;
-  background: rgba(18, 27, 20, 0.65);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: #FFFFFF;
   border-radius: 28px;
-  border: 1px solid rgba(144, 169, 85, 0.28);
-  box-shadow:
-    0 30px 80px -20px rgba(0, 0, 0, 0.75),
-    0 0 50px rgba(79, 119, 45, 0.18),
-    inset 0 1px 1px rgba(236, 243, 158, 0.25);
+  border: 1px solid rgba(49, 87, 44, 0.12);
+  box-shadow: 0 14px 40px rgba(19, 42, 19, 0.05);
 }
 
 .how-we-help-section .container,
@@ -4341,22 +4157,22 @@ section {
 }
 
 .how-we-help-section .section-title {
-  color: var(--text-primary, #F6F5EE) !important;
+  color: #132A13 !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.75), 0 0 6px rgba(0, 0, 0, 0.6) !important;
+  text-shadow: none !important;
 }
 
 .how-we-help-section .section-title .text-brand {
-  color: #ECF39E !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
+  color: #31572C !important;
+  text-shadow: none !important;
 }
 
 .how-we-help-section .section-subtitle {
-  color: var(--text-secondary, #D8DCCF) !important;
+  color: #3A4E3A !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+  text-shadow: none !important;
 }
 
 /* Floating Capsule Pill Tabs */
@@ -4366,48 +4182,41 @@ section {
   font-weight: 700 !important;
   font-size: 0.92rem !important;
   letter-spacing: 0.04em !important;
-  color: var(--text-secondary, #D8DCCF) !important;
-  background: rgba(24, 34, 26, 0.85) !important;
-  border: 1px solid rgba(144, 169, 85, 0.28) !important;
-  backdrop-filter: blur(10px);
+  color: #3A4E3A !important;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(49, 87, 44, 0.16) !important;
+  box-shadow: 0 2px 8px rgba(19, 42, 19, 0.04) !important;
   position: relative !important;
   z-index: 10 !important;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
 }
 
 .how-we-help-section .help-tab-btn:hover {
-  border-color: rgba(236, 243, 158, 0.55) !important;
-  color: #F6F5EE !important;
+  border-color: #31572C !important;
+  color: #132A13 !important;
   transform: translateY(-2px);
 }
 
 .how-we-help-section .help-tab-btn.active {
-  background: #ECF39E !important;
-  color: #132A13 !important;
-  border-color: #ECF39E !important;
-  box-shadow: 0 4px 22px rgba(236, 243, 158, 0.45) !important;
+  background: #31572C !important;
+  color: #FFFFFF !important;
+  border-color: #31572C !important;
+  box-shadow: 0 4px 16px rgba(49, 87, 44, 0.25) !important;
   transform: translateY(-2px);
 }
 
-/* Multi-layer Dark Obsidian Glass Card Architecture with Ambient Glow & Spotlight */
+/* Multi-layer Pristine White Card Architecture */
 .service-card,
 .how-we-help-section .help-card,
 .industries-section .industry-card-active,
 .platform-eco-card,
 .team-member-card,
 .stat-box {
-  background-color: #0b140d !important;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(79, 119, 45, 0.35) 0%, transparent 65%),
-    linear-gradient(165deg, rgba(22, 33, 24, 0.95) 0%, rgba(12, 19, 13, 0.98) 100%) !important;
-  border: 1px solid rgba(144, 169, 85, 0.32) !important;
-  box-shadow:
-    0 20px 50px -10px rgba(0, 0, 0, 0.55),
-    0 0 0 1px rgba(236, 243, 158, 0.08),
-    inset 0 1px 0 rgba(236, 243, 158, 0.28) !important;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background-color: #FFFFFF !important;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(49, 87, 44, 0.12) !important;
+  box-shadow: 0 8px 24px rgba(19, 42, 19, 0.05), 0 2px 6px rgba(19, 42, 19, 0.03) !important;
   position: relative !important;
   z-index: 5 !important;
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease !important;
@@ -4418,12 +4227,9 @@ section {
 .industries-section .industry-card-active:hover,
 .platform-eco-card:hover,
 .team-member-card:hover {
-  transform: translateY(-8px) scale(1.01) !important;
-  border-color: rgba(236, 243, 158, 0.65) !important;
-  box-shadow:
-    0 28px 60px -10px rgba(0, 0, 0, 0.80),
-    0 0 35px rgba(144, 169, 85, 0.40),
-    inset 0 1px 0 rgba(236, 243, 158, 0.50) !important;
+  transform: translateY(-6px) scale(1.01) !important;
+  border-color: rgba(79, 119, 45, 0.35) !important;
+  box-shadow: 0 20px 48px -10px rgba(19, 42, 19, 0.12), 0 0 24px rgba(79, 119, 45, 0.08) !important;
 }
 
 /* Card Titles & Text Contrast: 100% Crisp & Crystal Clear Readability */
@@ -4432,10 +4238,10 @@ section {
 .industries-section .industry-card-title,
 .platform-eco-card h3,
 .team-member-card .member-name {
-  color: var(--text-primary, #F6F5EE) !important;
+  color: #132A13 !important;
   font-weight: 700 !important;
   letter-spacing: -0.01em;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  text-shadow: none !important;
 }
 
 .service-card .service-brief,
@@ -4443,20 +4249,21 @@ section {
 .industries-section .industry-card-desc,
 .platform-eco-card p,
 .team-member-card .member-bio {
-  color: #CAD5C5 !important;
+  color: #3A4E3A !important;
   line-height: 1.65;
   font-weight: 400;
+  text-shadow: none !important;
 }
 
 .service-card .service-category {
-  color: #ECF39E !important;
+  color: #4F772D !important;
   font-weight: 700 !important;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 .service-card .service-learn-more {
-  color: #ECF39E !important;
+  color: #31572C !important;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
@@ -4465,30 +4272,29 @@ section {
 }
 
 .service-card:hover .service-learn-more {
-  color: #FFFFFF !important;
+  color: #132A13 !important;
   transform: translateX(6px);
 }
 
 .service-card .service-icon-bubble,
 .info-icon-bubble {
-  background: rgba(236, 243, 158, 0.15) !important;
-  border: 1px solid rgba(236, 243, 158, 0.35) !important;
-  color: #ECF39E !important;
+  background: rgba(79, 119, 45, 0.09) !important;
+  border: 1px solid rgba(49, 87, 44, 0.18) !important;
+  color: #31572C !important;
 }
 
 .service-card:hover .service-icon-bubble {
-  background: #ECF39E !important;
-  color: #132A13 !important;
-  box-shadow: 0 0 20px rgba(236, 243, 158, 0.5);
+  background: #31572C !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(49, 87, 44, 0.30);
 }
 
 .how-we-help-section .help-checklist li {
-  color: #E2ECE0 !important;
+  color: #2D422E !important;
 }
 
 .how-we-help-section .help-checklist li svg {
-  color: #ECF39E !important;
-  filter: drop-shadow(0 0 6px rgba(236, 243, 158, 0.45));
+  color: #31572C !important;
 }
 
 /* Ambient Radial Top Glow Bloom on Service Cards */
@@ -4498,7 +4304,7 @@ section {
   right: -20px;
   width: 220px;
   height: 220px;
-  background: radial-gradient(circle, rgba(236, 243, 158, 0.25) 0%, rgba(144, 169, 85, 0.15) 45%, transparent 70%) !important;
+  background: radial-gradient(circle, rgba(144, 169, 85, 0.12) 0%, rgba(200, 150, 46, 0.06) 45%, transparent 70%) !important;
   pointer-events: none;
   border-radius: 50%;
   opacity: 0.7;
@@ -4510,12 +4316,10 @@ section {
   transform: scale(1.35) translate(-10px, 10px);
 }
 
-/* 3. Solutions Showroom: Services Section - Radial Gold Horizon & Smoked Glass Cards */
+/* 3. Solutions Showroom: Services Section */
 .services-section {
   padding: 104px 0 96px;
-  background:
-    radial-gradient(ellipse 65% 45% at 50% 15%, rgba(243, 202, 109, 0.08) 0%, transparent 60%),
-    linear-gradient(180deg, #131614 0%, #151A16 50%, #131614 100%) !important;
+  background: #FBF9F4 !important;
   position: relative !important;
   z-index: 2 !important;
   overflow: hidden;
@@ -4530,25 +4334,7 @@ section {
 .pricing-section .section-tag,
 .contact-section .section-tag,
 .careers-section .section-tag,
-.subpage-light-section .section-tag {
-  display: inline-flex !important;
-  align-items: center !important;
-  font-size: 0.84rem !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.12em !important;
-  text-transform: uppercase !important;
-  color: #ECF39E !important;
-  background: rgba(30, 40, 32, 0.85) !important;
-  border: 1.5px solid rgba(236, 243, 158, 0.35) !important;
-  padding: 6px 18px !important;
-  border-radius: var(--radius-full) !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.50), 0 0 10px rgba(236, 243, 158, 0.15) !important;
-  margin-bottom: 16px !important;
-  position: relative !important;
-  z-index: 10 !important;
-}
-
-/* Section Tags & Badges on Dark Background Sections */
+.subpage-light-section .section-tag,
 .hero-section .badge-pill,
 .subpage-hero .badge-pill,
 .subpage-transition-section .section-tag,
@@ -4564,14 +4350,12 @@ section {
   font-weight: 800 !important;
   letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
-  color: #ECF39E !important;
-  background: rgba(10, 20, 11, 0.90) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border: 1.5px solid rgba(236, 243, 158, 0.45) !important;
+  color: #31572C !important;
+  background: rgba(79, 119, 45, 0.08) !important;
+  border: 1.5px solid rgba(49, 87, 44, 0.20) !important;
   padding: 6px 18px !important;
   border-radius: var(--radius-full) !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.65), 0 0 12px rgba(236, 243, 158, 0.18) !important;
+  box-shadow: 0 2px 8px rgba(19, 42, 19, 0.04) !important;
   margin-bottom: 16px !important;
   position: relative !important;
   z-index: 10 !important;
@@ -4579,135 +4363,129 @@ section {
 
 .hero-section .badge-dot,
 .subpage-hero .badge-dot {
-  background-color: #ECF39E !important;
-  box-shadow: 0 0 10px #ECF39E !important;
+  background-color: #4F772D !important;
+  box-shadow: 0 0 8px rgba(79, 119, 45, 0.5) !important;
 }
 
 .services-section .section-title {
-  color: var(--text-primary, #F6F5EE) !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.75), 0 0 6px rgba(0, 0, 0, 0.6) !important;
+  color: #132A13 !important;
+  text-shadow: none !important;
 }
 
 .services-section .section-title .text-brand {
-  color: #ECF39E !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
+  color: #31572C !important;
+  text-shadow: none !important;
 }
 
 .services-section .section-subtitle {
-  color: var(--text-secondary, #D8DCCF) !important;
+  color: #3A4E3A !important;
   font-weight: 500 !important;
   line-height: 1.68 !important;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+  text-shadow: none !important;
 }
 
 .services-section .carousel-btn {
-  background: var(--bg-card, rgba(37, 44, 38, 0.85)) !important;
-  border: 1px solid rgba(144, 169, 85, 0.35) !important;
-  color: #ECF39E !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.40) !important;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(49, 87, 44, 0.18) !important;
+  color: #132A13 !important;
+  box-shadow: 0 2px 10px rgba(19, 42, 19, 0.06) !important;
 }
 
 .services-section .carousel-btn:hover:not(:disabled) {
   background: #31572C !important;
   color: #FFFFFF !important;
-  box-shadow: 0 6px 22px rgba(49, 87, 44, 0.45) !important;
+  box-shadow: 0 4px 16px rgba(49, 87, 44, 0.25) !important;
 }
 
-/* 3B. Fiduciary Metrics & Track Record - Forest Emerald Radial Sanctuary */
+/* 3B. Fiduciary Metrics & Track Record */
 .expertise-section {
   padding: 96px 0;
-  background:
-    radial-gradient(ellipse 75% 50% at 50% 50%, rgba(49, 87, 44, 0.22) 0%, transparent 68%),
-    linear-gradient(180deg, #131614 0%, #0E1811 50%, #131614 100%) !important;
+  background: #F4F0E8 !important;
   position: relative !important;
   z-index: 2 !important;
   overflow: hidden;
 }
 
 .expertise-section .section-title {
-  color: var(--text-primary, #F6F5EE) !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.75), 0 0 6px rgba(0, 0, 0, 0.6) !important;
+  color: #132A13 !important;
+  text-shadow: none !important;
 }
 
 .expertise-section .section-title .text-brand {
-  color: #ECF39E !important;
+  color: #31572C !important;
 }
 
 .expertise-section .section-subtitle {
-  color: var(--text-secondary, #D8DCCF) !important;
+  color: #3A4E3A !important;
   font-weight: 500 !important;
   line-height: 1.68 !important;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+  text-shadow: none !important;
 }
 
 .expertise-section .stat-box {
-  background: rgba(20, 31, 22, 0.80) !important;
-  border: 1px solid rgba(144, 169, 85, 0.30) !important;
-  backdrop-filter: blur(14px);
+  background: #FFFFFF !important;
+  border: 1px solid rgba(49, 87, 44, 0.12) !important;
   border-radius: var(--radius-lg);
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.50), inset 0 1px 0 rgba(236, 243, 158, 0.22) !important;
+  box-shadow: 0 8px 24px rgba(19, 42, 19, 0.05) !important;
 }
 
 .expertise-section .stat-number {
-  color: var(--text-primary, #F6F5EE) !important;
+  color: #132A13 !important;
 }
 
 .expertise-section .stat-label {
-  color: var(--text-secondary, #D8DCCF) !important;
+  color: #3A4E3A !important;
 }
 
-/* 4. Whom We Serve - Forest Emerald & Capsule Navigation */
+/* 4. Whom We Serve */
 .industries-section {
   padding: 104px 0 96px;
-  background:
-    radial-gradient(ellipse 70% 50% at 50% 25%, rgba(79, 119, 45, 0.20) 0%, transparent 65%),
-    linear-gradient(180deg, #131614 0%, #0F1A12 50%, #131614 100%) !important;
+  background: #FBF9F4 !important;
   position: relative !important;
   z-index: 2 !important;
   overflow: hidden;
 }
 
 .industries-section .section-title {
-  color: var(--text-primary, #F6F5EE) !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.75), 0 0 6px rgba(0, 0, 0, 0.6) !important;
+  color: #132A13 !important;
+  text-shadow: none !important;
 }
 
 .industries-section .section-title .text-brand {
-  color: #ECF39E !important;
+  color: #31572C !important;
 }
 
 .industries-section .section-subtitle {
-  color: var(--text-secondary, #D8DCCF) !important;
+  color: #3A4E3A !important;
   font-weight: 500 !important;
   line-height: 1.68 !important;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+  text-shadow: none !important;
 }
 
 .industries-section .industry-tab-btn {
-  background: rgba(19, 42, 19, 0.85) !important;
-  color: #CAD5C5 !important;
-  border: 1px solid rgba(144, 169, 85, 0.30) !important;
+  background: #FFFFFF !important;
+  color: #3A4E3A !important;
+  border: 1px solid rgba(49, 87, 44, 0.16) !important;
+  box-shadow: 0 2px 8px rgba(19, 42, 19, 0.04) !important;
 }
 
 .industries-section .industry-tab-btn.active {
-  background: #ECF39E !important;
-  color: #132A13 !important;
-  border-color: #ECF39E !important;
-  box-shadow: 0 4px 14px rgba(19, 42, 19, 0.25) !important;
+  background: #31572C !important;
+  color: #FFFFFF !important;
+  border-color: #31572C !important;
+  box-shadow: 0 4px 14px rgba(49, 87, 44, 0.25) !important;
 }
 
 .industries-section .industry-feature-tag {
-  background: rgba(236, 243, 158, 0.15) !important;
-  color: #ECF39E !important;
-  border: 1px solid rgba(236, 243, 158, 0.30) !important;
+  background: rgba(79, 119, 45, 0.09) !important;
+  color: #31572C !important;
+  border: 1px solid rgba(49, 87, 44, 0.18) !important;
 }
 
-/* Custom Industry Box (Don't see your specific sector?) - 100% Crisp & High Contrast */
+/* Custom Industry Box */
 .custom-industry-box {
-  background:
-    radial-gradient(circle at 50% 12%, rgba(79, 119, 45, 0.35) 0%, transparent 65%),
-    linear-gradient(165deg, rgba(17, 27, 18, 0.96) 0%, rgba(10, 17, 11, 0.98) 100%) !important;
-  border: 1px solid rgba(144, 169, 85, 0.35) !important;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(49, 87, 44, 0.15) !important;
   position: relative !important;
   z-index: 10 !important;
   text-align: center;
@@ -4715,31 +4493,31 @@ section {
   border-radius: var(--radius-lg);
   max-width: 740px;
   margin: 48px auto 0;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 10px 30px rgba(19, 42, 19, 0.06) !important;
 }
 
 .custom-industry-box h4 {
-  color: #FFFFFF !important;
+  color: #132A13 !important;
   font-size: 1.45rem !important;
   font-weight: 700 !important;
   margin-bottom: 12px !important;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+  text-shadow: none !important;
 }
 
 .custom-industry-box p {
-  color: #D6E4D3 !important;
+  color: #3A4E3A !important;
   font-size: 1.05rem !important;
   line-height: 1.65 !important;
   margin-bottom: 24px !important;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9) !important;
+  text-shadow: none !important;
 }
 
 .custom-industry-box .btn-cta {
-  background: #ECF39E !important;
-  color: #132A13 !important;
+  background: linear-gradient(135deg, #31572C, #4F772D) !important;
+  color: #FFFFFF !important;
   font-weight: 800 !important;
-  border: 1px solid #ECF39E !important;
-  box-shadow: 0 4px 18px rgba(236, 243, 158, 0.35) !important;
+  border: 1px solid rgba(49, 87, 44, 0.20) !important;
+  box-shadow: 0 4px 18px rgba(49, 87, 44, 0.25) !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -4750,19 +4528,17 @@ section {
 }
 
 .custom-industry-box .btn-cta:hover {
-  background: #FFFFFF !important;
-  color: #132A13 !important;
+  background: linear-gradient(135deg, #132A13, #31572C) !important;
+  color: #FFFFFF !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 6px 24px rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 6px 24px rgba(19, 42, 19, 0.30) !important;
 }
 
-/* 5. Lower Zone: Solar Constellation & Forest Sanctuary Depth Zones */
+/* 5. Lower Zone: Solar Constellation & Platforms */
 .tech-solar-section {
   padding: 104px 0 96px;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(243, 202, 109, 0.08) 0%, transparent 60%),
-    linear-gradient(180deg, #131614 0%, #161C17 50%, #131614 100%) !important;
-  color: var(--text-primary, #F6F5EE) !important;
+  background: #F4F0E8 !important;
+  color: #132A13 !important;
   position: relative !important;
   z-index: 2 !important;
   overflow: hidden;
@@ -4775,52 +4551,50 @@ section {
 }
 
 .tech-solar-section .section-title {
-  color: var(--text-primary, #F6F5EE) !important;
+  color: #132A13 !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.75), 0 0 6px rgba(0, 0, 0, 0.6) !important;
+  text-shadow: none !important;
 }
 
 .tech-solar-section .section-title .text-brand {
-  color: #ECF39E !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
+  color: #31572C !important;
+  text-shadow: none !important;
 }
 
 .tech-solar-section .section-subtitle {
-  color: var(--text-secondary, #D8DCCF) !important;
+  color: #3A4E3A !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+  text-shadow: none !important;
 }
 
 .tech-solar-section .platform-tab-btn {
-  background: var(--bg-card, rgba(37, 44, 38, 0.85)) !important;
-  color: var(--text-primary, #F6F5EE) !important;
-  border: 1px solid rgba(144, 169, 85, 0.30) !important;
+  background: #FFFFFF !important;
+  color: #3A4E3A !important;
+  border: 1px solid rgba(49, 87, 44, 0.16) !important;
   position: relative !important;
   z-index: 10 !important;
 }
 
 .tech-solar-section .platform-tab-btn.active {
-  background: #ECF39E !important;
-  color: #132A13 !important;
-  border-color: #ECF39E !important;
+  background: #31572C !important;
+  color: #FFFFFF !important;
+  border-color: #31572C !important;
 }
 
 .tech-solar-section .platform-eco-card {
-  background: var(--bg-card, rgba(37, 44, 38, 0.85)) !important;
-  border: 1px solid rgba(144, 169, 85, 0.25) !important;
-  color: var(--text-primary, #F6F5EE) !important;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(49, 87, 44, 0.12) !important;
+  color: #132A13 !important;
   position: relative !important;
   z-index: 10 !important;
 }
 
 .team-section {
   padding: 100px 0 96px;
-  background:
-    radial-gradient(ellipse 70% 50% at 50% 30%, rgba(49, 87, 44, 0.18) 0%, transparent 65%),
-    linear-gradient(180deg, #131614 0%, #0F1912 50%, #131614 100%) !important;
-  color: var(--text-primary, #F6F5EE) !important;
+  background: #FBF9F4 !important;
+  color: #132A13 !important;
   position: relative !important;
   z-index: 2 !important;
   overflow: hidden;
@@ -4840,38 +4614,36 @@ section {
 }
 
 .team-section .section-title {
-  color: var(--text-primary, #F6F5EE) !important;
+  color: #132A13 !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.75), 0 0 6px rgba(0, 0, 0, 0.6) !important;
+  text-shadow: none !important;
 }
 
 .team-section .section-title .text-brand {
-  color: #ECF39E !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
+  color: #31572C !important;
+  text-shadow: none !important;
 }
 
 .team-section .section-subtitle {
-  color: var(--text-secondary, #D8DCCF) !important;
+  color: #3A4E3A !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+  text-shadow: none !important;
 }
 
 .team-section .team-member-card {
-  background: var(--bg-card, rgba(37, 44, 38, 0.85)) !important;
-  border: 1px solid rgba(144, 169, 85, 0.25) !important;
-  color: var(--text-primary, #F6F5EE) !important;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(49, 87, 44, 0.12) !important;
+  color: #132A13 !important;
   position: relative !important;
   z-index: 10 !important;
 }
 
 .faq-section {
   padding: 100px 0;
-  background:
-    radial-gradient(circle at 50% 25%, rgba(243, 202, 109, 0.06) 0%, transparent 55%),
-    linear-gradient(180deg, #131614 0%, #141A15 50%, #131614 100%) !important;
-  color: var(--text-primary, #F6F5EE) !important;
+  background: #F4F0E8 !important;
+  color: #132A13 !important;
   position: relative !important;
   z-index: 2 !important;
   overflow: hidden;
@@ -4884,46 +4656,44 @@ section {
 }
 
 .faq-section .section-title {
-  color: var(--text-primary, #F6F5EE) !important;
+  color: #132A13 !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.75), 0 0 6px rgba(0, 0, 0, 0.6) !important;
+  text-shadow: none !important;
 }
 
 .faq-section .section-title .text-brand {
-  color: #ECF39E !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
+  color: #31572C !important;
+  text-shadow: none !important;
 }
 
 .faq-section .section-subtitle {
-  color: var(--text-secondary, #D8DCCF) !important;
+  color: #3A4E3A !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+  text-shadow: none !important;
 }
 
 .faq-question-btn {
-  color: var(--text-primary, #F6F5EE) !important;
+  color: #132A13 !important;
 }
 
 .faq-answer-panel p {
-  color: var(--text-secondary, #D8DCCF) !important;
+  color: #3A4E3A !important;
 }
 
 .faq-item {
-  border-bottom-color: rgba(144, 169, 85, 0.20) !important;
+  border-bottom-color: rgba(49, 87, 44, 0.14) !important;
 }
 
 .faq-accordion {
-  border-top-color: rgba(144, 169, 85, 0.20) !important;
+  border-top-color: rgba(49, 87, 44, 0.14) !important;
 }
 
-/* 6. Final Zone: CTA Banner Emerald & Gold Breathing Horizon */
+/* 6. Final Zone: CTA Banner Emerald Deep Forest Sanctuary */
 .cta-banner-section {
   padding: 96px 24px 80px;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% 50%, rgba(79, 119, 45, 0.28) 0%, transparent 70%),
-    linear-gradient(180deg, #131614 0%, #0C150F 50%, #131614 100%) !important;
+  background: linear-gradient(135deg, #132A13 0%, #1A3817 50%, #244820 100%) !important;
   position: relative !important;
   z-index: 2 !important;
   overflow: hidden;
@@ -4935,45 +4705,63 @@ section {
 .subpage-transition-section+.cta-banner-section,
 .subpage-transition-section+.divider+.cta-banner-section {
   padding: 96px 24px 80px !important;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% 50%, rgba(79, 119, 45, 0.28) 0%, transparent 70%),
-    linear-gradient(180deg, #131614 0%, #0C150F 50%, #131614 100%) !important;
+  background: linear-gradient(135deg, #132A13 0%, #1A3817 50%, #244820 100%) !important;
 }
 
+.cta-banner-section .cta-banner-title {
+  color: #FFFFFF !important;
+}
+
+.cta-banner-section .cta-banner-desc {
+  color: rgba(255, 255, 255, 0.90) !important;
+}
+
+.cta-banner-section .btn-banner {
+  background: #ECF39E !important;
+  color: #132A13 !important;
+  border: 1px solid #ECF39E !important;
+}
+
+.cta-banner-section .btn-banner:hover {
+  background: #FFFFFF !important;
+  color: #132A13 !important;
+  border-color: #FFFFFF !important;
+}
+
+/* Footer: Warm Heritage Linen Canvas */
 .site-footer {
-  background-color: var(--bg-primary, #161A17) !important;
+  background-color: #F4F0E8 !important;
   padding: 80px 24px 40px;
-  border-top: 1px solid rgba(144, 169, 85, 0.20) !important;
-  color: var(--text-primary, #F6F5EE) !important;
+  border-top: 1px solid rgba(49, 87, 44, 0.12) !important;
+  color: #132A13 !important;
   position: relative !important;
   z-index: 2 !important;
 }
 
 .site-footer .footer-col-title {
-  color: var(--text-primary, #F6F5EE) !important;
+  color: #132A13 !important;
 }
 
 .site-footer .footer-address,
 .site-footer .footer-links-list a {
-  color: #A3B5A1 !important;
+  color: #3A4E3A !important;
 }
 
 .site-footer .footer-links-list a:hover {
-  color: #ECF39E !important;
+  color: #132A13 !important;
 }
 
 .site-footer .footer-watermark {
-  color: rgba(246, 245, 238, 0.04) !important;
+  color: rgba(49, 87, 44, 0.05) !important;
 }
 
 .site-footer .footer-bottom-bar {
-  border-top-color: rgba(144, 169, 85, 0.18) !important;
-  color: #7E947C !important;
+  border-top-color: rgba(49, 87, 44, 0.12) !important;
+  color: #607260 !important;
 }
 
-/* 7. Subpage Atmospheric Architecture & Complete Readability across Services, About, Careers, Contact */
+/* 7. Subpage Atmospheric Architecture across Services, About, Careers, Contact */
 
-/* Subpage Transition Section: Unified Charcoal Slate Canvas */
 .subpage-transition-section {
   background: transparent !important;
   background-color: transparent !important;
@@ -4982,70 +4770,45 @@ section {
   width: 100%;
 }
 
-.subpage-transition-section .container {
-  position: relative !important;
-  z-index: 10 !important;
-}
-
+.subpage-transition-section .container,
 .subpage-transition-section .section-header {
-  position: relative !important;
-  z-index: 10 !important;
-}
-
-.subpage-transition-section .section-tag {
-  display: inline-flex !important;
-  align-items: center !important;
-  font-size: 0.84rem !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.12em !important;
-  text-transform: uppercase !important;
-  color: #ECF39E !important;
-  background: rgba(10, 20, 11, 0.90) !important;
-  backdrop-filter: blur(12px) !important;
-  border: 1.5px solid rgba(236, 243, 158, 0.45) !important;
-  padding: 6px 18px !important;
-  border-radius: var(--radius-full) !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.65) !important;
-  margin-bottom: 16px !important;
   position: relative !important;
   z-index: 10 !important;
 }
 
 .subpage-transition-section .section-title,
 .subpage-transition-section h2 {
-  color: #FFFFFF !important;
+  color: #132A13 !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
+  text-shadow: none !important;
 }
 
 .subpage-transition-section .section-title .text-brand,
 .subpage-transition-section h2 .text-brand {
-  color: #ECF39E !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
+  color: #31572C !important;
+  text-shadow: none !important;
 }
 
 .subpage-transition-section .section-subtitle,
 .subpage-transition-section .careers-hero-split-grid>div>p {
-  color: #D6E4D3 !important;
+  color: #3A4E3A !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+  text-shadow: none !important;
 }
 
-/* Subpage Transition Dark Obsidian Cards */
+/* Subpage White Cards */
 .services-pillars-grid .spotlight-card,
 .about-mission-grid .spotlight-card,
 .careers-hero-split-grid .spotlight-card,
 .contact-channels-grid .info-item-card,
 .contact-confidentiality-card {
-  background-color: #0b140d !important;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(79, 119, 45, 0.35) 0%, transparent 65%),
-    linear-gradient(165deg, rgba(18, 28, 19, 0.98) 0%, rgba(10, 17, 11, 1) 100%) !important;
-  border: 1px solid rgba(144, 169, 85, 0.32) !important;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7), 0 0 25px rgba(144, 169, 85, 0.15) !important;
-  color: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(49, 87, 44, 0.12) !important;
+  box-shadow: 0 8px 24px rgba(19, 42, 19, 0.05) !important;
+  color: #132A13 !important;
   position: relative !important;
   z-index: 10 !important;
 }
@@ -5055,17 +4818,17 @@ section {
 .careers-hero-split-grid .spotlight-card h3,
 .contact-channels-grid .info-item-card h3,
 .contact-confidentiality-card h4 {
-  color: #FFFFFF !important;
+  color: #132A13 !important;
   font-weight: 700 !important;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+  text-shadow: none !important;
 }
 
 .about-mission-grid .spotlight-card h4,
 .careers-hero-split-grid .spotlight-card h4,
 .contact-channels-grid .info-item-card h4 {
-  color: #ECF39E !important;
+  color: #31572C !important;
   font-weight: 700 !important;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.8) !important;
+  text-shadow: none !important;
 }
 
 .services-pillars-grid .spotlight-card p,
@@ -5073,49 +4836,49 @@ section {
 .careers-hero-split-grid .spotlight-card p,
 .contact-channels-grid .info-item-card p,
 .contact-confidentiality-card p {
-  color: #CAD5C5 !important;
+  color: #3A4E3A !important;
   line-height: 1.65 !important;
 }
 
 .services-pillars-grid .spotlight-card ul li,
 .careers-hero-split-grid .spotlight-card ul li {
-  color: #E2ECE0 !important;
+  color: #2D422E !important;
 }
 
 .services-pillars-grid .spotlight-card ul li svg,
 .careers-hero-split-grid .spotlight-card ul li svg {
-  color: #90A955 !important;
-  filter: drop-shadow(0 0 6px rgba(144, 169, 85, 0.4)) !important;
+  color: #31572C !important;
+  filter: none !important;
 }
 
 .contact-channels-grid .info-item-card a {
-  color: #ECF39E !important;
+  color: #31572C !important;
   text-decoration: underline !important;
 }
 
 .contact-channels-grid .info-item-card a:hover {
-  color: #FFFFFF !important;
+  color: #132A13 !important;
 }
 
 .services-pillars-grid .btn-cta,
 .careers-hero-split-grid .btn-cta,
 .contact-channels-grid .btn-cta {
-  background: #ECF39E !important;
-  color: #132A13 !important;
+  background: linear-gradient(135deg, #31572C, #4F772D) !important;
+  color: #FFFFFF !important;
   font-weight: 800 !important;
-  border: 1px solid #ECF39E !important;
-  box-shadow: 0 4px 18px rgba(236, 243, 158, 0.35) !important;
+  border: 1px solid rgba(49, 87, 44, 0.20) !important;
+  box-shadow: 0 4px 18px rgba(49, 87, 44, 0.25) !important;
 }
 
 .services-pillars-grid .btn-cta:hover,
 .careers-hero-split-grid .btn-cta:hover,
 .contact-channels-grid .btn-cta:hover {
-  background: #FFFFFF !important;
-  color: #132A13 !important;
+  background: linear-gradient(135deg, #132A13, #31572C) !important;
+  color: #FFFFFF !important;
   transform: translateY(-2px);
 }
 
-/* Subpage Unified Sections - Unified Charcoal Slate Canvas */
+/* Subpage Unified Sections */
 .subpage-light-section,
 .content-section,
 .about-mission-section,
@@ -5129,21 +4892,8 @@ section {
   width: 100%;
 }
 
-.subpage-light-section .container {
-  position: relative !important;
-  z-index: 10 !important;
-}
-
+.subpage-light-section .container,
 .subpage-light-section .section-header {
-  position: relative !important;
-  z-index: 10 !important;
-}
-
-.subpage-light-section .section-tag {
-  color: #ECF39E !important;
-  background: rgba(30, 40, 32, 0.85) !important;
-  border: 1.5px solid rgba(236, 243, 158, 0.35) !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.50), 0 0 10px rgba(236, 243, 158, 0.15) !important;
   position: relative !important;
   z-index: 10 !important;
 }
@@ -5154,17 +4904,17 @@ section {
 .about-mission-section .section-title,
 .contact-section .section-title,
 .careers-section .section-title {
-  color: var(--text-primary, #F6F5EE) !important;
+  color: #132A13 !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.75), 0 0 6px rgba(0, 0, 0, 0.6) !important;
+  text-shadow: none !important;
 }
 
 .subpage-light-section .section-title .text-brand,
 .content-section .section-title .text-brand,
 .pricing-section .section-title .text-brand {
-  color: #ECF39E !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
+  color: #31572C !important;
+  text-shadow: none !important;
 }
 
 .subpage-light-section .section-subtitle,
@@ -5174,22 +4924,22 @@ section {
 .about-mission-section p,
 .contact-section p,
 .careers-section p {
-  color: var(--text-secondary, #D8DCCF) !important;
+  color: #3A4E3A !important;
   font-weight: 400 !important;
   line-height: 1.68 !important;
   position: relative !important;
   z-index: 10 !important;
 }
 
-/* Unified Section Cards (Luxury Glassmorphic Charcoal Containers) */
+/* Unified Section Cards */
 .about-values-grid>div,
 .careers-culture-grid .spotlight-card,
 .careers-culture-grid>div,
 .process-flow-container {
-  background: var(--bg-card, rgba(37, 44, 38, 0.85)) !important;
-  border: 1px solid var(--border-glass, rgba(144, 169, 85, 0.22)) !important;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(49, 87, 44, 0.12) !important;
   border-radius: var(--radius-lg) !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45) !important;
+  box-shadow: 0 8px 24px rgba(19, 42, 19, 0.05) !important;
   transition: var(--transition) !important;
   position: relative !important;
   z-index: 10 !important;
@@ -5198,8 +4948,8 @@ section {
 .about-values-grid>div:hover,
 .careers-culture-grid .spotlight-card:hover,
 .careers-culture-grid>div:hover {
-  border-color: rgba(236, 243, 158, 0.45) !important;
-  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.55), 0 0 20px rgba(144, 169, 85, 0.15) !important;
+  border-color: rgba(79, 119, 45, 0.35) !important;
+  box-shadow: 0 16px 36px rgba(19, 42, 19, 0.10) !important;
   transform: translateY(-4px) !important;
 }
 
@@ -5209,12 +4959,12 @@ section {
 .subpage-light-section .spotlight-card h3,
 .subpage-light-section h3,
 .process-flow-container h4 {
-  color: var(--text-primary, #F6F5EE) !important;
+  color: #132A13 !important;
   font-weight: 700 !important;
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85) !important;
+  text-shadow: none !important;
 }
 
 .about-values-grid p,
@@ -5223,7 +4973,7 @@ section {
 .subpage-light-section .spotlight-card p,
 .subpage-light-section p,
 .process-flow-container p {
-  color: var(--text-secondary, #D8DCCF) !important;
+  color: #3A4E3A !important;
   font-weight: 400 !important;
   line-height: 1.68 !important;
   display: block !important;
@@ -5255,11 +5005,11 @@ section {
 .process-stat-banner {
   margin-top: 40px !important;
   padding: 20px 28px !important;
-  background: linear-gradient(135deg, rgba(236, 243, 158, 0.35) 0%, rgba(144, 169, 85, 0.22) 100%) !important;
-  border: 1.5px solid rgba(49, 87, 44, 0.28) !important;
+  background: linear-gradient(135deg, rgba(244, 240, 232, 0.95) 0%, rgba(237, 232, 222, 0.95) 100%) !important;
+  border: 1.5px solid rgba(49, 87, 44, 0.20) !important;
   border-radius: var(--radius-lg) !important;
   text-align: center !important;
-  box-shadow: 0 4px 18px rgba(19, 42, 19, 0.05) !important;
+  box-shadow: 0 4px 18px rgba(19, 42, 19, 0.04) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -5341,7 +5091,7 @@ body.intro-docked .site-header .mobile-menu-btn {
 .intro-curtain {
   position: fixed;
   inset: 0;
-  background: #060907;
+  background: #FBF9F4;
   z-index: 1;
   pointer-events: all;
   opacity: 1;
@@ -5355,7 +5105,7 @@ body.intro-docked .site-header .mobile-menu-btn {
   width: 700px;
   height: 700px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(236, 243, 158, 0.15) 0%, rgba(144, 169, 85, 0.08) 45%, transparent 70%);
+  background: radial-gradient(circle, rgba(144, 169, 85, 0.12) 0%, rgba(200, 150, 46, 0.06) 45%, transparent 70%);
   filter: blur(55px);
   pointer-events: none;
   z-index: 2;

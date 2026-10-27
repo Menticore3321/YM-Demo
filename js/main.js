@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   1. Theme Management (Permanent Slate-Obsidian Dark Mode)
+   1. Theme Management (Luxury Warm Ivory Light Theme)
    ========================================================================== */
 function initTheme() {
   try {
@@ -30,7 +30,7 @@ function initTheme() {
   } catch (e) {
     /* ignore storage access restrictions */
   }
-  document.documentElement.setAttribute('data-theme', 'dark');
+  document.documentElement.setAttribute('data-theme', 'light');
 }
 
 /* ==========================================================================
@@ -666,59 +666,16 @@ function initScrollProgress() {
 }
 
 /* ==========================================================================
-   11. Ambient Mouse Cursor Glow & Matrix Grid Spotlight
+   11. Ambient Mouse Cursor Glow & Matrix Grid: Disabled per User Preference
    ========================================================================== */
 function initCursorGlow() {
-  // Inject Full-Page Matrix Grid Background with interactive hover spotlight
-  let gridBg = document.querySelector('.matrix-grid-bg');
-  if (!gridBg) {
-    gridBg = document.createElement('div');
-    gridBg.className = 'matrix-grid-bg';
-    gridBg.setAttribute('aria-hidden', 'true');
-    document.body.prepend(gridBg);
-  }
-
-  // Inject Cinematic Vignette
-  let vignette = document.querySelector('.site-vignette');
-  if (!vignette) {
-    vignette = document.createElement('div');
-    vignette.className = 'site-vignette';
-    vignette.setAttribute('aria-hidden', 'true');
-    document.body.prepend(vignette);
-  }
-
-  if (!window.matchMedia('(pointer: fine)').matches) return;
-
-  const glow = document.createElement('div');
-  glow.className = 'cursor-glow';
-  document.body.appendChild(glow);
-
-  let currentX = window.innerWidth / 2;
-  let currentY = window.innerHeight / 2;
-  let targetX = currentX;
-  let targetY = currentY;
-  window.addEventListener('mousemove', (e) => {
-    targetX = e.clientX;
-    targetY = e.clientY;
-  }, { passive: true });
-
-  window.addEventListener('mouseleave', () => {
-    document.documentElement.style.setProperty('--mouse-screen-x', '-500px');
-    document.documentElement.style.setProperty('--mouse-screen-y', '-500px');
-  });
-
-  function renderGlow() {
-    currentX += (targetX - currentX) * 0.12;
-    currentY += (targetY - currentY) * 0.12;
-    glow.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
-
-    // Smooth spotlight coordinates for geometric dot-matrix glow
-    document.documentElement.style.setProperty('--mouse-screen-x', `${currentX.toFixed(1)}px`);
-    document.documentElement.style.setProperty('--mouse-screen-y', `${currentY.toFixed(1)}px`);
-
-    requestAnimationFrame(renderGlow);
-  }
-  requestAnimationFrame(renderGlow);
+  // Completely remove any existing grid or vignette elements
+  const existingGrid = document.querySelector('.matrix-grid-bg');
+  if (existingGrid) existingGrid.remove();
+  const existingVignette = document.querySelector('.site-vignette');
+  if (existingVignette) existingVignette.remove();
+  const existingGlow = document.querySelector('.cursor-glow');
+  if (existingGlow) existingGlow.remove();
 }
 
 /* ==========================================================================
