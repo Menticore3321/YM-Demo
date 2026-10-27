@@ -28,14 +28,14 @@
   --c-gold-glow: rgba(243, 202, 109, 0.38);
 
   /* Clean Slate-Obsidian Deep Charcoal Canvas - Color Theory Tuned */
-  --bg-base: #161A17;
-  --bg-primary: #161A17;
-  --bg-surface: #1E2420;
-  --bg-secondary: rgba(30, 36, 32, 0.70);
-  --bg-section-glass: rgba(26, 31, 27, 0.65);
-  --bg-tertiary: #1E2420;
-  --bg-card: rgba(37, 44, 38, 0.85);
-  --bg-glass: rgba(22, 26, 23, 0.92);
+  --bg-base: #131614;
+  --bg-primary: #131614;
+  --bg-surface: #1B221D;
+  --bg-secondary: rgba(26, 34, 28, 0.70);
+  --bg-section-glass: rgba(22, 28, 23, 0.65);
+  --bg-tertiary: #1B221D;
+  --bg-card: rgba(35, 45, 37, 0.85);
+  --bg-glass: rgba(19, 24, 20, 0.92);
   --border-glass: rgba(144, 169, 85, 0.22);
 
   --text-primary: #F6F5EE;
@@ -83,7 +83,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
-  background-color: #161A17;
+  background-color: #131614;
   color-scheme: dark;
 }
 
@@ -4280,13 +4280,58 @@ section {
   opacity: 0.25 !important;
 }
 
-/* 2. Transition 1: How We Help Section - Unified Charcoal Slate Canvas */
+/* ==========================================================================
+   Luminous Champagne Gold Laser Light-Blades (Precision Horizon Separators)
+   ========================================================================== */
+.how-we-help-section::before,
+.services-section::before,
+.expertise-section::before,
+.industries-section::before,
+.tech-solar-section::before,
+.team-section::before,
+.faq-section::before,
+.cta-banner-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 84%;
+  max-width: 1140px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(243, 202, 109, 0.12) 15%, rgba(243, 202, 109, 0.85) 50%, rgba(243, 202, 109, 0.12) 85%, transparent 100%);
+  box-shadow: 0 0 16px rgba(243, 202, 109, 0.45), 0 0 32px rgba(144, 169, 85, 0.25);
+  pointer-events: none;
+  z-index: 15;
+}
+
+/* 2. Operational Pillars Stage: Rich Forest Emerald Depth Zone & 3D Glass Pedestal */
 .how-we-help-section {
-  padding: 96px 0;
-  background: transparent !important;
-  background-color: transparent !important;
+  padding: 108px 0 100px;
+  background:
+    radial-gradient(ellipse 70% 45% at 50% 25%, rgba(49, 87, 44, 0.28) 0%, transparent 70%),
+    radial-gradient(circle at 50% 88%, rgba(243, 202, 109, 0.08) 0%, transparent 50%),
+    linear-gradient(180deg, #131614 0%, #0E1711 35%, #0B130E 70%, #131614 100%) !important;
   position: relative !important;
   z-index: 2 !important;
+  overflow: hidden;
+}
+
+/* 3D Elevated Floating Glass Pedestal Stage */
+.how-we-help-section .help-showcase-container {
+  max-width: 1140px;
+  margin: 0 auto;
+  position: relative;
+  padding: 36px 36px 44px;
+  background: rgba(18, 27, 20, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 28px;
+  border: 1px solid rgba(144, 169, 85, 0.28);
+  box-shadow:
+    0 30px 80px -20px rgba(0, 0, 0, 0.75),
+    0 0 50px rgba(79, 119, 45, 0.18),
+    inset 0 1px 1px rgba(236, 243, 158, 0.25);
 }
 
 .how-we-help-section .container,
@@ -4308,26 +4353,41 @@ section {
 }
 
 .how-we-help-section .section-subtitle {
-  color: #E2ECE0 !important;
+  color: var(--text-secondary, #D8DCCF) !important;
   position: relative !important;
   z-index: 10 !important;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
 }
 
+/* Floating Capsule Pill Tabs */
 .how-we-help-section .help-tab-btn {
-  background: rgba(255, 255, 255, 0.15) !important;
-  color: #FFFFFF !important;
-  border: 1px solid rgba(236, 243, 158, 0.3) !important;
+  padding: 12px 28px !important;
+  border-radius: var(--radius-full) !important;
+  font-weight: 700 !important;
+  font-size: 0.92rem !important;
+  letter-spacing: 0.04em !important;
+  color: var(--text-secondary, #D8DCCF) !important;
+  background: rgba(24, 34, 26, 0.85) !important;
+  border: 1px solid rgba(144, 169, 85, 0.28) !important;
   backdrop-filter: blur(10px);
   position: relative !important;
   z-index: 10 !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.how-we-help-section .help-tab-btn:hover {
+  border-color: rgba(236, 243, 158, 0.55) !important;
+  color: #F6F5EE !important;
+  transform: translateY(-2px);
 }
 
 .how-we-help-section .help-tab-btn.active {
   background: #ECF39E !important;
   color: #132A13 !important;
   border-color: #ECF39E !important;
-  box-shadow: 0 4px 16px rgba(236, 243, 158, 0.35) !important;
+  box-shadow: 0 4px 22px rgba(236, 243, 158, 0.45) !important;
+  transform: translateY(-2px);
 }
 
 /* Multi-layer Dark Obsidian Glass Card Architecture with Ambient Glow & Spotlight */
@@ -4340,7 +4400,7 @@ section {
   background-color: #0b140d !important;
   background:
     radial-gradient(circle at 50% 0%, rgba(79, 119, 45, 0.35) 0%, transparent 65%),
-    linear-gradient(165deg, rgba(18, 28, 19, 0.98) 0%, rgba(10, 17, 11, 1) 100%) !important;
+    linear-gradient(165deg, rgba(22, 33, 24, 0.95) 0%, rgba(12, 19, 13, 0.98) 100%) !important;
   border: 1px solid rgba(144, 169, 85, 0.32) !important;
   box-shadow:
     0 20px 50px -10px rgba(0, 0, 0, 0.55),
@@ -4358,7 +4418,7 @@ section {
 .industries-section .industry-card-active:hover,
 .platform-eco-card:hover,
 .team-member-card:hover {
-  transform: translateY(-10px) scale(1.012) !important;
+  transform: translateY(-8px) scale(1.01) !important;
   border-color: rgba(236, 243, 158, 0.65) !important;
   box-shadow:
     0 28px 60px -10px rgba(0, 0, 0, 0.80),
@@ -4372,7 +4432,7 @@ section {
 .industries-section .industry-card-title,
 .platform-eco-card h3,
 .team-member-card .member-name {
-  color: #FFFFFF !important;
+  color: var(--text-primary, #F6F5EE) !important;
   font-weight: 700 !important;
   letter-spacing: -0.01em;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
@@ -4450,13 +4510,15 @@ section {
   transform: scale(1.35) translate(-10px, 10px);
 }
 
-/* 3. Middle Zone: Services Section - Unified Charcoal Canvas */
+/* 3. Solutions Showroom: Services Section - Radial Gold Horizon & Smoked Glass Cards */
 .services-section {
-  padding: 96px 0;
-  background: transparent !important;
-  background-color: transparent !important;
+  padding: 104px 0 96px;
+  background:
+    radial-gradient(ellipse 65% 45% at 50% 15%, rgba(243, 202, 109, 0.08) 0%, transparent 60%),
+    linear-gradient(180deg, #131614 0%, #151A16 50%, #131614 100%) !important;
   position: relative !important;
   z-index: 2 !important;
+  overflow: hidden;
 }
 
 /* Universal Section Tags across All Sections */
@@ -4551,12 +4613,15 @@ section {
   box-shadow: 0 6px 22px rgba(49, 87, 44, 0.45) !important;
 }
 
+/* 3B. Fiduciary Metrics & Track Record - Forest Emerald Radial Sanctuary */
 .expertise-section {
-  padding: 88px 0;
-  background: transparent !important;
-  background-color: transparent !important;
+  padding: 96px 0;
+  background:
+    radial-gradient(ellipse 75% 50% at 50% 50%, rgba(49, 87, 44, 0.22) 0%, transparent 68%),
+    linear-gradient(180deg, #131614 0%, #0E1811 50%, #131614 100%) !important;
   position: relative !important;
   z-index: 2 !important;
+  overflow: hidden;
 }
 
 .expertise-section .section-title {
@@ -4575,13 +4640,31 @@ section {
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
 }
 
-/* 4. Whom We Serve - Unified Charcoal Canvas */
+.expertise-section .stat-box {
+  background: rgba(20, 31, 22, 0.80) !important;
+  border: 1px solid rgba(144, 169, 85, 0.30) !important;
+  backdrop-filter: blur(14px);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.50), inset 0 1px 0 rgba(236, 243, 158, 0.22) !important;
+}
+
+.expertise-section .stat-number {
+  color: var(--text-primary, #F6F5EE) !important;
+}
+
+.expertise-section .stat-label {
+  color: var(--text-secondary, #D8DCCF) !important;
+}
+
+/* 4. Whom We Serve - Forest Emerald & Capsule Navigation */
 .industries-section {
-  padding: 96px 0;
-  background: transparent !important;
-  background-color: transparent !important;
+  padding: 104px 0 96px;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 25%, rgba(79, 119, 45, 0.20) 0%, transparent 65%),
+    linear-gradient(180deg, #131614 0%, #0F1A12 50%, #131614 100%) !important;
   position: relative !important;
   z-index: 2 !important;
+  overflow: hidden;
 }
 
 .industries-section .section-title {
@@ -4673,14 +4756,16 @@ section {
   box-shadow: 0 6px 24px rgba(255, 255, 255, 0.4) !important;
 }
 
-/* 5. Lower Zone: Unified Charcoal Canvas (Tech Platforms, Team, & FAQ) */
+/* 5. Lower Zone: Solar Constellation & Forest Sanctuary Depth Zones */
 .tech-solar-section {
-  padding: 100px 0 90px;
-  background: transparent !important;
-  background-color: transparent !important;
+  padding: 104px 0 96px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(243, 202, 109, 0.08) 0%, transparent 60%),
+    linear-gradient(180deg, #131614 0%, #161C17 50%, #131614 100%) !important;
   color: var(--text-primary, #F6F5EE) !important;
   position: relative !important;
   z-index: 2 !important;
+  overflow: hidden;
 }
 
 .tech-solar-section .container,
@@ -4731,21 +4816,21 @@ section {
 }
 
 .team-section {
-  padding: 96px 0;
-  background: transparent !important;
-  background-color: transparent !important;
+  padding: 100px 0 96px;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 30%, rgba(49, 87, 44, 0.18) 0%, transparent 65%),
+    linear-gradient(180deg, #131614 0%, #0F1912 50%, #131614 100%) !important;
   color: var(--text-primary, #F6F5EE) !important;
   position: relative !important;
   z-index: 2 !important;
+  overflow: hidden;
 }
 
 #team.team-section,
 .team-section.has-linen-transition,
 .subpage-light-section+.team-section,
 .subpage-light-section+.divider+.team-section {
-  padding: 96px 0 !important;
-  background: transparent !important;
-  background-color: transparent !important;
+  padding: 100px 0 96px !important;
 }
 
 .team-section .container,
@@ -4782,12 +4867,14 @@ section {
 }
 
 .faq-section {
-  padding: 96px 0;
-  background: transparent !important;
-  background-color: transparent !important;
+  padding: 100px 0;
+  background:
+    radial-gradient(circle at 50% 25%, rgba(243, 202, 109, 0.06) 0%, transparent 55%),
+    linear-gradient(180deg, #131614 0%, #141A15 50%, #131614 100%) !important;
   color: var(--text-primary, #F6F5EE) !important;
   position: relative !important;
   z-index: 2 !important;
+  overflow: hidden;
 }
 
 .faq-section .container,
@@ -4831,13 +4918,15 @@ section {
   border-top-color: rgba(144, 169, 85, 0.20) !important;
 }
 
-/* 6. Final Zone: Transition to Charcoal Slate at the End of the Page - Color Theory Tuned */
+/* 6. Final Zone: CTA Banner Emerald & Gold Breathing Horizon */
 .cta-banner-section {
-  padding: 80px 24px;
-  background: transparent !important;
-  background-color: transparent !important;
+  padding: 96px 24px 80px;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 50%, rgba(79, 119, 45, 0.28) 0%, transparent 70%),
+    linear-gradient(180deg, #131614 0%, #0C150F 50%, #131614 100%) !important;
   position: relative !important;
   z-index: 2 !important;
+  overflow: hidden;
 }
 
 .cta-banner-section.from-linen,
@@ -4845,9 +4934,10 @@ section {
 .subpage-light-section+.divider+.cta-banner-section,
 .subpage-transition-section+.cta-banner-section,
 .subpage-transition-section+.divider+.cta-banner-section {
-  padding: 80px 24px !important;
-  background: transparent !important;
-  background-color: transparent !important;
+  padding: 96px 24px 80px !important;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 50%, rgba(79, 119, 45, 0.28) 0%, transparent 70%),
+    linear-gradient(180deg, #131614 0%, #0C150F 50%, #131614 100%) !important;
 }
 
 .site-footer {
