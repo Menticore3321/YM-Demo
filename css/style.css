@@ -741,12 +741,14 @@ section {
   justify-content: center;
   padding: 140px 24px 80px;
   overflow: hidden;
-  background-color: var(--bg-primary, #161A17) !important;
+  background: transparent !important;
+  background-color: transparent !important;
   color: var(--text-primary, #F6F5EE) !important;
 }
 
 [data-theme="dark"] .hero-section {
-  background-color: var(--bg-primary, #161A17) !important;
+  background: transparent !important;
+  background-color: transparent !important;
 }
 
 /* ==========================================================================
@@ -758,6 +760,8 @@ section {
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 75%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 75%, transparent 100%);
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
   will-change: transform, opacity;
 }
@@ -4164,7 +4168,8 @@ section {
 /* 1. Top Hero Section: Deep Charcoal Slate Luxury Atmosphere - Color Theory Tuned */
 .hero-section,
 .subpage-hero {
-  background-color: var(--bg-primary, #161A17) !important;
+  background: transparent !important;
+  background-color: transparent !important;
   color: var(--text-primary, #F6F5EE) !important;
   position: relative !important;
   z-index: 2 !important;
@@ -4275,10 +4280,11 @@ section {
   opacity: 0.25 !important;
 }
 
-/* 2. Transition 1: How We Help Section (Charcoal Slate gradually tones down through lush forest green to Creamish Linen #FAF9F3) */
+/* 2. Transition 1: How We Help Section - Unified Charcoal Slate Canvas */
 .how-we-help-section {
   padding: 96px 0;
-  background: linear-gradient(180deg, #161A17 0%, rgba(22, 28, 23, 0.94) 14%, rgba(23, 49, 24, 0.78) 35%, rgba(54, 90, 41, 0.72) 58%, rgba(142, 159, 118, 0.72) 80%, rgba(250, 249, 243, 0.92) 100%) !important;
+  background: transparent !important;
+  background-color: transparent !important;
   position: relative !important;
   z-index: 2 !important;
 }
@@ -4444,15 +4450,16 @@ section {
   transform: scale(1.35) translate(-10px, 10px);
 }
 
-/* 3. Middle Zone: #FAF9F3 Creamish Linen Canvas (Services Carousel & Proven Metrics - Golden dot-matrix grid & hover spotlight active) */
+/* 3. Middle Zone: Services Section - Unified Charcoal Canvas */
 .services-section {
   padding: 96px 0;
-  background-color: rgba(250, 249, 243, 0.92) !important;
+  background: transparent !important;
+  background-color: transparent !important;
   position: relative !important;
   z-index: 2 !important;
 }
 
-/* Universal Section Tags on #FAF9F3 Linen Canvas */
+/* Universal Section Tags across All Sections */
 .services-section .section-tag,
 .expertise-section .section-tag,
 .industries-section .section-tag,
@@ -4468,12 +4475,12 @@ section {
   font-weight: 800 !important;
   letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
-  color: #132A13 !important;
-  background: rgba(19, 42, 19, 0.08) !important;
-  border: 1.5px solid rgba(19, 42, 19, 0.30) !important;
+  color: #ECF39E !important;
+  background: rgba(30, 40, 32, 0.85) !important;
+  border: 1.5px solid rgba(236, 243, 158, 0.35) !important;
   padding: 6px 18px !important;
   border-radius: var(--radius-full) !important;
-  box-shadow: 0 2px 10px rgba(19, 42, 19, 0.08) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.50), 0 0 10px rgba(236, 243, 158, 0.15) !important;
   margin-bottom: 16px !important;
   position: relative !important;
   z-index: 10 !important;
@@ -4515,82 +4522,82 @@ section {
 }
 
 .services-section .section-title {
-  color: #132A13 !important;
-  text-shadow: none !important;
+  color: var(--text-primary, #F6F5EE) !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.75), 0 0 6px rgba(0, 0, 0, 0.6) !important;
 }
 
 .services-section .section-title .text-brand {
-  color: #31572C !important;
-  text-shadow: none !important;
+  color: #ECF39E !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
 }
 
 .services-section .section-subtitle {
-  color: #243823 !important;
+  color: var(--text-secondary, #D8DCCF) !important;
   font-weight: 500 !important;
   line-height: 1.68 !important;
-  text-shadow: none !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
 }
 
 .services-section .carousel-btn {
-  background: #132A13 !important;
+  background: var(--bg-card, rgba(37, 44, 38, 0.85)) !important;
   border: 1px solid rgba(144, 169, 85, 0.35) !important;
   color: #ECF39E !important;
-  box-shadow: 0 4px 16px rgba(19, 42, 19, 0.18) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.40) !important;
 }
 
 .services-section .carousel-btn:hover:not(:disabled) {
   background: #31572C !important;
   color: #FFFFFF !important;
-  box-shadow: 0 6px 22px rgba(19, 42, 19, 0.28) !important;
+  box-shadow: 0 6px 22px rgba(49, 87, 44, 0.45) !important;
 }
 
 .expertise-section {
   padding: 88px 0;
-  background-color: rgba(250, 249, 243, 0.92) !important;
+  background: transparent !important;
+  background-color: transparent !important;
   position: relative !important;
   z-index: 2 !important;
 }
 
 .expertise-section .section-title {
-  color: #132A13 !important;
-  text-shadow: none !important;
+  color: var(--text-primary, #F6F5EE) !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.75), 0 0 6px rgba(0, 0, 0, 0.6) !important;
 }
 
 .expertise-section .section-title .text-brand {
-  color: #31572C !important;
-  text-shadow: none !important;
+  color: #ECF39E !important;
 }
 
 .expertise-section .section-subtitle {
-  color: #243823 !important;
+  color: var(--text-secondary, #D8DCCF) !important;
   font-weight: 500 !important;
   line-height: 1.68 !important;
-  text-shadow: none !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
 }
 
-/* 4. Transition 2: Whom We Serve (#FAF9F3 gradually deepens back into Forest Green with dot-matrix grid active) */
+/* 4. Whom We Serve - Unified Charcoal Canvas */
 .industries-section {
   padding: 96px 0;
-  background: linear-gradient(180deg, rgba(250, 249, 243, 0.92) 0%, rgba(215, 226, 205, 0.85) 20%, rgba(118, 143, 85, 0.80) 45%, rgba(45, 80, 40, 0.82) 75%, rgba(19, 42, 19, 0.88) 100%) !important;
+  background: transparent !important;
+  background-color: transparent !important;
   position: relative !important;
   z-index: 2 !important;
 }
 
 .industries-section .section-title {
-  color: #132A13 !important;
-  text-shadow: none !important;
+  color: var(--text-primary, #F6F5EE) !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.75), 0 0 6px rgba(0, 0, 0, 0.6) !important;
 }
 
 .industries-section .section-title .text-brand {
-  color: #31572C !important;
-  text-shadow: none !important;
+  color: #ECF39E !important;
 }
 
 .industries-section .section-subtitle {
-  color: #243823 !important;
+  color: var(--text-secondary, #D8DCCF) !important;
   font-weight: 500 !important;
   line-height: 1.68 !important;
-  text-shadow: none !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
 }
 
 .industries-section .industry-tab-btn {
@@ -4666,11 +4673,12 @@ section {
   box-shadow: 0 6px 24px rgba(255, 255, 255, 0.4) !important;
 }
 
-/* 5. Lower Zone: Deep Dark Green (Tech Platforms, Team, & FAQ with dot-matrix grid active) */
+/* 5. Lower Zone: Unified Charcoal Canvas (Tech Platforms, Team, & FAQ) */
 .tech-solar-section {
   padding: 100px 0 90px;
-  background: linear-gradient(180deg, rgba(19, 42, 19, 0.88) 0%, rgba(17, 35, 17, 0.88) 100%) !important;
-  color: #FFFFFF !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--text-primary, #F6F5EE) !important;
   position: relative !important;
   z-index: 2 !important;
 }
@@ -4682,10 +4690,10 @@ section {
 }
 
 .tech-solar-section .section-title {
-  color: #FFFFFF !important;
+  color: var(--text-primary, #F6F5EE) !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.75), 0 0 6px rgba(0, 0, 0, 0.6) !important;
 }
 
 .tech-solar-section .section-title .text-brand {
@@ -4694,15 +4702,15 @@ section {
 }
 
 .tech-solar-section .section-subtitle {
-  color: #D6E4D3 !important;
+  color: var(--text-secondary, #D8DCCF) !important;
   position: relative !important;
   z-index: 10 !important;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
 }
 
 .tech-solar-section .platform-tab-btn {
-  background: rgba(255, 255, 255, 0.10) !important;
-  color: #FFFFFF !important;
+  background: var(--bg-card, rgba(37, 44, 38, 0.85)) !important;
+  color: var(--text-primary, #F6F5EE) !important;
   border: 1px solid rgba(144, 169, 85, 0.30) !important;
   position: relative !important;
   z-index: 10 !important;
@@ -4715,35 +4723,29 @@ section {
 }
 
 .tech-solar-section .platform-eco-card {
-  background: rgba(24, 34, 24, 0.88) !important;
+  background: var(--bg-card, rgba(37, 44, 38, 0.85)) !important;
   border: 1px solid rgba(144, 169, 85, 0.25) !important;
-  color: #FFFFFF !important;
+  color: var(--text-primary, #F6F5EE) !important;
   position: relative !important;
   z-index: 10 !important;
 }
 
 .team-section {
   padding: 96px 0;
-  background: linear-gradient(180deg, rgba(17, 35, 17, 0.88) 0%, rgba(16, 36, 17, 0.88) 100%) !important;
-  color: #FFFFFF !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--text-primary, #F6F5EE) !important;
   position: relative !important;
   z-index: 2 !important;
 }
 
-/* Smooth Seamless Fade Transition when Team Section follows a Light Linen Section (e.g. on about.html) */
 #team.team-section,
 .team-section.has-linen-transition,
 .subpage-light-section+.team-section,
 .subpage-light-section+.divider+.team-section {
-  padding: 140px 0 96px !important;
-  background: linear-gradient(180deg,
-      rgba(250, 249, 243, 0.92) 0px,
-      rgba(225, 233, 215, 0.86) 40px,
-      rgba(165, 188, 140, 0.82) 90px,
-      rgba(80, 115, 65, 0.85) 150px,
-      rgba(32, 60, 30, 0.88) 210px,
-      rgba(19, 42, 19, 0.90) 280px,
-      rgba(16, 36, 17, 0.92) 100%) !important;
+  padding: 96px 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
 }
 
 .team-section .container,
@@ -4753,10 +4755,10 @@ section {
 }
 
 .team-section .section-title {
-  color: #FFFFFF !important;
+  color: var(--text-primary, #F6F5EE) !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.75), 0 0 6px rgba(0, 0, 0, 0.6) !important;
 }
 
 .team-section .section-title .text-brand {
@@ -4765,24 +4767,25 @@ section {
 }
 
 .team-section .section-subtitle {
-  color: #D6E4D3 !important;
+  color: var(--text-secondary, #D8DCCF) !important;
   position: relative !important;
   z-index: 10 !important;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
 }
 
 .team-section .team-member-card {
-  background: rgba(22, 34, 22, 0.85) !important;
+  background: var(--bg-card, rgba(37, 44, 38, 0.85)) !important;
   border: 1px solid rgba(144, 169, 85, 0.25) !important;
-  color: #FFFFFF !important;
+  color: var(--text-primary, #F6F5EE) !important;
   position: relative !important;
   z-index: 10 !important;
 }
 
 .faq-section {
   padding: 96px 0;
-  background: linear-gradient(180deg, rgba(16, 36, 17, 0.88) 0%, rgba(13, 28, 14, 0.90) 50%, rgba(7, 17, 7, 0.92) 100%) !important;
-  color: #FFFFFF !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--text-primary, #F6F5EE) !important;
   position: relative !important;
   z-index: 2 !important;
 }
@@ -4794,10 +4797,10 @@ section {
 }
 
 .faq-section .section-title {
-  color: #FFFFFF !important;
+  color: var(--text-primary, #F6F5EE) !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9) !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.75), 0 0 6px rgba(0, 0, 0, 0.6) !important;
 }
 
 .faq-section .section-title .text-brand {
@@ -4806,18 +4809,18 @@ section {
 }
 
 .faq-section .section-subtitle {
-  color: #D6E4D3 !important;
+  color: var(--text-secondary, #D8DCCF) !important;
   position: relative !important;
   z-index: 10 !important;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
 }
 
 .faq-question-btn {
-  color: #FFFFFF !important;
+  color: var(--text-primary, #F6F5EE) !important;
 }
 
 .faq-answer-panel p {
-  color: #C5D2C4 !important;
+  color: var(--text-secondary, #D8DCCF) !important;
 }
 
 .faq-item {
@@ -4831,26 +4834,20 @@ section {
 /* 6. Final Zone: Transition to Charcoal Slate at the End of the Page - Color Theory Tuned */
 .cta-banner-section {
   padding: 80px 24px;
-  background: linear-gradient(180deg, rgba(22, 28, 23, 0.90) 0%, rgba(20, 25, 21, 0.96) 50%, #161A17 100%) !important;
+  background: transparent !important;
+  background-color: transparent !important;
   position: relative !important;
   z-index: 2 !important;
 }
 
-/* Smooth Seamless Fade Transition when CTA Banner Section follows a Light Linen Section */
 .cta-banner-section.from-linen,
 .subpage-light-section+.cta-banner-section,
 .subpage-light-section+.divider+.cta-banner-section,
 .subpage-transition-section+.cta-banner-section,
 .subpage-transition-section+.divider+.cta-banner-section {
-  padding: 120px 24px 80px !important;
-  background: linear-gradient(180deg,
-      rgba(250, 249, 243, 0.92) 0%,
-      rgba(215, 226, 205, 0.85) 15%,
-      rgba(118, 143, 85, 0.80) 32%,
-      rgba(45, 80, 40, 0.84) 52%,
-      rgba(30, 42, 32, 0.90) 72%,
-      rgba(24, 30, 25, 0.96) 88%,
-      #161A17 100%) !important;
+  padding: 80px 24px !important;
+  background: transparent !important;
+  background-color: transparent !important;
 }
 
 .site-footer {
@@ -4886,9 +4883,10 @@ section {
 
 /* 7. Subpage Atmospheric Architecture & Complete Readability across Services, About, Careers, Contact */
 
-/* Subpage Transition Section: Smooth Flow from Charcoal Slate into Linen */
+/* Subpage Transition Section: Unified Charcoal Slate Canvas */
 .subpage-transition-section {
-  background: linear-gradient(180deg, #161A17 0%, rgba(22, 28, 23, 0.94) 14%, rgba(23, 49, 24, 0.78) 35%, rgba(54, 90, 41, 0.72) 58%, rgba(142, 159, 118, 0.72) 80%, rgba(250, 249, 243, 0.92) 100%) !important;
+  background: transparent !important;
+  background-color: transparent !important;
   position: relative;
   z-index: 2 !important;
   width: 100%;
@@ -5027,14 +5025,15 @@ section {
   transform: translateY(-2px);
 }
 
-/* Subpage Light Sections (Linen Architecture matching Landing Page - Golden dot-matrix grid & hover spotlight active) */
+/* Subpage Unified Sections - Unified Charcoal Slate Canvas */
 .subpage-light-section,
 .content-section,
 .about-mission-section,
 .pricing-section,
 .contact-section,
 .careers-section {
-  background-color: rgba(250, 249, 243, 0.92) !important;
+  background: transparent !important;
+  background-color: transparent !important;
   position: relative;
   z-index: 2 !important;
   width: 100%;
@@ -5051,49 +5050,56 @@ section {
 }
 
 .subpage-light-section .section-tag {
-  color: #132A13 !important;
-  background: rgba(19, 42, 19, 0.08) !important;
-  border: 1.5px solid rgba(19, 42, 19, 0.28) !important;
-  box-shadow: 0 2px 8px rgba(19, 42, 19, 0.06) !important;
+  color: #ECF39E !important;
+  background: rgba(30, 40, 32, 0.85) !important;
+  border: 1.5px solid rgba(236, 243, 158, 0.35) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.50), 0 0 10px rgba(236, 243, 158, 0.15) !important;
   position: relative !important;
   z-index: 10 !important;
 }
 
 .subpage-light-section .section-title,
 .content-section .section-title,
-.pricing-section .section-title {
-  color: #132A13 !important;
+.pricing-section .section-title,
+.about-mission-section .section-title,
+.contact-section .section-title,
+.careers-section .section-title {
+  color: var(--text-primary, #F6F5EE) !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: none !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.75), 0 0 6px rgba(0, 0, 0, 0.6) !important;
 }
 
-.subpage-light-section .section-title .text-brand {
-  color: #31572C !important;
-  text-shadow: none !important;
+.subpage-light-section .section-title .text-brand,
+.content-section .section-title .text-brand,
+.pricing-section .section-title .text-brand {
+  color: #ECF39E !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.95), 0 0 16px rgba(236, 243, 158, 0.45) !important;
 }
 
 .subpage-light-section .section-subtitle,
 .subpage-light-section p,
 .content-section p,
-.pricing-section p {
-  color: #243823 !important;
-  font-weight: 500 !important;
+.pricing-section p,
+.about-mission-section p,
+.contact-section p,
+.careers-section p {
+  color: var(--text-secondary, #D8DCCF) !important;
+  font-weight: 400 !important;
   line-height: 1.68 !important;
   position: relative !important;
   z-index: 10 !important;
-  text-shadow: none !important;
 }
 
-/* Light Section Cards (Crisp High-End Corporate Cards) */
+/* Unified Section Cards (Luxury Glassmorphic Charcoal Containers) */
 .about-values-grid>div,
 .careers-culture-grid .spotlight-card,
 .careers-culture-grid>div,
 .process-flow-container {
-  background: #FFFFFF !important;
-  border: 1px solid rgba(19, 42, 19, 0.12) !important;
+  background: var(--bg-card, rgba(37, 44, 38, 0.85)) !important;
+  border: 1px solid var(--border-glass, rgba(144, 169, 85, 0.22)) !important;
   border-radius: var(--radius-lg) !important;
-  box-shadow: 0 4px 18px rgba(19, 42, 19, 0.06) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45) !important;
   transition: var(--transition) !important;
   position: relative !important;
   z-index: 10 !important;
@@ -5102,8 +5108,8 @@ section {
 .about-values-grid>div:hover,
 .careers-culture-grid .spotlight-card:hover,
 .careers-culture-grid>div:hover {
-  border-color: #31572C !important;
-  box-shadow: 0 8px 24px rgba(19, 42, 19, 0.12) !important;
+  border-color: rgba(236, 243, 158, 0.45) !important;
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.55), 0 0 20px rgba(144, 169, 85, 0.15) !important;
   transform: translateY(-4px) !important;
 }
 
@@ -5113,12 +5119,12 @@ section {
 .subpage-light-section .spotlight-card h3,
 .subpage-light-section h3,
 .process-flow-container h4 {
-  color: #132A13 !important;
+  color: var(--text-primary, #F6F5EE) !important;
   font-weight: 700 !important;
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-  text-shadow: none !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85) !important;
 }
 
 .about-values-grid p,
@@ -5127,8 +5133,8 @@ section {
 .subpage-light-section .spotlight-card p,
 .subpage-light-section p,
 .process-flow-container p {
-  color: #243823 !important;
-  font-weight: 500 !important;
+  color: var(--text-secondary, #D8DCCF) !important;
+  font-weight: 400 !important;
   line-height: 1.68 !important;
   display: block !important;
   visibility: visible !important;
