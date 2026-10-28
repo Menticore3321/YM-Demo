@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initScrollProgress();
   initScrollColorTemperature();
-  initCashFlowWaves();
   initCursorGlow();
   initTiltAndSpotlightCards();
   initScrollReveal();
@@ -686,6 +685,8 @@ function initCursorGlow() {
   if (existingVignette) existingVignette.remove();
   const existingGlow = document.querySelector('.cursor-glow');
   if (existingGlow) existingGlow.remove();
+  const existingCanvas = document.querySelector('.cashflow-waves-canvas');
+  if (existingCanvas) existingCanvas.remove();
 
   // Only initialize on desktop/mouse devices
   if (window.matchMedia && !window.matchMedia('(pointer: fine)').matches) return;
@@ -835,175 +836,6 @@ function initScrollColorTemperature() {
   updateDaylightArc();
 }
 
-/* ==========================================================================
-   11C. Harmonic Cash-Flow Wave Ribbons (Liquid Capital Currents)
-   ========================================================================== */
-function initCashFlowWaves() {
-  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  let canvas = document.querySelector('.cashflow-waves-canvas');
-  if (!canvas) {
-    canvas = document.createElement('canvas');
-    canvas.className = 'cashflow-waves-canvas';
-    canvas.setAttribute('aria-hidden', 'true');
-    document.body.prepend(canvas);
-  }
-
-  const ctx = canvas.getContext('2d');
-  if (!ctx) return;
-
-  let width = 0;
-  let height = 0;
-  let dpr = 1;
-
-  function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    width = window.innerWidth;
-    height = window.innerHeight;
-    canvas.width = Math.floor(width * dpr);
-    canvas.height = Math.floor(height * dpr);
-    canvas.style.width = width + 'px';
-    canvas.style.height = height + 'px';
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.scale(dpr, dpr);
-  }
-
-  window.addEventListener('resize', resize, { passive: true });
-  resize();
-
-  // Mouse proximity tracker
-  let mouse = { x: -1000, y: -1000 };
-  window.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-  }, { passive: true });
-
-  window.addEventListener('mouseleave', () => {
-    mouse.x = -1000;
-    mouse.y = -1000;
-  });
-
-  // 3 Harmonic Ribbons distributed vertically across the viewport for full visibility
-  const ribbons = [
-    {
-      baseRatio: 0.28, // Upper viewport (Hero / Top section)
-      freqA: 0.0018,
-      freqB: 0.0035,
-      ampA: 45,
-      ampB: 20,
-      speed: 0.0014,
-      stroke: 'rgba(200, 150, 46, 0.48)', // Rich Champagne Gold Yield Flow
-      lineWidth: 2.2,
-      shadowColor: 'rgba(200, 150, 46, 0.25)',
-      shadowBlur: 10,
-      hasFill: true,
-      fillColor: 'rgba(200, 150, 46, 0.035)'
-    },
-    {
-      baseRatio: 0.52, // Mid viewport (Services & Pillars)
-      freqA: 0.0022,
-      freqB: 0.0044,
-      ampA: 38,
-      ampB: 16,
-      speed: -0.0010,
-      stroke: 'rgba(49, 87, 44, 0.42)', // Deep Forest Fiduciary Ribbon
-      lineWidth: 2.0,
-      shadowColor: 'rgba(49, 87, 44, 0.20)',
-      shadowBlur: 8,
-      hasFill: false
-    },
-    {
-      baseRatio: 0.74, // Lower viewport (Platforms & Metrics)
-      freqA: 0.0014,
-      freqB: 0.0028,
-      ampA: 32,
-      ampB: 14,
-      speed: 0.0008,
-      stroke: 'rgba(79, 119, 45, 0.38)', // Sage Liquidity Current
-      lineWidth: 1.8,
-      shadowColor: 'rgba(79, 119, 45, 0.18)',
-      shadowBlur: 6,
-      hasFill: false
-    }
-  ];
-
-  let time = 0;
-  let rafId = null;
-
-  function render(timestamp) {
-    if (document.hidden) {
-      rafId = requestAnimationFrame(render);
-      return;
-    }
-
-    if (!prefersReduced) {
-      time = timestamp * 0.001;
-    }
-
-    ctx.clearRect(0, 0, width, height);
-
-    const scrollY = window.scrollY || 0;
-    // Parallax scroll reaction: ribbons shift with vertical scroll
-    const scrollParallax = Math.sin(scrollY * 0.0018) * 35;
-
-    ribbons.forEach((ribbon, rIdx) => {
-      ctx.save();
-      ctx.beginPath();
-      ctx.lineWidth = ribbon.lineWidth;
-      ctx.strokeStyle = ribbon.stroke;
-      if (ribbon.shadowBlur) {
-        ctx.shadowColor = ribbon.shadowColor;
-        ctx.shadowBlur = ribbon.shadowBlur;
-      }
-
-      const baseCenterY = (height * ribbon.baseRatio) + scrollParallax;
-      const phaseOffset = time * ribbon.speed * 1000 + (rIdx * 1.8);
-
-      const step = 6;
-      for (let x = 0; x <= width + step; x += step) {
-        // Compound harmonic wave
-        let y = baseCenterY
-          + Math.sin(x * ribbon.freqA + phaseOffset) * ribbon.ampA
-          + Math.cos(x * ribbon.freqB + phaseOffset * 0.7) * ribbon.ampB;
-
-        // Interactive mouse deflection
-        if (mouse.x > -500) {
-          const dx = x - mouse.x;
-          const dy = y - mouse.y;
-          const dist = Math.hypot(dx, dy);
-          if (dist < 240) {
-            const influence = Math.exp(-Math.pow(dist / 95, 2)) * Math.sin(time * 3.5 + dist * 0.04) * 22;
-            y += influence;
-          }
-        }
-
-        if (x === 0) {
-          ctx.moveTo(x, y);
-        } else {
-          ctx.lineTo(x, y);
-        }
-      }
-
-      ctx.stroke();
-
-      // Soft ambient golden fill for primary ribbon
-      if (ribbon.hasFill) {
-        ctx.lineTo(width, height);
-        ctx.lineTo(0, height);
-        ctx.closePath();
-        ctx.fillStyle = ribbon.fillColor;
-        ctx.shadowBlur = 0;
-        ctx.fill();
-      }
-
-      ctx.restore();
-    });
-
-    rafId = requestAnimationFrame(render);
-  }
-
-  rafId = requestAnimationFrame(render);
-}
 
 /* ==========================================================================
    12. High-Performance 3D Card Tilt & Interactive Cursor Border Glow
