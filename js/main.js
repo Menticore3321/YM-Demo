@@ -860,8 +860,10 @@ function initCashFlowWaves() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     width = window.innerWidth;
     height = window.innerHeight;
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
+    canvas.width = Math.floor(width * dpr);
+    canvas.height = Math.floor(height * dpr);
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.scale(dpr, dpr);
   }
@@ -881,40 +883,46 @@ function initCashFlowWaves() {
     mouse.y = -1000;
   });
 
-  // 3 Harmonic Ribbons defining the Capital Liquidity Spectrum
+  // 3 Harmonic Ribbons distributed vertically across the viewport for full visibility
   const ribbons = [
     {
-      baseRatio: 0.50,
-      freqA: 0.0016,
-      freqB: 0.0032,
-      ampA: 42,
-      ampB: 18,
-      speed: 0.0012,
-      stroke: 'rgba(200, 150, 46, 0.16)', // Champagne Gold Yield Flow
-      lineWidth: 1.5,
+      baseRatio: 0.28, // Upper viewport (Hero / Top section)
+      freqA: 0.0018,
+      freqB: 0.0035,
+      ampA: 45,
+      ampB: 20,
+      speed: 0.0014,
+      stroke: 'rgba(200, 150, 46, 0.48)', // Rich Champagne Gold Yield Flow
+      lineWidth: 2.2,
+      shadowColor: 'rgba(200, 150, 46, 0.25)',
+      shadowBlur: 10,
       hasFill: true,
-      fillColor: 'rgba(200, 150, 46, 0.016)'
+      fillColor: 'rgba(200, 150, 46, 0.035)'
     },
     {
-      baseRatio: 0.56,
-      freqA: 0.0021,
-      freqB: 0.0041,
-      ampA: 36,
-      ampB: 14,
-      speed: -0.0009,
-      stroke: 'rgba(79, 119, 45, 0.14)', // Liquidity Sage Ribbon
-      lineWidth: 1.2,
+      baseRatio: 0.52, // Mid viewport (Services & Pillars)
+      freqA: 0.0022,
+      freqB: 0.0044,
+      ampA: 38,
+      ampB: 16,
+      speed: -0.0010,
+      stroke: 'rgba(49, 87, 44, 0.42)', // Deep Forest Fiduciary Ribbon
+      lineWidth: 2.0,
+      shadowColor: 'rgba(49, 87, 44, 0.20)',
+      shadowBlur: 8,
       hasFill: false
     },
     {
-      baseRatio: 0.62,
-      freqA: 0.0013,
-      freqB: 0.0026,
-      ampA: 28,
-      ampB: 12,
-      speed: 0.0007,
-      stroke: 'rgba(49, 87, 44, 0.11)', // Fiduciary Forest Ribbon
-      lineWidth: 1.0,
+      baseRatio: 0.74, // Lower viewport (Platforms & Metrics)
+      freqA: 0.0014,
+      freqB: 0.0028,
+      ampA: 32,
+      ampB: 14,
+      speed: 0.0008,
+      stroke: 'rgba(79, 119, 45, 0.38)', // Sage Liquidity Current
+      lineWidth: 1.8,
+      shadowColor: 'rgba(79, 119, 45, 0.18)',
+      shadowBlur: 6,
       hasFill: false
     }
   ];
@@ -935,31 +943,36 @@ function initCashFlowWaves() {
     ctx.clearRect(0, 0, width, height);
 
     const scrollY = window.scrollY || 0;
-    // Parallax scroll reaction: ribbons gently shift elevation with page scroll
-    const scrollParallax = Math.sin(scrollY * 0.002) * 25;
+    // Parallax scroll reaction: ribbons shift with vertical scroll
+    const scrollParallax = Math.sin(scrollY * 0.0018) * 35;
 
     ribbons.forEach((ribbon, rIdx) => {
+      ctx.save();
       ctx.beginPath();
       ctx.lineWidth = ribbon.lineWidth;
       ctx.strokeStyle = ribbon.stroke;
+      if (ribbon.shadowBlur) {
+        ctx.shadowColor = ribbon.shadowColor;
+        ctx.shadowBlur = ribbon.shadowBlur;
+      }
 
       const baseCenterY = (height * ribbon.baseRatio) + scrollParallax;
-      const phaseOffset = time * ribbon.speed * 1000 + (rIdx * 1.5);
+      const phaseOffset = time * ribbon.speed * 1000 + (rIdx * 1.8);
 
-      const step = 8;
+      const step = 6;
       for (let x = 0; x <= width + step; x += step) {
-        // Compound harmonic sine wave
+        // Compound harmonic wave
         let y = baseCenterY
           + Math.sin(x * ribbon.freqA + phaseOffset) * ribbon.ampA
           + Math.cos(x * ribbon.freqB + phaseOffset * 0.7) * ribbon.ampB;
 
-        // Subtle interactive mouse proximity deflection
+        // Interactive mouse deflection
         if (mouse.x > -500) {
           const dx = x - mouse.x;
           const dy = y - mouse.y;
           const dist = Math.hypot(dx, dy);
-          if (dist < 220) {
-            const influence = Math.exp(-Math.pow(dist / 90, 2)) * Math.sin(time * 3 + dist * 0.05) * 16;
+          if (dist < 240) {
+            const influence = Math.exp(-Math.pow(dist / 95, 2)) * Math.sin(time * 3.5 + dist * 0.04) * 22;
             y += influence;
           }
         }
@@ -973,14 +986,17 @@ function initCashFlowWaves() {
 
       ctx.stroke();
 
-      // Soft ambient liquid fill for primary champagne ribbon
+      // Soft ambient golden fill for primary ribbon
       if (ribbon.hasFill) {
         ctx.lineTo(width, height);
         ctx.lineTo(0, height);
         ctx.closePath();
         ctx.fillStyle = ribbon.fillColor;
+        ctx.shadowBlur = 0;
         ctx.fill();
       }
+
+      ctx.restore();
     });
 
     rafId = requestAnimationFrame(render);
