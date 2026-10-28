@@ -5289,3 +5289,38 @@ main,
   color: #2D6B2A !important;
   font-weight: 800 !important;
 }
+
+/* ==========================================================================
+   Option 1: Interactive Soft Champagne / Sage Ambient Light Lens
+   ========================================================================== */
+.ambient-light-lens {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  pointer-events: none !important;
+  z-index: 3 !important;
+  opacity: 0;
+  transform: translate3d(-1000px, -1000px, 0);
+  background: radial-gradient(
+    circle closest-side,
+    rgba(200, 150, 46, 0.08) 0%,
+    rgba(144, 169, 85, 0.045) 45%,
+    rgba(251, 249, 244, 0) 100%
+  ) !important;
+  filter: blur(35px);
+  will-change: transform, opacity;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ambient-light-lens.is-active {
+  opacity: 1;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .ambient-light-lens {
+    display: none !important;
+  }
+}

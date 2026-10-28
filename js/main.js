@@ -674,16 +674,82 @@ function initScrollProgress() {
 }
 
 /* ==========================================================================
-   11. Ambient Mouse Cursor Glow & Matrix Grid: Disabled per User Preference
+   11. Option 1: Ultra-Soft Radial Light Lens (Interactive Canvas Spotlight)
    ========================================================================== */
 function initCursorGlow() {
-  // Completely remove any existing grid or vignette elements
+  // Completely remove legacy grid, vignette or harsh dark cursor-glow
   const existingGrid = document.querySelector('.matrix-grid-bg');
   if (existingGrid) existingGrid.remove();
   const existingVignette = document.querySelector('.site-vignette');
   if (existingVignette) existingVignette.remove();
   const existingGlow = document.querySelector('.cursor-glow');
   if (existingGlow) existingGlow.remove();
+
+  // Only initialize on desktop/mouse devices
+  if (window.matchMedia && !window.matchMedia('(pointer: fine)').matches) return;
+
+  let lens = document.querySelector('.ambient-light-lens');
+  if (!lens) {
+    lens = document.createElement('div');
+    lens.className = 'ambient-light-lens';
+    lens.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(lens);
+  }
+
+  let mouseX = -1000;
+  let mouseY = -1000;
+  let currentX = -1000;
+  let currentY = -1000;
+  let isMoving = false;
+  let rafId = null;
+
+  // Linear interpolation for silky-smooth motion
+  const lerp = (start, end, factor) => start + (end - start) * factor;
+
+  function updateLens() {
+    if (!isMoving) return;
+
+    currentX = lerp(currentX, mouseX, 0.12);
+    currentY = lerp(currentY, mouseY, 0.12);
+
+    // Center the 550px lens on the cursor
+    lens.style.transform = `translate3d(${(currentX - 275).toFixed(1)}px, ${(currentY - 275).toFixed(1)}px, 0)`;
+
+    // Check if motion has settled close enough to idle
+    const dist = Math.hypot(mouseX - currentX, mouseY - currentY);
+    if (dist < 0.1) {
+      isMoving = false;
+    } else {
+      rafId = requestAnimationFrame(updateLens);
+    }
+  }
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    if (!lens.classList.contains('is-active')) {
+      lens.classList.add('is-active');
+      currentX = mouseX;
+      currentY = mouseY;
+    }
+
+    if (!isMoving) {
+      isMoving = true;
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(updateLens);
+    }
+  }, { passive: true });
+
+  document.addEventListener('mouseleave', () => {
+    lens.classList.remove('is-active');
+    isMoving = false;
+    if (rafId) cancelAnimationFrame(rafId);
+  });
+
+  document.addEventListener('mouseenter', () => {
+    lens.classList.add('is-active');
+  });
 }
 
 /* ==========================================================================
