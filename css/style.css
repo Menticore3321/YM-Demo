@@ -4042,7 +4042,9 @@ section {
 /* 2. Operational Pillars Stage */
 .how-we-help-section {
   padding: 100px 0 92px;
-  background: #F4F0E8 !important;
+  background: var(--canvas-bg, #FBF9F4) !important;
+  background-color: var(--canvas-bg, #FBF9F4) !important;
+  transition: background-color 0.8s ease-out !important;
   position: relative !important;
   z-index: 2 !important;
   overflow: hidden;
@@ -4228,7 +4230,9 @@ section {
 /* 3. Solutions Showroom: Services Section */
 .services-section {
   padding: 104px 0 96px;
-  background: #FBF9F4 !important;
+  background: var(--canvas-bg, #FBF9F4) !important;
+  background-color: var(--canvas-bg, #FBF9F4) !important;
+  transition: background-color 0.8s ease-out !important;
   position: relative !important;
   z-index: 2 !important;
   overflow: hidden;
@@ -4309,7 +4313,9 @@ section {
 /* 3B. Fiduciary Metrics & Track Record */
 .expertise-section {
   padding: 96px 0;
-  background: #F4F0E8 !important;
+  background: var(--canvas-bg, #FBF9F4) !important;
+  background-color: var(--canvas-bg, #FBF9F4) !important;
+  transition: background-color 0.8s ease-out !important;
   position: relative !important;
   z-index: 2 !important;
   overflow: hidden;
@@ -4349,7 +4355,9 @@ section {
 /* 4. Whom We Serve */
 .industries-section {
   padding: 104px 0 96px;
-  background: #FBF9F4 !important;
+  background: var(--canvas-bg, #FBF9F4) !important;
+  background-color: var(--canvas-bg, #FBF9F4) !important;
+  transition: background-color 0.8s ease-out !important;
   position: relative !important;
   z-index: 2 !important;
   overflow: hidden;
@@ -4446,7 +4454,9 @@ section {
 /* 5. Lower Zone: Solar Constellation & Platforms */
 .tech-solar-section {
   padding: 104px 0 96px;
-  background: #F4F0E8 !important;
+  background: var(--canvas-bg, #FBF9F4) !important;
+  background-color: var(--canvas-bg, #FBF9F4) !important;
+  transition: background-color 0.8s ease-out !important;
   color: #132A13 !important;
   position: relative !important;
   z-index: 2 !important;
@@ -4502,7 +4512,9 @@ section {
 
 .team-section {
   padding: 100px 0 96px;
-  background: #FBF9F4 !important;
+  background: var(--canvas-bg, #FBF9F4) !important;
+  background-color: var(--canvas-bg, #FBF9F4) !important;
+  transition: background-color 0.8s ease-out !important;
   color: #132A13 !important;
   position: relative !important;
   z-index: 2 !important;
@@ -4551,7 +4563,9 @@ section {
 
 .faq-section {
   padding: 100px 0;
-  background: #F4F0E8 !important;
+  background: var(--canvas-bg, #FBF9F4) !important;
+  background-color: var(--canvas-bg, #FBF9F4) !important;
+  transition: background-color 0.8s ease-out !important;
   color: #132A13 !important;
   position: relative !important;
   z-index: 2 !important;

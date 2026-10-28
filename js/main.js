@@ -768,35 +768,33 @@ function initScrollColorTemperature() {
     document.body.prepend(wash);
   }
 
-  // 4 curated editorial daylight stages along vertical scroll
+  // Distinct, discernible luxury daylight phases along vertical scroll
   const stages = [
     {
       stop: 0.0,
       bg: '#FBF9F4', // Fresh Morning Alabaster (Hero)
-      glow: 'rgba(144, 169, 85, 0.06)', // Morning Sage Mint Aura
-      lens: 'rgba(144, 169, 85, 0.085)'
+      glow: 'rgba(79, 119, 45, 0.08)', // Morning Sage Mint Aura
+      lens: 'rgba(79, 119, 45, 0.12)'
     },
     {
-      stop: 0.35,
-      bg: '#FAF6EE', // Warm Champagne & Honey Linen (How We Help & Services)
-      glow: 'rgba(200, 150, 46, 0.065)', // Liquid Gold Sunlight
-      lens: 'rgba(200, 150, 46, 0.09)'
+      stop: 0.28,
+      bg: '#F5EFE0', // Warm Champagne & Golden Honey Linen (How We Help & Services)
+      glow: 'rgba(200, 150, 46, 0.12)', // Radiant Liquid Gold
+      lens: 'rgba(200, 150, 46, 0.15)'
     },
     {
-      stop: 0.70,
-      bg: '#F6F3EC', // Refined Heritage Sandstone (Industries & Platforms)
-      glow: 'rgba(164, 180, 120, 0.055)', // Olive Stone Aura
-      lens: 'rgba(164, 180, 120, 0.075)'
+      stop: 0.62,
+      bg: '#EDE8DC', // Refined Heritage Sandstone (Industries & Platforms)
+      glow: 'rgba(144, 169, 85, 0.10)', // Olive Stone Aura
+      lens: 'rgba(144, 169, 85, 0.12)'
     },
     {
       stop: 1.0,
-      bg: '#F4F1E8', // Fiduciary Emerald Linen (Governance & Footer)
-      glow: 'rgba(49, 87, 44, 0.05)', // Deep Forest Fiduciary Aura
-      lens: 'rgba(49, 87, 44, 0.075)'
+      bg: '#E5DFD1', // Fiduciary Emerald Linen (Governance & Footer)
+      glow: 'rgba(49, 87, 44, 0.09)', // Deep Forest Fiduciary Aura
+      lens: 'rgba(49, 87, 44, 0.11)'
     }
   ];
-
-  let ticking = false;
 
   function updateDaylightArc() {
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -807,9 +805,9 @@ function initScrollColorTemperature() {
     let activeStage = stages[0];
     if (scrollFraction <= 0.20) {
       activeStage = stages[0];
-    } else if (scrollFraction <= 0.58) {
+    } else if (scrollFraction <= 0.55) {
       activeStage = stages[1];
-    } else if (scrollFraction <= 0.84) {
+    } else if (scrollFraction <= 0.82) {
       activeStage = stages[2];
     } else {
       activeStage = stages[3];
@@ -818,6 +816,10 @@ function initScrollColorTemperature() {
     root.style.setProperty('--canvas-bg', activeStage.bg);
     root.style.setProperty('--daylight-glow', activeStage.glow);
     root.style.setProperty('--lens-tint', activeStage.lens);
+    
+    // Explicitly update html and body styles so inline overrides don't block CSS variables
+    document.documentElement.style.backgroundColor = activeStage.bg;
+    if (document.body) document.body.style.backgroundColor = activeStage.bg;
 
     ticking = false;
   }
