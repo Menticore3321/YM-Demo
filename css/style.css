@@ -5357,6 +5357,95 @@ main,
   will-change: background;
 }
 
+/* =====================================================================
+   OLYMPIC.NO INSPIRED SCROLL, KINETIC WORD REVEAL & CARD DEPTH SYSTEM
+   ===================================================================== */
+/* Lenis smooth scrolling base rules */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* 1. Kinetic Word-by-Word Split Reveal (Olympic.no Signature) */
+.word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.14em;
+  margin-right: 0.28em;
+  line-height: 1.15;
+}
+
+.word-inner {
+  display: inline-block;
+  transform: translateY(125%) rotate(1.2deg);
+  opacity: 0;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.is-revealed .word-inner,
+.word-mask.is-revealed .word-inner {
+  transform: translateY(0) rotate(0deg);
+  opacity: 1;
+}
+
+/* 2. Olympic Card Scroll Depth & Scaling */
+.olympic-card-depth {
+  transform: scale(0.96) translateY(24px);
+  opacity: 0.72;
+  transition: transform 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.6s ease;
+  will-change: transform, opacity;
+}
+
+.olympic-card-depth.is-inview {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* 3. Header elevation when scrolled with Lenis */
+.site-header.header-scrolled {
+  background: rgba(251, 249, 244, 0.92) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  box-shadow: 0 12px 36px -12px rgba(19, 42, 19, 0.08) !important;
+  border-bottom: 1px solid rgba(19, 42, 19, 0.08) !important;
+}
+
+/* 4. Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  .word-inner {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+  .olympic-card-depth {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+}
+
+
 
 
 

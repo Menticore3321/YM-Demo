@@ -4,6 +4,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
+  initLenisSmoothScroll();
+  initOlympicSplitWordReveal();
+  initOlympicCardScrollDepth();
   initBrandIntro();
   initNavigation();
   initScrollProgress();
@@ -486,6 +489,7 @@ function openModal(contentHtml) {
   body.innerHTML = contentHtml;
   backdrop.classList.add('open');
   document.body.style.overflow = 'hidden';
+  if (window.lenis) window.lenis.stop();
 }
 
 function closeModal() {
@@ -494,6 +498,7 @@ function closeModal() {
 
   backdrop.classList.remove('open');
   document.body.style.overflow = '';
+  if (window.lenis) window.lenis.start();
 }
 
 /* Service Detail Modal */
@@ -1110,6 +1115,7 @@ function initBrandIntro() {
 
   // Active intro state: lock scroll and keep site hidden behind dark curtain
   document.body.classList.add('intro-active');
+  if (window.lenis) window.lenis.stop();
 
   // Safety fallback: if anything prevents the timeline from finishing, guarantee cleanup after 5s
   const safetyTimer = setTimeout(completeIntro, 5000);
@@ -1117,6 +1123,7 @@ function initBrandIntro() {
   function completeIntro() {
     clearTimeout(safetyTimer);
     document.body.classList.remove('intro-active', 'intro-docked');
+    if (window.lenis) window.lenis.start();
     if (navBrand) {
       navBrand.style.opacity = '1';
       navBrand.style.visibility = 'visible';
@@ -1190,6 +1197,188 @@ function initBrandIntro() {
   // Step 5: Clean hand-off after site has fully revealed (4200ms)
   setTimeout(completeIntro, 4200);
 }
+
+/* ==========================================================================
+   18. Olympic.no Inspired Smooth Momentum Scroll (Lenis Engine)
+   ========================================================================== */
+function initLenisSmoothScroll() {
+  if (typeof Lenis === 'undefined') return;
+
+  // Reduced motion preference check
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
+  const lenis = new Lenis({
+    duration: 1.25,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Olympic-style quintic exponential easing
+    orientation: 'vertical',
+    gestureOrientation: 'vertical',
+    smoothWheel: true,
+    wheelMultiplier: 1.05,
+    touchMultiplier: 1.5,
+    infinite: false,
+  });
+
+  window.lenis = lenis;
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  // Link internal anchor jumps (#services, #contact, etc.) to Lenis smooth scroll
+  document.querySelectorAll('a[href^="#"]:not([href="#"]):not([data-no-lenis])').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const targetId = anchor.getAttribute('href');
+      if (!targetId || targetId === '#') return;
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        lenis.scrollTo(targetEl, {
+          offset: -85,
+          duration: 1.4,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+        });
+      }
+    });
+  });
+
+  // Connect scroll with navbar header elevation
+  const header = document.querySelector('.site-header');
+  lenis.on('scroll', ({ scroll }) => {
+    if (header) {
+      if (scroll > 20) {
+        header.classList.add('header-scrolled');
+      } else {
+        header.classList.remove('header-scrolled');
+      }
+    }
+  });
+}
+
+/* ==========================================================================
+   19. Olympic.no Kinetic Split-Word Reveal System
+   ========================================================================== */
+function initOlympicSplitWordReveal() {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
+  const targetSelectors = [
+    '.hero-title',
+    '.section-title',
+    '.subpage-hero-title',
+    '.help-card-title',
+    '.cta-banner-box h2',
+    '.split-word-heading'
+  ];
+
+  const headings = document.querySelectorAll(targetSelectors.join(', '));
+
+  headings.forEach(heading => {
+    if (heading.getAttribute('data-split-initialized')) return;
+    heading.setAttribute('data-split-initialized', 'true');
+
+    function wrapTextNodes(element) {
+      const childNodes = Array.from(element.childNodes);
+      childNodes.forEach(child => {
+        if (child.nodeType === Node.TEXT_NODE) {
+          const text = child.textContent;
+          if (!text.trim()) return;
+
+          const tokens = text.split(/(\s+)/);
+          const frag = document.createDocumentFragment();
+
+          tokens.forEach(token => {
+            if (!token) return;
+            if (/^\s+$/.test(token)) {
+              frag.appendChild(document.createTextNode(token));
+            } else {
+              const mask = document.createElement('span');
+              mask.className = 'word-mask';
+              const inner = document.createElement('span');
+              inner.className = 'word-inner';
+              inner.textContent = token;
+              mask.appendChild(inner);
+              frag.appendChild(mask);
+            }
+          });
+
+          child.parentNode.replaceChild(frag, child);
+        } else if (child.nodeType === Node.ELEMENT_NODE && !child.classList.contains('word-mask')) {
+          wrapTextNodes(child);
+        }
+      });
+    }
+
+    wrapTextNodes(heading);
+
+    // Apply incremental transition delay to each word inside this heading
+    const wordInners = heading.querySelectorAll('.word-inner');
+    wordInners.forEach((wordInner, idx) => {
+      const delay = Math.min(idx * 50, 600);
+      wordInner.style.transitionDelay = `${delay}ms`;
+    });
+  });
+
+  const splitObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-revealed');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -30px 0px'
+  });
+
+  headings.forEach(h => splitObserver.observe(h));
+}
+
+/* ==========================================================================
+   20. Olympic.no Smooth Card Depth & Viewport Scaling
+   ========================================================================== */
+function initOlympicCardScrollDepth() {
+  const cardSelectors = [
+    '.service-card',
+    '.help-card',
+    '.platform-eco-card',
+    '.stat-box',
+    '.why-choose-card',
+    '.pillar-card',
+    '.team-member-card',
+    '.info-item-card',
+    '.faq-item'
+  ];
+
+  const cards = document.querySelectorAll(cardSelectors.join(', '));
+  if (!cards.length) return;
+
+  cards.forEach(card => {
+    card.classList.add('olympic-card-depth');
+  });
+
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-inview');
+      } else {
+        if (entry.boundingClientRect.top > window.innerHeight) {
+          entry.target.classList.remove('is-inview');
+        }
+      }
+    });
+  }, {
+    threshold: 0.08,
+    rootMargin: '0px 0px -20px 0px'
+  });
+
+  cards.forEach(c => cardObserver.observe(c));
+}
+
 
 
 
