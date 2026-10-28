@@ -4977,8 +4977,7 @@ html.no-intro #intro-loader {
 }
 
 body.intro-active {
-  overflow: hidden !important;
-  height: 100vh !important;
+  overflow: hidden;
 }
 
 body.intro-active #brand-home-link {
@@ -5387,44 +5386,43 @@ html.lenis, html.lenis body {
   overflow: hidden;
   vertical-align: top;
   padding-bottom: 0.14em;
-  margin-right: 0.28em;
+  margin-right: 0.26em;
   line-height: 1.15;
 }
 
 .word-inner {
   display: inline-block;
-  transform: translateY(125%) rotate(1.2deg);
-  opacity: 0;
-  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
 }
 
+/* Initially hidden only when element is pending scroll reveal */
+.split-pending .word-inner {
+  transform: perspective(600px) rotateX(-45deg) translateY(120%);
+  opacity: 0;
+}
+
 .is-revealed .word-inner,
-.word-mask.is-revealed .word-inner {
-  transform: translateY(0) rotate(0deg);
-  opacity: 1;
+.word-mask.is-revealed .word-inner,
+.hero-title .word-inner {
+  transform: perspective(600px) rotateX(0deg) translateY(0) !important;
+  opacity: 1 !important;
 }
 
 /* 2. Olympic Card Scroll Depth & Scaling */
 .olympic-card-depth {
-  transform: scale(0.96) translateY(24px);
-  opacity: 0.72;
-  transition: transform 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
               opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.6s ease;
+              box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
-}
-
-.olympic-card-depth.is-inview {
-  transform: scale(1) translateY(0);
-  opacity: 1;
 }
 
 /* 3. Header elevation when scrolled with Lenis */
 .site-header.header-scrolled {
-  background: rgba(251, 249, 244, 0.92) !important;
+  background: rgba(251, 249, 244, 0.94) !important;
   backdrop-filter: blur(24px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
   box-shadow: 0 12px 36px -12px rgba(19, 42, 19, 0.08) !important;
@@ -5438,12 +5436,8 @@ html.lenis, html.lenis body {
     opacity: 1 !important;
     transition: none !important;
   }
-  .olympic-card-depth {
-    transform: none !important;
-    opacity: 1 !important;
-    transition: none !important;
-  }
 }
+
 
 
 

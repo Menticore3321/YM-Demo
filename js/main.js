@@ -1123,7 +1123,10 @@ function initBrandIntro() {
   function completeIntro() {
     clearTimeout(safetyTimer);
     document.body.classList.remove('intro-active', 'intro-docked');
-    if (window.lenis) window.lenis.start();
+    if (window.lenis) {
+      window.lenis.start();
+      window.lenis.resize();
+    }
     if (navBrand) {
       navBrand.style.opacity = '1';
       navBrand.style.visibility = 'visible';
@@ -1210,13 +1213,14 @@ function initLenisSmoothScroll() {
   }
 
   const lenis = new Lenis({
-    duration: 1.25,
+    duration: 1.15,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Olympic-style quintic exponential easing
     orientation: 'vertical',
     gestureOrientation: 'vertical',
     smoothWheel: true,
-    wheelMultiplier: 1.05,
-    touchMultiplier: 1.5,
+    wheelMultiplier: 1.0,
+    touchMultiplier: 0, // CRITICAL: NEVER intercept touch gestures, let mobile browsers do native 120Hz smooth touch
+    syncTouch: false,
     infinite: false,
   });
 
@@ -1228,6 +1232,14 @@ function initLenisSmoothScroll() {
   }
   requestAnimationFrame(raf);
 
+  // Recalculate dimensions immediately and periodically
+  lenis.resize();
+  setTimeout(() => lenis.resize(), 100);
+  setTimeout(() => lenis.resize(), 600);
+  setTimeout(() => lenis.resize(), 2000);
+  window.addEventListener('load', () => lenis.resize());
+  window.addEventListener('resize', () => lenis.resize());
+
   // Link internal anchor jumps (#services, #contact, etc.) to Lenis smooth scroll
   document.querySelectorAll('a[href^="#"]:not([href="#"]):not([data-no-lenis])').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
@@ -1238,7 +1250,7 @@ function initLenisSmoothScroll() {
         e.preventDefault();
         lenis.scrollTo(targetEl, {
           offset: -85,
-          duration: 1.4,
+          duration: 1.2,
           easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
         });
       }
@@ -1267,7 +1279,6 @@ function initOlympicSplitWordReveal() {
   }
 
   const targetSelectors = [
-    '.hero-title',
     '.section-title',
     '.subpage-hero-title',
     '.help-card-title',
@@ -1280,6 +1291,12 @@ function initOlympicSplitWordReveal() {
   headings.forEach(heading => {
     if (heading.getAttribute('data-split-initialized')) return;
     heading.setAttribute('data-split-initialized', 'true');
+
+    // Only hide elements pending scroll if they are below current viewport
+    const rect = heading.getBoundingClientRect();
+    if (rect.top > window.innerHeight) {
+      heading.classList.add('split-pending');
+    }
 
     function wrapTextNodes(element) {
       const childNodes = Array.from(element.childNodes);
@@ -1318,7 +1335,7 @@ function initOlympicSplitWordReveal() {
     // Apply incremental transition delay to each word inside this heading
     const wordInners = heading.querySelectorAll('.word-inner');
     wordInners.forEach((wordInner, idx) => {
-      const delay = Math.min(idx * 50, 600);
+      const delay = Math.min(idx * 45, 550);
       wordInner.style.transitionDelay = `${delay}ms`;
     });
   });
@@ -1326,49 +1343,9 @@ function initOlympicSplitWordReveal() {
   const splitObserver = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
+        entry.target.classList.remove('split-pending');
         entry.target.classList.add('is-revealed');
         obs.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.12,
-    rootMargin: '0px 0px -30px 0px'
-  });
-
-  headings.forEach(h => splitObserver.observe(h));
-}
-
-/* ==========================================================================
-   20. Olympic.no Smooth Card Depth & Viewport Scaling
-   ========================================================================== */
-function initOlympicCardScrollDepth() {
-  const cardSelectors = [
-    '.service-card',
-    '.help-card',
-    '.platform-eco-card',
-    '.stat-box',
-    '.why-choose-card',
-    '.pillar-card',
-    '.team-member-card',
-    '.info-item-card',
-    '.faq-item'
-  ];
-
-  const cards = document.querySelectorAll(cardSelectors.join(', '));
-  if (!cards.length) return;
-
-  cards.forEach(card => {
-    card.classList.add('olympic-card-depth');
-  });
-
-  const cardObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-inview');
-      } else {
-        if (entry.boundingClientRect.top > window.innerHeight) {
-          entry.target.classList.remove('is-inview');
-        }
       }
     });
   }, {
@@ -1376,8 +1353,24 @@ function initOlympicCardScrollDepth() {
     rootMargin: '0px 0px -20px 0px'
   });
 
-  cards.forEach(c => cardObserver.observe(c));
+  headings.forEach(h => splitObserver.observe(h));
 }
+
+/* ==========================================================================
+   20. Olympic.no Smooth Card Depth & Multi-Speed Parallax
+   ========================================================================== */
+function initOlympicCardScrollDepth() {
+  const updateScrollDepth = (scrollY) => {
+    document.documentElement.style.setProperty('--scroll-y', `${scrollY.toFixed(1)}px`);
+  };
+
+  if (typeof Lenis !== 'undefined' && window.lenis) {
+    window.lenis.on('scroll', ({ scroll }) => updateScrollDepth(scroll));
+  } else {
+    window.addEventListener('scroll', () => updateScrollDepth(window.scrollY), { passive: true });
+  }
+}
+
 
 
 
