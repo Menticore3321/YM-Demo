@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initScrollProgress();
   initScrollColorTemperature();
+  initCashFlowWaves();
   initCursorGlow();
   initTiltAndSpotlightCards();
   initScrollReveal();
@@ -832,6 +833,160 @@ function initScrollColorTemperature() {
   }, { passive: true });
 
   updateDaylightArc();
+}
+
+/* ==========================================================================
+   11C. Harmonic Cash-Flow Wave Ribbons (Liquid Capital Currents)
+   ========================================================================== */
+function initCashFlowWaves() {
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let canvas = document.querySelector('.cashflow-waves-canvas');
+  if (!canvas) {
+    canvas = document.createElement('canvas');
+    canvas.className = 'cashflow-waves-canvas';
+    canvas.setAttribute('aria-hidden', 'true');
+    document.body.prepend(canvas);
+  }
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  let width = 0;
+  let height = 0;
+  let dpr = 1;
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.scale(dpr, dpr);
+  }
+
+  window.addEventListener('resize', resize, { passive: true });
+  resize();
+
+  // Mouse proximity tracker
+  let mouse = { x: -1000, y: -1000 };
+  window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  }, { passive: true });
+
+  window.addEventListener('mouseleave', () => {
+    mouse.x = -1000;
+    mouse.y = -1000;
+  });
+
+  // 3 Harmonic Ribbons defining the Capital Liquidity Spectrum
+  const ribbons = [
+    {
+      baseRatio: 0.50,
+      freqA: 0.0016,
+      freqB: 0.0032,
+      ampA: 42,
+      ampB: 18,
+      speed: 0.0012,
+      stroke: 'rgba(200, 150, 46, 0.16)', // Champagne Gold Yield Flow
+      lineWidth: 1.5,
+      hasFill: true,
+      fillColor: 'rgba(200, 150, 46, 0.016)'
+    },
+    {
+      baseRatio: 0.56,
+      freqA: 0.0021,
+      freqB: 0.0041,
+      ampA: 36,
+      ampB: 14,
+      speed: -0.0009,
+      stroke: 'rgba(79, 119, 45, 0.14)', // Liquidity Sage Ribbon
+      lineWidth: 1.2,
+      hasFill: false
+    },
+    {
+      baseRatio: 0.62,
+      freqA: 0.0013,
+      freqB: 0.0026,
+      ampA: 28,
+      ampB: 12,
+      speed: 0.0007,
+      stroke: 'rgba(49, 87, 44, 0.11)', // Fiduciary Forest Ribbon
+      lineWidth: 1.0,
+      hasFill: false
+    }
+  ];
+
+  let time = 0;
+  let rafId = null;
+
+  function render(timestamp) {
+    if (document.hidden) {
+      rafId = requestAnimationFrame(render);
+      return;
+    }
+
+    if (!prefersReduced) {
+      time = timestamp * 0.001;
+    }
+
+    ctx.clearRect(0, 0, width, height);
+
+    const scrollY = window.scrollY || 0;
+    // Parallax scroll reaction: ribbons gently shift elevation with page scroll
+    const scrollParallax = Math.sin(scrollY * 0.002) * 25;
+
+    ribbons.forEach((ribbon, rIdx) => {
+      ctx.beginPath();
+      ctx.lineWidth = ribbon.lineWidth;
+      ctx.strokeStyle = ribbon.stroke;
+
+      const baseCenterY = (height * ribbon.baseRatio) + scrollParallax;
+      const phaseOffset = time * ribbon.speed * 1000 + (rIdx * 1.5);
+
+      const step = 8;
+      for (let x = 0; x <= width + step; x += step) {
+        // Compound harmonic sine wave
+        let y = baseCenterY
+          + Math.sin(x * ribbon.freqA + phaseOffset) * ribbon.ampA
+          + Math.cos(x * ribbon.freqB + phaseOffset * 0.7) * ribbon.ampB;
+
+        // Subtle interactive mouse proximity deflection
+        if (mouse.x > -500) {
+          const dx = x - mouse.x;
+          const dy = y - mouse.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < 220) {
+            const influence = Math.exp(-Math.pow(dist / 90, 2)) * Math.sin(time * 3 + dist * 0.05) * 16;
+            y += influence;
+          }
+        }
+
+        if (x === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      }
+
+      ctx.stroke();
+
+      // Soft ambient liquid fill for primary champagne ribbon
+      if (ribbon.hasFill) {
+        ctx.lineTo(width, height);
+        ctx.lineTo(0, height);
+        ctx.closePath();
+        ctx.fillStyle = ribbon.fillColor;
+        ctx.fill();
+      }
+    });
+
+    rafId = requestAnimationFrame(render);
+  }
+
+  rafId = requestAnimationFrame(render);
 }
 
 /* ==========================================================================

@@ -5357,3 +5357,19 @@ main,
   will-change: background;
 }
 
+/* ==========================================================================
+   Harmonic Cash-Flow Wave Ribbons Canvas
+   ========================================================================== */
+.cashflow-waves-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none !important;
+  z-index: 1 !important;
+  opacity: 0.90;
+  transition: opacity 1s ease;
+}
+
+
