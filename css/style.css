@@ -364,7 +364,7 @@ section {
 
 .brand-logo-img:hover {
   transform: scale(1.04);
-  filter: drop-shadow(0 4px 14px rgba(79, 119, 45, 0.25));
+  filter: drop-shadow(0 4px 12px rgba(19, 42, 19, 0.12));
 }
 
 .brand-text {
@@ -5005,30 +5005,12 @@ body.intro-docked .site-header .mobile-menu-btn {
 }
 
 .intro-loader-ambient {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 700px;
-  height: 700px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(144, 169, 85, 0.12) 0%, rgba(200, 150, 46, 0.06) 45%, transparent 70%);
-  filter: blur(55px);
-  pointer-events: none;
-  z-index: 2;
-  animation: introAmbientPulse 2.4s ease-in-out infinite alternate;
-}
-
-@keyframes introAmbientPulse {
-  0% {
-    transform: translate(-50%, -50%) scale(0.90);
-    opacity: 0.55;
-  }
-
-  100% {
-    transform: translate(-50%, -50%) scale(1.10);
-    opacity: 0.95;
-  }
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 .intro-stage-center-anchor {
@@ -5067,29 +5049,31 @@ body.intro-docked .site-header .mobile-menu-btn {
   object-fit: contain !important;
   opacity: 0;
   transform: scale(0.65);
-  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.45));
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), filter 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: none !important;
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
   background: transparent !important;
 }
 
 .intro-logo-img.is-visible {
   opacity: 1;
   transform: scale(1);
-  filter: drop-shadow(0 0 25px rgba(236, 243, 158, 0.40)) drop-shadow(0 4px 14px rgba(0, 0, 0, 0.40));
+  filter: none !important;
 }
 
 .intro-logo-halo {
-  position: absolute;
-  inset: -10px;
-  border-radius: 20px;
-  background: radial-gradient(circle, rgba(236, 243, 158, 0.30) 0%, rgba(144, 169, 85, 0.18) 50%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.75s ease;
-  pointer-events: none;
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  background: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 .intro-logo-img.is-visible+.intro-logo-halo {
-  opacity: 1;
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
 }
 
 .intro-text-reveal {
@@ -5115,8 +5099,8 @@ body.intro-docked .site-header .mobile-menu-btn {
 }
 
 .intro-brand-stage.is-docked {
-  filter: drop-shadow(0 0 16px rgba(236, 243, 158, 0.35));
-  transition: filter 0.8s ease;
+  filter: none !important;
+  transition: none !important;
 }
 
 /* ==========================================================================
