@@ -554,18 +554,18 @@
       careersGrid.innerHTML = data.careers
         .map(
           (job) => `
-          <div class="spotlight-card tilt-card" style="background: #141E15; border: 1px solid rgba(236, 243, 158, 0.18); border-radius: 16px; padding: 28px; box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4); display: flex; flex-direction: column; justify-content: space-between;">
+          <div class="spotlight-card tilt-card career-job-card" style="background: #FFFFFF; border: 1px solid rgba(19, 42, 19, 0.12); border-radius: 16px; padding: 32px; box-shadow: 0 4px 20px rgba(19, 42, 19, 0.06); display: flex; flex-direction: column; justify-content: space-between;">
             <div>
-              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; gap: 10px;">
-                <span style="font-size: 0.75rem; font-weight: 700; background: rgba(79, 119, 45, 0.25); color: #ECF39E; border: 1px solid rgba(236, 243, 158, 0.3); padding: 4px 10px; border-radius: 9999px;">${job.department || 'Advisory'}</span>
-                <span style="font-size: 0.8rem; color: #90A955; font-weight: 600;">${job.type || 'Full-Time'}</span>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; gap: 10px;">
+                <span style="font-size: 0.75rem; font-weight: 700; background: rgba(49, 87, 44, 0.08); color: #1E3F1D; border: 1px solid rgba(49, 87, 44, 0.22); padding: 5px 12px; border-radius: 9999px; letter-spacing: 0.04em;">${job.department || 'Advisory'}</span>
+                <span style="font-size: 0.82rem; color: #31572C; font-weight: 700; background: rgba(49, 87, 44, 0.05); padding: 4px 10px; border-radius: 9999px;">${job.type || 'Full-Time'}</span>
               </div>
-              <h3 style="font-size: 1.3rem; font-weight: 700; color: #FFFFFF; margin-bottom: 8px;">${job.title}</h3>
-              <p style="font-size: 0.85rem; color: #D6E3D4; margin-bottom: 12px; line-height: 1.5;">${job.location || 'Remote / Hybrid'} • ${job.experience || '3+ Years'}</p>
-              <p style="color: #CAD5C5; font-size: 0.95rem; line-height: 1.6; margin-bottom: 16px;">${job.description}</p>
-              ${job.perks ? `<div style="font-size: 0.85rem; color: #ECF39E; background: rgba(236, 243, 158, 0.08); padding: 8px 12px; border-radius: 8px; margin-bottom: 20px;">✦ ${job.perks}</div>` : ''}
+              <h3 style="font-size: 1.35rem; font-weight: 800; color: #132A13; margin-bottom: 8px; line-height: 1.25;">${job.title}</h3>
+              <p style="font-size: 0.88rem; color: #4B634A; margin-bottom: 14px; font-weight: 600; line-height: 1.5;">${job.location || 'Remote / Hybrid'} • ${job.experience || '3+ Years'}</p>
+              <p style="color: #243823; font-size: 0.95rem; line-height: 1.68; font-weight: 450; margin-bottom: 18px;">${job.description}</p>
+              ${job.perks ? `<div style="font-size: 0.88rem; font-weight: 600; color: #1A3817; background: #F4EEDF; border: 1px solid rgba(180, 140, 40, 0.35); padding: 10px 14px; border-radius: 10px; margin-bottom: 22px; line-height: 1.55;">✦ ${job.perks}</div>` : ''}
             </div>
-            <a href="contact.html?role=${encodeURIComponent(job.title)}" class="btn-cta" style="text-align: center; font-size: 0.9rem; padding: 10px 18px;">Apply for Role &rarr;</a>
+            <a href="contact.html?role=${encodeURIComponent(job.title)}" class="btn-cta" style="text-align: center; font-size: 0.92rem; font-weight: 700; padding: 12px 20px; width: 100%;">Apply for Role &rarr;</a>
           </div>
         `
         )

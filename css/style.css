@@ -5203,6 +5203,7 @@ main,
   width: 0 !important;
   height: 0 !important;
 }
+
 /* ==========================================================================
    Help Card Visual Stage & Financial Monitors (High Contrast Enforcement)
    ========================================================================== */
@@ -5321,12 +5322,10 @@ main,
   z-index: 3 !important;
   opacity: 0;
   transform: translate3d(-1000px, -1000px, 0);
-  background: radial-gradient(
-    circle closest-side,
-    var(--lens-tint, rgba(200, 150, 46, 0.08)) 0%,
-    rgba(144, 169, 85, 0.04) 45%,
-    rgba(251, 249, 244, 0) 100%
-  ) !important;
+  background: radial-gradient(circle closest-side,
+      var(--lens-tint, rgba(200, 150, 46, 0.08)) 0%,
+      rgba(144, 169, 85, 0.04) 45%,
+      rgba(251, 249, 244, 0) 100%) !important;
   filter: blur(35px);
   will-change: transform, opacity;
   transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.8s ease;
@@ -5336,7 +5335,8 @@ main,
   opacity: 1;
 }
 
-@media (hover: none), (pointer: coarse) {
+@media (hover: none),
+(pointer: coarse) {
   .ambient-light-lens {
     display: none !important;
   }
@@ -5348,15 +5348,67 @@ main,
   inset: 0;
   pointer-events: none !important;
   z-index: 1 !important;
-  background: radial-gradient(
-    ellipse at 50% 20%,
-    var(--daylight-glow, rgba(144, 169, 85, 0.05)) 0%,
-    transparent 75%
-  ) !important;
+  background: radial-gradient(ellipse at 50% 20%,
+      var(--daylight-glow, rgba(144, 169, 85, 0.05)) 0%,
+      transparent 75%) !important;
   transition: background 1s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: background;
 }
 
+/* ==========================================================================
+   Career Openings & Job Cards (Ultra-High Contrast Enforcement)
+   ========================================================================== */
+.careers-openings-section {
+  background: var(--canvas-bg, #FBF9F4) !important;
+  background-color: var(--canvas-bg, #FBF9F4) !important;
+  border-top: 1px solid rgba(19, 42, 19, 0.08) !important;
+  border-bottom: 1px solid rgba(19, 42, 19, 0.08) !important;
+}
 
+.careers-openings-grid .spotlight-card,
+.career-job-card {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  border: 1px solid rgba(19, 42, 19, 0.12) !important;
+  box-shadow: 0 4px 20px rgba(19, 42, 19, 0.06) !important;
+}
 
+.careers-openings-grid .spotlight-card h3,
+.career-job-card h3 {
+  color: #132A13 !important;
+  font-weight: 800 !important;
+}
 
+.careers-openings-grid .spotlight-card p,
+.career-job-card p {
+  color: #243823 !important;
+  font-weight: 450 !important;
+}
+
+/* Department pill badge */
+.careers-openings-grid .spotlight-card span[style*="border-radius: 9999px"]:first-child,
+.career-job-card span[style*="border-radius: 9999px"]:first-child {
+  color: #1E3F1D !important;
+  background: rgba(49, 87, 44, 0.08) !important;
+  border: 1px solid rgba(49, 87, 44, 0.22) !important;
+  font-weight: 700 !important;
+}
+
+/* Full-Time text */
+.careers-openings-grid .spotlight-card span:nth-child(2),
+.career-job-card span:nth-child(2) {
+  color: #31572C !important;
+  font-weight: 700 !important;
+}
+
+/* Perks banner box */
+.careers-openings-grid .spotlight-card div[style*="✦"],
+.careers-openings-grid .spotlight-card div[style*="margin-bottom: 20px"],
+.careers-openings-grid .spotlight-card div[style*="margin-bottom: 22px"],
+.career-job-card div[style*="✦"] {
+  color: #1A3817 !important;
+  background: #F4EEDF !important;
+  border: 1px solid rgba(180, 140, 40, 0.35) !important;
+  font-weight: 600 !important;
+  line-height: 1.55 !important;
+}
