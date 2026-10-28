@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initBrandIntro();
   initNavigation();
   initScrollProgress();
+  initScrollColorTemperature();
   initCursorGlow();
   initTiltAndSpotlightCards();
   initScrollReveal();
@@ -750,6 +751,85 @@ function initCursorGlow() {
   document.addEventListener('mouseenter', () => {
     lens.classList.add('is-active');
   });
+}
+
+/* ==========================================================================
+   11B. Idea 2: Scroll-Driven Color Temperature Shift (Editorial Daylight Arc)
+   ========================================================================== */
+function initScrollColorTemperature() {
+  const root = document.documentElement;
+
+  // Ensure fixed ambient wash canvas exists
+  let wash = document.querySelector('.canvas-daylight-wash');
+  if (!wash) {
+    wash = document.createElement('div');
+    wash.className = 'canvas-daylight-wash';
+    wash.setAttribute('aria-hidden', 'true');
+    document.body.prepend(wash);
+  }
+
+  // 4 curated editorial daylight stages along vertical scroll
+  const stages = [
+    {
+      stop: 0.0,
+      bg: '#FBF9F4', // Fresh Morning Alabaster (Hero)
+      glow: 'rgba(144, 169, 85, 0.06)', // Morning Sage Mint Aura
+      lens: 'rgba(144, 169, 85, 0.085)'
+    },
+    {
+      stop: 0.35,
+      bg: '#FAF6EE', // Warm Champagne & Honey Linen (How We Help & Services)
+      glow: 'rgba(200, 150, 46, 0.065)', // Liquid Gold Sunlight
+      lens: 'rgba(200, 150, 46, 0.09)'
+    },
+    {
+      stop: 0.70,
+      bg: '#F6F3EC', // Refined Heritage Sandstone (Industries & Platforms)
+      glow: 'rgba(164, 180, 120, 0.055)', // Olive Stone Aura
+      lens: 'rgba(164, 180, 120, 0.075)'
+    },
+    {
+      stop: 1.0,
+      bg: '#F4F1E8', // Fiduciary Emerald Linen (Governance & Footer)
+      glow: 'rgba(49, 87, 44, 0.05)', // Deep Forest Fiduciary Aura
+      lens: 'rgba(49, 87, 44, 0.075)'
+    }
+  ];
+
+  let ticking = false;
+
+  function updateDaylightArc() {
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight <= 0) return;
+
+    const scrollFraction = Math.min(Math.max(window.scrollY / docHeight, 0), 1);
+
+    let activeStage = stages[0];
+    if (scrollFraction <= 0.20) {
+      activeStage = stages[0];
+    } else if (scrollFraction <= 0.58) {
+      activeStage = stages[1];
+    } else if (scrollFraction <= 0.84) {
+      activeStage = stages[2];
+    } else {
+      activeStage = stages[3];
+    }
+
+    root.style.setProperty('--canvas-bg', activeStage.bg);
+    root.style.setProperty('--daylight-glow', activeStage.glow);
+    root.style.setProperty('--lens-tint', activeStage.lens);
+
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateDaylightArc);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  updateDaylightArc();
 }
 
 /* ==========================================================================

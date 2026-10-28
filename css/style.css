@@ -624,8 +624,9 @@ section {
   justify-content: center;
   padding: 140px 24px 80px;
   overflow: hidden;
-  background: #FBF9F4 !important;
-  background-color: #FBF9F4 !important;
+  background: var(--canvas-bg, #FBF9F4) !important;
+  background-color: var(--canvas-bg, #FBF9F4) !important;
+  transition: background-color 0.8s ease-out !important;
   color: #132A13 !important;
 }
 
@@ -3943,8 +3944,9 @@ section {
 /* 1. Hero & Subpage Hero: Warm Ivory Alabaster Editorial Canvas */
 .hero-section,
 .subpage-hero {
-  background: #FBF9F4 !important;
-  background-color: #FBF9F4 !important;
+  background: var(--canvas-bg, #FBF9F4) !important;
+  background-color: var(--canvas-bg, #FBF9F4) !important;
+  transition: background-color 0.8s ease-out !important;
   color: #132A13 !important;
   position: relative !important;
   z-index: 2 !important;
@@ -5112,8 +5114,9 @@ body,
 main,
 .hero-section,
 .subpage-hero {
-  background: #FBF9F4 !important;
-  background-color: #FBF9F4 !important;
+  background: var(--canvas-bg, #FBF9F4) !important;
+  background-color: var(--canvas-bg, #FBF9F4) !important;
+  transition: background-color 0.8s ease-out !important;
   color: #132A13 !important;
 }
 
@@ -5291,7 +5294,7 @@ main,
 }
 
 /* ==========================================================================
-   Option 1: Interactive Soft Champagne / Sage Ambient Light Lens
+   Option 1 & Idea 2: Interactive Soft Champagne / Sage Ambient Light Lens
    ========================================================================== */
 .ambient-light-lens {
   position: fixed;
@@ -5306,13 +5309,13 @@ main,
   transform: translate3d(-1000px, -1000px, 0);
   background: radial-gradient(
     circle closest-side,
-    rgba(200, 150, 46, 0.08) 0%,
-    rgba(144, 169, 85, 0.045) 45%,
+    var(--lens-tint, rgba(200, 150, 46, 0.08)) 0%,
+    rgba(144, 169, 85, 0.04) 45%,
     rgba(251, 249, 244, 0) 100%
   ) !important;
   filter: blur(35px);
   will-change: transform, opacity;
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.8s ease;
 }
 
 .ambient-light-lens.is-active {
@@ -5324,3 +5327,19 @@ main,
     display: none !important;
   }
 }
+
+/* Idea 2: Fixed Ambient Daylight Wash Canvas */
+.canvas-daylight-wash {
+  position: fixed;
+  inset: 0;
+  pointer-events: none !important;
+  z-index: 1 !important;
+  background: radial-gradient(
+    ellipse at 50% 20%,
+    var(--daylight-glow, rgba(144, 169, 85, 0.05)) 0%,
+    transparent 75%
+  ) !important;
+  transition: background 1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: background;
+}
+
