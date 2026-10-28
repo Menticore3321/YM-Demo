@@ -4970,162 +4970,154 @@ section {
 }
 
 /* ==========================================================================
-   Olympic.no Inspired Cinematic Video Intro Preloader & Website Fade-In
+   Signature Luxury Brand Intro Animation Sequence
    ========================================================================== */
-.olympic-preloader {
+html.no-intro #intro-loader {
+  display: none !important;
+}
+
+body.intro-active {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
+body.intro-active #brand-home-link {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+body.intro-active .site-header .nav-links,
+body.intro-active .site-header .nav-actions,
+body.intro-active .site-header .mobile-menu-btn {
+  opacity: 0 !important;
+  transform: translateY(-8px) !important;
+  pointer-events: none !important;
+}
+
+body.intro-docked .site-header .nav-links,
+body.intro-docked .site-header .nav-actions,
+body.intro-docked .site-header .mobile-menu-btn {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  pointer-events: auto !important;
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s !important;
+}
+
+.intro-loader-overlay {
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100dvh;
-  z-index: 9999999;
-  background-color: #0c120c;
-  overflow: hidden;
+  z-index: 999999;
+  pointer-events: none;
+}
+
+.intro-curtain {
+  position: fixed;
+  inset: 0;
+  background: #FBF9F4;
+  z-index: 1;
+  pointer-events: all;
+  opacity: 1;
+}
+
+.intro-loader-ambient {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.intro-stage-center-anchor {
+  position: fixed;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 1.3s cubic-bezier(0.16, 1, 0.3, 1),
-              visibility 1.3s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, visibility;
-}
-
-.olympic-preloader.is-outro {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-.preloader-video-wrapper {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.preloader-video {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  object-fit: cover;
-  user-select: none;
-  pointer-events: none;
-  transform: translateZ(0) scale(1.002);
-  transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, opacity;
-}
-
-.olympic-preloader.is-outro .preloader-video {
-  transform: translateY(-24px) scale(1.05);
-  opacity: 0;
-}
-
-.preloader-backdrop {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background: radial-gradient(circle at center, rgba(12, 18, 12, 0.15) 30%, rgba(12, 18, 12, 0.65) 100%);
-  pointer-events: none;
-}
-
-.preloader-bottom-bar {
-  position: absolute;
-  bottom: 28px;
-  left: 32px;
-  right: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
   z-index: 3;
   pointer-events: none;
-  transition: opacity 0.6s ease;
 }
 
-.olympic-preloader.is-outro .preloader-bottom-bar {
-  opacity: 0;
-}
-
-.preloader-brand-label {
-  font-family: var(--font-primary, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
-  font-size: 0.82rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(251, 249, 244, 0.7);
-  font-weight: 600;
-}
-
-.preloader-progress-track {
-  width: 100%;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.18);
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.preloader-progress-fill {
-  width: 0%;
-  height: 100%;
-  background: linear-gradient(90deg, #90A955 0%, #C8962E 100%);
-  transition: width 0.1s linear;
-}
-
-.preloader-skip-btn {
-  position: absolute;
-  top: 28px;
-  right: 28px;
-  z-index: 10;
-  display: inline-flex;
+.intro-brand-stage {
+  display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 18px;
-  background: rgba(251, 249, 244, 0.12);
-  border: 1px solid rgba(251, 249, 244, 0.25);
-  border-radius: 9999px;
-  color: #FBF9F4;
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  gap: 14px;
+  pointer-events: none;
+  white-space: nowrap;
+  transform: scale(1.4);
+  transform-origin: center center;
+  will-change: transform;
 }
 
-.preloader-skip-btn:hover {
-  background: rgba(251, 249, 244, 0.25);
-  border-color: rgba(200, 150, 46, 0.6);
-  color: #FFFFFF;
-  transform: translateY(-1px);
+.intro-logo-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  height: 52px;
 }
 
-/* Main Site Smooth Fade In Animation (Olympic Style) */
-body.preloader-active {
-  overflow: hidden;
+.intro-logo-img {
+  height: 52px !important;
+  width: auto !important;
+  object-fit: contain !important;
+  opacity: 0;
+  transform: scale(0.65);
+  filter: none !important;
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  background: transparent !important;
 }
 
-body.preloader-active .site-header,
-body.preloader-active main,
-body.preloader-active footer {
-  opacity: 0.15;
-  filter: blur(2px);
-  transform: scale(0.985);
-  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-body.preloader-revealed .site-header,
-body.preloader-revealed main,
-body.preloader-revealed footer {
+.intro-logo-img.is-visible {
   opacity: 1;
-  filter: blur(0px);
   transform: scale(1);
+  filter: none !important;
 }
 
+.intro-logo-halo {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  background: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.intro-logo-img.is-visible+.intro-logo-halo {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.intro-text-reveal {
+  display: grid;
+  grid-template-columns: 0fr;
+  opacity: 0;
+  transition: grid-template-columns 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.6s ease;
+}
+
+.intro-text-reveal.is-revealed {
+  grid-template-columns: 1fr;
+  opacity: 1;
+}
+
+.intro-text-reveal .brand-text {
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1;
+}
+
+.intro-brand-stage.is-docked {
+  filter: none !important;
+  transition: none !important;
+}
 
 /* ==========================================================================
    CANONICAL LIGHT THEME ENFORCEMENT (Zero Leakage)
@@ -5364,90 +5356,6 @@ main,
   transition: background 1s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: background;
 }
-
-/* =====================================================================
-   OLYMPIC.NO INSPIRED SCROLL, KINETIC WORD REVEAL & CARD DEPTH SYSTEM
-   ===================================================================== */
-/* Lenis smooth scrolling base rules */
-html.lenis, html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-}
-
-/* 1. Kinetic Word-by-Word Split Reveal (Olympic.no Signature) */
-.word-mask {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: top;
-  padding-bottom: 0.14em;
-  margin-right: 0.26em;
-  line-height: 1.15;
-}
-
-.word-inner {
-  display: inline-block;
-  opacity: 1;
-  transform: translateY(0);
-  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, opacity;
-}
-
-/* Initially hidden only when element is pending scroll reveal */
-.split-pending .word-inner {
-  transform: perspective(600px) rotateX(-45deg) translateY(120%);
-  opacity: 0;
-}
-
-.is-revealed .word-inner,
-.word-mask.is-revealed .word-inner,
-.hero-title .word-inner {
-  transform: perspective(600px) rotateX(0deg) translateY(0) !important;
-  opacity: 1 !important;
-}
-
-/* 2. Olympic Card Scroll Depth & Scaling */
-.olympic-card-depth {
-  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, opacity;
-}
-
-/* 3. Header elevation when scrolled with Lenis */
-.site-header.header-scrolled {
-  background: rgba(251, 249, 244, 0.94) !important;
-  backdrop-filter: blur(24px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-  box-shadow: 0 12px 36px -12px rgba(19, 42, 19, 0.08) !important;
-  border-bottom: 1px solid rgba(19, 42, 19, 0.08) !important;
-}
-
-/* 4. Reduced motion respect */
-@media (prefers-reduced-motion: reduce) {
-  .word-inner {
-    transform: none !important;
-    opacity: 1 !important;
-    transition: none !important;
-  }
-}
-
-
 
 
 

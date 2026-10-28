@@ -4,9 +4,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
-  initLenisSmoothScroll();
-  initOlympicSplitWordReveal();
-  initOlympicCardScrollDepth();
   initBrandIntro();
   initNavigation();
   initScrollProgress();
@@ -489,7 +486,6 @@ function openModal(contentHtml) {
   body.innerHTML = contentHtml;
   backdrop.classList.add('open');
   document.body.style.overflow = 'hidden';
-  if (window.lenis) window.lenis.stop();
 }
 
 function closeModal() {
@@ -498,7 +494,6 @@ function closeModal() {
 
   backdrop.classList.remove('open');
   document.body.style.overflow = '';
-  if (window.lenis) window.lenis.start();
 }
 
 /* Service Detail Modal */
@@ -1086,259 +1081,115 @@ function initPlatformFilter() {
 }
 
 /* ==========================================================================
-   17. Olympic.no Inspired Cinematic Video Intro Preloader & Website Fade-In
+   17. Signature Luxury Brand Intro Animation Sequence
    ========================================================================== */
 function initBrandIntro() {
-  const preloader = document.getElementById('intro-loader');
-  const video = document.getElementById('preloader-video');
-  const skipBtn = document.getElementById('preloader-skip-btn');
-  const progressFill = document.getElementById('preloader-progress-fill');
+  const introLoader = document.getElementById('intro-loader');
+  const stage = document.getElementById('intro-brand-stage');
+  const logoImg = document.getElementById('intro-logo-img');
+  const textReveal = document.getElementById('intro-text-reveal');
+  const navBrand = document.getElementById('brand-home-link');
+  const curtain = document.getElementById('intro-curtain');
+  const ambient = document.getElementById('intro-ambient');
 
-  if (!preloader || !video) return;
+  if (!introLoader || !stage || !logoImg || !textReveal || !navBrand || !curtain) return;
 
-  // Active preloader state: lock scroll and keep site gently dim behind preloader
-  document.body.classList.add('preloader-active');
-  if (window.lenis) window.lenis.stop();
-
-  let hasEnded = false;
-
-  function endPreloader() {
-    if (hasEnded) return;
-    hasEnded = true;
-
-    // 1. Trigger Olympic Outro Transition
-    preloader.classList.add('is-outro');
-    document.body.classList.remove('preloader-active');
-    document.body.classList.add('preloader-revealed');
-
-    // 2. Start Lenis & kinetic reveals smoothly
-    if (window.lenis) {
-      window.lenis.start();
-      window.lenis.resize();
-    }
-
-    // 3. Clean up DOM after transition completes (1.4s)
-    setTimeout(() => {
-      if (preloader.parentNode) {
-        preloader.remove();
-      }
-      if (typeof initOlympicSplitWordReveal === 'function') {
-        const heroTitle = document.querySelector('.hero-title');
-        if (heroTitle) heroTitle.classList.add('is-revealed');
-      }
-      if (window.lenis) {
-        window.lenis.resize();
-      }
-    }, 1400);
+  // Check if intro has already run in this session (unless forced via ?intro=1)
+  const isForced = window.location.search.includes('intro=1');
+  let hasPlayed = false;
+  try {
+    hasPlayed = sessionStorage.getItem('ym_intro_played') === 'true';
+  } catch (e) {
+    /* ignore session access restrictions */
   }
 
-  // Bind video progress and completion events
-  video.addEventListener('timeupdate', () => {
-    if (video.duration && progressFill) {
-      const pct = (video.currentTime / video.duration) * 100;
-      progressFill.style.width = `${Math.min(pct, 100)}%`;
-
-      // Seamless Olympic hand-off: start dissolve 350ms before video reaches full end
-      if (video.currentTime >= video.duration - 0.35) {
-        endPreloader();
-      }
-    }
-  });
-
-  video.addEventListener('ended', endPreloader);
-
-  if (skipBtn) {
-    skipBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      endPreloader();
-    });
-  }
-
-  // Safety timer in case of slow connection or autoplay restrictions (max 8s)
-  const safetyTimeout = setTimeout(endPreloader, 8000);
-
-  // Play video with autoplay fallback
-  const playPromise = video.play();
-  if (playPromise !== undefined) {
-    playPromise.catch((err) => {
-      console.warn('Video autoplay waiting for interaction:', err);
-      // Allow single tap/click anywhere to dismiss
-      preloader.addEventListener('click', endPreloader, { once: true });
-    });
-  }
-}
-
-/* ==========================================================================
-   18. Olympic.no Inspired Smooth Momentum Scroll (Lenis Engine)
-   ========================================================================== */
-function initLenisSmoothScroll() {
-  if (typeof Lenis === 'undefined') return;
-
-  // Reduced motion preference check
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (hasPlayed && !isForced) {
+    introLoader.remove();
     return;
   }
 
-  const lenis = new Lenis({
-    duration: 1.15,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Olympic-style quintic exponential easing
-    orientation: 'vertical',
-    gestureOrientation: 'vertical',
-    smoothWheel: true,
-    wheelMultiplier: 1.0,
-    touchMultiplier: 0, // CRITICAL: NEVER intercept touch gestures, let mobile browsers do native 120Hz smooth touch
-    syncTouch: false,
-    infinite: false,
-  });
+  // Active intro state: lock scroll and keep site hidden behind dark curtain
+  document.body.classList.add('intro-active');
 
-  window.lenis = lenis;
+  // Safety fallback: if anything prevents the timeline from finishing, guarantee cleanup after 5s
+  const safetyTimer = setTimeout(completeIntro, 5000);
 
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-  requestAnimationFrame(raf);
-
-  // Recalculate dimensions immediately and periodically
-  lenis.resize();
-  setTimeout(() => lenis.resize(), 100);
-  setTimeout(() => lenis.resize(), 600);
-  setTimeout(() => lenis.resize(), 2000);
-  window.addEventListener('load', () => lenis.resize());
-  window.addEventListener('resize', () => lenis.resize());
-
-  // Link internal anchor jumps (#services, #contact, etc.) to Lenis smooth scroll
-  document.querySelectorAll('a[href^="#"]:not([href="#"]):not([data-no-lenis])').forEach(anchor => {
-    anchor.addEventListener('click', (e) => {
-      const targetId = anchor.getAttribute('href');
-      if (!targetId || targetId === '#') return;
-      const targetEl = document.querySelector(targetId);
-      if (targetEl) {
-        e.preventDefault();
-        lenis.scrollTo(targetEl, {
-          offset: -85,
-          duration: 1.2,
-          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-        });
-      }
-    });
-  });
-
-  // Connect scroll with navbar header elevation
-  const header = document.querySelector('.site-header');
-  lenis.on('scroll', ({ scroll }) => {
-    if (header) {
-      if (scroll > 20) {
-        header.classList.add('header-scrolled');
-      } else {
-        header.classList.remove('header-scrolled');
-      }
+  function completeIntro() {
+    clearTimeout(safetyTimer);
+    document.body.classList.remove('intro-active', 'intro-docked');
+    if (navBrand) {
+      navBrand.style.opacity = '1';
+      navBrand.style.visibility = 'visible';
     }
-  });
-}
-
-/* ==========================================================================
-   19. Olympic.no Kinetic Split-Word Reveal System
-   ========================================================================== */
-function initOlympicSplitWordReveal() {
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    return;
+    if (introLoader && introLoader.parentNode) {
+      introLoader.remove();
+    }
+    try {
+      sessionStorage.setItem('ym_intro_played', 'true');
+    } catch (e) {
+      /* ignore */
+    }
   }
 
-  const targetSelectors = [
-    '.section-title',
-    '.subpage-hero-title',
-    '.help-card-title',
-    '.cta-banner-box h2',
-    '.split-word-heading'
-  ];
+  // Step 1: Reveal logo with golden aura in center (140ms)
+  setTimeout(() => {
+    logoImg.classList.add('is-visible');
+  }, 140);
 
-  const headings = document.querySelectorAll(targetSelectors.join(', '));
+  // Step 2: Reveal typography smoothly from the side of the logo (780ms)
+  setTimeout(() => {
+    textReveal.classList.add('is-revealed');
+  }, 780);
 
-  headings.forEach(heading => {
-    if (heading.getAttribute('data-split-initialized')) return;
-    heading.setAttribute('data-split-initialized', 'true');
+  // Step 3: Fly from center directly into the navigation bar logo position (1850ms)
+  // NOTICE: Curtain stays pitch dark so user clearly watches the logo travel and dock into navbar
+  setTimeout(() => {
+    const targetRect = navBrand.getBoundingClientRect();
+    const currentRect = stage.getBoundingClientRect();
 
-    // Only hide elements pending scroll if they are below current viewport
-    const rect = heading.getBoundingClientRect();
-    if (rect.top > window.innerHeight) {
-      heading.classList.add('split-pending');
+    if (targetRect.width > 0 && targetRect.height > 0) {
+      // Lock stage to exact current rendered screen coordinates
+      stage.style.position = 'fixed';
+      stage.style.left = `${currentRect.left}px`;
+      stage.style.top = `${currentRect.top}px`;
+      stage.style.margin = '0';
+      stage.style.transformOrigin = '0 0';
+      stage.style.transform = 'scale(1.4)';
+
+      // Force browser reflow to register fixed coordinates
+      void stage.offsetWidth;
+
+      // Animate smoothly to target navbar position and scale down to 1.0
+      const deltaX = targetRect.left - currentRect.left;
+      const deltaY = targetRect.top - currentRect.top;
+
+      stage.style.transition = 'transform 1.05s cubic-bezier(0.16, 1, 0.3, 1)';
+      stage.style.transform = `translate3d(${deltaX}px, ${deltaY}px, 0) scale(1)`;
+    } else {
+      stage.style.transition = 'transform 0.9s ease, opacity 0.8s ease';
+      stage.style.transform = 'translate3d(0, -120px, 0) scale(0.7)';
+      stage.style.opacity = '0';
     }
+  }, 1850);
 
-    function wrapTextNodes(element) {
-      const childNodes = Array.from(element.childNodes);
-      childNodes.forEach(child => {
-        if (child.nodeType === Node.TEXT_NODE) {
-          const text = child.textContent;
-          if (!text.trim()) return;
+  // Step 4: The Docking Moment (2950ms)
+  // Logo has now arrived at the nav bar. Now it settles, and the entire website reveals slowly.
+  setTimeout(() => {
+    stage.classList.add('is-docked');
+    document.body.classList.add('intro-docked');
 
-          const tokens = text.split(/(\s+)/);
-          const frag = document.createDocumentFragment();
-
-          tokens.forEach(token => {
-            if (!token) return;
-            if (/^\s+$/.test(token)) {
-              frag.appendChild(document.createTextNode(token));
-            } else {
-              const mask = document.createElement('span');
-              mask.className = 'word-mask';
-              const inner = document.createElement('span');
-              inner.className = 'word-inner';
-              inner.textContent = token;
-              mask.appendChild(inner);
-              frag.appendChild(mask);
-            }
-          });
-
-          child.parentNode.replaceChild(frag, child);
-        } else if (child.nodeType === Node.ELEMENT_NODE && !child.classList.contains('word-mask')) {
-          wrapTextNodes(child);
-        }
-      });
+    // Fade out ambient aura and dark curtain smoothly (1.25s)
+    if (ambient) {
+      ambient.style.transition = 'opacity 0.7s ease';
+      ambient.style.opacity = '0';
     }
+    curtain.style.transition = 'opacity 1.25s cubic-bezier(0.16, 1, 0.3, 1)';
+    curtain.style.opacity = '0';
+  }, 2950);
 
-    wrapTextNodes(heading);
-
-    // Apply incremental transition delay to each word inside this heading
-    const wordInners = heading.querySelectorAll('.word-inner');
-    wordInners.forEach((wordInner, idx) => {
-      const delay = Math.min(idx * 45, 550);
-      wordInner.style.transitionDelay = `${delay}ms`;
-    });
-  });
-
-  const splitObserver = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.remove('split-pending');
-        entry.target.classList.add('is-revealed');
-        obs.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.08,
-    rootMargin: '0px 0px -20px 0px'
-  });
-
-  headings.forEach(h => splitObserver.observe(h));
+  // Step 5: Clean hand-off after site has fully revealed (4200ms)
+  setTimeout(completeIntro, 4200);
 }
-
-/* ==========================================================================
-   20. Olympic.no Smooth Card Depth & Multi-Speed Parallax
-   ========================================================================== */
-function initOlympicCardScrollDepth() {
-  const updateScrollDepth = (scrollY) => {
-    document.documentElement.style.setProperty('--scroll-y', `${scrollY.toFixed(1)}px`);
-  };
-
-  if (typeof Lenis !== 'undefined' && window.lenis) {
-    window.lenis.on('scroll', ({ scroll }) => updateScrollDepth(scroll));
-  } else {
-    window.addEventListener('scroll', () => updateScrollDepth(window.scrollY), { passive: true });
-  }
-}
-
-
 
 
 
