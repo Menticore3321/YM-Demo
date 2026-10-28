@@ -1086,119 +1086,86 @@ function initPlatformFilter() {
 }
 
 /* ==========================================================================
-   17. Signature Luxury Brand Intro Animation Sequence
+   17. Olympic.no Inspired Cinematic Video Intro Preloader & Website Fade-In
    ========================================================================== */
 function initBrandIntro() {
-  const introLoader = document.getElementById('intro-loader');
-  const stage = document.getElementById('intro-brand-stage');
-  const logoImg = document.getElementById('intro-logo-img');
-  const textReveal = document.getElementById('intro-text-reveal');
-  const navBrand = document.getElementById('brand-home-link');
-  const curtain = document.getElementById('intro-curtain');
-  const ambient = document.getElementById('intro-ambient');
+  const preloader = document.getElementById('intro-loader');
+  const video = document.getElementById('preloader-video');
+  const skipBtn = document.getElementById('preloader-skip-btn');
+  const progressFill = document.getElementById('preloader-progress-fill');
 
-  if (!introLoader || !stage || !logoImg || !textReveal || !navBrand || !curtain) return;
+  if (!preloader || !video) return;
 
-  // Check if intro has already run in this session (unless forced via ?intro=1)
-  const isForced = window.location.search.includes('intro=1');
-  let hasPlayed = false;
-  try {
-    hasPlayed = sessionStorage.getItem('ym_intro_played') === 'true';
-  } catch (e) {
-    /* ignore session access restrictions */
-  }
-
-  if (hasPlayed && !isForced) {
-    introLoader.remove();
-    return;
-  }
-
-  // Active intro state: lock scroll and keep site hidden behind dark curtain
-  document.body.classList.add('intro-active');
+  // Active preloader state: lock scroll and keep site gently dim behind preloader
+  document.body.classList.add('preloader-active');
   if (window.lenis) window.lenis.stop();
 
-  // Safety fallback: if anything prevents the timeline from finishing, guarantee cleanup after 5s
-  const safetyTimer = setTimeout(completeIntro, 5000);
+  let hasEnded = false;
 
-  function completeIntro() {
-    clearTimeout(safetyTimer);
-    document.body.classList.remove('intro-active', 'intro-docked');
+  function endPreloader() {
+    if (hasEnded) return;
+    hasEnded = true;
+
+    // 1. Trigger Olympic Outro Transition
+    preloader.classList.add('is-outro');
+    document.body.classList.remove('preloader-active');
+    document.body.classList.add('preloader-revealed');
+
+    // 2. Start Lenis & kinetic reveals smoothly
     if (window.lenis) {
       window.lenis.start();
       window.lenis.resize();
     }
-    if (navBrand) {
-      navBrand.style.opacity = '1';
-      navBrand.style.visibility = 'visible';
-    }
-    if (introLoader && introLoader.parentNode) {
-      introLoader.remove();
-    }
-    try {
-      sessionStorage.setItem('ym_intro_played', 'true');
-    } catch (e) {
-      /* ignore */
-    }
+
+    // 3. Clean up DOM after transition completes (1.4s)
+    setTimeout(() => {
+      if (preloader.parentNode) {
+        preloader.remove();
+      }
+      if (typeof initOlympicSplitWordReveal === 'function') {
+        const heroTitle = document.querySelector('.hero-title');
+        if (heroTitle) heroTitle.classList.add('is-revealed');
+      }
+      if (window.lenis) {
+        window.lenis.resize();
+      }
+    }, 1400);
   }
 
-  // Step 1: Reveal logo with golden aura in center (140ms)
-  setTimeout(() => {
-    logoImg.classList.add('is-visible');
-  }, 140);
+  // Bind video progress and completion events
+  video.addEventListener('timeupdate', () => {
+    if (video.duration && progressFill) {
+      const pct = (video.currentTime / video.duration) * 100;
+      progressFill.style.width = `${Math.min(pct, 100)}%`;
 
-  // Step 2: Reveal typography smoothly from the side of the logo (780ms)
-  setTimeout(() => {
-    textReveal.classList.add('is-revealed');
-  }, 780);
-
-  // Step 3: Fly from center directly into the navigation bar logo position (1850ms)
-  // NOTICE: Curtain stays pitch dark so user clearly watches the logo travel and dock into navbar
-  setTimeout(() => {
-    const targetRect = navBrand.getBoundingClientRect();
-    const currentRect = stage.getBoundingClientRect();
-
-    if (targetRect.width > 0 && targetRect.height > 0) {
-      // Lock stage to exact current rendered screen coordinates
-      stage.style.position = 'fixed';
-      stage.style.left = `${currentRect.left}px`;
-      stage.style.top = `${currentRect.top}px`;
-      stage.style.margin = '0';
-      stage.style.transformOrigin = '0 0';
-      stage.style.transform = 'scale(1.4)';
-
-      // Force browser reflow to register fixed coordinates
-      void stage.offsetWidth;
-
-      // Animate smoothly to target navbar position and scale down to 1.0
-      const deltaX = targetRect.left - currentRect.left;
-      const deltaY = targetRect.top - currentRect.top;
-
-      stage.style.transition = 'transform 1.05s cubic-bezier(0.16, 1, 0.3, 1)';
-      stage.style.transform = `translate3d(${deltaX}px, ${deltaY}px, 0) scale(1)`;
-    } else {
-      stage.style.transition = 'transform 0.9s ease, opacity 0.8s ease';
-      stage.style.transform = 'translate3d(0, -120px, 0) scale(0.7)';
-      stage.style.opacity = '0';
+      // Seamless Olympic hand-off: start dissolve 350ms before video reaches full end
+      if (video.currentTime >= video.duration - 0.35) {
+        endPreloader();
+      }
     }
-  }, 1850);
+  });
 
-  // Step 4: The Docking Moment (2950ms)
-  // Logo has now arrived at the nav bar. Now it settles, and the entire website reveals slowly.
-  setTimeout(() => {
-    stage.classList.add('is-docked');
-    document.body.classList.add('intro-docked');
+  video.addEventListener('ended', endPreloader);
 
-    // Fade out ambient aura and dark curtain smoothly (1.25s)
-    if (ambient) {
-      ambient.style.transition = 'opacity 0.7s ease';
-      ambient.style.opacity = '0';
-    }
-    curtain.style.transition = 'opacity 1.25s cubic-bezier(0.16, 1, 0.3, 1)';
-    curtain.style.opacity = '0';
-  }, 2950);
+  if (skipBtn) {
+    skipBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      endPreloader();
+    });
+  }
 
-  // Step 5: Clean hand-off after site has fully revealed (4200ms)
-  setTimeout(completeIntro, 4200);
+  // Safety timer in case of slow connection or autoplay restrictions (max 8s)
+  const safetyTimeout = setTimeout(endPreloader, 8000);
+
+  // Play video with autoplay fallback
+  const playPromise = video.play();
+  if (playPromise !== undefined) {
+    playPromise.catch((err) => {
+      console.warn('Video autoplay waiting for interaction:', err);
+      // Allow single tap/click anywhere to dismiss
+      preloader.addEventListener('click', endPreloader, { once: true });
+    });
+  }
 }
 
 /* ==========================================================================
