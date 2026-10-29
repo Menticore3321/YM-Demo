@@ -30,7 +30,15 @@ function initTheme() {
     localStorage.removeItem('ym-theme');
     localStorage.removeItem('ym_theme');
     const stored = localStorage.getItem('ym_site_content');
-    if (stored && (stored.includes('#131614') || stored.includes('#0A110B') || stored.includes('#161A17') || stored.includes('#1e2420'))) {
+    if (stored && (
+      stored.includes('"name":"undefined"') ||
+      stored.includes('"title":"undefined"') ||
+      stored.includes('"tabLabel":"undefined"') ||
+      stored.includes('#131614') ||
+      stored.includes('#0A110B') ||
+      stored.includes('#161A17') ||
+      stored.includes('#1e2420')
+    )) {
       localStorage.removeItem('ym_site_content');
       localStorage.removeItem('ym_cms_preview_data');
     }

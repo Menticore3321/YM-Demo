@@ -260,6 +260,7 @@
       {
         "id": "realestate",
         "tabLabel": "Real Estate & Funds",
+        "name": "Real Estate Developers & Asset Managers",
         "title": "Real Estate Developers & Asset Managers",
         "description": "End-to-end financial operations and fund accounting for asset managers, REITs, general partners, and property operators. We oversee property general ledgers, rent roll reconciliations, CAM pooling, and investor distributions.",
         "tags": [
@@ -274,6 +275,7 @@
       {
         "id": "tech",
         "tabLabel": "Tech & High-Growth",
+        "name": "SaaS, Software & High-Growth Startups",
         "title": "SaaS, Software & High-Growth Startups",
         "description": "Sophisticated financial modeling, subscription billing recognition (ASC 606), churn analytics, and venture-ready data rooms for fast-scaling technology companies.",
         "tags": [
@@ -288,6 +290,7 @@
       {
         "id": "healthcare",
         "tabLabel": "Healthcare & Clinical",
+        "name": "Healthcare Systems, Clinics & BioTech",
         "title": "Healthcare Systems, Clinics & BioTech",
         "description": "Fiduciary accounting frameworks tailored to medical clinics, multi-location dental networks, diagnostics providers, and biotech laboratories navigating strict statutory reporting.",
         "tags": [
@@ -302,6 +305,7 @@
       {
         "id": "ecommerce",
         "tabLabel": "E-Commerce & Retail",
+        "name": "Omnichannel Retail & E-Commerce Brands",
         "title": "Omnichannel Retail & E-Commerce Brands",
         "description": "Multi-channel revenue clearing across Shopify, Amazon, Stripe, and global marketplaces. Inventory costing, landed cost calculations, and sales tax filings across jurisdictions.",
         "tags": [
@@ -316,6 +320,7 @@
       {
         "id": "professional",
         "tabLabel": "Professional Services",
+        "name": "Consultancies, Law Firms & Agencies",
         "title": "Consultancies, Law Firms & Agencies",
         "description": "WIP (Work-In-Progress) accounting, billable utilization dashboards, client trust account management, and partner distribution waterfalls.",
         "tags": [
@@ -330,6 +335,7 @@
       {
         "id": "hospitality",
         "tabLabel": "Hospitality & Chains",
+        "name": "Hospitality Groups & Restaurant Franchises",
         "title": "Hospitality Groups & Restaurant Franchises",
         "description": "Daily flash sales reconciliations, prime cost tracking (food, beverage, labor), multi-location sales tax compliance, and automated payroll journals.",
         "tags": [

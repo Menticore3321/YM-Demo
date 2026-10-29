@@ -579,19 +579,21 @@
     (ind.industries || []).forEach((industry, index) => {
       const box = document.createElement('div');
       box.className = 'card-item-box';
+      const industryName = industry.name || industry.title || industry.tabLabel || '';
+      const industryDesc = industry.description || '';
       const tagsStr = (industry.tags || []).join(', ');
 
       box.innerHTML = `
         <div class="card-item-header">
-          <span class="card-item-title">Sector #${index + 1}: ${industry.name}</span>
+          <span class="card-item-title">Sector #${index + 1}: ${industryName}</span>
         </div>
         <div class="form-group">
-          <label class="form-label">Sector Name</label>
-          <input type="text" class="form-input ind-name" value="${industry.name}">
+          <label class="form-label">Sector Name / Title</label>
+          <input type="text" class="form-input ind-name" value="${industryName}">
         </div>
         <div class="form-group">
           <label class="form-label">Sector Description</label>
-          <textarea class="form-textarea ind-desc" rows="3">${industry.description}</textarea>
+          <textarea class="form-textarea ind-desc" rows="3">${industryDesc}</textarea>
         </div>
         <div class="form-group" style="margin-bottom: 0;">
           <label class="form-label">Focus Areas / Tags <span class="form-label-hint">Comma separated</span></label>
@@ -599,7 +601,14 @@
         </div>
       `;
 
-      box.querySelector('.ind-name').addEventListener('input', (e) => { industry.name = e.target.value; broadcastPreviewUpdate(); });
+      box.querySelector('.ind-name').addEventListener('input', (e) => {
+        industry.name = e.target.value;
+        industry.title = e.target.value;
+        if (!industry.tabLabel) industry.tabLabel = e.target.value;
+        const titleEl = box.querySelector('.card-item-title');
+        if (titleEl) titleEl.textContent = `Sector #${index + 1}: ${e.target.value}`;
+        broadcastPreviewUpdate();
+      });
       box.querySelector('.ind-desc').addEventListener('input', (e) => { industry.description = e.target.value; broadcastPreviewUpdate(); });
       box.querySelector('.ind-tags').addEventListener('input', (e) => {
         industry.tags = e.target.value.split(',').map((t) => t.trim()).filter((t) => t.length > 0);

@@ -51,6 +51,14 @@
                 delete parsed.theme.textSecondary;
               }
             }
+            // Sanitize corrupt undefined values in industries
+            if (parsed && parsed.industriesSection && Array.isArray(parsed.industriesSection.industries)) {
+              parsed.industriesSection.industries.forEach((item) => {
+                if (item.name === 'undefined' || item.name === undefined) delete item.name;
+                if (item.tabLabel === 'undefined') delete item.tabLabel;
+                if (item.title === 'undefined') delete item.title;
+              });
+            }
             merged = deepMerge(defaultData, parsed);
           }
         } catch (e) {
@@ -341,10 +349,14 @@
         buttons.forEach((btn, idx) => {
           const itemData = industriesList[idx];
           if (itemData) {
-            const svg = btn.querySelector('svg');
-            btn.innerHTML = '';
-            if (svg) btn.appendChild(svg);
-            btn.appendChild(document.createTextNode(' ' + itemData.name));
+            const sectorKey = itemData.id || btn.getAttribute('data-industry') || '';
+            const tabLabel = itemData.tabLabel || itemData.name || itemData.title || btn.textContent.trim();
+            const cardTitle = itemData.title || itemData.name || itemData.tabLabel || 'Industry Solutions';
+            const iconSvg = (typeof industryData !== 'undefined' && industryData[sectorKey] && industryData[sectorKey].icon)
+              ? industryData[sectorKey].icon
+              : '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/></svg>';
+
+            btn.textContent = tabLabel;
 
             btn.onclick = () => {
               buttons.forEach((b) => b.classList.remove('active'));
@@ -352,9 +364,10 @@
               if (card) {
                 card.innerHTML = `
                   <div class="industry-card-header">
-                    <h3 class="industry-card-title">${itemData.name}</h3>
+                    <div class="industry-icon-pill">${iconSvg}</div>
+                    <h3 class="industry-card-title">${cardTitle}</h3>
                   </div>
-                  <p class="industry-card-desc">${itemData.description}</p>
+                  <p class="industry-card-desc">${itemData.description || ''}</p>
                   <div class="industry-tags-grid">
                     ${(itemData.tags || [])
                       .map(
