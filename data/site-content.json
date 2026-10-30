@@ -9,10 +9,22 @@
     "headerCtaText": "Schedule Discovery Call",
     "headerCtaLink": "contact.html",
     "navLinks": [
-      { "label": "Services", "url": "services.html" },
-      { "label": "About", "url": "about.html" },
-      { "label": "Careers", "url": "careers.html" },
-      { "label": "Contact", "url": "contact.html" }
+      {
+        "label": "Services",
+        "url": "services.html"
+      },
+      {
+        "label": "About",
+        "url": "about.html"
+      },
+      {
+        "label": "Careers",
+        "url": "careers.html"
+      },
+      {
+        "label": "Contact",
+        "url": "contact.html"
+      }
     ]
   },
   "theme": {
@@ -358,88 +370,88 @@
     "ctaLink": "contact.html",
     "platforms": [
       {
-        "initials": "NS",
+        "id": "netsuite",
         "badge": "ENTERPRISE ERP",
         "name": "Oracle NetSuite",
         "description": "Multi-entity consolidations, multi-currency general ledgers, and automated ASC 606 revenue recognition.",
-        "metric": "✓ Full-Cycle GL & Audit Ready"
+        "category": "erp"
       },
       {
-        "initials": "YV",
+        "id": "yardi",
         "badge": "PROPTECH & FUNDS",
         "name": "Yardi Voyager",
         "description": "Institutional commercial and residential real estate fund accounting, CAM reconciliations, and investor waterfall schedules.",
-        "metric": "✓ CAM & Fund Accounting"
+        "category": "realestate"
       },
       {
-        "initials": "QB",
+        "id": "quickbooks",
         "badge": "CORE ACCOUNTING",
         "name": "QuickBooks Online",
         "description": "Automated chart of accounts, bank feed rules, accounts payable/receivable automation, and rapid month-end closing.",
-        "metric": "✓ 5-Day Fast Close"
+        "category": "erp"
       },
       {
-        "initials": "SI",
+        "id": "sage",
         "badge": "CLOUD FINANCIALS",
         "name": "Sage Intacct",
         "description": "Dimensional general ledgers, project-level accounting, SaaS metric dashboards, and multi-location compliance.",
-        "metric": "✓ Dimensional Reporting"
+        "category": "erp"
       },
       {
-        "initials": "XL",
+        "id": "excel",
         "badge": "FINANCIAL MODELING",
         "name": "Advanced Excel & Models",
         "description": "Custom dynamic 3-statement models, DCF valuations, debt covenant trackers, and board scenario analyses.",
-        "metric": "✓ Audit-Grade Modeling"
+        "category": "analytics realestate"
       },
       {
-        "initials": "PB",
+        "id": "powerbi",
         "badge": "EXECUTIVE BI",
         "name": "Microsoft PowerBI",
         "description": "Real-time automated financial ingestion, KPI cockpits, rolling cash forecasting, and executive data visualizations.",
-        "metric": "✓ Real-Time KPI Dashboards"
+        "category": "analytics"
       },
       {
-        "initials": "XR",
+        "id": "xero",
         "badge": "INTERNATIONAL GL",
         "name": "Xero Global",
         "description": "Cross-border multi-currency ledgers, automated bank feeds, sales tax compliance, and seamless third-party app synchronization.",
-        "metric": "✓ Multi-Currency Sync"
+        "category": "erp"
       },
       {
-        "initials": "BD",
+        "id": "bill",
         "badge": "SPEND CONTROL",
         "name": "Bill.com AP & AR",
         "description": "Automated approval workflows, two-way matching, vendor payment disbursement, and seamless general ledger synchronization.",
-        "metric": "✓ Zero-Touch AP Workflows"
+        "category": "treasury"
       },
       {
-        "initials": "RP",
+        "id": "ramp",
         "badge": "TREASURY & CARDS",
         "name": "Ramp Treasury",
         "description": "Real-time expense policy enforcement, corporate card management, vendor contract renegotiation, and working capital preservation.",
-        "metric": "✓ Real-Time Spend Guardrails"
+        "category": "treasury"
       },
       {
-        "initials": "ZB",
+        "id": "zoho",
         "badge": "MANAGEMENT ACCOUNTING",
         "name": "Zoho Books Suite",
-        "description": "Custom inventory valuation, cost-center tracking, automated billing schedules, and statutory GST / tax compliance.",
-        "metric": "✓ Cost-Center Control"
+        "description": "Custom inventory valuation, cost-center tracking, automated billing schedules, and integrated business workflows.",
+        "category": "erp analytics"
       },
       {
-        "initials": "PR",
+        "id": "adp",
         "badge": "PAYROLL COMPLIANCE",
         "name": "ADP & Gusto",
-        "description": "Comprehensive payroll journal entries, multi-state tax withholdings, contractor 1099 compliance, and benefit accruals.",
-        "metric": "✓ Flawless Payroll Ledgering"
+        "description": "Comprehensive payroll journal entries, multi-state tax withholdings, contractor 1099 management, and compliance reporting.",
+        "category": "treasury"
       },
       {
-        "initials": "EN",
+        "id": "erpnext",
         "badge": "OPEN ERP LEDGERS",
         "name": "ERPNext Financials",
-        "description": "Manufacturing cost accounting, supply chain ledger integration, project billing, and custom financial workflow engineering.",
-        "metric": "✓ Full Supply-Chain GL"
+        "description": "Manufacturing cost accounting, supply chain ledger integration, project billing, and custom workflow automation.",
+        "category": "erp"
       }
     ]
   },
@@ -460,7 +472,12 @@
       "snippet": "Visionary leadership in corporate financial advisory, Yardi real estate accounting, and capital planning.",
       "bio": "Visionary financial leader with extensive experience delivering institutional advisory, real estate portfolio accounting, and strategic controllership for multinational operations.",
       "avatar": "",
-      "competencies": ["Corporate Financial Strategy", "Real Estate Fund Accounting", "Working Capital Optimization", "Strategic Growth"]
+      "competencies": [
+        "Corporate Financial Strategy",
+        "Real Estate Fund Accounting",
+        "Working Capital Optimization",
+        "Strategic Growth"
+      ]
     },
     {
       "id": "team-2",
@@ -471,7 +488,12 @@
       "snippet": "Senior CPA spearheading strategic CFO advisory, capital allocation, and governance.",
       "bio": "Strategic finance leader advising corporations on capital structuring, budgeting cycles, and statutory governance. Renowned for turning complex balance sheets into high-yield financial roadmaps.",
       "avatar": "",
-      "competencies": ["Virtual CFO Advisory", "Corporate Governance", "Capital Budgeting", "Audit Preparation"]
+      "competencies": [
+        "Virtual CFO Advisory",
+        "Corporate Governance",
+        "Capital Budgeting",
+        "Audit Preparation"
+      ]
     },
     {
       "id": "team-3",
@@ -482,7 +504,12 @@
       "snippet": "Delivers turnkey finance operations and international accounting architectures for fast-growing ventures.",
       "bio": "Pioneering end-to-end accounting outsourcing models for SMEs and international clients. Expert in multi-currency ledger consolidation and automated month-end close schedules.",
       "avatar": "",
-      "competencies": ["SME Outsourcing", "International Accounting", "Cash Flow Control", "Tax Compliance"]
+      "competencies": [
+        "SME Outsourcing",
+        "International Accounting",
+        "Cash Flow Control",
+        "Tax Compliance"
+      ]
     },
     {
       "id": "team-4",
@@ -493,7 +520,12 @@
       "snippet": "Champion of financial accuracy, SOP standardizations, and comprehensive statutory reporting.",
       "bio": "Ensuring institutional accuracy through meticulous bookkeeping routines, internal control frameworks, and compliance reporting that guarantees audit peace of mind.",
       "avatar": "",
-      "competencies": ["Audit & Assurance", "Internal Controls", "Standard Operating Procedures", "Statutory Reporting"]
+      "competencies": [
+        "Audit & Assurance",
+        "Internal Controls",
+        "Standard Operating Procedures",
+        "Statutory Reporting"
+      ]
     }
   ],
   "faqSection": {
@@ -555,27 +587,72 @@
     "addressText": "Tower B, 7th Floor, Logix Cyber Park, Sector 62, Noida, Uttar Pradesh 201309",
     "solutionsTitle": "Financial Practices",
     "solutionsLinks": [
-      { "label": "Virtual CFO Advisory", "url": "services.html" },
-      { "label": "Full-Cycle Bookkeeping", "url": "services.html" },
-      { "label": "Executive MIS & Analytics", "url": "services.html" },
-      { "label": "Tax Strategy & Compliance", "url": "services.html" },
-      { "label": "Real Estate Fund Accounting", "url": "services.html" },
-      { "label": "Audit Readiness & Controls", "url": "services.html" }
+      {
+        "label": "Virtual CFO Advisory",
+        "url": "services.html"
+      },
+      {
+        "label": "Full-Cycle Bookkeeping",
+        "url": "services.html"
+      },
+      {
+        "label": "Executive MIS & Analytics",
+        "url": "services.html"
+      },
+      {
+        "label": "Tax Strategy & Compliance",
+        "url": "services.html"
+      },
+      {
+        "label": "Real Estate Fund Accounting",
+        "url": "services.html"
+      },
+      {
+        "label": "Audit Readiness & Controls",
+        "url": "services.html"
+      }
     ],
     "firmTitle": "The Advisory Firm",
     "firmLinks": [
-      { "label": "About Leadership", "url": "about.html" },
-      { "label": "Core Methodology", "url": "about.html#methodology" },
-      { "label": "Careers & Culture", "url": "careers.html" },
-      { "label": "Industry Practice Areas", "url": "services.html#industries" },
-      { "label": "Client Testimonials", "url": "about.html#testimonials" },
-      { "label": "Schedule Consultation", "url": "contact.html" }
+      {
+        "label": "About Leadership",
+        "url": "about.html"
+      },
+      {
+        "label": "Core Methodology",
+        "url": "about.html#methodology"
+      },
+      {
+        "label": "Careers & Culture",
+        "url": "careers.html"
+      },
+      {
+        "label": "Industry Practice Areas",
+        "url": "services.html#industries"
+      },
+      {
+        "label": "Client Testimonials",
+        "url": "about.html#testimonials"
+      },
+      {
+        "label": "Schedule Consultation",
+        "url": "contact.html"
+      }
     ],
     "legalTitle": "Governance & Legal",
     "legalLinks": [
-      { "label": "Terms of Engagement", "url": "terms-of-service.html" },
-      { "label": "Privacy & Data Policy", "url": "privacy-policy.html" },
-      { "label": "Cookie Disclosures", "url": "cookies.html" }
+      {
+        "label": "Terms of Engagement",
+        "url": "terms-of-service.html"
+      },
+      {
+        "label": "Privacy & Data Policy",
+        "url": "privacy-policy.html"
+      },
+      {
+        "label": "Cookie Disclosures",
+        "url": "cookies.html"
+      }
     ],
     "watermark": "YoungMark",
     "copyright": "© 2026 YoungMark Global Advisory. All rights reserved.",

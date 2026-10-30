@@ -52,6 +52,11 @@
               }
             }
             // Sanitize corrupt undefined values in industries
+            if (parsed && parsed.platformsSection && Array.isArray(parsed.platformsSection.platforms)) {
+              if (parsed.platformsSection.platforms.some(p => p.metric || p.initials)) {
+                delete parsed.platformsSection;
+              }
+            }
             if (parsed && parsed.industriesSection && Array.isArray(parsed.industriesSection.industries)) {
               parsed.industriesSection.industries.forEach((item) => {
                 if (item.name === 'undefined' || item.name === undefined) delete item.name;

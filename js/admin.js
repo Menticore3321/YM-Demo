@@ -640,39 +640,40 @@
       box.className = 'card-item-box';
       box.innerHTML = `
         <div class="card-item-header">
-          <span class="card-item-title">#${index + 1}: ${platform.name} (${platform.badge})</span>
+          <span class="card-item-title">#${index + 1}: ${platform.name} (${platform.badge || ''})</span>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Software Name</label>
-            <input type="text" class="form-input p-name" value="${platform.name}">
+            <label class="form-label">Software / Platform Name</label>
+            <input type="text" class="form-input p-name" value="${platform.name || ''}">
           </div>
-          <div class="form-group">
-            <label class="form-label">Initials / Icon Text</label>
-            <input type="text" class="form-input p-initials" value="${platform.initials}">
-          </div>
-        </div>
-        <div class="form-row">
           <div class="form-group">
             <label class="form-label">Category Badge</label>
-            <input type="text" class="form-input p-badge" value="${platform.badge}">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Metric / SLA Highlight</label>
-            <input type="text" class="form-input p-metric" value="${platform.metric}">
+            <input type="text" class="form-input p-badge" value="${platform.badge || ''}">
           </div>
         </div>
         <div class="form-group" style="margin-bottom: 0;">
           <label class="form-label">Capabilities Description</label>
-          <textarea class="form-textarea p-desc" rows="2">${platform.description}</textarea>
+          <textarea class="form-textarea p-desc" rows="2">${platform.description || ''}</textarea>
         </div>
       `;
 
-      box.querySelector('.p-name').addEventListener('input', (e) => { platform.name = e.target.value; broadcastPreviewUpdate(); });
-      box.querySelector('.p-initials').addEventListener('input', (e) => { platform.initials = e.target.value; broadcastPreviewUpdate(); });
-      box.querySelector('.p-badge').addEventListener('input', (e) => { platform.badge = e.target.value; broadcastPreviewUpdate(); });
-      box.querySelector('.p-metric').addEventListener('input', (e) => { platform.metric = e.target.value; broadcastPreviewUpdate(); });
-      box.querySelector('.p-desc').addEventListener('input', (e) => { platform.description = e.target.value; broadcastPreviewUpdate(); });
+      box.querySelector('.p-name').addEventListener('input', (e) => {
+        platform.name = e.target.value;
+        const titleEl = box.querySelector('.card-item-title');
+        if (titleEl) titleEl.textContent = `#${index + 1}: ${platform.name} (${platform.badge || ''})`;
+        broadcastPreviewUpdate();
+      });
+      box.querySelector('.p-badge').addEventListener('input', (e) => {
+        platform.badge = e.target.value;
+        const titleEl = box.querySelector('.card-item-title');
+        if (titleEl) titleEl.textContent = `#${index + 1}: ${platform.name} (${platform.badge || ''})`;
+        broadcastPreviewUpdate();
+      });
+      box.querySelector('.p-desc').addEventListener('input', (e) => {
+        platform.description = e.target.value;
+        broadcastPreviewUpdate();
+      });
 
       container.appendChild(box);
     });

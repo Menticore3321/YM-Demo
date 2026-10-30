@@ -32,6 +32,7 @@ function initTheme() {
     const stored = localStorage.getItem('ym_site_content');
     if (stored && (
       stored.includes('"name":"undefined"') ||
+      stored.includes('"initials":') ||
       stored.includes('"title":"undefined"') ||
       stored.includes('"tabLabel":"undefined"') ||
       stored.includes('#131614') ||
