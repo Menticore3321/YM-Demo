@@ -406,6 +406,7 @@
 
       // Solar CTA
       setText('.solar-cta-overlay h3', pSec.ctaTitle);
+      setText('.solar-cta-overlay .solar-cta-desc', pSec.ctaSubtitle);
       const sCta = document.querySelector('.solar-cta-overlay .btn-cta');
       if (sCta) {
         if (pSec.ctaButton) sCta.textContent = pSec.ctaButton;
