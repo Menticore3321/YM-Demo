@@ -637,45 +637,77 @@
     // P. Subpage Legal Policies
     if (data.legal) {
       const pathname = window.location.pathname.toLowerCase();
+
+      // 1. Terms of Service
       if (pathname.includes('terms-of-service') && data.legal.termsOfService) {
         const tos = data.legal.termsOfService;
         setText('.legal-effective-date', `Effective Date: ${tos.effectiveDate} | Last Updated: ${tos.lastUpdated}`);
         const sectionsContainer = document.querySelector('.legal-content-body, .terms-sections');
         if (sectionsContainer && tos.sections) {
-          sectionsContainer.innerHTML = tos.sections
-            .map(
-              (sec) => `
-              <div class="legal-clause-block" style="margin-bottom: 32px;">
-                <h3 style="font-size: 1.35rem; color: #FFFFFF; margin-bottom: 12px; font-weight: 700;">${sec.heading}</h3>
-                <p style="color: #D6E3D4; line-height: 1.8; font-size: 1.02rem;">${sec.body}</p>
+          const introHtml = tos.intro
+            ? `<div class="legal-intro-lead" style="font-size: 1.12rem; font-weight: 600; color: #132A13; line-height: 1.75; padding-bottom: 24px; margin-bottom: 32px; border-bottom: 1px solid rgba(49, 87, 44, 0.14);">${tos.intro}</div>`
+            : '';
+          sectionsContainer.innerHTML =
+            introHtml +
+            tos.sections
+              .map(
+                (sec) => `
+              <div class="legal-clause-block" style="margin-bottom: 36px;">
+                <h3 style="font-size: 1.45rem; color: #132A13 !important; margin-bottom: 12px; font-weight: 800; line-height: 1.3;">${sec.heading}</h3>
+                <p style="color: #243823 !important; line-height: 1.8; font-size: 1.02rem; font-weight: 450; margin: 0;">${sec.body}</p>
               </div>
             `
-            )
-            .join('');
+              )
+              .join('');
         }
       }
 
+      // 2. Privacy Policy
       if (pathname.includes('privacy-policy') && data.legal.privacyPolicy) {
         const priv = data.legal.privacyPolicy;
         setText('.legal-effective-date', `Effective Date: ${priv.effectiveDate} | Last Updated: ${priv.lastUpdated}`);
         const sectionsContainer = document.querySelector('.legal-content-body, .privacy-sections');
         if (sectionsContainer && priv.sections) {
-          sectionsContainer.innerHTML = priv.sections
-            .map(
-              (sec) => `
-              <div class="legal-clause-block" style="margin-bottom: 32px;">
-                <h3 style="font-size: 1.35rem; color: #FFFFFF; margin-bottom: 12px; font-weight: 700;">${sec.heading}</h3>
-                <p style="color: #D6E3D4; line-height: 1.8; font-size: 1.02rem;">${sec.body}</p>
+          const introHtml = priv.intro
+            ? `<div class="legal-intro-lead" style="font-size: 1.12rem; font-weight: 600; color: #132A13; line-height: 1.75; padding-bottom: 24px; margin-bottom: 32px; border-bottom: 1px solid rgba(49, 87, 44, 0.14);">${priv.intro}</div>`
+            : '';
+          sectionsContainer.innerHTML =
+            introHtml +
+            priv.sections
+              .map(
+                (sec) => `
+              <div class="legal-clause-block" style="margin-bottom: 36px;">
+                <h3 style="font-size: 1.45rem; color: #132A13 !important; margin-bottom: 12px; font-weight: 800; line-height: 1.3;">${sec.heading}</h3>
+                <p style="color: #243823 !important; line-height: 1.8; font-size: 1.02rem; font-weight: 450; margin: 0;">${sec.body}</p>
               </div>
             `
-            )
-            .join('');
+              )
+              .join('');
         }
       }
 
+      // 3. Cookie Policy
       if (pathname.includes('cookies') && data.legal.cookiePolicy) {
         const cook = data.legal.cookiePolicy;
         setText('.legal-effective-date', `Effective Date: ${cook.effectiveDate} | Last Updated: ${cook.lastUpdated}`);
+        const sectionsContainer = document.querySelector('.legal-content-body, .cookie-sections');
+        if (sectionsContainer && cook.sections) {
+          const introHtml = cook.intro
+            ? `<div class="legal-intro-lead" style="font-size: 1.12rem; font-weight: 600; color: #132A13; line-height: 1.75; padding-bottom: 24px; margin-bottom: 32px; border-bottom: 1px solid rgba(49, 87, 44, 0.14);">${cook.intro}</div>`
+            : '';
+          sectionsContainer.innerHTML =
+            introHtml +
+            cook.sections
+              .map(
+                (sec) => `
+              <div class="legal-clause-block" style="margin-bottom: 36px;">
+                <h3 style="font-size: 1.45rem; color: #132A13 !important; margin-bottom: 12px; font-weight: 800; line-height: 1.3;">${sec.heading}</h3>
+                <p style="color: #243823 !important; line-height: 1.8; font-size: 1.02rem; font-weight: 450; margin: 0;">${sec.body}</p>
+              </div>
+            `
+              )
+              .join('');
+        }
       }
     }
   }
